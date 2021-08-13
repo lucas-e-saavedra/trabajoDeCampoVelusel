@@ -184,154 +184,154 @@ GO
 
 CREATE TABLE [Almacen]
 (
-	[Id] uniqueidentifier NOT NULL
+	[Id] uniqueidentifier NOT NULL,
 	[Nombre] varchar(50) NULL
 )
 GO
 
 CREATE TABLE [Almacen_Material]
 (
-	[IdAlmacen] uniqueidentifier NOT NULL
-	[IdMaterial] uniqueidentifier NOT NULL
+	[IdAlmacen] uniqueidentifier NOT NULL,
+	[IdMaterial] uniqueidentifier NOT NULL,
 	[Cantidad] float NULL
 )
 GO
 
 CREATE TABLE [Almacen_Producto]
 (
-	[IdAlmacen] uniqueidentifier NOT NULL
-	[IdProducto] uniqueidentifier NOT NULL
+	[IdAlmacen] uniqueidentifier NOT NULL,
+	[IdProducto] uniqueidentifier NOT NULL,
 	[Cantidad] float NULL
 )
 GO
 
 CREATE TABLE [Cliente]
 (
-	[Id] uniqueidentifier NOT NULL
-	[Nombre] varbinary(50) NULL
-	[TipoDocumento] varchar(4) NULL
-	[NroDocumento] varchar(15) NULL
-	[Email] varchar(50) NULL
+	[Id] uniqueidentifier NOT NULL,
+	[Nombre] varbinary(50) NULL,
+	[TipoDocumento] varchar(4) NULL,
+	[NroDocumento] varchar(15) NULL,
+	[Email] varchar(50) NULL,
 	[Telefono] varchar(20) NULL
 )
 GO
 
 CREATE TABLE [Material]
 (
-	[Id] uniqueidentifier NOT NULL
-	[Nombre] varchar(50) NOT NULL
-	[Unidad] varchar(3) NOT NULL
+	[Id] uniqueidentifier NOT NULL,
+	[Nombre] varchar(50) NOT NULL,
+	[Unidad] varchar(3) NOT NULL,
 )
 GO
 
 CREATE TABLE [MaterialComprado]
 (
-	[IdOrdenCompra] uniqueidentifier NOT NULL
-	[IdMaterial] uniqueidentifier NOT NULL
-	[Cantidad] float NULL
+	[IdOrdenCompra] uniqueidentifier NOT NULL,
+	[IdMaterial] uniqueidentifier NOT NULL,
+	[Cantidad] float NULL,
 )
 GO
 
 CREATE TABLE [MaterialPedido]
 (
-	[IdOrdenCompra] uniqueidentifier NOT NULL
-	[IdMaterial] uniqueidentifier NOT NULL
-	[Cantidad] float NULL
+	[IdOrdenCompra] uniqueidentifier NOT NULL,
+	[IdMaterial] uniqueidentifier NOT NULL,
+	[Cantidad] float NULL,
 )
 GO
 
 CREATE TABLE [OrdenCompra]
 (
-	[Id] uniqueidentifier NOT NULL
-	[IdSolicitante] uniqueidentifier NULL
-	[Estado] varchar(5) NULL
-	[FechaObjetivo] datetime NULL
-	[FechaEstimadaRecepcion] datetime NULL
+	[Id] uniqueidentifier NOT NULL,
+	[IdSolicitante] uniqueidentifier NULL,
+	[Estado] varchar(5) NULL,
+	[FechaObjetivo] datetime NULL,
+	[FechaEstimadaRecepcion] datetime NULL,
 	[FechaRealRecepcion] datetime NULL
 )
 GO
 
 CREATE TABLE [OrdenFabricacion]
 (
-	[Id] uniqueidentifier NOT NULL
-	[IdOrdenFabricacionPosterior] uniqueidentifier NULL
-	[Estado] varbinary(5) NOT NULL
-	[IdPedido] uniqueidentifier NOT NULL
-	[IdProducto] uniqueidentifier NOT NULL
-	[CantObjetivo] int NOT NULL
-	[CantFabricados] int NULL
+	[Id] uniqueidentifier NOT NULL,
+	[IdOrdenFabricacionPosterior] uniqueidentifier NULL,
+	[Estado] varbinary(5) NOT NULL,
+	[IdPedido] uniqueidentifier NOT NULL,
+	[IdProducto] uniqueidentifier NOT NULL,
+	[CantObjetivo] int NOT NULL,
+	[CantFabricados] int NULL,
 	[CantAprobados] int NULL
 )
 GO
 
 CREATE TABLE [Pedido]
 (
-	[Id] uniqueidentifier NOT NULL
-	[Estado] varchar(50) NOT NULL
-	[IdSolicitante] uniqueidentifier NULL
+	[Id] uniqueidentifier NOT NULL,
+	[Estado] varchar(50) NOT NULL,
+	[IdSolicitante] uniqueidentifier NULL,
 	[IdVendedor] uniqueidentifier NOT NULL
 )
 GO
 
 CREATE TABLE [Pedido_Detalle]
 (
-	[IdPedido] uniqueidentifier NOT NULL
-	[IdProducto] uniqueidentifier NOT NULL
+	[IdPedido] uniqueidentifier NOT NULL,
+	[IdProducto] uniqueidentifier NOT NULL,
 	[Cantidad] int NULL
 )
 GO
 
 CREATE TABLE [PlantillaF_Material]
 (
-	[IdPlantilla] uniqueidentifier NOT NULL
-	[IdMaterial] uniqueidentifier NOT NULL
+	[IdPlantilla] uniqueidentifier NOT NULL,
+	[IdMaterial] uniqueidentifier NOT NULL,
 	[Cantidad] float NULL
 )
 GO
 
 CREATE TABLE [PlantillaF_SubProducto]
 (
-	[IdPlantilla] uniqueidentifier NOT NULL
-	[IdSubProducto] uniqueidentifier NOT NULL
+	[IdPlantilla] uniqueidentifier NOT NULL,
+	[IdSubProducto] uniqueidentifier NOT NULL,
 	[Cantidad] float NULL
 )
 GO
 
 CREATE TABLE [PlantillaFabricacion]
 (
-	[IdProducto] uniqueidentifier NOT NULL
+	[IdProducto] uniqueidentifier NOT NULL,
 	[ReposoMinRequeridoHs] int NULL
 )
 GO
 
 CREATE TABLE [Producto]
 (
-	[Id] uniqueidentifier NOT NULL
-	[Nombre] varchar(50) NOT NULL
-	[Unidad] varchar(3) NOT NULL
-	[Descripcion] varchar(50) NULL
+	[Id] uniqueidentifier NOT NULL,
+	[Nombre] varchar(50) NOT NULL,
+	[Unidad] varchar(3) NOT NULL,
+	[Descripcion] varchar(50) NULL,
 	[Foto] varchar(100) NULL
 )
 GO
 
 CREATE TABLE [Producto_Material]
 (
-	[IdMaterial] uniqueidentifier NOT NULL
+	[IdMaterial] uniqueidentifier NOT NULL,
 	[IdProducto] uniqueidentifier NOT NULL
 )
 GO
 
 CREATE TABLE [Producto_Producto]
 (
-	[IdProducto] uniqueidentifier NOT NULL
+	[IdProducto] uniqueidentifier NOT NULL,
 	[IdSubProducto] uniqueidentifier NOT NULL
 )
 GO
 
 CREATE TABLE [Usuario]
 (
-	[Id] uniqueidentifier NOT NULL
-	[Usuario] varchar(30) NULL
+	[Id] uniqueidentifier NOT NULL,
+	[Usuario] varchar(30) NULL,
 	[Clave] varchar(50) NULL
 )
 GO
