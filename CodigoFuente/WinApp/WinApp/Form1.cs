@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Servicios.Extensions;
 
 namespace WinApp
 {
@@ -15,6 +16,16 @@ namespace WinApp
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {            
+            button1.Text = "Hola".Traducir();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            button1.Text = "Chau".Traducir();
         }
     }
 }
