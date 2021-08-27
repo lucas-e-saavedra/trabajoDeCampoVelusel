@@ -42,8 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\GestorHistorico.cs" />
+    <Compile Include="DAL\FabricaDAL.cs" />
+    <Compile Include="DAL\Herramientas\FileHelper.cs" />
+    <Compile Include="DAL\Herramientas\SqlHelper.cs" />
+    <Compile Include="DAL\ImplementacionDAL\TXT\Adapters\AdaptadorEvento.cs" />
+    <Compile Include="DAL\ImplementacionDAL\TXT\DALEvento.cs" />
+    <Compile Include="DAL\IRepositorioGenerico.cs" />
+    <Compile Include="Domain\Error.cs" />
+    <Compile Include="Domain\Evento.cs" />
     <Compile Include="Extensions\ExtensionString.cs" />
-    <Compile Include="GestorIdiomas.cs" />
+    <Compile Include="BLL\GestorIdiomas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

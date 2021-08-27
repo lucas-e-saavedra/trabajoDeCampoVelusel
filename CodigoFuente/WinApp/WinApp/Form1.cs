@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Servicios.Domain;
 using Servicios.Extensions;
+using Servicios.BLL;
 
 namespace WinApp
 {
@@ -25,6 +27,14 @@ namespace WinApp
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Evento unEvento = new Evento();
+            unEvento.fechaYhora = DateTime.Now;
+            unEvento.categoria = Evento.CategoriaEvento.DEPURACION;
+            unEvento.mensaje = "Este es un mensaje de prueba";
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
+
+            List<Evento> bitacora = GestorHistorico.Current.ListarBitacora();
+
             button1.Text = "Chau".Traducir();
         }
     }

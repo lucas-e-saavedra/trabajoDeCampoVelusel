@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Servicios
+namespace Servicios.BLL
 {
     internal sealed class GestorIdiomas
     {
