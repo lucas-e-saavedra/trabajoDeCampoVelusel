@@ -46,11 +46,15 @@
     <Compile Include="DAL\FabricaDAL.cs" />
     <Compile Include="DAL\Herramientas\FileHelper.cs" />
     <Compile Include="DAL\Herramientas\SqlHelper.cs" />
+    <Compile Include="DAL\ImplementacionDAL\TXT\Adapters\AdaptadorError.cs" />
     <Compile Include="DAL\ImplementacionDAL\TXT\Adapters\AdaptadorEvento.cs" />
+    <Compile Include="DAL\ImplementacionDAL\TXT\DALError.cs" />
     <Compile Include="DAL\ImplementacionDAL\TXT\DALEvento.cs" />
+    <Compile Include="DAL\ImplementacionDAL\TXT\DALTraductor.cs" />
     <Compile Include="DAL\IRepositorioGenerico.cs" />
     <Compile Include="Domain\Error.cs" />
     <Compile Include="Domain\Evento.cs" />
+    <Compile Include="Extensions\ExtensionException.cs" />
     <Compile Include="Extensions\ExtensionString.cs" />
     <Compile Include="BLL\GestorIdiomas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

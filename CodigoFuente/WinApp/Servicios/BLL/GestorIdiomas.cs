@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Servicios.DAL;
 
 namespace Servicios.BLL
 {
@@ -23,34 +24,24 @@ namespace Servicios.BLL
 
         private GestorIdiomas()
         {
-            filePath = @"I18n\idioma.";
         }
         #endregion
 
-        private string filePath = String.Empty;
-
         public string Traducir(string texto)
         {
-            string textoTraducido = texto;
-
             string culturaCodigo = Thread.CurrentThread.CurrentUICulture.Name.Split('-').First();
 
-            using (StreamReader streamReader = new StreamReader(filePath + culturaCodigo))
-            {
-                while (!streamReader.EndOfStream)
-                {
-                    string linea = streamReader.ReadLine();
-                    string[] claveValor = linea.Split('|');
+            string textoTraducido = FabricaDAL.Current.ObtenerRepositorioDeTraducciones(culturaCodigo).BuscarUno("key", texto);
 
-                    if (claveValor[0].ToLower() == texto.ToLower())
-                    {
-                        textoTraducido = claveValor[1];
-                        break;
-                    }
-                }
+            if (textoTraducido != null) {
+                if (textoTraducido.Trim().Length > 0)
+                    return textoTraducido;
+                else
+                    return texto;
+            } else {
+                FabricaDAL.Current.ObtenerRepositorioDeTraducciones(culturaCodigo).Agregar(texto);
+                return texto;
             }
-
-            return textoTraducido;
         }
 
     }

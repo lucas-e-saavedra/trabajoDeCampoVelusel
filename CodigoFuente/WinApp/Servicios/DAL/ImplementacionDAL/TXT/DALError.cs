@@ -9,40 +9,40 @@ using System.Threading.Tasks;
 
 namespace Servicios.DAL.ImplementacionDAL.TXT
 {
-    class DALEvento: IRepositorioGenerico<Evento>
+    class DALError: IRepositorioGenerico<Error>
     {
         private string rutaArchivo;
-        internal DALEvento(string ruta)
+        internal DALError(string ruta)
         {
             rutaArchivo = ruta;
         }
 
-        public void Agregar(Evento unObjeto)
+        public void Agregar(Error unObjeto)
         {
             FileHelper file = new FileHelper(rutaArchivo);
-            file.Write(AdaptadorEvento.ConvertirATexto(unObjeto));
+            file.Write(AdaptadorError.ConvertirATexto(unObjeto));
         }
 
-        public void Borrar(Evento unObjeto)
+        public void Borrar(Error unObjeto)
         {
             throw new NotImplementedException();
         }
 
-        public Evento BuscarUno(string criterio, string valor)
+        public Error BuscarUno(string criterio, string valor)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Evento> Listar()
+        public IEnumerable<Error> Listar()
         {
             FileHelper fileHelper = new FileHelper(rutaArchivo);
             List<string> lineas = fileHelper.Read();
 
-            Converter<string, Evento> conversor = new Converter<string, Evento>(AdaptadorEvento.desdeTexto);
-            return lineas.ConvertAll<Evento>(conversor);
+            Converter<string, Error> conversor = new Converter<string, Error>(AdaptadorError.desdeTexto);
+            return lineas.ConvertAll<Error>(conversor);
         }
 
-        public void Modificar(Evento unObjeto)
+        public void Modificar(Error unObjeto)
         {
             throw new NotImplementedException();
         }

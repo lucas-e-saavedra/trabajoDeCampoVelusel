@@ -17,6 +17,7 @@ namespace Servicios.DAL.Herramientas
             using (StreamWriter streamWriter = new StreamWriter(filePath, true))
             {
                 streamWriter.WriteLine(message);
+                streamWriter.Close();
             }
         }
 
@@ -29,6 +30,7 @@ namespace Servicios.DAL.Herramientas
                 {
                     lines.Add(streamReader.ReadLine());
                 }
+                streamReader.Close();
             }
             return lines;
         }

@@ -32,7 +32,13 @@ namespace Servicios.DAL
 
         public IRepositorioGenerico<Error> ObtenerRepositorioDeErrores()
         {
-            return null;
+            return new ImplementacionDAL.TXT.DALError("errores.txt");
         }
+
+        public IRepositorioGenerico<string> ObtenerRepositorioDeTraducciones(string codigoIdioma)
+        {
+            return new ImplementacionDAL.TXT.DALTraductor(@"I18n\idioma."+codigoIdioma);
+        }
+
     }
 }

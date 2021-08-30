@@ -8,12 +8,12 @@ namespace Servicios.DAL
 {
     internal interface IRepositorioGenerico<T>
     {
-        List<T> Buscar(string criterio, string valor);
+        T BuscarUno(string criterio, string valor);
         void Borrar(T unObjeto);
 
         void Agregar(T unObjeto);
 
-        List<T> Listar();
+        IEnumerable<T> Listar();
 
         void Modificar(T unObjeto);
     }

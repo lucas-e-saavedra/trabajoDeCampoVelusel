@@ -25,11 +25,11 @@ namespace Servicios.BLL
         {}
         #endregion
 
-        public List<Evento> ListarBitacora() {
+        public IEnumerable<Evento> ListarBitacora() {
             return FabricaDAL.Current.ObtenerRepositorioDeEventos().Listar();
         }
 
-        public List<Error> ListarErrores() { 
+        public IEnumerable<Error> ListarErrores() { 
             return FabricaDAL.Current.ObtenerRepositorioDeErrores().Listar();
         }
 

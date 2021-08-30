@@ -8,5 +8,11 @@ namespace Servicios.Domain
 {
     public class Error
     {
+        public String clase { get; set; }
+
+        public String descripcion { get; set; }
+
+        public DateTime fechaYhora;
+
     }
 }
