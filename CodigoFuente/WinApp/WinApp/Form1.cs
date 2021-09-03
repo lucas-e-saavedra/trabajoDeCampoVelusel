@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Servicios.Domain;
 using Servicios.Extensions;
 using Servicios.BLL;
+using Servicios.Domain.CompositeSeguridad;
 
 namespace WinApp
 {
@@ -21,7 +16,10 @@ namespace WinApp
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {            
+        {
+            Usuario unUsuario = GestorUsuarios.Current.AutenticarUsuario("", "");
+            IEnumerable<Usuario> usuarios = GestorUsuarios.Current.ListarUsuarios();
+
             button1.Text = "Holaaaa".Traducir();
         }
 

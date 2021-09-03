@@ -1,6 +1,8 @@
 ﻿using Servicios.Domain;
+using Servicios.Domain.CompositeSeguridad;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +40,12 @@ namespace Servicios.DAL
         public IRepositorioGenerico<string> ObtenerRepositorioDeTraducciones(string codigoIdioma)
         {
             return new ImplementacionDAL.TXT.DALTraductor(@"I18n\idioma."+codigoIdioma);
+        }
+
+        public IRepositorioGenerico<Usuario> ObtenerRepositorioDeUsuarios()
+        {
+            string conString = ConfigurationManager.ConnectionStrings["SLConString"].ConnectionString;
+            return new ImplementacionDAL.SqlServer.DALUsuario(conString);
         }
 
     }
