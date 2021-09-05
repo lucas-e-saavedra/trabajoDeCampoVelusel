@@ -19,6 +19,9 @@ namespace WinApp
         {
             Usuario unUsuario = GestorUsuarios.Current.AutenticarUsuario("", "");
             IEnumerable<Usuario> usuarios = GestorUsuarios.Current.ListarUsuarios();
+            IEnumerable<Patente> patentes = GestorUsuarios.Current.ListarPatentes();
+            IEnumerable<Familia> familias = GestorUsuarios.Current.ListarFamilias();
+            //Familia familiaGet = ServicesUser.Current.ObtenerFamilia(Guid.Parse("73e24248-f0f2-4c33-9b63-377fcd292813"));
 
             button1.Text = "Holaaaa".Traducir();
         }

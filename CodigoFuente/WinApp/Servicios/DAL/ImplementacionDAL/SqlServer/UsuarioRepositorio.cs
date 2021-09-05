@@ -6,10 +6,10 @@ using System.Data.SqlClient;
 
 namespace Servicios.DAL.ImplementacionDAL.SqlServer
 {
-    class DALUsuario: IRepositorioGenerico<Usuario>
+    class UsuarioRepositorio: IRepositorioGenerico<Usuario>
     {
         private String connectionString; 
-        internal DALUsuario(String oneConnectionString)
+        internal UsuarioRepositorio(String oneConnectionString)
         {
             connectionString = oneConnectionString;
         }

@@ -45,11 +45,11 @@ namespace Servicios.BLL
         public void CrearFamilia(string usuario) { }
         public void CrearPermiso(string usuario) { }
         public void CrearUsuario(string usuario) { }
-        public IEnumerable<Usuario> ListarFamilias() {
-            return null;
+        public IEnumerable<Familia> ListarFamilias() {
+            return FabricaDAL.Current.ObtenerRepositorioDeFamilias().Listar();
         }
-        public IEnumerable<Usuario> ListarPermisos() {
-            return null;
+        public IEnumerable<Patente> ListarPatentes() {
+            return FabricaDAL.Current.ObtenerRepositorioDePatentes().Listar();
         }
         public IEnumerable<Usuario> ListarUsuarios() {
             return FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Listar();

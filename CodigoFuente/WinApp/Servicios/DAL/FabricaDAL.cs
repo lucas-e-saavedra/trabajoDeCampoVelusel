@@ -45,8 +45,17 @@ namespace Servicios.DAL
         public IRepositorioGenerico<Usuario> ObtenerRepositorioDeUsuarios()
         {
             string conString = ConfigurationManager.ConnectionStrings["SLConString"].ConnectionString;
-            return new ImplementacionDAL.SqlServer.DALUsuario(conString);
+            return new ImplementacionDAL.SqlServer.UsuarioRepositorio(conString);
         }
-
+        public IRepositorioGenerico<Patente> ObtenerRepositorioDePatentes()
+        {
+            string conString = ConfigurationManager.ConnectionStrings["SLConString"].ConnectionString;
+            return new ImplementacionDAL.SqlServer.PatenteRepositorio(conString);
+        }
+        public IRepositorioGenerico<Familia> ObtenerRepositorioDeFamilias()
+        {
+            string conString = ConfigurationManager.ConnectionStrings["SLConString"].ConnectionString;
+            return new ImplementacionDAL.SqlServer.FamiliaRepositorio(conString);
+        }
     }
 }

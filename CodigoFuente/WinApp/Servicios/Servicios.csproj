@@ -44,16 +44,23 @@
   <ItemGroup>
     <Compile Include="BLL\GestorHistorico.cs" />
     <Compile Include="BLL\GestorUsuarios.cs" />
+    <Compile Include="DAL\Contratos\IRelacionGenerica.cs" />
     <Compile Include="DAL\FabricaDAL.cs" />
     <Compile Include="DAL\Herramientas\FileHelper.cs" />
     <Compile Include="DAL\Herramientas\SqlHelper.cs" />
-    <Compile Include="DAL\ImplementacionDAL\SqlServer\DALUsuario.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\Adapter\FamiliaAdapter.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\Adapter\PatenteAdapter.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\FamiliaFamiliaRelacion.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\FamiliaRepositorio.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\PatenteRepositorio.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\UsuarioRepositorio.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\FamiliaPatenteRelacion.cs" />
     <Compile Include="DAL\ImplementacionDAL\TXT\Adapters\AdaptadorError.cs" />
     <Compile Include="DAL\ImplementacionDAL\TXT\Adapters\AdaptadorEvento.cs" />
     <Compile Include="DAL\ImplementacionDAL\TXT\DALError.cs" />
     <Compile Include="DAL\ImplementacionDAL\TXT\DALEvento.cs" />
     <Compile Include="DAL\ImplementacionDAL\TXT\DALTraductor.cs" />
-    <Compile Include="DAL\IRepositorioGenerico.cs" />
+    <Compile Include="DAL\Contratos\IRepositorioGenerico.cs" />
     <Compile Include="Domain\CompositeSeguridad\Familia.cs" />
     <Compile Include="Domain\CompositeSeguridad\Patente.cs" />
     <Compile Include="Domain\CompositeSeguridad\PatenteFamilia.cs" />
@@ -65,5 +72,6 @@
     <Compile Include="BLL\GestorIdiomas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
