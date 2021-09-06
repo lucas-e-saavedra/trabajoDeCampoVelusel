@@ -11,24 +11,23 @@ using System.Threading.Tasks;
 
 namespace Servicios.DAL.ImplementacionDAL.SqlServer
 {
-    class FamiliaFamiliaRelacion : IRelacionGenerica<Familia, Familia>
+    class UsuarioFamiliaRelacion : IRelacionGenerica<Usuario, Familia>
     {
         private string conexion;
-        internal FamiliaFamiliaRelacion(String oneConnectionString)
+        internal UsuarioFamiliaRelacion(String oneConnectionString)
         {
             conexion = oneConnectionString;
         }
-        public List<Familia> Obtener(Familia obj)
+        public List<Familia> Obtener(Usuario obj)
         {
-            //Familia_Patente_Select
             //GUID EN EL CASO DE QUE UTILICEN uniqueidentifier
-            string IdFamilia = obj.IdFamilia.ToString();
+            string IdUsuario = obj.IdUsuario.ToString();
             List<Familia> familias = new List<Familia>();
 
             try
             {
-                using (var dr = new SqlHelper(conexion).ExecuteReader("Familia_Familia_Select", System.Data.CommandType.StoredProcedure,
-                                                       new SqlParameter[] { new SqlParameter("@IdFamilia", IdFamilia) }))
+                using (var dr = new SqlHelper(conexion).ExecuteReader("Usuario_Familia_Select", System.Data.CommandType.StoredProcedure,
+                                                       new SqlParameter[] { new SqlParameter("@IdUsuario", IdUsuario) }))
                 {
                     //Cada read equivale a leer una relación de mi familia con una patente...
                     while (dr.Read())
@@ -48,14 +47,14 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
         }
 
 
-        public void Unir(Familia obj1, Familia obj2)
+        public void Unir(Usuario obj1, Familia obj2)
         {
             try
             {
                 SqlHelper sqlHelper = new SqlHelper(conexion);
-                sqlHelper.ExecuteNonQuery("Familia_Familia_Insert", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
-                        new SqlParameter("@IdFamilia", obj1.IdFamilia.ToString()),
-                        new SqlParameter("@IdFamiliaHijo", obj2.IdFamilia.ToString())});
+                sqlHelper.ExecuteNonQuery("Usuario_Familia_Insert", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                        new SqlParameter("@IdUsuario", obj1.IdUsuario.ToString()),
+                        new SqlParameter("@IdFamilia", obj2.IdFamilia.ToString())});
             }
             catch (Exception ex)
             {

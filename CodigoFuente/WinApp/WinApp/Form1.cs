@@ -5,6 +5,7 @@ using Servicios.Domain;
 using Servicios.Extensions;
 using Servicios.BLL;
 using Servicios.Domain.CompositeSeguridad;
+using System.Linq;
 
 namespace WinApp
 {
@@ -17,11 +18,36 @@ namespace WinApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Usuario unUsuario = GestorUsuarios.Current.AutenticarUsuario("", "");
-            IEnumerable<Usuario> usuarios = GestorUsuarios.Current.ListarUsuarios();
+            //Usuario unUsuario = GestorUsuarios.Current.AutenticarUsuario("", "");
             IEnumerable<Patente> patentes = GestorUsuarios.Current.ListarPatentes();
             IEnumerable<Familia> familias = GestorUsuarios.Current.ListarFamilias();
-            //Familia familiaGet = ServicesUser.Current.ObtenerFamilia(Guid.Parse("73e24248-f0f2-4c33-9b63-377fcd292813"));
+            IEnumerable<Usuario> usuarios = GestorUsuarios.Current.ListarUsuarios();
+
+
+            /*Patente nuevaPatente = new Patente() {
+                IdPatente = Guid.NewGuid(),
+                Nombre = "Patente "+letra,
+                Vista = "Vista "+letra
+            };
+            GestorUsuarios.Current.CrearPatente(nuevaPatente);
+
+
+            Familia unaFamilia = new Familia() {
+                IdFamilia = Guid.NewGuid(),
+                Nombre = "Familia "+letra
+            };
+            unaFamilia.ListadoHijos.Add(nuevaPatente);
+            unaFamilia.ListadoHijos.AddRange(familias);//.First(item=>item.Nombre== "Rol Ventas"));
+            GestorUsuarios.Current.CrearFamilia(unaFamilia);*/
+
+            string letra = "E";
+            Usuario unUsuario = new Usuario() {
+                IdUsuario = Guid.NewGuid(),
+                Nombre = "Usuario "+letra
+            };
+            unUsuario.Permisos.Add(patentes.First(item => item.Nombre == "Patente A"));
+            unUsuario.Permisos.Add(familias.First(item => item.Nombre == "Rol Ventas" ));
+            GestorUsuarios.Current.CrearUsuario(unUsuario);
 
             button1.Text = "Holaaaa".Traducir();
         }

@@ -42,9 +42,15 @@ namespace Servicios.BLL
         public void BlanquearClave(string usuario) { }
         public void BorrarFamila(string usuario) { }
         public void BorrarPermiso(string usuario) { }
-        public void CrearFamilia(string usuario) { }
-        public void CrearPermiso(string usuario) { }
-        public void CrearUsuario(string usuario) { }
+        public void CrearFamilia(Familia unaFamilia) {
+            FabricaDAL.Current.ObtenerRepositorioDeFamilias().Agregar(unaFamilia);
+        }
+        public void CrearPatente(Patente unaPatente) {
+            FabricaDAL.Current.ObtenerRepositorioDePatentes().Agregar(unaPatente);
+        }
+        public void CrearUsuario(Usuario usuario) {
+            FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Agregar(usuario);
+        }
         public IEnumerable<Familia> ListarFamilias() {
             return FabricaDAL.Current.ObtenerRepositorioDeFamilias().Listar();
         }

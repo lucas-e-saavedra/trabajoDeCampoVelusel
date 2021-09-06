@@ -23,13 +23,11 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
          */
         public void Agregar(Patente unObjeto)
         {
-            throw new NotImplementedException();
-/*            String timeStamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             SqlHelper sqlHelper = new SqlHelper(connectionString);
-            sqlHelper.ExecuteNonQuery(InsertStatement, System.Data.CommandType.Text, new SqlParameter[] {
-                        new SqlParameter("@TimeStamp", timeStamp),
-                        new SqlParameter("@Severity", oneLog.severity.ToString()),
-                        new SqlParameter("@Message", oneLog.message)});*/
+            sqlHelper.ExecuteNonQuery("Patente_Insert", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                        new SqlParameter("@IdPatente", unObjeto.IdPatente.ToString()),
+                        new SqlParameter("@Nombre", unObjeto.Nombre),
+                        new SqlParameter("@Vista", unObjeto.Vista)});
         }
 
         public void Borrar(Patente unObjeto)

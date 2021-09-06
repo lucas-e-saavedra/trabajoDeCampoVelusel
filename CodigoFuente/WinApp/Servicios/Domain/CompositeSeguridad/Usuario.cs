@@ -8,7 +8,7 @@ namespace Servicios.Domain.CompositeSeguridad
 {
     public class Usuario
     {
-        public Guid guid { get; set; }
+        public Guid IdUsuario { get; set; }
         public string Nombre { get; set; }
 
         public string Contraseña { get; set; }

@@ -17,13 +17,20 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
 
         public void Agregar(Familia unObjeto)
         {
-            throw new NotImplementedException();
-/*            String timeStamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             SqlHelper sqlHelper = new SqlHelper(connectionString);
-            sqlHelper.ExecuteNonQuery(InsertStatement, System.Data.CommandType.Text, new SqlParameter[] {
-                        new SqlParameter("@TimeStamp", timeStamp),
-                        new SqlParameter("@Severity", oneLog.severity.ToString()),
-                        new SqlParameter("@Message", oneLog.message)});*/
+            sqlHelper.ExecuteNonQuery("Familia_Insert", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                        new SqlParameter("@IdFamilia", unObjeto.IdFamilia.ToString()),
+                        new SqlParameter("@Nombre", unObjeto.Nombre)});
+
+            unObjeto.ListadoHijos.ForEach(unHijo => {
+                if (unHijo is Patente) {
+                    new FamiliaPatenteRelacion(connectionString).Unir(unObjeto, (Patente)unHijo);
+                }
+                if (unHijo is Familia)
+                {
+                    new FamiliaFamiliaRelacion(connectionString).Unir(unObjeto, (Familia)unHijo);
+                }
+            });
         }
 
         public void Borrar(Familia unObjeto)
