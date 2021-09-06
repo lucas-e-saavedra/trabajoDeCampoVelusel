@@ -37,8 +37,7 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer.Adapter
             familia.Nombre = values[1].ToString();
 
             //Vemos si hay patentes para mi familia?
-            string conString = ConfigurationManager.ConnectionStrings["SLConString"].ConnectionString;
-            List<Patente> patentesRelacionadas = new FamiliaPatenteRelacion(conString).Obtener(familia);
+            List<Patente> patentesRelacionadas = FabricaDAL.Current.ObtenerFamiliaPatenteRelacion().Obtener(familia);
 
             foreach (var item in patentesRelacionadas)
             {
@@ -48,7 +47,7 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer.Adapter
             //Nivel 1 Nivel 2
             //familia.Add(Familia->Familia)
 
-            List<Familia> familiasRelacionadas = new FamiliaFamiliaRelacion(conString).Obtener(familia);
+            List<Familia> familiasRelacionadas = FabricaDAL.Current.ObtenerFamiliaFamiliaRelacion().Obtener(familia);
 
             foreach (var item in familiasRelacionadas)
             {

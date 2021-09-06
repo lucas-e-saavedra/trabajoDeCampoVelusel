@@ -4,6 +4,7 @@ using Servicios.Domain.CompositeSeguridad;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using Servicios.DAL.Contratos;
 
 namespace Servicios.DAL.ImplementacionDAL.SqlServer
 {
@@ -24,11 +25,11 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
 
             unObjeto.ListadoHijos.ForEach(unHijo => {
                 if (unHijo is Patente) {
-                    new FamiliaPatenteRelacion(connectionString).Unir(unObjeto, (Patente)unHijo);
+                    FabricaDAL.Current.ObtenerFamiliaPatenteRelacion().Unir(unObjeto, (Patente)unHijo);
                 }
                 if (unHijo is Familia)
                 {
-                    new FamiliaFamiliaRelacion(connectionString).Unir(unObjeto, (Familia)unHijo);
+                    FabricaDAL.Current.ObtenerFamiliaFamiliaRelacion().Unir(unObjeto, (Familia)unHijo);
                 }
             });
         }

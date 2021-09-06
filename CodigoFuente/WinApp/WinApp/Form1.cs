@@ -18,37 +18,45 @@ namespace WinApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Usuario unUsuario = GestorUsuarios.Current.AutenticarUsuario("", "");
             IEnumerable<Patente> patentes = GestorUsuarios.Current.ListarPatentes();
             IEnumerable<Familia> familias = GestorUsuarios.Current.ListarFamilias();
             IEnumerable<Usuario> usuarios = GestorUsuarios.Current.ListarUsuarios();
 
 
-            /*Patente nuevaPatente = new Patente() {
+            /*Patente nuevaPatente1 = new Patente() {
                 IdPatente = Guid.NewGuid(),
-                Nombre = "Patente "+letra,
-                Vista = "Vista "+letra
+                Nombre = "Patente A1",
+                Vista = "Vista A1"
             };
-            GestorUsuarios.Current.CrearPatente(nuevaPatente);
-
+            GestorUsuarios.Current.CrearPatente(nuevaPatente1);
+            Patente nuevaPatente2 = new Patente()
+            {
+                IdPatente = Guid.NewGuid(),
+                Nombre = "Patente A2",
+                Vista = "Vista A2"
+            };
+            GestorUsuarios.Current.CrearPatente(nuevaPatente2);
 
             Familia unaFamilia = new Familia() {
                 IdFamilia = Guid.NewGuid(),
-                Nombre = "Familia "+letra
+                Nombre = "Familia A"
             };
-            unaFamilia.ListadoHijos.Add(nuevaPatente);
-            unaFamilia.ListadoHijos.AddRange(familias);//.First(item=>item.Nombre== "Rol Ventas"));
-            GestorUsuarios.Current.CrearFamilia(unaFamilia);*/
-
-            string letra = "E";
+            unaFamilia.ListadoHijos.Add(nuevaPatente1);
+            unaFamilia.ListadoHijos.Add(nuevaPatente2);
+            GestorUsuarios.Current.CrearFamilia(unaFamilia);
+            
             Usuario unUsuario = new Usuario() {
                 IdUsuario = Guid.NewGuid(),
-                Nombre = "Usuario "+letra
+                UsuarioLogin = "dakota",
+                Contrasenia = "clave",
+                Nombre = "dakota, la mamá de duke",
+                Email = "dakota@perro.com",
+                TipoDocumento = Usuario.EnumTipoDocumento.DNI,
+                NroDocumento = "123456789"
             };
-            unUsuario.Permisos.Add(patentes.First(item => item.Nombre == "Patente A"));
-            unUsuario.Permisos.Add(familias.First(item => item.Nombre == "Rol Ventas" ));
-            GestorUsuarios.Current.CrearUsuario(unUsuario);
-
+            //unUsuario.Permisos.Add(unaFamilia);
+            GestorUsuarios.Current.CrearUsuario(unUsuario);*/
+            Usuario otroUsuario = GestorUsuarios.Current.AutenticarUsuario("lucas.saavedra", "clave");
             button1.Text = "Holaaaa".Traducir();
         }
 

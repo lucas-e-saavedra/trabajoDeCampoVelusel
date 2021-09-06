@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Servicios.Domain.CompositeSeguridad.Usuario;
 
 namespace Servicios.DAL.ImplementacionDAL.SqlServer.Adapter
 {
@@ -34,11 +35,16 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer.Adapter
             //Nivel 0
             Usuario usuario = new Usuario();
             usuario.IdUsuario = Guid.Parse(values[0].ToString());
-            usuario.Nombre = values[1].ToString();
+            usuario.UsuarioLogin = values[1].ToString();
+            usuario.Contrasenia = values[2].ToString();
+            usuario.Nombre = values[3].ToString();
+            usuario.Email = values[4].ToString();
+            EnumTipoDocumento unTipoDocumento = (EnumTipoDocumento)Enum.Parse(typeof(EnumTipoDocumento), values[5].ToString());
+            usuario.TipoDocumento = unTipoDocumento;
+            usuario.NroDocumento = values[6].ToString();
 
             //Vemos si hay patentes para mi usuario?
-            string conString = ConfigurationManager.ConnectionStrings["SLConString"].ConnectionString;
-            List<Patente> patentesRelacionadas = new UsuarioPatenteRelacion(conString).Obtener(usuario);
+            List<Patente> patentesRelacionadas = FabricaDAL.Current.ObtenerUsuarioPatenteRelacion().Obtener(usuario);
 
             foreach (var item in patentesRelacionadas)
             {
@@ -46,7 +52,7 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer.Adapter
             }
 
             //Vemos si hay familias para mi usuario?asdf
-            List<Familia> familiasRelacionadas = new UsuarioFamiliaRelacion(conString).Obtener(usuario);
+            List<Familia> familiasRelacionadas = FabricaDAL.Current.ObtenerUsuarioFamiliaRelacion().Obtener(usuario);
 
             foreach (var item in familiasRelacionadas)
             {

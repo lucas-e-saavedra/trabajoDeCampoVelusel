@@ -564,17 +564,20 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[Usuario_Insert]
 	@IdUsuario varchar(36), 
-	@Nombre varchar(1000)
+	@Usuario varchar(30),
+	@Contrasenia varchar(30),
+	@Nombre varchar(1000),
+	@Email varchar(30),
+	@TipoDocumento varchar(10),
+	@NroDocumento varchar(30)
 AS
 BEGIN
 	SET NOCOUNT ON
 	BEGIN TRY
 	INSERT INTO Usuario (
-		[IdUsuario], 
-		[Nombre]
+		[IdUsuario], [Usuario], [Contrasenia], [Nombre], [Email], [TipoDocumento], [NroDocumento]
 	) VALUES (
-		@IdUsuario, 
-		@Nombre
+		@IdUsuario, @Usuario, @Contrasenia, @Nombre, @Email, @TipoDocumento, @NroDocumento
 	)
 	END TRY
 
@@ -646,9 +649,7 @@ GO
 CREATE PROCEDURE [dbo].[Usuario_Select]
 	@IdUsuario varchar (36) 
 AS
-	SELECT 
-		[IdUsuario], 
-		[Nombre]
+	SELECT [IdUsuario], [Usuario], [Contrasenia], [Nombre], [Email], [TipoDocumento], [NroDocumento]
 	FROM Usuario
 	WHERE 
 		IdUsuario=@IdUsuario
@@ -660,9 +661,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[Usuario_SelectAll]
 AS
-	SELECT 
-		[IdUsuario], 
-		[Nombre]
+	SELECT [IdUsuario], [Usuario], [Contrasenia], [Nombre], [Email], [TipoDocumento], [NroDocumento]
 	FROM Usuario
 GO
 /****** Object:  StoredProcedure [dbo].[Usuario_Update]    Script Date: 03/09/2021 19:32:47 ******/

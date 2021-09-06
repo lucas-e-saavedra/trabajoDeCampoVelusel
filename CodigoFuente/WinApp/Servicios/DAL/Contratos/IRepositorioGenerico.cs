@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Servicios.DAL
+namespace Servicios.DAL.Contratos
 {
     internal interface IRepositorioGenerico<T>
     {

@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\GestorHistorico.cs" />
+    <Compile Include="BLL\GestorSeguridad.cs" />
     <Compile Include="BLL\GestorUsuarios.cs" />
     <Compile Include="DAL\Contratos\IRelacionGenerica.cs" />
     <Compile Include="DAL\FabricaDAL.cs" />

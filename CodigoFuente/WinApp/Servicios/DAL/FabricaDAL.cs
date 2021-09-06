@@ -1,11 +1,7 @@
 ﻿using Servicios.Domain;
 using Servicios.Domain.CompositeSeguridad;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Servicios.DAL.Contratos;
 
 namespace Servicios.DAL
 {
@@ -24,8 +20,11 @@ namespace Servicios.DAL
 
         private FabricaDAL()
         {
+            bbddSeguridad = ConfigurationManager.ConnectionStrings["SLConString"].ConnectionString;
         }
         #endregion
+        private string bbddSeguridad;
+
 
         public IRepositorioGenerico<Evento> ObtenerRepositorioDeEventos()
         {
@@ -44,18 +43,33 @@ namespace Servicios.DAL
 
         public IRepositorioGenerico<Usuario> ObtenerRepositorioDeUsuarios()
         {
-            string conString = ConfigurationManager.ConnectionStrings["SLConString"].ConnectionString;
-            return new ImplementacionDAL.SqlServer.UsuarioRepositorio(conString);
+            return new ImplementacionDAL.SqlServer.UsuarioRepositorio(bbddSeguridad);
         }
         public IRepositorioGenerico<Patente> ObtenerRepositorioDePatentes()
         {
-            string conString = ConfigurationManager.ConnectionStrings["SLConString"].ConnectionString;
-            return new ImplementacionDAL.SqlServer.PatenteRepositorio(conString);
+            return new ImplementacionDAL.SqlServer.PatenteRepositorio(bbddSeguridad);
         }
         public IRepositorioGenerico<Familia> ObtenerRepositorioDeFamilias()
         {
-            string conString = ConfigurationManager.ConnectionStrings["SLConString"].ConnectionString;
-            return new ImplementacionDAL.SqlServer.FamiliaRepositorio(conString);
+            return new ImplementacionDAL.SqlServer.FamiliaRepositorio(bbddSeguridad);
         }
+
+        public IRelacionGenerica<Usuario, Patente> ObtenerUsuarioPatenteRelacion()
+        {
+            return new ImplementacionDAL.SqlServer.UsuarioPatenteRelacion(bbddSeguridad);
+        }
+        public IRelacionGenerica<Usuario, Familia> ObtenerUsuarioFamiliaRelacion() {
+            return new ImplementacionDAL.SqlServer.UsuarioFamiliaRelacion(bbddSeguridad);
+        }
+        public IRelacionGenerica<Familia, Patente> ObtenerFamiliaPatenteRelacion()
+        {
+            return new ImplementacionDAL.SqlServer.FamiliaPatenteRelacion(bbddSeguridad);
+        }
+        public IRelacionGenerica<Familia, Familia> ObtenerFamiliaFamiliaRelacion()
+        {
+            return new ImplementacionDAL.SqlServer.FamiliaFamiliaRelacion(bbddSeguridad);
+        }
+
+        
     }
 }

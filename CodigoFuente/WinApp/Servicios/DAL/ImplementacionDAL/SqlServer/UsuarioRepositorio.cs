@@ -4,6 +4,8 @@ using Servicios.Domain.CompositeSeguridad;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using Servicios.DAL.Contratos;
+using System.Linq;
 
 namespace Servicios.DAL.ImplementacionDAL.SqlServer
 {
@@ -21,16 +23,21 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
             SqlHelper sqlHelper = new SqlHelper(connectionString);
             sqlHelper.ExecuteNonQuery("Usuario_Insert", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
                         new SqlParameter("@IdUsuario", unObjeto.IdUsuario.ToString()),
-                        new SqlParameter("@Nombre", unObjeto.Nombre)});
+                        new SqlParameter("@Usuario", unObjeto.UsuarioLogin),
+                        new SqlParameter("@Contrasenia", unObjeto.Contrasenia),
+                        new SqlParameter("@Nombre", unObjeto.Nombre),
+                        new SqlParameter("@Email", unObjeto.Email),
+                        new SqlParameter("@TipoDocumento", unObjeto.TipoDocumento.ToString()),
+                        new SqlParameter("@NroDocumento", unObjeto.NroDocumento)});
             
             unObjeto.Permisos.ForEach(unHijo => {
                 if (unHijo is Patente)
                 {
-                    new UsuarioPatenteRelacion(connectionString).Unir(unObjeto, (Patente)unHijo);
+                    FabricaDAL.Current.ObtenerUsuarioPatenteRelacion().Unir(unObjeto, (Patente)unHijo);
                 }
                 if (unHijo is Familia)
                 {
-                    new UsuarioFamiliaRelacion(connectionString).Unir(unObjeto, (Familia)unHijo);
+                    FabricaDAL.Current.ObtenerUsuarioFamiliaRelacion().Unir(unObjeto, (Familia)unHijo);
                 }
             });
         }
@@ -42,7 +49,24 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
 
         public Usuario BuscarUno(string criterio, string valor)
         {
-            throw new NotImplementedException();
+            string[] criterios = criterio.Split('¿');
+            string[] valores = valor.Split('¿');
+            string where = "";
+            for (int c=0; c<criterios.Length; c++) {
+                where = where + (c==0 ?"":" AND ") + criterios[c] + "= '" + valores[c] +"'";
+            }
+            string query = "SELECT [IdUsuario], [Usuario], [Contrasenia], [Nombre], [Email], [TipoDocumento], [NroDocumento] FROM Usuario WHERE " + where;
+            SqlHelper sqlHelper = new SqlHelper(connectionString);
+            using (var dr = sqlHelper.ExecuteReader(query, System.Data.CommandType.Text))
+            {
+                if (dr.Read())
+                {
+                    object[] values = new object[dr.FieldCount];
+                    dr.GetValues(values);
+                    return UsuarioAdapter.Current.Adapt(values);
+                }
+            }
+            return null;
         }
 
         public IEnumerable<Usuario> Listar()

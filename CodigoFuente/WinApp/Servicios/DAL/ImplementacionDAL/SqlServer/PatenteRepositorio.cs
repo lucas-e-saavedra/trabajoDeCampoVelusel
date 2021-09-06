@@ -4,6 +4,7 @@ using Servicios.Domain.CompositeSeguridad;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using Servicios.DAL.Contratos;
 
 namespace Servicios.DAL.ImplementacionDAL.SqlServer
 {

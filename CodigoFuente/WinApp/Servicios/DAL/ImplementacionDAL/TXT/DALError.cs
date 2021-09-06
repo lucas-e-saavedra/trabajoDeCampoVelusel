@@ -3,9 +3,7 @@ using Servicios.DAL.ImplementacionDAL.TXT.Adapters;
 using Servicios.Domain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Servicios.DAL.Contratos;
 
 namespace Servicios.DAL.ImplementacionDAL.TXT
 {

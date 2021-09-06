@@ -27,17 +27,8 @@ namespace Servicios.BLL
         #endregion
 
         public Usuario AutenticarUsuario(string usuario, string clave) {
-            Usuario unUsuario = new Usuario();
-            unUsuario.Nombre= "bla";
-            unUsuario.Contraseña = "bla";
-            Familia unaFamilia = new Familia() { IdFamilia=Guid.NewGuid(), Nombre="Familia A" };
-            unaFamilia.Agregar(new Patente() { IdPatente = Guid.NewGuid(), Nombre = "A1", Vista = "" });
-            unaFamilia.Agregar(new Patente() { IdPatente = Guid.NewGuid(), Nombre = "A2", Vista = "" });
-            unUsuario.Permisos.Add(unaFamilia);
-            unUsuario.Permisos.Add(new Patente() { IdPatente = Guid.NewGuid(), Nombre = "B", Vista = "" });
-            unUsuario.Permisos.Add(new Patente() { IdPatente = Guid.NewGuid(), Nombre = "C", Vista = "" });
-
-            return unUsuario;
+            string claveEncriptada = GestorSeguridad.Current.Encriptar(clave);
+            return FabricaDAL.Current.ObtenerRepositorioDeUsuarios().BuscarUno("Usuario¿Contrasenia", usuario+"¿"+claveEncriptada);
         }
         public void BlanquearClave(string usuario) { }
         public void BorrarFamila(string usuario) { }
@@ -49,7 +40,11 @@ namespace Servicios.BLL
             FabricaDAL.Current.ObtenerRepositorioDePatentes().Agregar(unaPatente);
         }
         public void CrearUsuario(Usuario usuario) {
+            string nuevaClave = GestorSeguridad.Current.GenerarClaveAleatoria();
+            string claveEncriptada = GestorSeguridad.Current.Encriptar(nuevaClave);
+            usuario.Contrasenia = claveEncriptada;
             FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Agregar(usuario);
+            //TODO: enviar la nuevaClave por email
         }
         public IEnumerable<Familia> ListarFamilias() {
             return FabricaDAL.Current.ObtenerRepositorioDeFamilias().Listar();
