@@ -357,17 +357,20 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[Patente_Insert]
 	@IdPatente varchar(36), 
-	@Nombre varchar(1000)
+	@Nombre varchar(1000),
+	@Vista varchar(1000)
 AS
 BEGIN
 	SET NOCOUNT ON
 	BEGIN TRY
 	INSERT INTO Patente (
 		[IdPatente], 
-		[Nombre]
+		[Nombre],
+		[Vista]
 	) VALUES (
 		@IdPatente, 
-		@Nombre
+		@Nombre,
+		@Vista
 	)
 	END TRY
 
@@ -387,7 +390,8 @@ CREATE PROCEDURE [dbo].[Patente_Select]
 AS
 	SELECT 
 		[IdPatente], 
-		[Nombre]
+		[Nombre], 
+		[Vista]
 	FROM Patente
 	WHERE 
 		IdPatente=@IdPatente
@@ -401,7 +405,8 @@ CREATE PROCEDURE [dbo].[Patente_SelectAll]
 AS
 	SELECT 
 		[IdPatente], 
-		[Nombre]
+		[Nombre], 
+		[Vista]
 	FROM Patente
 GO
 /****** Object:  StoredProcedure [dbo].[Patente_Update]    Script Date: 03/09/2021 19:32:47 ******/
@@ -411,13 +416,15 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[Patente_Update]
 	@IdPatente varchar(36), 
-	@Nombre varchar(1000)
+	@Nombre varchar(1000), 
+	@Vista varchar(1000)
 AS
 BEGIN
 	SET NOCOUNT ON
 	BEGIN TRY
 	UPDATE Patente SET 
-		[Nombre]=@Nombre
+		[Nombre]=@Nombre,
+		[Vista]=@Vista
 	WHERE
 		IdPatente=@IdPatente
 	END TRY

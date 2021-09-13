@@ -22,7 +22,7 @@ namespace WinApp
             IEnumerable<Familia> familias = GestorUsuarios.Current.ListarFamilias();
             IEnumerable<Usuario> usuarios = GestorUsuarios.Current.ListarUsuarios();
 
-
+            
             /*Patente nuevaPatente1 = new Patente() {
                 IdPatente = Guid.NewGuid(),
                 Nombre = "Patente A1",
@@ -50,13 +50,14 @@ namespace WinApp
                 UsuarioLogin = "dakota",
                 Contrasenia = "clave",
                 Nombre = "dakota, la mamá de duke",
-                Email = "dakota@perro.com",
+                Email = "dakota@yopmail.com",
                 TipoDocumento = Usuario.EnumTipoDocumento.DNI,
                 NroDocumento = "123456789"
             };
-            //unUsuario.Permisos.Add(unaFamilia);
+            unUsuario.Permisos.Add(unaFamilia);
             GestorUsuarios.Current.CrearUsuario(unUsuario);*/
-            Usuario otroUsuario = GestorUsuarios.Current.AutenticarUsuario("lucas.saavedra", "clave");
+            Usuario otroUsuario = GestorUsuarios.Current.AutenticarUsuario("dakota", "r3Q8O");
+            GestorUsuarios.Current.BlanquearClave(Guid.Parse("364e80c3-386f-4af7-9000-2e8e3138b79d"));
             button1.Text = "Holaaaa".Traducir();
         }
 
