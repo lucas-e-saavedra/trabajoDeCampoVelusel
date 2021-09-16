@@ -16,12 +16,6 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
             connectionString = oneConnectionString;
         }
 
-        /*
-    [dbo].[Patente_Delete]
-    [dbo].[Patente_Insert]
-    [dbo].[Patente_Select]
-    [dbo].[Patente_Update]
-         */
         public void Agregar(Patente unObjeto)
         {
             SqlHelper sqlHelper = new SqlHelper(connectionString);
@@ -33,7 +27,9 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
 
         public void Borrar(Patente unObjeto)
         {
-            throw new NotImplementedException();
+            SqlHelper sqlHelper = new SqlHelper(connectionString);
+            sqlHelper.ExecuteNonQuery("Patente_Delete", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                        new SqlParameter("@IdPatente", unObjeto.IdPatente.ToString())});
         }
 
         public Patente BuscarUno(string criterio, string valor)
@@ -72,7 +68,11 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
 
         public void Modificar(Patente unObjeto)
         {
-            throw new NotImplementedException();
+            SqlHelper sqlHelper = new SqlHelper(connectionString);
+            sqlHelper.ExecuteNonQuery("Patente_Update", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                        new SqlParameter("@IdPatente", unObjeto.IdPatente.ToString()),
+                        new SqlParameter("@Nombre", unObjeto.Nombre),
+                        new SqlParameter("@Vista", unObjeto.Vista)});
         }
 
     }

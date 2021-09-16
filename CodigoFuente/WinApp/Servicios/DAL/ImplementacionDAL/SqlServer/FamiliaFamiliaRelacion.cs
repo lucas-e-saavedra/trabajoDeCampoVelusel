@@ -63,5 +63,32 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
             }
         }
 
+        public void Desvincular(Familia obj1, Familia obj2) {
+            try
+            {
+                SqlHelper sqlHelper = new SqlHelper(conexion);
+                sqlHelper.ExecuteNonQuery("Familia_Familia_Delete", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                        new SqlParameter("@IdFamilia", obj1.IdFamilia.ToString()),
+                        new SqlParameter("@IdFamiliaHijo", obj2.IdFamilia.ToString())});
+            }
+            catch (Exception ex)
+            {
+                ex.RegistrarError();
+            }
+        }
+
+        public void DesvincularHijos(Familia obj1)
+        {
+            try
+            {
+                SqlHelper sqlHelper = new SqlHelper(conexion);
+                sqlHelper.ExecuteNonQuery("Familia_Familia_DeleteParticular", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                        new SqlParameter("@IdFamilia", obj1.IdFamilia.ToString())});
+            }
+            catch (Exception ex)
+            {
+                ex.RegistrarError();
+            }
+        }
     }
 }

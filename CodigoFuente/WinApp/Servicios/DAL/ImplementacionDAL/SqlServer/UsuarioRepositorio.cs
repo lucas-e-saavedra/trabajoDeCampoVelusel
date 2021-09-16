@@ -44,7 +44,19 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
 
         public void Borrar(Usuario unObjeto)
         {
-            throw new NotImplementedException();
+            unObjeto.Permisos.ForEach(unHijo => {
+                if (unHijo is Patente)
+                {
+                    FabricaDAL.Current.ObtenerUsuarioPatenteRelacion().Desvincular(unObjeto, (Patente)unHijo);
+                }
+                if (unHijo is Familia)
+                {
+                    FabricaDAL.Current.ObtenerUsuarioFamiliaRelacion().Desvincular(unObjeto, (Familia)unHijo);
+                }
+            });
+            SqlHelper sqlHelper = new SqlHelper(connectionString);
+            sqlHelper.ExecuteNonQuery("Usuario_Delete", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                        new SqlParameter("@IdUsuario", unObjeto.IdUsuario.ToString())});
         }
 
         public Usuario BuscarUno(string criterio, string valor)
@@ -88,7 +100,24 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
 
         public void Modificar(Usuario unObjeto)
         {
-            throw new NotImplementedException();
+            //TODO: faltan modificar los demas datos del usuario
+            SqlHelper sqlHelper = new SqlHelper(connectionString);
+            sqlHelper.ExecuteNonQuery("Usuario_Update", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                        new SqlParameter("@IdUsuario", unObjeto.IdUsuario.ToString()),
+                        new SqlParameter("@Nombre", unObjeto.Nombre)});
+
+            FabricaDAL.Current.ObtenerUsuarioPatenteRelacion().DesvincularHijos(unObjeto);
+            FabricaDAL.Current.ObtenerUsuarioFamiliaRelacion().DesvincularHijos(unObjeto);
+            unObjeto.Permisos.ForEach(unHijo => {
+                if (unHijo is Patente)
+                {
+                    FabricaDAL.Current.ObtenerUsuarioPatenteRelacion().Unir(unObjeto, (Patente)unHijo);
+                }
+                if (unHijo is Familia)
+                {
+                    FabricaDAL.Current.ObtenerUsuarioFamiliaRelacion().Unir(unObjeto, (Familia)unHijo);
+                }
+            });
         }
 
     }

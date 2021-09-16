@@ -36,7 +36,19 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
 
         public void Borrar(Familia unObjeto)
         {
-            throw new NotImplementedException();
+            unObjeto.ListadoHijos.ForEach(unHijo => {
+                if (unHijo is Patente)
+                {
+                    FabricaDAL.Current.ObtenerFamiliaPatenteRelacion().Desvincular(unObjeto, (Patente)unHijo);
+                }
+                if (unHijo is Familia)
+                {
+                    FabricaDAL.Current.ObtenerFamiliaFamiliaRelacion().Desvincular(unObjeto, (Familia)unHijo);
+                }
+            });
+            SqlHelper sqlHelper = new SqlHelper(connectionString);
+            sqlHelper.ExecuteNonQuery("Familia_Delete", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                        new SqlParameter("@IdFamilia", unObjeto.IdFamilia.ToString())});
         }
 
         public Familia BuscarUno(string criterio, string valor)
@@ -77,7 +89,23 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
 
         public void Modificar(Familia unObjeto)
         {
-            throw new NotImplementedException();
+            SqlHelper sqlHelper = new SqlHelper(connectionString);
+            sqlHelper.ExecuteNonQuery("Familia_Update", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                        new SqlParameter("@IdFamilia", unObjeto.IdFamilia.ToString()),
+                        new SqlParameter("@Nombre", unObjeto.Nombre)});
+
+            FabricaDAL.Current.ObtenerFamiliaPatenteRelacion().DesvincularHijos(unObjeto);
+            FabricaDAL.Current.ObtenerFamiliaFamiliaRelacion().DesvincularHijos(unObjeto);
+            unObjeto.ListadoHijos.ForEach(unHijo => {
+                if (unHijo is Patente)
+                {
+                    FabricaDAL.Current.ObtenerFamiliaPatenteRelacion().Unir(unObjeto, (Patente)unHijo);
+                }
+                if (unHijo is Familia)
+                {
+                    FabricaDAL.Current.ObtenerFamiliaFamiliaRelacion().Unir(unObjeto, (Familia)unHijo);
+                }
+            });
         }
 
     }

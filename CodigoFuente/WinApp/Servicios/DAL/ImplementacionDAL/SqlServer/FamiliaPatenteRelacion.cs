@@ -58,5 +58,34 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
                 ex.RegistrarError();
             }
         }
+
+        public void Desvincular(Familia obj1, Patente obj2)
+        {
+            try
+            {
+                SqlHelper sqlHelper = new SqlHelper(conexion);
+                sqlHelper.ExecuteNonQuery("Familia_Patente_Delete", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                        new SqlParameter("@IdFamilia", obj1.IdFamilia.ToString()),
+                        new SqlParameter("@IdPatente", obj2.IdPatente.ToString())});
+            }
+            catch (Exception ex)
+            {
+                ex.RegistrarError();
+            }
+        }
+
+        public void DesvincularHijos(Familia obj1)
+        {
+            try
+            {
+                SqlHelper sqlHelper = new SqlHelper(conexion);
+                sqlHelper.ExecuteNonQuery("Familia_Patente_DeleteParticular", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                        new SqlParameter("@IdFamilia", obj1.IdFamilia.ToString())});
+            }
+            catch (Exception ex)
+            {
+                ex.RegistrarError();
+            }
+        }
     }
 }

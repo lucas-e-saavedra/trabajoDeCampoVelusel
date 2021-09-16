@@ -207,14 +207,15 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[Familia_Patente_Delete]
-	@IdFamilia varchar (36) 
+	@IdFamilia varchar (36) , 
+	@IdPatente varchar(36) 
 AS
 BEGIN
 	SET NOCOUNT ON
 	BEGIN TRY
 	DELETE FROM Familia_Patente
 	WHERE 
-		IdFamilia=@IdFamilia
+		IdFamilia=@IdFamilia AND IdPatente=@IdPatente
 	END TRY
 
 	BEGIN CATCH
@@ -223,6 +224,17 @@ BEGIN
 	SET NOCOUNT OFF
 END
 GO
+/****** Object:  StoredProcedure [dbo].[Familia_Familia_DeleteParticular]    Script Date: 16/09/2021 1:50:11 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[Familia_Patente_DeleteParticular]
+	@IdFamilia varchar (36)
+AS
+	DELETE FROM Familia_Patente
+	WHERE 
+		IdFamilia=@IdFamilia
 /****** Object:  StoredProcedure [dbo].[Familia_Patente_Insert]    Script Date: 03/09/2021 19:32:47 ******/
 SET ANSI_NULLS ON
 GO
@@ -334,14 +346,14 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[Patente_Delete]
-	@IdFamilia varchar (36) 
+	@IdPatente varchar (36) 
 AS
 BEGIN
 	SET NOCOUNT ON
 	BEGIN TRY
 	DELETE FROM Patente
 	WHERE 
-		IdPatente=@IdFamilia
+		IdPatente=@IdPatente
 	END TRY
 
 	BEGIN CATCH
@@ -602,10 +614,35 @@ GO
 CREATE PROCEDURE [dbo].[Usuario_Patente_DeleteParticular]
 	@IdUsuario varchar (36)
 AS
-	DELETE FROM Usuario_Familia
+	DELETE FROM Usuario_Patente
 	WHERE 
 		IdUsuario=@IdUsuario
 GO
+
+/****** Object:  StoredProcedure [dbo].[Usuario_Patente_Delete]    Script Date: 16/09/2021 1:12:18 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[Usuario_Patente_Delete]
+	@IdUsuario varchar (36) , 
+	@IdPatente varchar (36) 
+AS
+BEGIN
+	SET NOCOUNT ON
+	BEGIN TRY
+	DELETE FROM Usuario_Patente
+	WHERE 
+		IdUsuario=@IdUsuario AND 
+		IdPatente=@IdPatente
+	END TRY
+
+	BEGIN CATCH
+		EXEC RethrowError;
+	END CATCH
+	SET NOCOUNT OFF
+END
+
 /****** Object:  StoredProcedure [dbo].[Usuario_Patente_Insert]    Script Date: 03/09/2021 19:32:47 ******/
 SET ANSI_NULLS ON
 GO

@@ -23,29 +23,68 @@ namespace WinApp
             IEnumerable<Usuario> usuarios = GestorUsuarios.Current.ListarUsuarios();
 
             
-            /*Patente nuevaPatente1 = new Patente() {
+            Patente otraPatente = new Patente() {
                 IdPatente = Guid.NewGuid(),
-                Nombre = "Patente A1",
-                Vista = "Vista A1"
+                Nombre = "Patente F1",
+                Vista = "Vista F1"
             };
-            GestorUsuarios.Current.CrearPatente(nuevaPatente1);
-            Patente nuevaPatente2 = new Patente()
+            GestorUsuarios.Current.CrearPatente(otraPatente);
+            otraPatente.Nombre = "Patente F2";
+            otraPatente.Vista = "Vista F2";
+            GestorUsuarios.Current.ModificarPatente(otraPatente);
+            
+            Patente segundaPatente = new Patente()
             {
                 IdPatente = Guid.NewGuid(),
-                Nombre = "Patente A2",
-                Vista = "Vista A2"
+                Nombre = "Patente G2",
+                Vista = "Vista G2"
             };
-            GestorUsuarios.Current.CrearPatente(nuevaPatente2);
+            GestorUsuarios.Current.CrearPatente(segundaPatente);
 
-            Familia unaFamilia = new Familia() {
+            Familia otraFamilia = new Familia() {
                 IdFamilia = Guid.NewGuid(),
-                Nombre = "Familia A"
+                Nombre = "Familia C"
             };
-            unaFamilia.ListadoHijos.Add(nuevaPatente1);
-            unaFamilia.ListadoHijos.Add(nuevaPatente2);
-            GestorUsuarios.Current.CrearFamilia(unaFamilia);
-            
-            Usuario unUsuario = new Usuario() {
+            otraFamilia.ListadoHijos.Add(otraPatente);
+            otraFamilia.ListadoHijos.Add(segundaPatente);
+            GestorUsuarios.Current.CrearFamilia(otraFamilia);
+            Patente segundaPatenteB = new Patente()
+            {
+                IdPatente = Guid.NewGuid(),
+                Nombre = "Patente G3",
+                Vista = "Vista G3"
+            };
+            GestorUsuarios.Current.CrearPatente(segundaPatenteB);
+            otraFamilia.ListadoHijos.RemoveAt(0);
+            otraFamilia.ListadoHijos.Add(segundaPatenteB);
+            GestorUsuarios.Current.ModificarFamilia(otraFamilia);
+
+            Patente terceraPatente = new Patente()
+            {
+                IdPatente = Guid.NewGuid(),
+                Nombre = "Patente H2",
+                Vista = "Vista H2"
+            };
+            GestorUsuarios.Current.CrearPatente(terceraPatente);
+            Familia segundaFamilia = new Familia()
+            {
+                IdFamilia = Guid.NewGuid(),
+                Nombre = "Familia D"
+            };
+            segundaFamilia.ListadoHijos.Add(terceraPatente);
+            segundaFamilia.ListadoHijos.Add(otraFamilia);
+            GestorUsuarios.Current.CrearFamilia(segundaFamilia);
+            Familia terceraFamilia = new Familia()
+            {
+                IdFamilia = Guid.NewGuid(),
+                Nombre = "Familia E"
+            };
+            GestorUsuarios.Current.CrearFamilia(terceraFamilia);
+            segundaFamilia.ListadoHijos.Add(terceraFamilia);
+            GestorUsuarios.Current.ModificarFamilia(segundaFamilia);
+
+            Usuario unUsuario = new Usuario()
+            {
                 IdUsuario = Guid.NewGuid(),
                 UsuarioLogin = "dakota",
                 Contrasenia = "clave",
@@ -54,10 +93,31 @@ namespace WinApp
                 TipoDocumento = Usuario.EnumTipoDocumento.DNI,
                 NroDocumento = "123456789"
             };
-            unUsuario.Permisos.Add(unaFamilia);
-            GestorUsuarios.Current.CrearUsuario(unUsuario);*/
-            Usuario otroUsuario = GestorUsuarios.Current.AutenticarUsuario("dakota", "r3Q8O");
-            GestorUsuarios.Current.BlanquearClave(Guid.Parse("364e80c3-386f-4af7-9000-2e8e3138b79d"));
+            unUsuario.Permisos.Add(segundaFamilia); //familia d
+            unUsuario.Permisos.Add(otraPatente); //patente f2
+            GestorUsuarios.Current.CrearUsuario(unUsuario);
+
+            unUsuario.Permisos.Clear();
+            unUsuario.Nombre = "dakota es una perra chancha";
+            unUsuario.Permisos.Add(terceraFamilia); //familia e
+            unUsuario.Permisos.Add(terceraPatente); //patente h2
+            GestorUsuarios.Current.ModificarUsuario(unUsuario);
+
+
+
+
+            GestorUsuarios.Current.BorrarUsuario(unUsuario);
+            GestorUsuarios.Current.BorrarFamila(segundaFamilia);
+            GestorUsuarios.Current.BorrarFamila(otraFamilia);
+            GestorUsuarios.Current.BorrarFamila(terceraFamilia);
+
+            GestorUsuarios.Current.BorrarPatente(otraPatente);
+            GestorUsuarios.Current.BorrarPatente(segundaPatente);
+            GestorUsuarios.Current.BorrarPatente(segundaPatenteB);
+            GestorUsuarios.Current.BorrarPatente(terceraPatente);
+
+            //Usuario otroUsuario = GestorUsuarios.Current.AutenticarUsuario("dakota", "r3Q8O");
+            //GestorUsuarios.Current.BlanquearClave(Guid.Parse("364e80c3-386f-4af7-9000-2e8e3138b79d"));
             button1.Text = "Holaaaa".Traducir();
         }
 

@@ -41,8 +41,16 @@ namespace Servicios.BLL
             EnviarContrasenia(unUsuario.Email, "Bienvenido", "Tu nueva clave es: " + nuevaClave);
             FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Modificar(unUsuario);
         }
-        public void BorrarFamila(string usuario) { }
-        public void BorrarPermiso(string usuario) { }
+        public void BorrarFamila(Familia unaFamilia) {
+            FabricaDAL.Current.ObtenerRepositorioDeFamilias().Borrar(unaFamilia);
+        }
+        public void BorrarPatente(Patente unaPatente) {
+            FabricaDAL.Current.ObtenerRepositorioDePatentes().Borrar(unaPatente);
+        }
+        public void BorrarUsuario(Usuario unUsuario)
+        {
+            FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Borrar(unUsuario);
+        }
         public void CrearFamilia(Familia unaFamilia) {
             FabricaDAL.Current.ObtenerRepositorioDeFamilias().Agregar(unaFamilia);
         }
@@ -97,9 +105,16 @@ namespace Servicios.BLL
         public IEnumerable<Usuario> ListarUsuarios() {
             return FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Listar();
         }
-        public void ModificarFamilia(string usuario) { }
-        public void ModificarPermiso(string usuario) { }
-        public void ModificarUsuario(string usuario) { }
+        public void ModificarFamilia(Familia unaFamilia) {
+            FabricaDAL.Current.ObtenerRepositorioDeFamilias().Modificar(unaFamilia);
+        }
+        public void ModificarPatente(Patente unaPatente)
+        {
+            FabricaDAL.Current.ObtenerRepositorioDePatentes().Modificar(unaPatente);
+        }
+        public void ModificarUsuario(Usuario unUsuario) {
+            FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Modificar(unUsuario);
+        }
 
     }
 }
