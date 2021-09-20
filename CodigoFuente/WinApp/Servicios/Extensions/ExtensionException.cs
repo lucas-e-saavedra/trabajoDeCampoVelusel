@@ -17,10 +17,12 @@ namespace Servicios.Extensions
         /// <returns></returns>
         public static void RegistrarError(this Exception unaExcepcion)
         {
+            //unaExcepcion.InnerException
             Error unError = new Error();
             unError.fechaYhora = DateTime.Now;
             unError.clase = unaExcepcion.GetType().Name;
             unError.descripcion = unaExcepcion.Message;
+            unError.detalle = unaExcepcion.StackTrace;
             GestorHistorico.Current.RegistrarErrores(unError);
         }
     }

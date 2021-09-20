@@ -40,5 +40,18 @@ namespace Servicios.Domain.CompositeSeguridad
 			patenteFamilias.Remove(component);
 			//Verificar restricción de eliminación, al menos una patente/familia debería de existir
 		}
+
+
+		// override object.Equals
+		public override bool Equals(object obj)
+		{
+			if (obj == null || GetType() != obj.GetType())
+			{
+				return false;
+			}
+
+			Familia familiaObj = (Familia)obj;
+			return IdFamilia == familiaObj.IdFamilia;
+		}
 	}
 }

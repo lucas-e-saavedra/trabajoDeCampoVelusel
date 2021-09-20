@@ -26,14 +26,16 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
 
             try
             {
-                using (var dr = new SqlHelper(conexion).ExecuteReader("Usuario_Patente_SelectParticular", System.Data.CommandType.StoredProcedure,
+                using (var dr = new SqlHelper(conexion).ExecuteReader("Usuario_Patente_Select", System.Data.CommandType.StoredProcedure,
                                                        new SqlParameter[] { new SqlParameter("@IdUsuario", IdUsuario) }))
                 {
                     //Cada read equivale a leer una relación de mi familia con una patente...
                     while (dr.Read())
                     {
                         //Tengo una nueva patente relacionada...
-                        Patente unaPatente = new PatenteRepositorio(conexion).BuscarUno("guid", dr.GetString(1));
+                        string[] criterios = { "guid" };
+                        string[] valores = { dr.GetString(1) };
+                        Patente unaPatente = new PatenteRepositorio(conexion).BuscarUno(criterios, valores);
                         patentes.Add(unaPatente);
                     }
                 }

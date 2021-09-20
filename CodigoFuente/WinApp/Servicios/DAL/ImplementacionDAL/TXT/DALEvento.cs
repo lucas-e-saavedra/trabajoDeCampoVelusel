@@ -4,6 +4,7 @@ using Servicios.Domain;
 using System;
 using System.Collections.Generic;
 using Servicios.DAL.Contratos;
+using Servicios.Extensions;
 
 namespace Servicios.DAL.ImplementacionDAL.TXT
 {
@@ -17,8 +18,13 @@ namespace Servicios.DAL.ImplementacionDAL.TXT
 
         public void Agregar(Evento unObjeto)
         {
-            FileHelper file = new FileHelper(rutaArchivo);
-            file.Write(AdaptadorEvento.ConvertirATexto(unObjeto));
+            try {
+                FileHelper file = new FileHelper(rutaArchivo);
+                file.Write(AdaptadorEvento.ConvertirATexto(unObjeto));
+            } catch (Exception ex) {
+                ex.RegistrarError();
+                throw new Exception("Hubo un problema al grabar la bitácora");
+            }
         }
 
         public void Borrar(Evento unObjeto)
@@ -26,18 +32,23 @@ namespace Servicios.DAL.ImplementacionDAL.TXT
             throw new NotImplementedException();
         }
 
-        public Evento BuscarUno(string criterio, string valor)
+        public Evento BuscarUno(string[] criterios, string[] valores)
         {
             throw new NotImplementedException();
         }
 
         public IEnumerable<Evento> Listar()
         {
-            FileHelper fileHelper = new FileHelper(rutaArchivo);
-            List<string> lineas = fileHelper.Read();
+            try {
+                FileHelper fileHelper = new FileHelper(rutaArchivo);
+                List<string> lineas = fileHelper.Read();
 
-            Converter<string, Evento> conversor = new Converter<string, Evento>(AdaptadorEvento.desdeTexto);
-            return lineas.ConvertAll<Evento>(conversor);
+                Converter<string, Evento> conversor = new Converter<string, Evento>(AdaptadorEvento.desdeTexto);
+                return lineas.ConvertAll<Evento>(conversor);
+            } catch (Exception ex) {
+                ex.RegistrarError();
+                throw new Exception("Hubo un problema al leer la bitácora");
+            }
         }
 
         public void Modificar(Evento unObjeto)

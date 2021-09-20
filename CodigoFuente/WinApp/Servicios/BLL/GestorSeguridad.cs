@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Servicios.Extensions;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Servicios.BLL
 {
-    class GestorSeguridad
+    public class GestorSeguridad
     {
         #region Singleton
         private readonly static GestorSeguridad _instance = new GestorSeguridad();
@@ -23,11 +26,67 @@ namespace Servicios.BLL
         { }
         #endregion
 
-        public string Encriptar(string datoOriginal) {
-            return "(" + datoOriginal + ")";
+        public string Encriptar(string datoOriginal, string clave) {
+            byte[] vectorInicializacion = new byte[16];
+            byte[] array;
+
+            try { 
+                using (Aes algoritmo = Aes.Create())
+                {
+                    algoritmo.Key = Encoding.UTF8.GetBytes(clave);
+                    algoritmo.IV = vectorInicializacion;
+
+                    ICryptoTransform encriptador = algoritmo.CreateEncryptor(algoritmo.Key, algoritmo.IV);
+
+                    using (MemoryStream memoryStream = new MemoryStream())
+                    {
+                        using (CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, encriptador, CryptoStreamMode.Write))
+                        {
+                            using (StreamWriter streamWriter = new StreamWriter((Stream)cryptoStream))
+                            {
+                                streamWriter.Write(datoOriginal);
+                            }
+
+                            array = memoryStream.ToArray();
+                        }
+                    }
+                }
+                return Convert.ToBase64String(array);
+            } catch(Exception ex) {
+                ex.RegistrarError();
+                throw new Exception("Falló el algoritmo de encriptación");
+            }            
         }
-        public string Desencriptar(string datoEncriptado) {
-            return datoEncriptado.Substring(1, datoEncriptado.Length - 2);
+        public string Desencriptar(string datoEncriptado, string clave) {
+            //return datoEncriptado.Substring(1, datoEncriptado.Length - 2);
+            byte[] vectorInicializacion = new byte[16];
+            byte[] buffer = Convert.FromBase64String(datoEncriptado);
+
+            try
+            {
+                using (Aes aes = Aes.Create())
+                {
+                    aes.Key = Encoding.UTF8.GetBytes(clave);
+                    aes.IV = vectorInicializacion;
+                    ICryptoTransform desencriptador = aes.CreateDecryptor(aes.Key, aes.IV);
+
+                    using (MemoryStream memoryStream = new MemoryStream(buffer))
+                    {
+                        using (CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, desencriptador, CryptoStreamMode.Read))
+                        {
+                            using (StreamReader streamReader = new StreamReader((Stream)cryptoStream))
+                            {
+                                return streamReader.ReadToEnd();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.RegistrarError();
+                throw new Exception("Falló el algoritmo de encriptación");
+            }
         }
         public string GenerarClaveAleatoria() {
             Random obj = new Random();
@@ -44,5 +103,6 @@ namespace Servicios.BLL
             }
             return sNuevacadena;
         }
+        
     }
 }

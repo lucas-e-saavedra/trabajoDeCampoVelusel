@@ -3,6 +3,7 @@ using Servicios.Domain;
 using Servicios.Domain.CompositeSeguridad;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -28,14 +29,20 @@ namespace Servicios.BLL
         { }
         #endregion
 
-        public Usuario AutenticarUsuario(string usuario, string clave) {
-            string claveEncriptada = GestorSeguridad.Current.Encriptar(clave);
-            return FabricaDAL.Current.ObtenerRepositorioDeUsuarios().BuscarUno("Usuario¿Contrasenia", usuario+"¿"+claveEncriptada);
+        public Usuario AutenticarUsuario(string usuario, string contrasenia) {
+            string llave = ConfigurationManager.AppSettings["claveCifrado"];
+            string contraseniaEncriptada = GestorSeguridad.Current.Encriptar(contrasenia, llave);
+            string[] criterios = { "Usuario", "Contrasenia" };
+            string[] valores = { usuario, contraseniaEncriptada };
+            return FabricaDAL.Current.ObtenerRepositorioDeUsuarios().BuscarUno(criterios, valores);
         }
         public void BlanquearClave(Guid guidUsuario) {
-            Usuario unUsuario = FabricaDAL.Current.ObtenerRepositorioDeUsuarios().BuscarUno("IdUsuario", guidUsuario.ToString());
+            string[] criterios = { "IdUsuario" };
+            string[] valores = { guidUsuario.ToString() };
+            Usuario unUsuario = FabricaDAL.Current.ObtenerRepositorioDeUsuarios().BuscarUno(criterios, valores);
             string nuevaClave = GestorSeguridad.Current.GenerarClaveAleatoria();
-            string claveEncriptada = GestorSeguridad.Current.Encriptar(nuevaClave);
+            string llave = ConfigurationManager.AppSettings["claveCifrado"];
+            string claveEncriptada = GestorSeguridad.Current.Encriptar(nuevaClave, llave);
             unUsuario.Contrasenia = claveEncriptada;
 
             EnviarContrasenia(unUsuario.Email, "Bienvenido", "Tu nueva clave es: " + nuevaClave);
@@ -59,7 +66,8 @@ namespace Servicios.BLL
         }
         public void CrearUsuario(Usuario usuario) {
             string nuevaClave = GestorSeguridad.Current.GenerarClaveAleatoria();
-            string claveEncriptada = GestorSeguridad.Current.Encriptar(nuevaClave);
+            string llave = ConfigurationManager.AppSettings["claveCifrado"];
+            string claveEncriptada = GestorSeguridad.Current.Encriptar(nuevaClave, llave);
             usuario.Contrasenia = claveEncriptada;
             FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Agregar(usuario);
             EnviarContrasenia(usuario.Email, "Bienvenido", "Tu nueva clave es: " + nuevaClave);

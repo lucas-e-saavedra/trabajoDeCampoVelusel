@@ -31,7 +31,9 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
                     while (dr.Read())
                     {
                         //Tengo una nueva patente relacionada...
-                        Patente patente = new PatenteRepositorio(conexion).BuscarUno("guid", dr.GetString(1));
+                        string[] criterios = { "guid" };
+                        string[] valores = { dr.GetString(1) };
+                        Patente patente = new PatenteRepositorio(conexion).BuscarUno(criterios, valores);
 
                         patentes.Add(patente);
                     }

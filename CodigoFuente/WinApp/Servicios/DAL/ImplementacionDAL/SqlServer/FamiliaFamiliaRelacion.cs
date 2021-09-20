@@ -34,7 +34,9 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
                     while (dr.Read())
                     {
                         //Tengo una nueva patente relacionada...
-                        Familia unaFamilia = new FamiliaRepositorio(conexion).BuscarUno("guid", dr.GetString(1));
+                        string[] criterios = { "guid" };
+                        string[] valores = { dr.GetString(1) };
+                        Familia unaFamilia = new FamiliaRepositorio(conexion).BuscarUno(criterios, valores);
                         familias.Add(unaFamilia);
                     }
                 }

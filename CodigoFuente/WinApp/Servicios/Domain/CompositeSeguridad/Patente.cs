@@ -35,5 +35,16 @@ namespace Servicios.Domain.CompositeSeguridad
 			throw new Exception("No se pueden quitar elementos en una patente.");
 		}
 
+		// override object.Equals
+		public override bool Equals(object obj)
+		{
+			if (obj == null || GetType() != obj.GetType())
+			{
+				return false;
+			}
+
+			Patente patenteObj = (Patente)obj;
+			return IdPatente == patenteObj.IdPatente;
+		}
 	}
 }

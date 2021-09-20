@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using Servicios.DAL.Contratos;
+using Servicios.Extensions;
+using System.Linq;
 
 namespace Servicios.DAL.ImplementacionDAL.SqlServer
 {
@@ -18,61 +20,86 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
 
         public void Agregar(Patente unObjeto)
         {
-            SqlHelper sqlHelper = new SqlHelper(connectionString);
-            sqlHelper.ExecuteNonQuery("Patente_Insert", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+            try {
+                SqlHelper sqlHelper = new SqlHelper(connectionString);
+                sqlHelper.ExecuteNonQuery("Patente_Insert", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
                         new SqlParameter("@IdPatente", unObjeto.IdPatente.ToString()),
                         new SqlParameter("@Nombre", unObjeto.Nombre),
                         new SqlParameter("@Vista", unObjeto.Vista)});
+            } catch (Exception ex) {
+                ex.RegistrarError();
+                throw new Exception("Hubo un problema al agregar una patente");
+            }
         }
 
         public void Borrar(Patente unObjeto)
         {
-            SqlHelper sqlHelper = new SqlHelper(connectionString);
-            sqlHelper.ExecuteNonQuery("Patente_Delete", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+            try {
+                SqlHelper sqlHelper = new SqlHelper(connectionString);
+                sqlHelper.ExecuteNonQuery("Patente_Delete", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
                         new SqlParameter("@IdPatente", unObjeto.IdPatente.ToString())});
+            } catch (Exception ex) {
+                ex.RegistrarError();
+                throw new Exception("Hubo un problema al borrar una patente");
+            }
         }
 
-        public Patente BuscarUno(string criterio, string valor)
+        public Patente BuscarUno(string[] criterios, string[] valores)
         {
-            Patente unaPatente = null;
-            SqlHelper sqlHelper = new SqlHelper(connectionString);
-            using (var dr = sqlHelper.ExecuteReader("Patente_Select", System.Data.CommandType.StoredProcedure,
-                new SqlParameter[] { new SqlParameter("@IdPatente", valor) }))
-            {
-                if (dr.Read())
+            try {
+                Patente unaPatente = null;
+                SqlHelper sqlHelper = new SqlHelper(connectionString);
+                using (var dr = sqlHelper.ExecuteReader("Patente_Select", System.Data.CommandType.StoredProcedure,
+                    new SqlParameter[] { new SqlParameter("@IdPatente", valores.First()) }))
                 {
-                    object[] values = new object[dr.FieldCount];
-                    dr.GetValues(values);
-                    unaPatente = PatenteAdapter.Current.Adapt(values);
+                    if (dr.Read())
+                    {
+                        object[] values = new object[dr.FieldCount];
+                        dr.GetValues(values);
+                        unaPatente = PatenteAdapter.Current.Adapt(values);
+                    }
                 }
+                return unaPatente;
+            } catch (Exception ex) {
+                ex.RegistrarError();
+                throw new Exception("Hubo un problema al buscar una patente");
             }
-            return unaPatente;
         }
 
         public IEnumerable<Patente> Listar()
         {
-            List<Patente> todasLasPatentes = new List<Patente>();
-            SqlHelper sqlHelper = new SqlHelper(connectionString);
-            using (var dr = sqlHelper.ExecuteReader("Patente_SelectAll", System.Data.CommandType.StoredProcedure))
-            {
-                while (dr.Read())
+            try {
+                List<Patente> todasLasPatentes = new List<Patente>();
+                SqlHelper sqlHelper = new SqlHelper(connectionString);
+                using (var dr = sqlHelper.ExecuteReader("Patente_SelectAll", System.Data.CommandType.StoredProcedure))
                 {
-                    object[] values = new object[dr.FieldCount];
-                    dr.GetValues(values);
-                    Patente unaPatente = PatenteAdapter.Current.Adapt(values);
-                    todasLasPatentes.Add(unaPatente);
+                    while (dr.Read())
+                    {
+                        object[] values = new object[dr.FieldCount];
+                        dr.GetValues(values);
+                        Patente unaPatente = PatenteAdapter.Current.Adapt(values);
+                        todasLasPatentes.Add(unaPatente);
+                    }
                 }
+                return todasLasPatentes;
+            } catch (Exception ex) {
+                ex.RegistrarError();
+                throw new Exception("Hubo un problema al listar las patentes");
             }
-            return todasLasPatentes;
         }
 
         public void Modificar(Patente unObjeto)
         {
-            SqlHelper sqlHelper = new SqlHelper(connectionString);
-            sqlHelper.ExecuteNonQuery("Patente_Update", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+            try {
+                SqlHelper sqlHelper = new SqlHelper(connectionString);
+                sqlHelper.ExecuteNonQuery("Patente_Update", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
                         new SqlParameter("@IdPatente", unObjeto.IdPatente.ToString()),
                         new SqlParameter("@Nombre", unObjeto.Nombre),
                         new SqlParameter("@Vista", unObjeto.Vista)});
+            } catch (Exception ex) {
+                ex.RegistrarError();
+                throw new Exception("Hubo un problema al modificar una patente");
+            }
         }
 
     }

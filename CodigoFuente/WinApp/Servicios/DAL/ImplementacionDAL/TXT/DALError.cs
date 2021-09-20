@@ -26,7 +26,7 @@ namespace Servicios.DAL.ImplementacionDAL.TXT
             throw new NotImplementedException();
         }
 
-        public Error BuscarUno(string criterio, string valor)
+        public Error BuscarUno(string[] criterios, string[] valores)
         {
             throw new NotImplementedException();
         }

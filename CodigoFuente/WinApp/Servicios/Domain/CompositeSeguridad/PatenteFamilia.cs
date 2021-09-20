@@ -24,5 +24,6 @@ namespace Servicios.Domain.CompositeSeguridad
 		public abstract void Quitar(PatenteFamilia component);
 
 		public abstract int CantidadHijos { get; }
+
 	}
 }

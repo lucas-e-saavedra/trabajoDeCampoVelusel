@@ -136,16 +136,14 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[Familia_Familia_Select]
-	@IdFamilia varchar (36) , 
-	@IdFamiliaHijo varchar (36) 
+	@IdFamilia varchar(36)
 AS
 	SELECT 
 		[IdFamilia], 
 		[IdFamiliaHijo]
 	FROM Familia_Familia
 	WHERE 
-		[IdFamilia]=@IdFamilia AND 
-		[IdFamiliaHijo]=@IdFamiliaHijo
+		[IdFamilia]=@IdFamilia
 GO
 /****** Object:  StoredProcedure [dbo].[Familia_Familia_SelectAll]    Script Date: 03/09/2021 19:32:47 ******/
 SET ANSI_NULLS ON
@@ -158,21 +156,6 @@ AS
 		[IdFamilia], 
 		[IdFamiliaHijo]
 	FROM Familia_Familia
-GO
-/****** Object:  StoredProcedure [dbo].[Familia_Familia_SelectParticular]    Script Date: 03/09/2021 19:32:47 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Familia_Familia_SelectParticular]
-	@IdFamilia varchar(36)
-AS
-	SELECT 
-		[IdFamilia], 
-		[IdFamiliaHijo]
-	FROM Familia_Familia
-	WHERE 
-		[IdFamilia]=@IdFamilia
 GO
 /****** Object:  StoredProcedure [dbo].[Familia_Insert]    Script Date: 03/09/2021 19:32:47 ******/
 SET ANSI_NULLS ON
@@ -538,16 +521,14 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[Usuario_Familia_Select]
-	@IdUsuario varchar (36) , 
-	@IdFamilia varchar (36) 
+	@IdUsuario varchar (36) 
 AS
 	SELECT 
 		IdUsuario, 
 		IdFamilia
 	FROM Usuario_Familia
 	WHERE 
-		IdUsuario=@IdUsuario AND 
-		IdFamilia=@IdFamilia
+		IdUsuario=@IdUsuario
 GO
 /****** Object:  StoredProcedure [dbo].[Usuario_Familia_SelectAll]    Script Date: 03/09/2021 19:32:47 ******/
 SET ANSI_NULLS ON
@@ -560,21 +541,6 @@ AS
 		[IdUsuario], 
 		[IdFamilia]
 	FROM Usuario_Familia
-GO
-/****** Object:  StoredProcedure [dbo].[Usuario_Familia_SelectParticular]    Script Date: 03/09/2021 19:32:47 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Usuario_Familia_SelectParticular]
-	@IdUsuario varchar (36)
-AS
-	SELECT 
-		IdUsuario, 
-		IdFamilia
-	FROM Usuario_familia
-	WHERE 
-		IdUsuario=@IdUsuario
 GO
 /****** Object:  StoredProcedure [dbo].[Usuario_Insert]    Script Date: 03/09/2021 19:32:47 ******/
 SET ANSI_NULLS ON
@@ -670,12 +636,12 @@ BEGIN
 	SET NOCOUNT OFF
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Usuario_Patente_SelectParticular]    Script Date: 03/09/2021 19:32:47 ******/
+/****** Object:  StoredProcedure [dbo].[Usuario_Patente_Select]    Script Date: 03/09/2021 19:32:47 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[Usuario_Patente_SelectParticular]
+CREATE PROCEDURE [dbo].[Usuario_Patente_Select]
 	@IdUsuario varchar (36)
 AS
 	SELECT 
@@ -715,13 +681,22 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[Usuario_Update]
 	@IdUsuario varchar(36), 
-	@Nombre varchar(1000)
+	@Usuario varchar(30),
+	@Nombre varchar(1000),
+	@Email varchar(30),
+	@TipoDocumento varchar(10),
+	@NroDocumento varchar(30)
 AS
 BEGIN
 	SET NOCOUNT ON
 	BEGIN TRY
 	UPDATE Usuario SET 
-		[Nombre]=@Nombre
+		[Usuario]=@Usuario,
+		[Nombre]=@Nombre,
+		[Email]=@Email,
+		[TipoDocumento]=@TipoDocumento,
+		[NroDocumento]=@NroDocumento
+
 	WHERE
 		IdUsuario=@IdUsuario
 	END TRY

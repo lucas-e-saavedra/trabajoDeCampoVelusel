@@ -8,7 +8,7 @@ namespace Servicios.DAL.Contratos
 {
     internal interface IRepositorioGenerico<T>
     {
-        T BuscarUno(string criterio, string valor);
+        T BuscarUno(string[] criterios, string[] valores);
         void Borrar(T unObjeto);
 
         void Agregar(T unObjeto);

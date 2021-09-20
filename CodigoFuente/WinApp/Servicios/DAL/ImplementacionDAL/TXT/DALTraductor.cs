@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Servicios.DAL.Contratos;
+using Servicios.Extensions;
 
 namespace Servicios.DAL.ImplementacionDAL.TXT
 {
@@ -15,8 +16,13 @@ namespace Servicios.DAL.ImplementacionDAL.TXT
         }
         public void Agregar(string unObjeto)
         {
-            FileHelper file = new FileHelper(rutaArchivo);
-            file.Write(unObjeto + '|');
+            try {
+                FileHelper file = new FileHelper(rutaArchivo);
+                file.Write(unObjeto + '|');
+            } catch (Exception ex) {
+                ex.RegistrarError();
+                throw new Exception("Hubo un problema al agregar una traduccion");
+            }
         }
 
         public void Borrar(string unObjeto)
@@ -24,15 +30,20 @@ namespace Servicios.DAL.ImplementacionDAL.TXT
             throw new NotImplementedException();
         }
 
-        public string BuscarUno(string criterio, string valor)
+        public string BuscarUno(string[] criterios, string[] valores)
         {
-            FileHelper fileHelper = new FileHelper(rutaArchivo);
-            List<string> lineas = fileHelper.Read();
+            try { 
+                FileHelper fileHelper = new FileHelper(rutaArchivo);
+                List<string> lineas = fileHelper.Read();
 
-            string lineaBuscada = lineas.FirstOrDefault(item =>{
-                return item.Split('|').First().ToLower() == valor.ToLower();                
-            });
-            return lineaBuscada?.Split('|')?.ElementAt(1);
+                string lineaBuscada = lineas.FirstOrDefault(item =>{
+                    return item.Split('|').First().ToLower() == valores.First().ToLower();                
+                });
+                return lineaBuscada?.Split('|')?.ElementAt(1);
+            } catch (Exception ex) {
+                ex.RegistrarError();
+                throw new Exception("Hubo un problema al buscar una traduccion");
+            }
         }
 
         public IEnumerable<string> Listar()
