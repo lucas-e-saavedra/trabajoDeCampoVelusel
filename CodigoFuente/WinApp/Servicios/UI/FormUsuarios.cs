@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinApp
+namespace Servicios.UI
 {
     public partial class FormUsuarios : Form, IIdiomasObservador
     {

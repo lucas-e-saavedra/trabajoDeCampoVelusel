@@ -124,6 +124,7 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
                 sqlHelper.ExecuteNonQuery("Usuario_Update", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
                             new SqlParameter("@IdUsuario", unObjeto.IdUsuario.ToString()),
                             new SqlParameter("@Usuario", unObjeto.UsuarioLogin),
+                            new SqlParameter("@Contrasenia", unObjeto.Contrasenia),                                
                             new SqlParameter("@Nombre", unObjeto.Nombre),
                             new SqlParameter("@Email", unObjeto.Email),
                             new SqlParameter("@TipoDocumento", unObjeto.TipoDocumento.ToString()),

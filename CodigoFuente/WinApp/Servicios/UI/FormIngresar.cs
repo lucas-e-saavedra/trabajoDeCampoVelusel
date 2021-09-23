@@ -2,6 +2,7 @@
 using Servicios.Domain.CompositeSeguridad;
 using Servicios.Extensions;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace WinApp
@@ -16,9 +17,6 @@ namespace WinApp
         {
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
-            //TODO: quitar esto
-            inputUsuario.Text = "lucas.saavedra";
-            inputContrasenia.Text = "yQZZX";
         }
 
         private void Form_Login_FormClosing(object sender, FormClosingEventArgs e)
@@ -35,9 +33,8 @@ namespace WinApp
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            Usuario unUsuario = GestorUsuarios.Current.AutenticarUsuario(inputUsuario.Text, inputContrasenia.Text);
-            if (unUsuario != null) {
-                this.Close();
+            if (GestorSesion.Current.AutenticarUsuario(inputUsuario.Text, inputContrasenia.Text)) {
+                this.DialogResult = DialogResult.OK;
             } else {
                 string advertencia = "El usuario y contraseña no coinciden".Traducir();
                 MessageBox.Show(advertencia);

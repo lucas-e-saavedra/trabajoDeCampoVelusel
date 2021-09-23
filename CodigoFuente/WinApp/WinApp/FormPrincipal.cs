@@ -6,6 +6,8 @@ using System.Linq;
 using System.Configuration;
 using System.Threading;
 using Servicios.UI;
+using System.Reflection;
+using Servicios.Extensions;
 
 namespace WinApp
 {
@@ -20,10 +22,9 @@ namespace WinApp
         {
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
-
-            FormIngresar formIngresar = new FormIngresar();
-            formIngresar.ShowDialog();
+            CerrarSesion();
         }
+        
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -34,39 +35,86 @@ namespace WinApp
         {
         }
 
-        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        #region Gestion del Menu y sus items
+        private ToolStripMenuItem crearItemMenu(Patente unaPatente)
         {
-            foreach(Form item in this.MdiChildren) {
-                item.Close();
-            }
-            FormUsuarios formUsuarios = new FormUsuarios();
-            formUsuarios.MdiParent = this;
-            formUsuarios.WindowState = FormWindowState.Maximized;
-            formUsuarios.Show();
+            ToolStripMenuItem itemMenu = new ToolStripMenuItem(unaPatente.Nombre.Traducir(), null, this.ItemMenu_click);
+            itemMenu.Tag = unaPatente.Vista;
+            return itemMenu;
+        }
+        private ToolStripMenuItem crearItemMenu(Familia unaFamilia)
+        {
+            ToolStripMenuItem itemMenu = new ToolStripMenuItem(unaFamilia.Nombre.Traducir());
+            unaFamilia.ListadoHijos.ForEach(
+                hijo => itemMenu.DropDownItems.Add(crearItemMenu(hijo))
+                );
+            return itemMenu;
+        }
+        private ToolStripMenuItem crearItemMenu(PatenteFamilia unaPatenteFamilia)
+        {
+            if (unaPatenteFamilia is Familia)
+                return crearItemMenu((Familia)unaPatenteFamilia);
+            else
+                return crearItemMenu((Patente)unaPatenteFamilia);
         }
 
-        private void familiasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ItemMenu_click(object sender, EventArgs e)
         {
-            foreach (Form item in this.MdiChildren)
+            try
             {
-                item.Close();
-            }
-            FormFamilias formFamilias = new FormFamilias();
-            formFamilias.MdiParent = this;
-            formFamilias.WindowState = FormWindowState.Maximized;
-            formFamilias.Show();
-        }
+                ToolStripMenuItem itemSeleccionado = (ToolStripMenuItem)sender;
+                string textoAccion = (string)itemSeleccionado.Tag;
+                if (textoAccion.StartsWith("Accion_"))
+                {
+                    string nombreMetodo = textoAccion.Substring("Accion_".Length);
+                    this.GetType().GetMethod(nombreMetodo).Invoke(this, null);
+                }
+                else
+                {
+                    Assembly ensamblado = textoAccion.Contains('/')
+                    ? Assembly.Load(textoAccion.Split('/').First())
+                    : this.GetType().Assembly;
+                    string nombreTipo = textoAccion.Contains('/') ? textoAccion.Split('/').Last() : textoAccion;
 
-        private void patentesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            foreach (Form item in this.MdiChildren)
-            {
-                item.Close();
+                    foreach (Form item in this.MdiChildren)
+                    {
+                        item.Close();
+                    }
+                    Type tipo = ensamblado.GetType(nombreTipo);
+                    Form unFormulario = (Form)Activator.CreateInstance(tipo);
+                    unFormulario.MdiParent = this;
+                    unFormulario.WindowState = FormWindowState.Maximized;
+                    unFormulario.Show();
+                }
             }
-            FormPatentes formPatentes = new FormPatentes();
-            formPatentes.MdiParent = this;
-            formPatentes.WindowState = FormWindowState.Maximized;
-            formPatentes.Show();
+            catch (Exception ex)
+            {
+                ex.RegistrarError();
+                MessageBox.Show("La acción seleccionada no está configurada adecuadamente.".Traducir(), "Contacte al administrador".Traducir());
+            }
         }
+        #endregion
+
+        #region Metodos públicos disponibles para usar desde el menú
+        public void CerrarSesion()
+        {
+            this.MdiChildren.ToList().ForEach(item=> item.Close());
+            GestorSesion.Current.CerrarSesion();
+            menuNavegacion.Items.Clear();
+            ToolStripMenuItem itemMenu = new ToolStripMenuItem("Iniciar sesión".Traducir(), null, this.ItemMenu_click);
+            itemMenu.Tag = "Accion_IniciarSesion";
+            menuNavegacion.Items.Add(itemMenu);
+        }
+        public void IniciarSesion()
+        {
+            FormIngresar formIngresar = new FormIngresar();
+            formIngresar.ShowDialog();
+            Usuario unUsuario = GestorSesion.Current.usuarioActual;
+            if (unUsuario != null) {
+                menuNavegacion.Items.Clear();
+                unUsuario.Permisos.ForEach(permiso => menuNavegacion.Items.Add(crearItemMenu(permiso)));
+            }
+        }
+        #endregion
     }
 }

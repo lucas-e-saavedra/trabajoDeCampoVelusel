@@ -683,6 +683,7 @@ CREATE PROCEDURE [dbo].[Usuario_Update]
 	@IdUsuario varchar(36), 
 	@Usuario varchar(30),
 	@Nombre varchar(1000),
+	@Contrasenia varchar(30),
 	@Email varchar(30),
 	@TipoDocumento varchar(10),
 	@NroDocumento varchar(30)
@@ -692,6 +693,7 @@ BEGIN
 	BEGIN TRY
 	UPDATE Usuario SET 
 		[Usuario]=@Usuario,
+		[Contrasenia]=@Contrasenia,
 		[Nombre]=@Nombre,
 		[Email]=@Email,
 		[TipoDocumento]=@TipoDocumento,

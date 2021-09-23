@@ -29,13 +29,6 @@ namespace Servicios.BLL
         { }
         #endregion
 
-        public Usuario AutenticarUsuario(string usuario, string contrasenia) {
-            string llave = ConfigurationManager.AppSettings["claveCifrado"];
-            string contraseniaEncriptada = GestorSeguridad.Current.Encriptar(contrasenia, llave);
-            string[] criterios = { "Usuario", "Contrasenia" };
-            string[] valores = { usuario, contraseniaEncriptada };
-            return FabricaDAL.Current.ObtenerRepositorioDeUsuarios().BuscarUno(criterios, valores);
-        }
         public void BlanquearClave(Guid guidUsuario) {
             string[] criterios = { "IdUsuario" };
             string[] valores = { guidUsuario.ToString() };

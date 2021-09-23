@@ -1,5 +1,5 @@
 ﻿
-namespace WinApp
+namespace Servicios.UI
 {
     partial class FormUsuarios
     {
