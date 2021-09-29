@@ -73,23 +73,26 @@ namespace Servicios.UI
 
         private void btnGrabar_Click(object sender, EventArgs e)
         {
-            usuarioActual.UsuarioLogin = inputUsuario.Text;
-            usuarioActual.Nombre = inputNombre.Text;
-            usuarioActual.Email = inputEmail.Text;
-            usuarioActual.NroDocumento = inputDocumento.Text;
-            KeyValuePair<string, string> tipoDocumentoSeleccionado = (KeyValuePair<string, string>) comboDocumento.SelectedItem;
-            Usuario.EnumTipoDocumento unTipoDocumento = (Usuario.EnumTipoDocumento)Enum.Parse(typeof(Usuario.EnumTipoDocumento), tipoDocumentoSeleccionado.Value);
-            usuarioActual.TipoDocumento = unTipoDocumento;
-            if (usuarioActual.IdUsuario == Guid.Empty)
-            {
-                usuarioActual.IdUsuario = Guid.NewGuid();
-                GestorUsuarios.Current.CrearUsuario(usuarioActual);
-                this.DialogResult = DialogResult.OK;
-            }
-            else
-            {
-                GestorUsuarios.Current.ModificarUsuario(usuarioActual);
-                this.DialogResult = DialogResult.OK;
+            try { 
+                usuarioActual.UsuarioLogin = inputUsuario.Text;
+                usuarioActual.Nombre = inputNombre.Text;
+                usuarioActual.Email = inputEmail.Text;
+                usuarioActual.NroDocumento = inputDocumento.Text;
+                KeyValuePair<string, string> tipoDocumentoSeleccionado = (KeyValuePair<string, string>) comboDocumento.SelectedItem;
+                Usuario.EnumTipoDocumento unTipoDocumento = (Usuario.EnumTipoDocumento)Enum.Parse(typeof(Usuario.EnumTipoDocumento), tipoDocumentoSeleccionado.Value);
+                usuarioActual.TipoDocumento = unTipoDocumento;
+                if (usuarioActual.IdUsuario == Guid.Empty)
+                {
+                    GestorUsuarios.Current.CrearUsuario(usuarioActual);
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    GestorUsuarios.Current.ModificarUsuario(usuarioActual);
+                    this.DialogResult = DialogResult.OK;
+                }
+            } catch (Exception ex){
+                ex.MostrarEnAlert();
             }
         }
 

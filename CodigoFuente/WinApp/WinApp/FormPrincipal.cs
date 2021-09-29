@@ -22,9 +22,12 @@ namespace WinApp
         {
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
-            CerrarSesion();
+            ToolStripMenuItem itemMenu = new ToolStripMenuItem("Iniciar sesión".Traducir(), null, this.ItemMenu_click);
+            itemMenu.Tag = "Accion_IniciarSesion";
+            menuNavegacion.Items.Add(itemMenu);
+            IniciarSesion();
         }
-        
+
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {

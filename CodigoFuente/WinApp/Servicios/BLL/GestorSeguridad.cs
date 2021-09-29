@@ -103,6 +103,11 @@ namespace Servicios.BLL
             }
             return sNuevacadena;
         }
-        
+
+        public bool ValidarIntegridad()
+        {
+            //TODO: preguntar que tengo que tener en cuenta para plantear y desarrollar este requerimiento
+            return false;
+        }
     }
 }

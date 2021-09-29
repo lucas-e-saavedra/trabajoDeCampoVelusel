@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Servicios.Domain
 {
@@ -15,5 +11,12 @@ namespace Servicios.Domain
         public String mensaje { get; set; }
 
         public DateTime fechaYhora;
+
+        public Evento() { }
+        public Evento(CategoriaEvento unaCategoria, String unMensaje){
+            fechaYhora = DateTime.Now;
+            categoria = unaCategoria;
+            mensaje = unMensaje;
+        }
     }
 }

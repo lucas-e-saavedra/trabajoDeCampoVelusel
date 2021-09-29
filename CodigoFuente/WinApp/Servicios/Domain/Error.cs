@@ -14,5 +14,8 @@ namespace Servicios.Domain
 
         public DateTime fechaYhora;
 
+        public Error(){
+            fechaYhora = DateTime.Now;
+        }
     }
 }

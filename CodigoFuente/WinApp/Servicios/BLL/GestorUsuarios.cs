@@ -40,6 +40,8 @@ namespace Servicios.BLL
 
             EnviarContrasenia(unUsuario.Email, "Bienvenido", "Tu nueva clave es: " + nuevaClave);
             FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Modificar(unUsuario);
+            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, "Se blanqueó la clave del usuario: " + unUsuario.UsuarioLogin);
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
         public void BorrarFamila(Familia unaFamilia) {
             FabricaDAL.Current.ObtenerRepositorioDeFamilias().Borrar(unaFamilia);
@@ -50,6 +52,8 @@ namespace Servicios.BLL
         public void BorrarUsuario(Usuario unUsuario)
         {
             FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Borrar(unUsuario);
+            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, "Se eliminó el usuario: " + unUsuario.UsuarioLogin);
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
         public void CrearFamilia(Familia unaFamilia) {
             FabricaDAL.Current.ObtenerRepositorioDeFamilias().Agregar(unaFamilia);
@@ -58,12 +62,21 @@ namespace Servicios.BLL
             FabricaDAL.Current.ObtenerRepositorioDePatentes().Agregar(unaPatente);
         }
         public void CrearUsuario(Usuario usuario) {
-            string nuevaClave = GestorSeguridad.Current.GenerarClaveAleatoria();
-            string llave = ConfigurationManager.AppSettings["claveCifrado"];
-            string claveEncriptada = GestorSeguridad.Current.Encriptar(nuevaClave, llave);
-            usuario.Contrasenia = claveEncriptada;
-            FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Agregar(usuario);
-            EnviarContrasenia(usuario.Email, "Bienvenido", "Tu nueva clave es: " + nuevaClave);
+            try {
+                usuario.IdUsuario = Guid.NewGuid();
+                string nuevaClave = GestorSeguridad.Current.GenerarClaveAleatoria();
+                string llave = ConfigurationManager.AppSettings["claveCifrado"];
+                string claveEncriptada = GestorSeguridad.Current.Encriptar(nuevaClave, llave);
+                usuario.Contrasenia = claveEncriptada;
+                FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Agregar(usuario);
+                EnviarContrasenia(usuario.Email, "Bienvenido", "Tu nueva clave es: " + nuevaClave);
+
+                Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, "Se creó el usuario: " + usuario.UsuarioLogin);
+                GestorHistorico.Current.RegistrarBitacora(unEvento);
+            } catch (Exception ex) {
+                usuario.IdUsuario = Guid.Empty;
+                throw ex;
+            }
         }
 
         private void EnviarContrasenia(string destinatario, string titulo, string contenido)
@@ -115,6 +128,8 @@ namespace Servicios.BLL
         }
         public void ModificarUsuario(Usuario unUsuario) {
             FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Modificar(unUsuario);
+            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, "Se modificó el usuario: " + unUsuario.UsuarioLogin);
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
 
     }

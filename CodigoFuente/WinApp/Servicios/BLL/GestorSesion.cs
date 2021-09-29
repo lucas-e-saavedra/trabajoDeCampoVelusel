@@ -1,4 +1,5 @@
 ﻿using Servicios.DAL;
+using Servicios.Domain;
 using Servicios.Domain.CompositeSeguridad;
 using System.Configuration;
 using System.Linq;
@@ -34,12 +35,20 @@ namespace Servicios.BLL
             string[] criterios = { "Usuario", "Contrasenia" };
             string[] valores = { usuario, contraseniaEncriptada };
             usuarioActual = FabricaDAL.Current.ObtenerRepositorioDeUsuarios().BuscarUno(criterios, valores);
+
+            if(usuarioActual != null) {
+                Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, "Ha iniciado sesión el usuario: " + usuarioActual.UsuarioLogin);
+                GestorHistorico.Current.RegistrarBitacora(unEvento);
+            }
             return usuarioActual != null;
         }
 
         public void CerrarSesion()
         {
             usuarioActual = null;
+            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, "Ha cerrado sesión el usuario: " + usuarioActual.UsuarioLogin);
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
+
         }
     }
 }

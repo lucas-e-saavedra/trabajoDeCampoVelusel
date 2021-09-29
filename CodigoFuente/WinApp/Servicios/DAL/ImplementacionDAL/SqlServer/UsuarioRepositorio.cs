@@ -21,7 +21,14 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
 
         public void Agregar(Usuario unObjeto)
         {
-            try {
+            if (unObjeto.UsuarioLogin.Length == 0 ||
+                unObjeto.Nombre.Length == 0 ||
+                unObjeto.Email.Length == 0 ||
+                unObjeto.NroDocumento.Length == 0)
+                throw new Exception("Faltan completar datos");
+
+            try
+            {
                 SqlHelper sqlHelper = new SqlHelper(connectionString);
                 sqlHelper.ExecuteNonQuery("Usuario_Insert", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
                         new SqlParameter("@IdUsuario", unObjeto.IdUsuario.ToString()),
@@ -44,6 +51,10 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
                 });
             } catch (Exception ex)  {
                 ex.RegistrarError();
+                if (ex.Message.Contains("UQ_UsuarioApodo"))
+                    throw new Exception("Ya existe otro usuario con ese mismo inicio de sesión");
+                if (ex.Message.Contains("UQ_UsuarioDocumento"))
+                    throw new Exception("Ya existe otro usuario con ese mismo tipo y número de documento");
                 throw new Exception("Hubo un problema al agregar un usuario");
             }
         }
@@ -119,7 +130,14 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
 
         public void Modificar(Usuario unObjeto)
         {
-            try {
+            if (unObjeto.UsuarioLogin.Length == 0 ||
+                unObjeto.Nombre.Length == 0 ||
+                unObjeto.Email.Length == 0 ||
+                unObjeto.NroDocumento.Length == 0)
+                throw new Exception("Faltan completar datos");
+
+            try
+            {
                 SqlHelper sqlHelper = new SqlHelper(connectionString);
                 sqlHelper.ExecuteNonQuery("Usuario_Update", System.Data.CommandType.StoredProcedure, new SqlParameter[] {
                             new SqlParameter("@IdUsuario", unObjeto.IdUsuario.ToString()),
@@ -144,6 +162,10 @@ namespace Servicios.DAL.ImplementacionDAL.SqlServer
                 });
             } catch (Exception ex) {
                 ex.RegistrarError();
+                if (ex.Message.Contains("UQ_UsuarioApodo"))
+                    throw new Exception("Ya existe otro usuario con ese mismo inicio de sesión");
+                if (ex.Message.Contains("UQ_UsuarioDocumento"))
+                    throw new Exception("Ya existe otro usuario con ese mismo tipo y número de documento");
                 throw new Exception("Hubo un problema al modificar un usuario");
             }
         }
