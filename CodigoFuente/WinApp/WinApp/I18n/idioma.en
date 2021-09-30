@@ -1,4 +1,31 @@
-﻿Hola|Hello
-Chau|Bye
-Bienvenidos|Welcome
-¿Cómo estás?|How are you?
+﻿Ingrese su usuario|Enter your username
+Ingrese su contraseña|Enter your password
+Ingresar|Log in
+Auditoría|
+Ver bitácora|
+Ver errores|
+Administración|
+ABM Patentes|CRUD Permissions
+ABM Usuarios|CRUD Users
+ABM Familias|CRUD Families
+Mi cuenta|My account
+Mis datos|My information
+Test Error|Test Error
+Cerrar sesión|Log out
+Seleccionar idioma|Select language
+Español|Spanish
+Ingles|English
+Agregar|Add
+Borrar|Delete
+Modificar|Update
+¿Está seguro?|Are you sure?
+Hubo un problema al borrar una patente|
+Blanquear clave|Clean password
+Usuario|Username
+Nombre|Full name
+Email|Email
+Documento|NationalId
+Permisos|Permissions
+Disponibles|Available
+Cancelar|Cancel
+Iniciar sesión|Log in

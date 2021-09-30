@@ -45,10 +45,9 @@ namespace Servicios.BLL
 
         public void CerrarSesion()
         {
-            usuarioActual = null;
             Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, "Ha cerrado sesión el usuario: " + usuarioActual.UsuarioLogin);
             GestorHistorico.Current.RegistrarBitacora(unEvento);
-
+            usuarioActual = null;
         }
     }
 }

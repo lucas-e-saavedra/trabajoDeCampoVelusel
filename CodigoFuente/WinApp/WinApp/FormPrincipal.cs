@@ -22,9 +22,6 @@ namespace WinApp
         {
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
-            ToolStripMenuItem itemMenu = new ToolStripMenuItem("Iniciar sesión".Traducir(), null, this.ItemMenu_click);
-            itemMenu.Tag = "Accion_IniciarSesion";
-            menuNavegacion.Items.Add(itemMenu);
             IniciarSesion();
         }
 
@@ -36,6 +33,7 @@ namespace WinApp
 
         public void ActualizarTraducciones()
         {
+            ConstruirMenu();
         }
 
         #region Gestion del Menu y sus items
@@ -103,19 +101,57 @@ namespace WinApp
         {
             this.MdiChildren.ToList().ForEach(item=> item.Close());
             GestorSesion.Current.CerrarSesion();
-            menuNavegacion.Items.Clear();
-            ToolStripMenuItem itemMenu = new ToolStripMenuItem("Iniciar sesión".Traducir(), null, this.ItemMenu_click);
-            itemMenu.Tag = "Accion_IniciarSesion";
-            menuNavegacion.Items.Add(itemMenu);
+            ConstruirMenu();
         }
+
+        public void CambiarIdiomaES()
+        {
+            GestorIdiomas.Current.SeleccionarIdioma("ES");
+        }
+        public void CambiarIdiomaEN()
+        {
+            GestorIdiomas.Current.SeleccionarIdioma("EN");
+        }
+
         public void IniciarSesion()
         {
             FormIngresar formIngresar = new FormIngresar();
             formIngresar.ShowDialog();
+            ConstruirMenu();
+        }
+
+        private void ConstruirMenu()
+        {
+            menuNavegacion.Items.Clear();
             Usuario unUsuario = GestorSesion.Current.usuarioActual;
-            if (unUsuario != null) {
-                menuNavegacion.Items.Clear();
+            if (unUsuario == null) {
+                ToolStripMenuItem itemMenu = new ToolStripMenuItem("Iniciar sesión".Traducir(), null, this.ItemMenu_click);
+                itemMenu.Tag = "Accion_IniciarSesion";
+                menuNavegacion.Items.Add(itemMenu);
+            } else {
                 unUsuario.Permisos.ForEach(permiso => menuNavegacion.Items.Add(crearItemMenu(permiso)));
+
+                ToolStripMenuItem familiaDefault = new ToolStripMenuItem("Mi cuenta".Traducir());
+
+                ToolStripMenuItem misDatos = new ToolStripMenuItem("Mis datos".Traducir(), null, this.ItemMenu_click);
+                misDatos.Tag = "Servicios/Servicios.UI.FormMiCuenta";
+                familiaDefault.DropDownItems.Add(misDatos);
+
+                ToolStripMenuItem familiaIdiomas = new ToolStripMenuItem("Seleccionar idioma".Traducir());
+                ToolStripMenuItem idiomaEs = new ToolStripMenuItem("Español".Traducir(), null, this.ItemMenu_click);
+                idiomaEs.Tag = "Accion_CambiarIdiomaES";
+                familiaIdiomas.DropDownItems.Add(idiomaEs);
+                ToolStripMenuItem idiomaEn = new ToolStripMenuItem("Ingles".Traducir(), null, this.ItemMenu_click);
+                idiomaEn.Tag = "Accion_CambiarIdiomaEN";
+                familiaIdiomas.DropDownItems.Add(idiomaEn);
+                familiaDefault.DropDownItems.Add(familiaIdiomas);
+
+                ToolStripMenuItem cerrarSesion = new ToolStripMenuItem("Cerrar sesión".Traducir(), null, this.ItemMenu_click);
+                cerrarSesion.Tag = "Accion_CerrarSesion";
+                familiaDefault.DropDownItems.Add(cerrarSesion);
+
+                menuNavegacion.Items.Add(familiaDefault);
+
             }
         }
         #endregion

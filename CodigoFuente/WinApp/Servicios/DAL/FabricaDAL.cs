@@ -21,19 +21,22 @@ namespace Servicios.DAL
         private FabricaDAL()
         {
             bbddSeguridad = ConfigurationManager.ConnectionStrings["SLConString"].ConnectionString;
+            archivoBitacora = ConfigurationManager.AppSettings["rutaArchivoBitacora"];
+            archivoErrores = ConfigurationManager.AppSettings["rutaArchivoErrores"];
         }
         #endregion
         private string bbddSeguridad;
-
+        private string archivoBitacora;
+        private string archivoErrores;
 
         public IRepositorioGenerico<Evento> ObtenerRepositorioDeEventos()
         {
-            return new ImplementacionDAL.TXT.DALEvento("bitacora.txt");
+            return new ImplementacionDAL.TXT.DALEvento(archivoBitacora);
         }
 
         public IRepositorioGenerico<Error> ObtenerRepositorioDeErrores()
         {
-            return new ImplementacionDAL.TXT.DALError("errores.txt");
+            return new ImplementacionDAL.TXT.DALError(archivoErrores);
         }
 
         public IRepositorioGenerico<string> ObtenerRepositorioDeTraducciones(string codigoIdioma)

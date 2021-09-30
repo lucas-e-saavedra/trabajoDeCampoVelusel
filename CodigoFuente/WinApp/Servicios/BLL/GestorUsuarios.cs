@@ -81,10 +81,10 @@ namespace Servicios.BLL
 
         private void EnviarContrasenia(string destinatario, string titulo, string contenido)
         {
-            string miCuenta = "tiendademascotasnarizotas@gmail.com";
-            string miClave = "perr0pulgoso";
-            string emailHost = "smtp.gmail.com";
-            int emailPort = 587;      
+            string miCuenta = ConfigurationManager.AppSettings["emailQueEnviaContrasenias"];
+            string miClave = ConfigurationManager.AppSettings["claveQueEnviaContrasenias"];
+            string emailHost = ConfigurationManager.AppSettings["hostQueEnviaContrasenias"];
+            int emailPort = int.Parse(ConfigurationManager.AppSettings["puertoQueEnviaContrasenias"]);
 
             using (MailMessage email = new MailMessage(miCuenta, destinatario))
             {
