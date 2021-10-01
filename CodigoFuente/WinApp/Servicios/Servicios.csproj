@@ -31,9 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,21 +46,131 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\GestorHistorico.cs" />
+    <Compile Include="BLL\GestorSeguridad.cs" />
+    <Compile Include="BLL\GestorSesion.cs" />
+    <Compile Include="BLL\GestorUsuarios.cs" />
+    <Compile Include="DAL\Contratos\IRelacionGenerica.cs" />
     <Compile Include="DAL\FabricaDAL.cs" />
     <Compile Include="DAL\Herramientas\FileHelper.cs" />
     <Compile Include="DAL\Herramientas\SqlHelper.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\Adapter\UsuarioAdapter.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\Adapter\FamiliaAdapter.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\Adapter\PatenteAdapter.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\UsuarioPatenteRelacion.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\UsuarioFamiliaRelacion.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\FamiliaFamiliaRelacion.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\FamiliaRepositorio.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\PatenteRepositorio.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\UsuarioRepositorio.cs" />
+    <Compile Include="DAL\ImplementacionDAL\SqlServer\FamiliaPatenteRelacion.cs" />
     <Compile Include="DAL\ImplementacionDAL\TXT\Adapters\AdaptadorError.cs" />
     <Compile Include="DAL\ImplementacionDAL\TXT\Adapters\AdaptadorEvento.cs" />
     <Compile Include="DAL\ImplementacionDAL\TXT\DALError.cs" />
     <Compile Include="DAL\ImplementacionDAL\TXT\DALEvento.cs" />
     <Compile Include="DAL\ImplementacionDAL\TXT\DALTraductor.cs" />
-    <Compile Include="DAL\IRepositorioGenerico.cs" />
+    <Compile Include="DAL\Contratos\IRepositorioGenerico.cs" />
+    <Compile Include="Domain\CompositeSeguridad\Familia.cs" />
+    <Compile Include="Domain\CompositeSeguridad\Patente.cs" />
+    <Compile Include="Domain\CompositeSeguridad\PatenteFamilia.cs" />
     <Compile Include="Domain\Error.cs" />
+    <Compile Include="Domain\CompositeSeguridad\Usuario.cs" />
     <Compile Include="Domain\Evento.cs" />
     <Compile Include="Extensions\ExtensionException.cs" />
     <Compile Include="Extensions\ExtensionString.cs" />
     <Compile Include="BLL\GestorIdiomas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\FormBitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormBitacora.Designer.cs">
+      <DependentUpon>FormBitacora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormErrores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormErrores.Designer.cs">
+      <DependentUpon>FormErrores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormFamilia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormFamilia.Designer.cs">
+      <DependentUpon>FormFamilia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormFamilias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormFamilias.Designer.cs">
+      <DependentUpon>FormFamilias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormIngresar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormIngresar.Designer.cs">
+      <DependentUpon>FormIngresar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormMiCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormMiCuenta.Designer.cs">
+      <DependentUpon>FormMiCuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormPatente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormPatente.Designer.cs">
+      <DependentUpon>FormPatente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormPatentes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormPatentes.Designer.cs">
+      <DependentUpon>FormPatentes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormUsuario.Designer.cs">
+      <DependentUpon>FormUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormUsuarios.Designer.cs">
+      <DependentUpon>FormUsuarios.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\FormBitacora.resx">
+      <DependentUpon>FormBitacora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormErrores.resx">
+      <DependentUpon>FormErrores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormFamilia.resx">
+      <DependentUpon>FormFamilia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormFamilias.resx">
+      <DependentUpon>FormFamilias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormIngresar.resx">
+      <DependentUpon>FormIngresar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormMiCuenta.resx">
+      <DependentUpon>FormMiCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormPatente.resx">
+      <DependentUpon>FormPatente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormPatentes.resx">
+      <DependentUpon>FormPatentes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormUsuario.resx">
+      <DependentUpon>FormUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormUsuarios.resx">
+      <DependentUpon>FormUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

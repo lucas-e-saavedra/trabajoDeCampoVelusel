@@ -3,9 +3,7 @@ using Servicios.DAL.ImplementacionDAL.TXT.Adapters;
 using Servicios.Domain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Servicios.DAL.Contratos;
 
 namespace Servicios.DAL.ImplementacionDAL.TXT
 {
@@ -28,7 +26,7 @@ namespace Servicios.DAL.ImplementacionDAL.TXT
             throw new NotImplementedException();
         }
 
-        public Error BuscarUno(string criterio, string valor)
+        public Error BuscarUno(string[] criterios, string[] valores)
         {
             throw new NotImplementedException();
         }
