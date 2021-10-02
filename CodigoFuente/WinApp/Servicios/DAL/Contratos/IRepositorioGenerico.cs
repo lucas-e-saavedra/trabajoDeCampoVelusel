@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Servicios.DAL.Contratos
 {
-    internal interface IRepositorioGenerico<T>
+    public interface IRepositorioGenerico<T>
     {
         T BuscarUno(string[] criterios, string[] valores);
         void Borrar(T unObjeto);

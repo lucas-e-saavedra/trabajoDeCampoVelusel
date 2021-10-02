@@ -8,7 +8,7 @@ namespace Dominio.CompositeProducto
 {
 	public enum Unidades
     {
-		Unidad, Gramo, CentimetroCubico
+		Un, Gr, CC, Cm
     }
 	public abstract class ProductoMaterial
 	{
@@ -29,7 +29,7 @@ namespace Dominio.CompositeProducto
 		/// <param name="component"></param>
 		public abstract void Quitar(ProductoMaterial component);
 
-		public abstract int CantidadHijos { get; }
+		public abstract int CantidadIngredientes { get; }
 
 	}
 }

@@ -5,10 +5,10 @@ using System.Data.SqlClient;
 
 namespace Servicios.DAL.Herramientas
 {
-    class SqlHelper
+    public class SqlHelper
     {
         private string connectionString;
-        internal SqlHelper(String oneConnectionstring)
+        public SqlHelper(String oneConnectionstring)
         {
             connectionString = oneConnectionstring;
         }

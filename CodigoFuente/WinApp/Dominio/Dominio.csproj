@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompositeProducto\Producto.cs" />
+    <Compile Include="CompositeProducto\Material.cs" />
     <Compile Include="CompositeProducto\ProductoMaterial.cs" />
+    <Compile Include="PlantillaDeFabricacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

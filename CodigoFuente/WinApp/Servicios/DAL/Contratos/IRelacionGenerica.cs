@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Servicios.DAL.Contratos
 {
-    interface IRelacionGenerica<T, U>
+    public interface IRelacionGenerica<T, U>
     {
         /// <summary>
         /// Agrego una relación de tipo 1 a *, T elemento origen, U es el destino

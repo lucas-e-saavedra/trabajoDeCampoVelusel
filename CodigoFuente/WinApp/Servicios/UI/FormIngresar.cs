@@ -40,5 +40,12 @@ namespace WinApp
                 MessageBox.Show(advertencia);
             }
         }
+
+        private void inputContrasenia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)13){
+                btnIngresar_Click(sender, e);
+            }
+        }
     }
 }

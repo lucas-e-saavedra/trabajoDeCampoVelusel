@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Servicios.DAL.Herramientas
 {
-    class FileHelper
+    public class FileHelper
     {
         private string filePath = String.Empty;
         internal FileHelper(String onePath)

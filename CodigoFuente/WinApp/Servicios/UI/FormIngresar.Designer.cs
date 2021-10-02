@@ -68,6 +68,7 @@ namespace WinApp
             this.inputContrasenia.Size = new System.Drawing.Size(157, 20);
             this.inputContrasenia.TabIndex = 3;
             this.inputContrasenia.UseSystemPasswordChar = true;
+            this.inputContrasenia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputContrasenia_KeyPress);
             // 
             // btnIngresar
             // 
@@ -79,7 +80,7 @@ namespace WinApp
             this.btnIngresar.UseVisualStyleBackColor = true;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
-            // Form_Login
+            // FormIngresar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,7 +90,7 @@ namespace WinApp
             this.Controls.Add(this.lblContrasenia);
             this.Controls.Add(this.inputUsuario);
             this.Controls.Add(this.lblUsuario);
-            this.Name = "Form_Login";
+            this.Name = "FormIngresar";
             this.Text = "Form_Login";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Login_FormClosing);
             this.Load += new System.EventHandler(this.Form_Login_Load);

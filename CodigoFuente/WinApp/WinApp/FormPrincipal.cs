@@ -8,6 +8,8 @@ using System.Threading;
 using Servicios.UI;
 using System.Reflection;
 using Servicios.Extensions;
+using System.Collections.Generic;
+using Dominio.CompositeProducto;
 
 namespace WinApp
 {

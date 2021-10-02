@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FabricaDAL.cs" />
+    <Compile Include="Implementaciones\SqlServer\Adapters\ProductoAdapter.cs" />
+    <Compile Include="Implementaciones\SqlServer\Adapters\MaterialAdapter.cs" />
+    <Compile Include="Implementaciones\SqlServer\ProductoRepositorio.cs" />
+    <Compile Include="Implementaciones\SqlServer\MaterialRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +54,11 @@
       <Project>{5157a277-b509-4094-b0a5-2de3460b0afd}</Project>
       <Name>Dominio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Servicios\Servicios.csproj">
+      <Project>{C4518413-0113-4365-B977-6A5549A5C86B}</Project>
+      <Name>Servicios</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

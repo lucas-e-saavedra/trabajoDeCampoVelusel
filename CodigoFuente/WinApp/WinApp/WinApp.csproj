@@ -47,6 +47,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fabricante\FormMaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fabricante\FormMaterial.Designer.cs">
+      <DependentUpon>FormMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fabricante\FormMateriales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fabricante\FormMateriales.Designer.cs">
+      <DependentUpon>FormMateriales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fabricante\FormProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fabricante\FormProductos.Designer.cs">
+      <DependentUpon>FormProductos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +93,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Fabricante\FormMaterial.resx">
+      <DependentUpon>FormMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fabricante\FormMateriales.resx">
+      <DependentUpon>FormMateriales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fabricante\FormProductos.resx">
+      <DependentUpon>FormProductos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
