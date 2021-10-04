@@ -33,7 +33,7 @@ namespace DAL.Implementaciones.SqlServer
 
         private string SelectOneStatement
         {
-            get => "SELECT Id, Nombre, Unidad FROM [dbo].[Material] WHERE  = @";
+            get => "SELECT Id, Nombre, Unidad FROM [dbo].[Material] WHERE Id = @Id";
         }
 
         private string SelectAllStatement
@@ -84,13 +84,36 @@ namespace DAL.Implementaciones.SqlServer
             catch (Exception ex)
             {
                 ex.RegistrarError();
-                throw new Exception("Hubo un problema al eliminar un nuevo material");
+                throw new Exception("Hubo un problema al eliminar un material");
             }
         }
 
         public Material BuscarUno(string[] criterios, string[] valores)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Material> todosLosMateriales = new List<Material>();
+                SqlParameter[] sqlParams = new SqlParameter[] {
+                    new SqlParameter("@Id", valores.First()) };
+
+                SqlHelper sqlHelper = new SqlHelper(connectionString);
+                using (var dr = sqlHelper.ExecuteReader(SelectOneStatement, System.Data.CommandType.Text, sqlParams))
+                {
+                    if (dr.Read())
+                    {
+                        object[] values = new object[dr.FieldCount];
+                        dr.GetValues(values);
+                        Material unMaterial = MaterialAdapter.Current.Adapt(values);
+                        return unMaterial;
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                ex.RegistrarError();
+                throw new Exception("Hubo un problema al listar los materiales");
+            }
         }
 
         public IEnumerable<Material> Listar()

@@ -25,8 +25,9 @@ namespace Servicios.DAL.ImplementacionDAL.TXT.Adapters
 
         public static string ConvertirATexto(Error unObjeto)
         {
+            string descripcion = unObjeto.descripcion.Replace("\r\n", "\t");
             string detalle = unObjeto.detalle.Replace("\r\n", "\t");
-            return $"{unObjeto.fechaYhora.ToString("yyyy-MM-dd HH.mm.ss")}|{unObjeto.clase}: {unObjeto.descripcion}|{detalle}";
+            return $"{unObjeto.fechaYhora.ToString("yyyy-MM-dd HH.mm.ss")}|{unObjeto.clase}: {descripcion}|{detalle}";
         }
 
     }

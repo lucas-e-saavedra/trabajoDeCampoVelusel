@@ -18,12 +18,13 @@ namespace DAL.Implementaciones.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Producto] (Id, Nombre, Unidad, Descripcion, Foto) VALUES (@Id, @Nombre, @Unidad, @Descripcion, @Foto)";
+            get => "INSERT INTO [dbo].[Producto] (Id, Nombre, Unidad, Descripcion, Foto, VerEnCatalogo) VALUES (@Id, @Nombre, @Unidad, @Descripcion, @Foto, @VerEnCatalogo)";
         }
 
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[Producto] SET (Id, Nombre, Unidad, Descripcion, Foto) WHERE Id = @Id";
+            get => "UPDATE [dbo].[Producto] SET Nombre = @Nombre, Unidad = @Unidad, Descripcion = @Descripcion, Foto = @Foto, VerEnCatalogo = @VerEnCatalogo WHERE Id = @Id";
+
         }
 
         private string DeleteStatement
@@ -33,12 +34,12 @@ namespace DAL.Implementaciones.SqlServer
 
         private string SelectOneStatement
         {
-            get => "SELECT Id, Nombre, Unidad FROM [dbo].[Producto] WHERE  = @";
+            get => "SELECT Id, Nombre, Unidad, Descripcion, Foto, VerEnCatalogo FROM [dbo].[Producto] WHERE  = @";
         }
 
         private string SelectAllStatement
         {
-            get => "SELECT Id, Nombre, Unidad, Descripcion, Foto FROM [dbo].[Producto]";
+            get => "SELECT Id, Nombre, Unidad, Descripcion, Foto, VerEnCatalogo FROM [dbo].[Producto]";
         }
         #endregion
 
@@ -61,9 +62,12 @@ namespace DAL.Implementaciones.SqlServer
                     new SqlParameter("@Nombre", unObjeto.Nombre),
                     new SqlParameter("@Unidad", unObjeto.Unidad.ToString()),
                     new SqlParameter("@Descripcion", unObjeto.Nombre),
-                    new SqlParameter("@Foto", unObjeto.Nombre) };
+                    new SqlParameter("@Foto", unObjeto.Nombre),
+                    new SqlParameter("@VerEnCatalogo", unObjeto.DisponibleEnCatalogo) };
 
                 sqlHelper.ExecuteNonQuery(InsertStatement, System.Data.CommandType.Text, sqlParams);
+                unObjeto.plantillaDeFabricacion.IdPlantilla = unObjeto.Id;
+                FabricaDAL.Current.ObtenerRepositorioDePlantillasDeFabricacion().Agregar(unObjeto.plantillaDeFabricacion);
             }
             catch (Exception ex)
             {
@@ -76,7 +80,21 @@ namespace DAL.Implementaciones.SqlServer
 
         public void Borrar(Producto unObjeto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                FabricaDAL.Current.ObtenerRepositorioDePlantillasDeFabricacion().Borrar(unObjeto.plantillaDeFabricacion);
+
+                SqlHelper sqlHelper = new SqlHelper(connectionString);
+                SqlParameter[] sqlParams = new SqlParameter[] {
+                    new SqlParameter("@Id", unObjeto.Id) };
+
+                sqlHelper.ExecuteNonQuery(DeleteStatement, System.Data.CommandType.Text, sqlParams);
+            }
+            catch (Exception ex)
+            {
+                ex.RegistrarError();
+                throw new Exception("Hubo un problema al eliminar un producto");
+            }
         }
 
         public Producto BuscarUno(string[] criterios, string[] valores)
@@ -109,7 +127,31 @@ namespace DAL.Implementaciones.SqlServer
 
         public void Modificar(Producto unObjeto)
         {
-            throw new NotImplementedException();
+            if (unObjeto.Id == Guid.Empty || unObjeto.Nombre.Length == 0)
+                throw new Exception("Faltan completar datos");
+
+            try
+            {
+                SqlHelper sqlHelper = new SqlHelper(connectionString);
+                SqlParameter[] sqlParams = new SqlParameter[] {
+                    new SqlParameter("@Id", unObjeto.Id),
+                    new SqlParameter("@Nombre", unObjeto.Nombre),
+                    new SqlParameter("@Unidad", unObjeto.Unidad.ToString()),
+                    new SqlParameter("@Descripcion", unObjeto.Nombre),
+                    new SqlParameter("@Foto", unObjeto.Nombre),
+                    new SqlParameter("@VerEnCatalogo", unObjeto.DisponibleEnCatalogo) };
+
+                sqlHelper.ExecuteNonQuery(UpdateStatement, System.Data.CommandType.Text, sqlParams);
+
+                FabricaDAL.Current.ObtenerRepositorioDePlantillasDeFabricacion().Modificar(unObjeto.plantillaDeFabricacion);
+            }
+            catch (Exception ex)
+            {
+                ex.RegistrarError();
+                if (ex.Message.Contains("PK_Producto"))
+                    throw new Exception("Ya existe otro producto con ese mismo identificador");
+                throw new Exception("Hubo un problema al modificar un producto");
+            }
         }
     }
 }

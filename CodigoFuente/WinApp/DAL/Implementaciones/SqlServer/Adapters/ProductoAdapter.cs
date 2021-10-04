@@ -24,14 +24,20 @@ namespace DAL.Implementaciones.SqlServer.Adapters
 
         public Producto Adapt(object[] values)
         {
+            Guid idProducto = Guid.Parse(values[0].ToString());
+            string[] criterios = { };
+            string[] valores = { values[0].ToString() };
+            PlantillaDeFabricacion unaPlantillaDeFabricacion = FabricaDAL.Current.ObtenerRepositorioDePlantillasDeFabricacion().BuscarUno(criterios, valores);
             Unidades unidad = (Unidades)Enum.Parse(typeof(Unidades), values[2].ToString());
             return new Producto()
             {
-                Id = Guid.Parse(values[0].ToString()),
+                Id = idProducto,
                 Nombre = values[1].ToString(),
                 Unidad = unidad,
                 Descripcion = values[3].ToString(),
-                Foto = values[4].ToString()
+                Foto = values[4].ToString(),
+                DisponibleEnCatalogo = Boolean.Parse(values[5].ToString()),
+                plantillaDeFabricacion = unaPlantillaDeFabricacion
             };
         }
 

@@ -34,11 +34,15 @@ namespace DAL
         {
             return new Implementaciones.SqlServer.ProductoRepositorio(bbddVelusel);
         }
-        public IRelacionGenerica<Producto, Material> ObtenerProductoMaterialRelacion()
+        public IRepositorioGenerico<PlantillaDeFabricacion> ObtenerRepositorioDePlantillasDeFabricacion()
         {
-            return null;
+            return new Implementaciones.SqlServer.PlantillaDeFabricacionRepositorio(bbddVelusel);
         }
-        public IRelacionGenerica<Producto, Producto> ObtenerProductoProductoRelacion()
+        public IRelacionGenerica<PlantillaDeFabricacion, Material> ObtenerProductoMaterialRelacion()
+        {
+            return new Implementaciones.SqlServer.PlantillaFabricacionMaterialRelacion(bbddVelusel);
+        }
+        public IRelacionGenerica<PlantillaDeFabricacion, Producto> ObtenerProductoProductoRelacion()
         {
             return null;
         }

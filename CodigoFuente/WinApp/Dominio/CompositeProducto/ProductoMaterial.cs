@@ -15,7 +15,6 @@ namespace Dominio.CompositeProducto
 		public Guid Id { get; set; }
 		public string Nombre { get; set; }
 		public Unidades Unidad{ get; set; }
-		public int Cantidad { get; set; }
 		public ProductoMaterial()
 		{
 
@@ -31,5 +30,9 @@ namespace Dominio.CompositeProducto
 
 		public abstract int CantidadIngredientes { get; }
 
-	}
+        public override string ToString()
+        {
+            return $"{this.Nombre}({this.Unidad})";
+        }
+    }
 }

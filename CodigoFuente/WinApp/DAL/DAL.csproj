@@ -43,8 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FabricaDAL.cs" />
+    <Compile Include="Implementaciones\SqlServer\Adapters\PlantillaDeFabricacionAdapter.cs" />
     <Compile Include="Implementaciones\SqlServer\Adapters\ProductoAdapter.cs" />
     <Compile Include="Implementaciones\SqlServer\Adapters\MaterialAdapter.cs" />
+    <Compile Include="Implementaciones\SqlServer\PlantillaFabricacionMaterialRelacion.cs" />
+    <Compile Include="Implementaciones\SqlServer\PlantillaDeFabricacionRepositorio.cs" />
     <Compile Include="Implementaciones\SqlServer\ProductoRepositorio.cs" />
     <Compile Include="Implementaciones\SqlServer\MaterialRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

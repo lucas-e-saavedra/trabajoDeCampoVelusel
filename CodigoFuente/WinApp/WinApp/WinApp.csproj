@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fabricante\FormProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fabricante\FormProducto.Designer.cs">
+      <DependentUpon>FormProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fabricante\FormMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Fabricante\FormProducto.resx">
+      <DependentUpon>FormProducto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Fabricante\FormMaterial.resx">
       <DependentUpon>FormMaterial.cs</DependentUpon>
     </EmbeddedResource>

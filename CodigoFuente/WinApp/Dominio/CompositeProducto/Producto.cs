@@ -4,40 +4,37 @@ using System.Collections.Generic;
 namespace Dominio.CompositeProducto
 {
     public class Producto: ProductoMaterial{
-
-		private List<ProductoMaterial> ingredientes = new List<ProductoMaterial>();
-
 		//Retorno el listado de los ingredientes...
-		public List<ProductoMaterial> Ingredientes => ingredientes;
-
-		public override int CantidadIngredientes => ingredientes.Count;
+		public override int CantidadIngredientes => plantillaDeFabricacion.Ingredientes.Keys.Count;
 		public string Descripcion { get; set; }
 		public string Foto { get; set; }
+		public bool DisponibleEnCatalogo { get; set; }
 
 		public PlantillaDeFabricacion plantillaDeFabricacion { get; set; }
 
 		public Producto()
 		{
+			plantillaDeFabricacion = new PlantillaDeFabricacion();
+			plantillaDeFabricacion.IdPlantilla = Guid.NewGuid();
 		}
 
-		public Producto(ProductoMaterial componentes)
+		public Producto(PlantillaDeFabricacion receta)
 		{
-			ingredientes.Add(componentes);
+			plantillaDeFabricacion = receta;
 		}
 
 		/// 
 		/// <param name="component"></param>
 		public override void Agregar(ProductoMaterial component)
 		{
-			ingredientes.Add(component);
+			plantillaDeFabricacion.Ingredientes.Add(component, 0);
 		}
 
 		/// 
 		/// <param name="component"></param>
 		public override void Quitar(ProductoMaterial component)
 		{
-			ingredientes.Remove(component);
-			//Verificar restricción de eliminación, al menos una patente/familia debería de existir
+			plantillaDeFabricacion.Ingredientes.Remove(component);
 		}
 
 

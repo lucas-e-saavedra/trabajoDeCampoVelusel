@@ -30,21 +30,26 @@ namespace BLL
         {
             FabricaDAL.Current.ObtenerRepositorioDeMateriales().Agregar(unMaterial);
         }
-
+        public void RegistrarProducto(Producto unProducto)
+        {
+            FabricaDAL.Current.ObtenerRepositorioDeProductos().Agregar(unProducto);
+        }
         public void BorrarMaterial(Material unMaterial)
         {
             FabricaDAL.Current.ObtenerRepositorioDeMateriales().Borrar(unMaterial);
+        }
+        public void BorrarProducto(Producto unProducto)
+        {
+            FabricaDAL.Current.ObtenerRepositorioDeProductos().Borrar(unProducto);
         }
         public void ModificarMaterial(Material unMaterial)
         {
             FabricaDAL.Current.ObtenerRepositorioDeMateriales().Modificar(unMaterial);
         }
-
-        public void RegistrarProducto(Producto unProducto)
+        public void ModificarProducto(Producto unProducto)
         {
-            FabricaDAL.Current.ObtenerRepositorioDeProductos().Agregar(unProducto);
+            FabricaDAL.Current.ObtenerRepositorioDeProductos().Modificar(unProducto);
         }
-
         public IEnumerable<Material> ListarMateriales() {
             return FabricaDAL.Current.ObtenerRepositorioDeMateriales().Listar();
         }

@@ -26,11 +26,6 @@ namespace WinApp.Fabricante
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
             grillaMateriales.DataSource = BLL.GestorFabricacion.Current.ListarMateriales();
-            /*Material unMaterial = new Material();
-            unMaterial.Id = Guid.NewGuid();
-            unMaterial.Nombre = "Vaso whisky";
-            unMaterial.Unidad = Unidades.Un;
-            BLL.GestorFabricacion.Current.RegistrarMaterial(unMaterial);*/
         }
 
         private void Materiales_FormClosing(object sender, FormClosingEventArgs e)
@@ -89,8 +84,8 @@ namespace WinApp.Fabricante
             if (grillaMateriales.SelectedRows.Count > 0)
             {
                 int index = grillaMateriales.SelectedRows[0].Index;
-                IEnumerable<Material> patentes = (IEnumerable<Material>)grillaMateriales.DataSource;
-                materialSeleccionado = patentes.ElementAt(index);
+                IEnumerable<Material> materiales = (IEnumerable<Material>)grillaMateriales.DataSource;
+                materialSeleccionado = materiales.ElementAt(index);
             }
         }
     }

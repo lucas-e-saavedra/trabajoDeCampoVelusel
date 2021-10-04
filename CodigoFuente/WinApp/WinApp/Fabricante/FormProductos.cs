@@ -1,4 +1,6 @@
-﻿using Servicios.BLL;
+﻿using Dominio.CompositeProducto;
+using Servicios.BLL;
+using Servicios.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +15,8 @@ namespace WinApp.Fabricante
 {
     public partial class FormProductos : Form, IIdiomasObservador
     {
+        private Producto productoSeleccionado = null;
+
         public FormProductos()
         {
             InitializeComponent();
@@ -23,13 +27,6 @@ namespace WinApp.Fabricante
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
             grillaProductos.DataSource = BLL.GestorFabricacion.Current.ListarProductos();
-            /*Producto unProducto = new Producto();
-            unProducto.Id = Guid.NewGuid();
-            unProducto.Nombre = "Vela Londres";
-            unProducto.Unidad = Unidades.Un;
-            unProducto.Descripcion = "Vela Londres, es una vela muy simple";
-            unProducto.Foto = "https://www.vapati.com.ar/wp-content/uploads/2020/09/Velas-aromaticas-con-palabra-01.jpg";
-            BLL.GestorFabricacion.Current.RegistrarProducto(unProducto);*/
         }
 
         private void FormProductos_FormClosing(object sender, FormClosingEventArgs e)
@@ -39,6 +36,59 @@ namespace WinApp.Fabricante
 
         public void ActualizarTraducciones()
         {
+            btnAgregar.Text = "Agregar".Traducir();
+            btnBorrar.Text = "Borrar".Traducir();
+            btnModificar.Text = "Modificar".Traducir();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            FormProducto form = new FormProducto(new Producto());
+            DialogResult resultado = form.ShowDialog();
+            if (resultado == DialogResult.OK)
+            {
+                grillaProductos.DataSource = BLL.GestorFabricacion.Current.ListarProductos();
+            }
+
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("¿Está seguro?".Traducir(), "Borrar".Traducir(), MessageBoxButtons.YesNo);
+            if (resultado == DialogResult.Yes)
+            {
+                try
+                {
+                    BLL.GestorFabricacion.Current.BorrarProducto(productoSeleccionado);
+                    grillaProductos.DataSource = BLL.GestorFabricacion.Current.ListarProductos();
+                    productoSeleccionado = null;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.Traducir());
+                }
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            FormProducto form = new FormProducto(productoSeleccionado);
+            DialogResult resultado = form.ShowDialog();
+            if (resultado == DialogResult.OK)
+            {
+                grillaProductos.DataSource = BLL.GestorFabricacion.Current.ListarProductos();
+            }
+
+        }
+
+        private void grillaProductos_SelectionChanged(object sender, EventArgs e)
+        {
+            if (grillaProductos.SelectedRows.Count > 0)
+            {
+                int index = grillaProductos.SelectedRows[0].Index;
+                IEnumerable<Producto> productos = (IEnumerable<Producto>)grillaProductos.DataSource;
+                productoSeleccionado = productos.ElementAt(index);
+            }
 
         }
     }
