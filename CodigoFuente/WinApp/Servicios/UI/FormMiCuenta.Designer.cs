@@ -29,6 +29,7 @@ namespace Servicios.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMiCuenta));
             this.inputEmail = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
             this.inputNombre = new System.Windows.Forms.TextBox();
@@ -163,6 +164,7 @@ namespace Servicios.UI
             this.Controls.Add(this.inputUsuario);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.btnGrabar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMiCuenta";
             this.Text = "FormMiCuenta";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMiCuenta_FormClosing);

@@ -29,6 +29,7 @@ namespace Servicios.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBitacora));
             this.grillaBitacora = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.grillaBitacora)).BeginInit();
             this.SuspendLayout();
@@ -48,8 +49,10 @@ namespace Servicios.UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(726, 450);
             this.Controls.Add(this.grillaBitacora);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormBitacora";
             this.Text = "FormBitacora";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormBitacora_FormClosing);
             this.Load += new System.EventHandler(this.FormBitacora_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grillaBitacora)).EndInit();
             this.ResumeLayout(false);

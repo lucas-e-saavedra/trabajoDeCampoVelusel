@@ -26,6 +26,7 @@ namespace WinApp
 
         public void ActualizarTraducciones()
         {
+            Text = "Ingresar".Traducir();
             this.lblUsuario.Text = "Ingrese su usuario".Traducir();
             this.lblContrasenia.Text = "Ingrese su contraseña".Traducir();
             this.btnIngresar.Text = "Ingresar".Traducir();

@@ -52,6 +52,7 @@ namespace WinApp.Fabricante
 
         public void ActualizarTraducciones()
         {
+            Text = "ABM Materiales".Traducir();
             lblNombre.Text = "Nombre".Traducir();
             lblUnidad.Text = "Unidad de medida".Traducir();
             btnGrabar.Text = materialActual.Id == Guid.Empty ? "Agregar".Traducir() : "Modificar".Traducir();

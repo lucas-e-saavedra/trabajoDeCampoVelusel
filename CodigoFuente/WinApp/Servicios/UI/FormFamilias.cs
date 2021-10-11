@@ -35,6 +35,7 @@ namespace Servicios.UI
 
         public void ActualizarTraducciones()
         {
+            Text = "ABM Familias".Traducir();
             btnAgregar.Text = "Agregar".Traducir();
             btnBorrar.Text = "Borrar".Traducir();
             btnModificar.Text = "Modificar".Traducir();

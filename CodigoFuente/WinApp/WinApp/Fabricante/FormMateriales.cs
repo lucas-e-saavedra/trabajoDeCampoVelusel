@@ -35,6 +35,7 @@ namespace WinApp.Fabricante
 
         public void ActualizarTraducciones()
         {
+            Text = "ABM Materiales".Traducir();
             btnAgregar.Text = "Agregar".Traducir();
             btnBorrar.Text = "Borrar".Traducir();
             btnModificar.Text = "Modificar".Traducir();

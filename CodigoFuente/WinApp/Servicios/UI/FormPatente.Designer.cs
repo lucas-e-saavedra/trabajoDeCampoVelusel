@@ -29,6 +29,7 @@ namespace Servicios.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPatente));
             this.btnGrabar = new System.Windows.Forms.Button();
             this.lblNombre = new System.Windows.Forms.Label();
             this.inputNombre = new System.Windows.Forms.TextBox();
@@ -100,6 +101,7 @@ namespace Servicios.UI
             this.Controls.Add(this.inputNombre);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.btnGrabar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormPatente";
             this.Text = "FormPatente";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPatente_FormClosing);

@@ -30,6 +30,7 @@ namespace Servicios.UI
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormErrores));
             this.grillaErrores = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.grillaErrores)).BeginInit();
             this.SuspendLayout();
@@ -58,8 +59,10 @@ namespace Servicios.UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(893, 419);
             this.Controls.Add(this.grillaErrores);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormErrores";
             this.Text = "FormErrores";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormErrores_FormClosing);
             this.Load += new System.EventHandler(this.FormErrores_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grillaErrores)).EndInit();
             this.ResumeLayout(false);

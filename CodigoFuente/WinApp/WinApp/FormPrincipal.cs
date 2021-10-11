@@ -35,6 +35,7 @@ namespace WinApp
 
         public void ActualizarTraducciones()
         {
+            Text = "Velusel Fábrica".Traducir();
             ConstruirMenu();
         }
 

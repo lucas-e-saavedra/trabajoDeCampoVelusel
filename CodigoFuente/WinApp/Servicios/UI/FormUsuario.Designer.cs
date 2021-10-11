@@ -29,6 +29,7 @@ namespace Servicios.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUsuario));
             this.btnCancelar = new System.Windows.Forms.Button();
             this.inputUsuario = new System.Windows.Forms.TextBox();
             this.lblUsuario = new System.Windows.Forms.Label();
@@ -220,6 +221,7 @@ namespace Servicios.UI
             this.Controls.Add(this.inputUsuario);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.btnGrabar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormUsuario";
             this.Text = "FormUsuario";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormUsuario_FormClosing);

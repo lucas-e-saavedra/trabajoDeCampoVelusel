@@ -40,6 +40,7 @@ namespace Servicios.UI
 
         public void ActualizarTraducciones()
         {
+            Text = "Mis datos".Traducir();
             lblUsuario.Text = "Usuario".Traducir();
             lblNombre.Text = "Nombre".Traducir();
             lblEmail.Text = "Email".Traducir();

@@ -61,6 +61,7 @@ namespace Servicios.UI
 
         public void ActualizarTraducciones()
         {
+            Text = "ABM usuarios".Traducir();
             lblUsuario.Text = "Usuario".Traducir();
             lblNombre.Text = "Nombre".Traducir();
             lblEmail.Text = "Email".Traducir();

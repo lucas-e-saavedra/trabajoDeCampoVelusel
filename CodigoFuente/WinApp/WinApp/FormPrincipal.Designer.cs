@@ -29,6 +29,7 @@ namespace WinApp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.menuNavegacion = new System.Windows.Forms.MenuStrip();
             this.SuspendLayout();
             // 
@@ -46,6 +47,7 @@ namespace WinApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.menuNavegacion);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuNavegacion;
             this.Name = "FormPrincipal";

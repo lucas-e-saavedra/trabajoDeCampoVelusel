@@ -44,6 +44,7 @@ namespace Servicios.UI
 
         public void ActualizarTraducciones()
         {
+            Text = "ABM Familias".Traducir();
             lblNombre.Text = "Nombre".Traducir();
             lblHijos.Text = "Hijos".Traducir();
             lblDisponibles.Text = "Disponibles".Traducir();

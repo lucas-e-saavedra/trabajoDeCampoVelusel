@@ -39,6 +39,7 @@ namespace Servicios.UI
 
         public void ActualizarTraducciones()
         {
+            Text = "ABM Patentes".Traducir();
             lblNombre.Text = "Nombre".Traducir();
             lblVista.Text = "Vista".Traducir();
             btnGrabar.Text = patenteActual.IdPatente == Guid.Empty ? "Agregar".Traducir() : "Modificar".Traducir();

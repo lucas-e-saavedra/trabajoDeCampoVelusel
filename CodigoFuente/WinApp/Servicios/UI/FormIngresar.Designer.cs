@@ -29,6 +29,7 @@ namespace WinApp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormIngresar));
             this.lblUsuario = new System.Windows.Forms.Label();
             this.inputUsuario = new System.Windows.Forms.TextBox();
             this.lblContrasenia = new System.Windows.Forms.Label();
@@ -90,6 +91,7 @@ namespace WinApp
             this.Controls.Add(this.lblContrasenia);
             this.Controls.Add(this.inputUsuario);
             this.Controls.Add(this.lblUsuario);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormIngresar";
             this.Text = "Form_Login";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Login_FormClosing);
