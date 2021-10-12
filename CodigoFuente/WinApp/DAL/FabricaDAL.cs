@@ -49,7 +49,7 @@ namespace DAL
         }
         public IRelacionGenerica<PlantillaDeFabricacion, Producto> ObtenerProductoProductoRelacion()
         {
-            return null;
+            return new Implementaciones.SqlServer.PlantillaFabricacionSubproductoRelacion(bbddVelusel);
         }
 
         

@@ -8,36 +8,36 @@ using System.Data.SqlClient;
 
 namespace DAL.Implementaciones.SqlServer
 {
-    class PlantillaFabricacionMaterialRelacion : IRelacionGenerica<PlantillaDeFabricacion, Material>
+    class PlantillaFabricacionSubproductoRelacion : IRelacionGenerica<PlantillaDeFabricacion, Producto>
     {
         #region Statements
         private string ObtenerHijosStatement
         {
-            get => "SELECT IdPlantilla, IdMaterial, Cantidad FROM [dbo].[PlantillaF_Material] WHERE IdPlantilla= @IdPlantilla";
+            get => "SELECT IdPlantilla, IdSubProducto, Cantidad FROM [dbo].[PlantillaF_Subproducto] WHERE IdPlantilla= @IdPlantilla";
         }
         private string InsertarHijoStatement
         {
-            get => "INSERT INTO [dbo].[PlantillaF_Material] (IdPlantilla, IdMaterial, Cantidad) VALUES (@IdPlantilla, @IdMaterial, @Cantidad)";
+            get => "INSERT INTO [dbo].[PlantillaF_Subproducto] (IdPlantilla, IdSubProducto, Cantidad) VALUES (@IdPlantilla, @IdSubProducto, @Cantidad)";
         }
         private string BorrarUnHijoStatement
         {
-            get => "DELETE FROM [dbo].[PlantillaF_Material] WHERE IdPlantilla = @IdPlantilla AND IdMaterial = @IdMaterial";
+            get => "DELETE FROM [dbo].[PlantillaF_Subproducto] WHERE IdPlantilla = @IdPlantilla AND IdSubProducto = @IdSubProducto";
         }
         private string BorrarTodosLosHijosStatement
         {
-            get => "DELETE FROM [dbo].[PlantillaF_Material] WHERE IdPlantilla = @IdPlantilla";
+            get => "DELETE FROM [dbo].[PlantillaF_Subproducto] WHERE IdPlantilla = @IdPlantilla";
         }
         #endregion
         private string conexion;
-        internal PlantillaFabricacionMaterialRelacion(String oneConnectionString)
+        internal PlantillaFabricacionSubproductoRelacion(String oneConnectionString)
         {
             conexion = oneConnectionString;
         }
 
-        public List<Material> Obtener(PlantillaDeFabricacion obj)
+        public List<Producto> Obtener(PlantillaDeFabricacion obj)
         {
             string IdPlantilla = obj.IdPlantilla.ToString();
-            List<Material> materiales = new List<Material>();
+            List<Producto> subproductos = new List<Producto>();
 
             try
             {
@@ -51,9 +51,9 @@ namespace DAL.Implementaciones.SqlServer
 
                         string[] criterios = { "guid" };
                         string[] valores = { values[1].ToString() };
-                        Material unMaterial = FabricaDAL.Current.ObtenerRepositorioDeMateriales().BuscarUno(criterios, valores);
-                        unMaterial.Cantidad = float.Parse(values[2].ToString());
-                        materiales.Add(unMaterial);
+                        Producto unProducto = FabricaDAL.Current.ObtenerRepositorioDeProductos().BuscarUno(criterios, valores);
+                        unProducto.Cantidad = float.Parse(values[2].ToString());
+                        subproductos.Add(unProducto);
                     }
                 }
             }
@@ -62,16 +62,16 @@ namespace DAL.Implementaciones.SqlServer
                 ex.RegistrarError();
             }
 
-            return materiales;
+            return subproductos;
         }
-        public void Unir(PlantillaDeFabricacion obj1, Material obj2)
+        public void Unir(PlantillaDeFabricacion obj1, Producto obj2)
         {
             try
             {
                 SqlHelper sqlHelper = new SqlHelper(conexion);
                 SqlParameter[] sqlParams = new SqlParameter[] {
                     new SqlParameter("@IdPlantilla", obj1.IdPlantilla),
-                    new SqlParameter("@IdMaterial", obj2.Id),
+                    new SqlParameter("@IdSubProducto", obj2.Id),
                     new SqlParameter("@Cantidad", obj2.Cantidad) };
 
                 sqlHelper.ExecuteNonQuery(InsertarHijoStatement, System.Data.CommandType.Text, sqlParams);
@@ -82,13 +82,13 @@ namespace DAL.Implementaciones.SqlServer
             }
         }
 
-        public void Desvincular(PlantillaDeFabricacion obj1, Material obj2){
+        public void Desvincular(PlantillaDeFabricacion obj1, Producto obj2){
             try
             {
                 SqlHelper sqlHelper = new SqlHelper(conexion);
                 SqlParameter[] sqlParams = new SqlParameter[] {
                     new SqlParameter("@IdPlantilla", obj1.IdPlantilla),
-                    new SqlParameter("@IdMaterial", obj2.Id) };
+                    new SqlParameter("@IdSubProducto", obj2.Id) };
 
                 sqlHelper.ExecuteNonQuery(BorrarUnHijoStatement, System.Data.CommandType.Text, sqlParams);
             }

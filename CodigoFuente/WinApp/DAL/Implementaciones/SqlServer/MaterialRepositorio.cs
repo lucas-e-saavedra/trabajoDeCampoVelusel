@@ -90,9 +90,7 @@ namespace DAL.Implementaciones.SqlServer
 
         public Material BuscarUno(string[] criterios, string[] valores)
         {
-            try
-            {
-                List<Material> todosLosMateriales = new List<Material>();
+            try {
                 SqlParameter[] sqlParams = new SqlParameter[] {
                     new SqlParameter("@Id", valores.First()) };
 
@@ -108,11 +106,9 @@ namespace DAL.Implementaciones.SqlServer
                     }
                 }
                 return null;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 ex.RegistrarError();
-                throw new Exception("Hubo un problema al listar los materiales");
+                throw new Exception("Hubo un problema al buscar un material");
             }
         }
 

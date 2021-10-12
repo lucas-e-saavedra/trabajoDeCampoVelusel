@@ -36,12 +36,11 @@ namespace DAL.Implementaciones.SqlServer.Adapters
             {
                 unaPlantillaDeFabricacion.Ingredientes.Add(item);
             }
-            /*TODO: faltan los subproductos
             List<Producto> subproductosRelacionadas = FabricaDAL.Current.ObtenerProductoProductoRelacion().Obtener(unaPlantillaDeFabricacion);
             foreach (var item in subproductosRelacionadas)
             {
-                unaPlantillaDeFabricacion.Ingredientes.Add(item, 0);
-            }*/
+                unaPlantillaDeFabricacion.Ingredientes.Add(item);
+            }
             return unaPlantillaDeFabricacion;
         }
 

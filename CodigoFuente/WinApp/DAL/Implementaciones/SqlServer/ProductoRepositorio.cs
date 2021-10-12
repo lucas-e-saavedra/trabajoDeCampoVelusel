@@ -34,7 +34,7 @@ namespace DAL.Implementaciones.SqlServer
 
         private string SelectOneStatement
         {
-            get => "SELECT Id, Nombre, Unidad, Descripcion, Foto, VerEnCatalogo FROM [dbo].[Producto] WHERE  = @";
+            get => "SELECT Id, Nombre, Unidad, Descripcion, Foto, VerEnCatalogo FROM [dbo].[Producto] WHERE Id = @Id";
         }
 
         private string SelectAllStatement
@@ -99,7 +99,26 @@ namespace DAL.Implementaciones.SqlServer
 
         public Producto BuscarUno(string[] criterios, string[] valores)
         {
-            throw new NotImplementedException();
+            try {
+                SqlParameter[] sqlParams = new SqlParameter[] {
+                    new SqlParameter("@Id", valores.First()) };
+
+                SqlHelper sqlHelper = new SqlHelper(connectionString);
+                using (var dr = sqlHelper.ExecuteReader(SelectOneStatement, System.Data.CommandType.Text, sqlParams))
+                {
+                    if (dr.Read())
+                    {
+                        object[] values = new object[dr.FieldCount];
+                        dr.GetValues(values);
+                        Producto unProducto = ProductoAdapter.Current.Adapt(values);
+                        return unProducto;
+                    }
+                }
+                return null;
+            } catch (Exception ex) {
+                ex.RegistrarError();
+                throw new Exception("Hubo un problema al buscar un producto");
+            }
         }
 
         public IEnumerable<Producto> Listar()
@@ -107,7 +126,6 @@ namespace DAL.Implementaciones.SqlServer
             try {
                 List<Producto> todosLosProductos= new List<Producto>();
                 SqlHelper sqlHelper = new SqlHelper(connectionString);
-                //SqlParameter[] sqlParams = new SqlParameter[] { new SqlParameter("@IdAddress", id) };
                 using (var dr = sqlHelper.ExecuteReader(SelectAllStatement, System.Data.CommandType.Text))
                 {
                     while (dr.Read())

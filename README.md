@@ -15,8 +15,8 @@ CU.PED.03 - Cancelar Pedido
 CU.PED.04 - Cerrar Pedido
 CU.PED.05 - Listar Pedidos
 CU.PED.06 - Consultar Detalle del Pedido
-CU.FAB.01 - Registrar nuevo Producto (falta relación producto-producto)
-CU.FAB.02 - Modificar Producto (falta relación producto-producto)
+CU.FAB.01 - Registrar nuevo Producto (mejorar visualización)
+CU.FAB.02 - Modificar Producto (mejorar visualización)
 CU.FAB.03 - Procesar Pedido
 CU.FAB.04 - Comenzar Fabricación
 CU.FAB.05 - Cerrar fabricación
@@ -50,4 +50,4 @@ CU.Arq.005 Validar integridad (pendiente de definición)
 CU.Arq.006 Guardar Errores (listo)
 CU.Arq.007 Ver Errores (mejorar visualización)
 
-TOTAL CU: 42 listos(18)
+TOTAL CU: 42 listos(18) mejorar visualizacion(4)

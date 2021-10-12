@@ -66,7 +66,7 @@ namespace DAL.Implementaciones.SqlServer
                     }
                     if (unHijo is Producto)
                     {
-                        //TODO:FabricaDAL.Current.ObtenerProductoProductoRelacion().Unir(unObjeto, (Producto)unHijo);
+                        FabricaDAL.Current.ObtenerProductoProductoRelacion().Unir(unObjeto, (Producto)unHijo);
                     }
                 });
             }
@@ -138,7 +138,7 @@ namespace DAL.Implementaciones.SqlServer
                 sqlHelper.ExecuteNonQuery(UpdateStatement, System.Data.CommandType.Text, sqlParams);
 
                 FabricaDAL.Current.ObtenerProductoMaterialRelacion().DesvincularHijos(unObjeto);
-                //TODO:FabricaDAL.Current.ObtenerProductoProductoRelacion().DesvincularHijos(unObjeto);
+                FabricaDAL.Current.ObtenerProductoProductoRelacion().DesvincularHijos(unObjeto);
                 unObjeto.Ingredientes.ForEach(unHijo => {
                     if (unHijo is Material)
                     {
@@ -146,7 +146,7 @@ namespace DAL.Implementaciones.SqlServer
                     }
                     if (unHijo is Producto)
                     {
-                        //TODO:FabricaDAL.Current.ObtenerProductoProductoRelacion().Unir(unObjeto, (Producto)unHijo);
+                        FabricaDAL.Current.ObtenerProductoProductoRelacion().Unir(unObjeto, (Producto)unHijo);
                     }
                 });
             }
