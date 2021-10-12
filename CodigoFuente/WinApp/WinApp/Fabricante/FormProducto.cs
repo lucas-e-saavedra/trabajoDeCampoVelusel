@@ -42,14 +42,21 @@ namespace WinApp.Fabricante
                 inputReposo.Text = productoActual.plantillaDeFabricacion.ReposoNecesario.ToString();
             }
 
-            List<KeyValuePair<ProductoMaterial, float>> ingrs = productoActual.plantillaDeFabricacion.Ingredientes.ToList();
-            grillaIngredientes.DataSource = ingrs;
+            List<ProductoMaterial> ingrs = productoActual.plantillaDeFabricacion.Ingredientes.ToList();
+            grillaIngredientes.DataSource = ingrs;            
+            foreach (DataGridViewRow row in grillaIngredientes.Rows)
+            {
+                object a1 = row.Cells[1].EditType;
+                object a2 = row.Cells[1].FormattedValueType;
+                object a3 = row.Cells[1].ValueType;
+                row.Cells[1].ReadOnly = false;
+            }
 
             List<ProductoMaterial> disponibles = new List<ProductoMaterial>();
             disponibles.AddRange(GestorFabricacion.Current.ListarProductos());
             disponibles.AddRange(GestorFabricacion.Current.ListarMateriales());
             disponibles.Remove(productoActual);
-            ingrs.ForEach(item => disponibles.Remove(item.Key));
+            ingrs.ForEach(item => disponibles.Remove(item));
             grillaDisponibles.DataSource = disponibles;
 
         }
@@ -82,6 +89,11 @@ namespace WinApp.Fabricante
                 productoActual.Unidad = unaUnidad;
                 productoActual.DisponibleEnCatalogo = checkCatalogo.Checked;
                 productoActual.plantillaDeFabricacion.ReposoNecesario = Int16.Parse(inputReposo.Text);
+
+                List<ProductoMaterial> ingrsA = productoActual.plantillaDeFabricacion.Ingredientes.ToList();
+                IEnumerable<ProductoMaterial> itemsB = (IEnumerable<ProductoMaterial>)grillaIngredientes.DataSource;
+
+
                 if (productoActual.Id == Guid.Empty)
                 {
                     productoActual.Id = Guid.NewGuid();
@@ -108,10 +120,8 @@ namespace WinApp.Fabricante
             if (grillaIngredientes.SelectedRows.Count > 0)
             {
                 int index = grillaIngredientes.SelectedRows[0].Index;
-                IEnumerable<KeyValuePair<ProductoMaterial, float>> items = (IEnumerable<KeyValuePair<ProductoMaterial, float>>)grillaIngredientes.DataSource;
-                //List<KeyValuePair<ProductoMaterial, float>> ingrs = productoActual.plantillaDeFabricacion.Ingredientes.ToList();
-
-                ingredienteAquitar = items.ElementAt(index).Key;
+                IEnumerable<ProductoMaterial> items = (IEnumerable<ProductoMaterial>)grillaIngredientes.DataSource;
+                ingredienteAquitar = items.ElementAt(index);
             }
         }
         private void grillaDisponibles_SelectionChanged(object sender, EventArgs e)
@@ -128,7 +138,7 @@ namespace WinApp.Fabricante
         {
             productoActual.Agregar(ingredienteAagregar);
             grillaIngredientes.DataSource = null;
-            List<KeyValuePair<ProductoMaterial, float>> ingrs = productoActual.plantillaDeFabricacion.Ingredientes.ToList();
+            List<ProductoMaterial> ingrs = productoActual.plantillaDeFabricacion.Ingredientes;
             grillaIngredientes.DataSource = ingrs;
 
             List<ProductoMaterial> items = (List<ProductoMaterial>)grillaDisponibles.DataSource;
@@ -142,7 +152,7 @@ namespace WinApp.Fabricante
         {
             productoActual.plantillaDeFabricacion.Ingredientes.Remove(ingredienteAquitar);
             grillaIngredientes.DataSource = null;
-            List<KeyValuePair<ProductoMaterial, float>> ingrs = productoActual.plantillaDeFabricacion.Ingredientes.ToList();
+            List<ProductoMaterial> ingrs = productoActual.plantillaDeFabricacion.Ingredientes;
             grillaIngredientes.DataSource = ingrs;
 
             List<ProductoMaterial> items = (List<ProductoMaterial>)grillaDisponibles.DataSource;

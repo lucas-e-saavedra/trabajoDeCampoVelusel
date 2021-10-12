@@ -9,12 +9,12 @@ namespace Dominio.CompositeProducto
     public class PlantillaDeFabricacion
     {
         public Guid IdPlantilla { get; set; }
-        public Dictionary<ProductoMaterial, float> Ingredientes { get; set; }
+        public List<ProductoMaterial> Ingredientes { get; set; }
         public int ReposoNecesario;
 
         public PlantillaDeFabricacion()
         {
-            Ingredientes = new Dictionary<ProductoMaterial, float>();
+            Ingredientes = new List<ProductoMaterial>();
         }
     }
 }

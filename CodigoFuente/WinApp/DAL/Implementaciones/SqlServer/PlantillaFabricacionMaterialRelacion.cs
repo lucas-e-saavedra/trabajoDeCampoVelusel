@@ -58,7 +58,7 @@ namespace DAL.Implementaciones.SqlServer
                         string[] criterios = { "guid" };
                         string[] valores = { values[1].ToString() };
                         Material unMaterial = FabricaDAL.Current.ObtenerRepositorioDeMateriales().BuscarUno(criterios, valores);
-
+                        unMaterial.Cantidad = float.Parse(values[2].ToString());
                         materiales.Add(unMaterial);
                     }
                 }
@@ -78,7 +78,7 @@ namespace DAL.Implementaciones.SqlServer
                 SqlParameter[] sqlParams = new SqlParameter[] {
                     new SqlParameter("@IdPlantilla", obj1.IdPlantilla),
                     new SqlParameter("@IdMaterial", obj2.Id),
-                    new SqlParameter("@Cantidad", "0") };
+                    new SqlParameter("@Cantidad", obj2.Cantidad) };
 
                 sqlHelper.ExecuteNonQuery(InsertarHijoStatement, System.Data.CommandType.Text, sqlParams);
             }

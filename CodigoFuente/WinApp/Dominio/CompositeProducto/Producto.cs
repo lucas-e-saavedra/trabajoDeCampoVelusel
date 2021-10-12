@@ -5,7 +5,7 @@ namespace Dominio.CompositeProducto
 {
     public class Producto: ProductoMaterial{
 		//Retorno el listado de los ingredientes...
-		public override int CantidadIngredientes => plantillaDeFabricacion.Ingredientes.Keys.Count;
+		public override int CantidadIngredientes => plantillaDeFabricacion.Ingredientes.Count;
 		public string Descripcion { get; set; }
 		public string Foto { get; set; }
 		public bool DisponibleEnCatalogo { get; set; }
@@ -27,7 +27,7 @@ namespace Dominio.CompositeProducto
 		/// <param name="component"></param>
 		public override void Agregar(ProductoMaterial component)
 		{
-			plantillaDeFabricacion.Ingredientes.Add(component, 0);
+			plantillaDeFabricacion.Ingredientes.Add(component);
 		}
 
 		/// 

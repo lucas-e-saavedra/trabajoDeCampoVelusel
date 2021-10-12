@@ -178,7 +178,9 @@ namespace WinApp.Fabricante
             // 
             this.grillaIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaIngredientes.Location = new System.Drawing.Point(12, 138);
+            this.grillaIngredientes.MultiSelect = false;
             this.grillaIngredientes.Name = "grillaIngredientes";
+            this.grillaIngredientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grillaIngredientes.Size = new System.Drawing.Size(240, 150);
             this.grillaIngredientes.TabIndex = 30;
             this.grillaIngredientes.SelectionChanged += new System.EventHandler(this.grillaIngredientes_SelectionChanged);
@@ -187,7 +189,7 @@ namespace WinApp.Fabricante
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 415);
+            this.ClientSize = new System.Drawing.Size(568, 439);
             this.Controls.Add(this.grillaIngredientes);
             this.Controls.Add(this.inputReposo);
             this.Controls.Add(this.lblReposo);

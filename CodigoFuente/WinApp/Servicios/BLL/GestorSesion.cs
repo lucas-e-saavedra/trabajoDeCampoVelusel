@@ -27,9 +27,6 @@ namespace Servicios.BLL
 
         public bool AutenticarUsuario(string usuario, string contrasenia)
         {
-            //usuarioActual = GestorUsuarios.Current.ListarUsuarios().First();
-            //return true;
-
             string llave = ConfigurationManager.AppSettings["claveCifrado"];
             string contraseniaEncriptada = GestorSeguridad.Current.Encriptar(contrasenia, llave);
             string[] criterios = { "Usuario", "Contrasenia" };
@@ -42,12 +39,16 @@ namespace Servicios.BLL
             }
             return usuarioActual != null;
         }
-
         public void CerrarSesion()
         {
             Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, "Ha cerrado sesión el usuario: " + usuarioActual.UsuarioLogin);
             GestorHistorico.Current.RegistrarBitacora(unEvento);
             usuarioActual = null;
+        }
+        public bool TieneRolGerente() {
+            string permisoEspecial = ConfigurationManager.AppSettings["nombrePermisoEspecial"];
+            PatenteFamilia rta = usuarioActual.Permisos.Find(item => item.Nombre == permisoEspecial);
+            return rta != null;
         }
     }
 }

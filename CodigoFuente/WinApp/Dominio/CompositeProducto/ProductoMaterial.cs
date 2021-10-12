@@ -15,6 +15,7 @@ namespace Dominio.CompositeProducto
 		public Guid Id { get; set; }
 		public string Nombre { get; set; }
 		public Unidades Unidad{ get; set; }
+		public float Cantidad { get; set; }
 		public ProductoMaterial()
 		{
 

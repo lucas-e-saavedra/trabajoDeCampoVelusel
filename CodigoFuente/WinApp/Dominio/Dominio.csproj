@@ -41,11 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cliente.cs" />
     <Compile Include="CompositeProducto\PlantillaDeFabricacion.cs" />
     <Compile Include="CompositeProducto\Producto.cs" />
     <Compile Include="CompositeProducto\Material.cs" />
     <Compile Include="CompositeProducto\ProductoMaterial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Servicios\Servicios.csproj">
+      <Project>{C4518413-0113-4365-B977-6A5549A5C86B}</Project>
+      <Name>Servicios</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

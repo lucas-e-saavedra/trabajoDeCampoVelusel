@@ -3,6 +3,7 @@ using Servicios.Domain.CompositeSeguridad;
 using System.Configuration;
 using Servicios.DAL.Contratos;
 using Dominio.CompositeProducto;
+using Dominio;
 
 namespace DAL
 {
@@ -26,6 +27,10 @@ namespace DAL
         #endregion
         private string bbddVelusel;
 
+        public IRepositorioGenerico<Cliente> ObtenerRepositorioDeClientes()
+        {
+            return new Implementaciones.SqlServer.ClienteRepositorio(bbddVelusel);
+        }
         public IRepositorioGenerico<Material> ObtenerRepositorioDeMateriales()
         {
             return new Implementaciones.SqlServer.MaterialRepositorio(bbddVelusel);

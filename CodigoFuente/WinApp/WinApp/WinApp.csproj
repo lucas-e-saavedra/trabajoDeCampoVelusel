@@ -79,6 +79,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vendedor\FormCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vendedor\FormCliente.Designer.cs">
+      <DependentUpon>FormCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vendedor\FormClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vendedor\FormClientes.Designer.cs">
+      <DependentUpon>FormClientes.cs</DependentUpon>
+    </Compile>
     <Content Include="I18n\idioma.en">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -113,6 +125,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vendedor\FormCliente.resx">
+      <DependentUpon>FormCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vendedor\FormClientes.resx">
+      <DependentUpon>FormClientes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

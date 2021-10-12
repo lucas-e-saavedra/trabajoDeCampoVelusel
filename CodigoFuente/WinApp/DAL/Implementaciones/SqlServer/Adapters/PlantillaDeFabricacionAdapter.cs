@@ -34,7 +34,7 @@ namespace DAL.Implementaciones.SqlServer.Adapters
             List<Material> materialesRelacionadas = FabricaDAL.Current.ObtenerProductoMaterialRelacion().Obtener(unaPlantillaDeFabricacion);
             foreach (var item in materialesRelacionadas)
             {
-                unaPlantillaDeFabricacion.Ingredientes.Add(item, 0);
+                unaPlantillaDeFabricacion.Ingredientes.Add(item);
             }
             /*TODO: faltan los subproductos
             List<Producto> subproductosRelacionadas = FabricaDAL.Current.ObtenerProductoProductoRelacion().Obtener(unaPlantillaDeFabricacion);

@@ -59,7 +59,7 @@ namespace DAL.Implementaciones.SqlServer
                     new SqlParameter("@ReposoMinRequeridoHs", unObjeto.ReposoNecesario) };
 
                 sqlHelper.ExecuteNonQuery(InsertStatement, System.Data.CommandType.Text, sqlParams);
-                unObjeto.Ingredientes.Keys.ToList().ForEach(unHijo => {
+                unObjeto.Ingredientes.ForEach(unHijo => {
                     if (unHijo is Material)
                     {
                         FabricaDAL.Current.ObtenerProductoMaterialRelacion().Unir(unObjeto, (Material)unHijo);
@@ -139,7 +139,7 @@ namespace DAL.Implementaciones.SqlServer
 
                 FabricaDAL.Current.ObtenerProductoMaterialRelacion().DesvincularHijos(unObjeto);
                 //TODO:FabricaDAL.Current.ObtenerProductoProductoRelacion().DesvincularHijos(unObjeto);
-                unObjeto.Ingredientes.Keys.ToList().ForEach(unHijo => {
+                unObjeto.Ingredientes.ForEach(unHijo => {
                     if (unHijo is Material)
                     {
                         FabricaDAL.Current.ObtenerProductoMaterialRelacion().Unir(unObjeto, (Material)unHijo);
