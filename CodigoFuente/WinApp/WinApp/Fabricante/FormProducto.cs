@@ -40,6 +40,8 @@ namespace WinApp.Fabricante
                 comboUnidad.SelectedValue = (productoActual.Unidad).ToString();
                 checkCatalogo.Checked = productoActual.DisponibleEnCatalogo;
                 inputReposo.Text = productoActual.plantillaDeFabricacion.ReposoNecesario.ToString();
+                inputDescripcion.Text = productoActual.Descripcion;
+                inputFotoUrl.Text = productoActual.Foto;
             }
 
             List<ProductoMaterial> ingrs = productoActual.plantillaDeFabricacion.Ingredientes.ToList();
@@ -77,6 +79,8 @@ namespace WinApp.Fabricante
             lblIngredientes.Text = "Ingredientes".Traducir();
             lblDisponibles.Text = "Disponibles".Traducir();
             lblReposo.Text = "Reposo necesario".Traducir();
+            lblDescripcion.Text = "Descripción".Traducir();
+            lblFotoUrl.Text = "Url de la foto".Traducir();
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)
@@ -89,6 +93,9 @@ namespace WinApp.Fabricante
                 productoActual.Unidad = unaUnidad;
                 productoActual.DisponibleEnCatalogo = checkCatalogo.Checked;
                 productoActual.plantillaDeFabricacion.ReposoNecesario = Int16.Parse(inputReposo.Text);
+                productoActual.Descripcion = inputDescripcion.Text;
+                productoActual.Foto = inputFotoUrl.Text;
+
 
                 List<ProductoMaterial> ingrsA = productoActual.plantillaDeFabricacion.Ingredientes.ToList();
                 IEnumerable<ProductoMaterial> itemsB = (IEnumerable<ProductoMaterial>)grillaIngredientes.DataSource;

@@ -7,8 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Implementaciones.SqlServer
 {
@@ -61,8 +59,8 @@ namespace DAL.Implementaciones.SqlServer
                     new SqlParameter("@Id", unObjeto.Id),
                     new SqlParameter("@Nombre", unObjeto.Nombre),
                     new SqlParameter("@Unidad", unObjeto.Unidad.ToString()),
-                    new SqlParameter("@Descripcion", unObjeto.Nombre),
-                    new SqlParameter("@Foto", unObjeto.Nombre),
+                    new SqlParameter("@Descripcion", unObjeto.Descripcion),
+                    new SqlParameter("@Foto", unObjeto.Foto),
                     new SqlParameter("@VerEnCatalogo", unObjeto.DisponibleEnCatalogo) };
 
                 sqlHelper.ExecuteNonQuery(InsertStatement, System.Data.CommandType.Text, sqlParams);
@@ -155,8 +153,8 @@ namespace DAL.Implementaciones.SqlServer
                     new SqlParameter("@Id", unObjeto.Id),
                     new SqlParameter("@Nombre", unObjeto.Nombre),
                     new SqlParameter("@Unidad", unObjeto.Unidad.ToString()),
-                    new SqlParameter("@Descripcion", unObjeto.Nombre),
-                    new SqlParameter("@Foto", unObjeto.Nombre),
+                    new SqlParameter("@Descripcion", unObjeto.Descripcion),
+                    new SqlParameter("@Foto", unObjeto.Foto),
                     new SqlParameter("@VerEnCatalogo", unObjeto.DisponibleEnCatalogo) };
 
                 sqlHelper.ExecuteNonQuery(UpdateStatement, System.Data.CommandType.Text, sqlParams);

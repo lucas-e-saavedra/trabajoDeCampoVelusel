@@ -51,7 +51,13 @@ namespace DAL
         {
             return new Implementaciones.SqlServer.PlantillaFabricacionSubproductoRelacion(bbddVelusel);
         }
-
-        
+        public IRepositorioGenerico<Pedido> ObtenerRepositorioDePedidos()
+        {
+            return new Implementaciones.SqlServer.PedidoRepositorio(bbddVelusel);
+        }
+        public IRelacionGenerica<Pedido, Producto> ObtenerPedidoProductoRelacion()
+        {
+            return new Implementaciones.SqlServer.PedidoProductoRelacion(bbddVelusel);
+        }
     }
 }

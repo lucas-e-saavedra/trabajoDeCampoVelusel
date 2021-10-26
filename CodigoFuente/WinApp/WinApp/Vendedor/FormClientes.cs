@@ -16,7 +16,7 @@ namespace WinApp.Vendedor
 {
     public partial class FormClientes : Form, IIdiomasObservador
     {
-        private Cliente clienteSeleccionado = null;
+        public Cliente clienteSeleccionado = null;
         public FormClientes()
         {
             InitializeComponent();
@@ -27,7 +27,11 @@ namespace WinApp.Vendedor
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
             grillaClientes.DataSource = BLL.GestorClientes.Current.ListarClientes();
-            btnHabilitar.Visible = GestorSesion.Current.TieneRolGerente();
+            btnSeleccionar.Visible = this.Modal;
+            btnNoSeleccionar.Visible = this.Modal;
+            btnAgregar.Visible = !this.Modal;
+            btnModificar.Visible = !this.Modal;
+            btnHabilitar.Visible = !this.Modal && GestorSesion.Current.TieneRolGerente();
         }
         private void FormClientes_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -36,6 +40,8 @@ namespace WinApp.Vendedor
         public void ActualizarTraducciones()
         {
             Text = "ABM Clientes".Traducir();
+            btnSeleccionar.Text = "Seleccionar".Traducir();
+            btnNoSeleccionar.Text = "Ninguno".Traducir();
             btnAgregar.Text = "Agregar".Traducir();
             btnHabilitar.Text = "Habilitar".Traducir();
             btnModificar.Text = "Modificar".Traducir();
@@ -92,6 +98,17 @@ namespace WinApp.Vendedor
                     MessageBox.Show(ex.Message.Traducir());
                 }
             }
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
+
+        private void btnNoSeleccionar_Click(object sender, EventArgs e)
+        {
+            clienteSeleccionado = null;
+            this.DialogResult = DialogResult.OK;
         }
     }
 }

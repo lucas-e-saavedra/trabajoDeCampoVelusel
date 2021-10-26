@@ -30,6 +30,9 @@ namespace Servicios.BLL
         #endregion
 
         public void BlanquearClave(Guid guidUsuario) {
+            if (guidUsuario == GestorSesion.Current.usuarioActual.IdUsuario)
+                throw new Exception("No está permitido blanquear tu propia clave");
+
             string[] criterios = { "IdUsuario" };
             string[] valores = { guidUsuario.ToString() };
             Usuario unUsuario = FabricaDAL.Current.ObtenerRepositorioDeUsuarios().BuscarUno(criterios, valores);

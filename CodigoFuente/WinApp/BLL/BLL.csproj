@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="GestorClientes.cs" />
     <Compile Include="GestorFabricacion.cs" />
+    <Compile Include="GestorPedidos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

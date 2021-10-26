@@ -44,13 +44,17 @@ namespace WinApp.Fabricante
             this.inputReposo = new System.Windows.Forms.TextBox();
             this.lblReposo = new System.Windows.Forms.Label();
             this.grillaIngredientes = new System.Windows.Forms.DataGridView();
+            this.inputDescripcion = new System.Windows.Forms.TextBox();
+            this.lblDescripcion = new System.Windows.Forms.Label();
+            this.inputFotoUrl = new System.Windows.Forms.TextBox();
+            this.lblFotoUrl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grillaDisponibles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaIngredientes)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(157, 380);
+            this.btnCancelar.Location = new System.Drawing.Point(157, 445);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 11;
@@ -85,7 +89,7 @@ namespace WinApp.Fabricante
             // 
             // btnGrabar
             // 
-            this.btnGrabar.Location = new System.Drawing.Point(157, 351);
+            this.btnGrabar.Location = new System.Drawing.Point(157, 416);
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(75, 23);
             this.btnGrabar.TabIndex = 6;
@@ -160,7 +164,7 @@ namespace WinApp.Fabricante
             // 
             // inputReposo
             // 
-            this.inputReposo.Location = new System.Drawing.Point(18, 315);
+            this.inputReposo.Location = new System.Drawing.Point(15, 379);
             this.inputReposo.Name = "inputReposo";
             this.inputReposo.Size = new System.Drawing.Size(214, 20);
             this.inputReposo.TabIndex = 29;
@@ -168,7 +172,7 @@ namespace WinApp.Fabricante
             // lblReposo
             // 
             this.lblReposo.AutoSize = true;
-            this.lblReposo.Location = new System.Drawing.Point(15, 299);
+            this.lblReposo.Location = new System.Drawing.Point(12, 363);
             this.lblReposo.Name = "lblReposo";
             this.lblReposo.Size = new System.Drawing.Size(54, 13);
             this.lblReposo.TabIndex = 28;
@@ -185,11 +189,50 @@ namespace WinApp.Fabricante
             this.grillaIngredientes.TabIndex = 30;
             this.grillaIngredientes.SelectionChanged += new System.EventHandler(this.grillaIngredientes_SelectionChanged);
             // 
+            // inputDescripcion
+            // 
+            this.inputDescripcion.Location = new System.Drawing.Point(15, 315);
+            this.inputDescripcion.MaxLength = 999;
+            this.inputDescripcion.Multiline = true;
+            this.inputDescripcion.Name = "inputDescripcion";
+            this.inputDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.inputDescripcion.Size = new System.Drawing.Size(528, 45);
+            this.inputDescripcion.TabIndex = 32;
+            // 
+            // lblDescripcion
+            // 
+            this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Location = new System.Drawing.Point(12, 299);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(73, 13);
+            this.lblDescripcion.TabIndex = 31;
+            this.lblDescripcion.Text = "lblDescripcion";
+            // 
+            // inputFotoUrl
+            // 
+            this.inputFotoUrl.Location = new System.Drawing.Point(329, 379);
+            this.inputFotoUrl.Name = "inputFotoUrl";
+            this.inputFotoUrl.Size = new System.Drawing.Size(214, 20);
+            this.inputFotoUrl.TabIndex = 34;
+            // 
+            // lblFotoUrl
+            // 
+            this.lblFotoUrl.AutoSize = true;
+            this.lblFotoUrl.Location = new System.Drawing.Point(326, 363);
+            this.lblFotoUrl.Name = "lblFotoUrl";
+            this.lblFotoUrl.Size = new System.Drawing.Size(51, 13);
+            this.lblFotoUrl.TabIndex = 33;
+            this.lblFotoUrl.Text = "lblFotoUrl";
+            // 
             // FormProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 439);
+            this.ClientSize = new System.Drawing.Size(568, 474);
+            this.Controls.Add(this.inputFotoUrl);
+            this.Controls.Add(this.lblFotoUrl);
+            this.Controls.Add(this.inputDescripcion);
+            this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.grillaIngredientes);
             this.Controls.Add(this.inputReposo);
             this.Controls.Add(this.lblReposo);
@@ -233,5 +276,9 @@ namespace WinApp.Fabricante
         private System.Windows.Forms.TextBox inputReposo;
         private System.Windows.Forms.Label lblReposo;
         private System.Windows.Forms.DataGridView grillaIngredientes;
+        private System.Windows.Forms.TextBox inputDescripcion;
+        private System.Windows.Forms.Label lblDescripcion;
+        private System.Windows.Forms.TextBox inputFotoUrl;
+        private System.Windows.Forms.Label lblFotoUrl;
     }
 }

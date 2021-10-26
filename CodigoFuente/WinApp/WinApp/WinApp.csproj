@@ -79,6 +79,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vendedor\FormCatalogo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vendedor\FormCatalogo.Designer.cs">
+      <DependentUpon>FormCatalogo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vendedor\FormCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,18 @@
     </Compile>
     <Compile Include="Vendedor\FormClientes.Designer.cs">
       <DependentUpon>FormClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vendedor\FormPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vendedor\FormPedido.Designer.cs">
+      <DependentUpon>FormPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vendedor\FormPedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vendedor\FormPedidos.Designer.cs">
+      <DependentUpon>FormPedidos.cs</DependentUpon>
     </Compile>
     <Content Include="I18n\idioma.en">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -126,11 +144,20 @@
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vendedor\FormCatalogo.resx">
+      <DependentUpon>FormCatalogo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vendedor\FormCliente.resx">
       <DependentUpon>FormCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vendedor\FormClientes.resx">
       <DependentUpon>FormClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vendedor\FormPedido.resx">
+      <DependentUpon>FormPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vendedor\FormPedidos.resx">
+      <DependentUpon>FormPedidos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

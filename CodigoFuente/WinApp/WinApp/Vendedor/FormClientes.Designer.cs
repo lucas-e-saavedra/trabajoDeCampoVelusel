@@ -33,6 +33,8 @@ namespace WinApp.Vendedor
             this.btnHabilitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.grillaClientes = new System.Windows.Forms.DataGridView();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
+            this.btnNoSeleccionar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grillaClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,11 +78,33 @@ namespace WinApp.Vendedor
             this.grillaClientes.TabIndex = 7;
             this.grillaClientes.SelectionChanged += new System.EventHandler(this.grillaClientes_SelectionChanged);
             // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.Location = new System.Drawing.Point(22, 345);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(75, 23);
+            this.btnSeleccionar.TabIndex = 11;
+            this.btnSeleccionar.Text = "btnSeleccionar";
+            this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            // 
+            // btnNoSeleccionar
+            // 
+            this.btnNoSeleccionar.Location = new System.Drawing.Point(103, 345);
+            this.btnNoSeleccionar.Name = "btnNoSeleccionar";
+            this.btnNoSeleccionar.Size = new System.Drawing.Size(75, 23);
+            this.btnNoSeleccionar.TabIndex = 12;
+            this.btnNoSeleccionar.Text = "btnNoSeleccionar";
+            this.btnNoSeleccionar.UseVisualStyleBackColor = true;
+            this.btnNoSeleccionar.Click += new System.EventHandler(this.btnNoSeleccionar_Click);
+            // 
             // FormClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnNoSeleccionar);
+            this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnHabilitar);
             this.Controls.Add(this.btnAgregar);
@@ -100,5 +124,7 @@ namespace WinApp.Vendedor
         private System.Windows.Forms.Button btnHabilitar;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.DataGridView grillaClientes;
+        private System.Windows.Forms.Button btnSeleccionar;
+        private System.Windows.Forms.Button btnNoSeleccionar;
     }
 }
