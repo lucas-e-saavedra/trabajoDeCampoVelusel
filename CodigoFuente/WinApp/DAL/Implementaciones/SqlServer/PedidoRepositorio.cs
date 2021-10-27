@@ -28,7 +28,6 @@ namespace DAL.Implementaciones.SqlServer
         private string UpdateStatement
         {
             get => "UPDATE [dbo].[Pedido] SET Estado = @Estado, IdSolicitante = @IdSolicitante, IdVendedor= @IdVendedor WHERE Id = @Id";
-
         }
         private string SelectOneStatement
         {
@@ -107,7 +106,7 @@ namespace DAL.Implementaciones.SqlServer
                 return null;
             } catch (Exception ex) {
                 ex.RegistrarError();
-                throw new Exception("Hubo un problema al buscar un producto");
+                throw new Exception("Hubo un problema al buscar un pedido");
             }
         }
 
@@ -140,14 +139,21 @@ namespace DAL.Implementaciones.SqlServer
 
             try
             {
+                Guid idSolicitante = Guid.Empty;
+                if (unObjeto.Solicitante?.Id != null)
+                    idSolicitante = unObjeto.Solicitante.Id;
                 SqlHelper sqlHelper = new SqlHelper(connectionString);
                 SqlParameter[] sqlParams = new SqlParameter[] {
                     new SqlParameter("@Id", unObjeto.Id),
                     new SqlParameter("@Estado", unObjeto.Estado.ToString()),
-                    new SqlParameter("@IdSolicitante", unObjeto.Solicitante.Id),
+                    new SqlParameter("@IdSolicitante", idSolicitante),
                     new SqlParameter("@IdVendedor", unObjeto.Vendedor.IdUsuario) };
-                sqlHelper.ExecuteNonQuery(UpdateStatement, System.Data.CommandType.Text, sqlParams);
 
+                if (idSolicitante == Guid.Empty)
+                    sqlParams[2] = new SqlParameter("@IdSolicitante", DBNull.Value);
+                    
+                sqlHelper.ExecuteNonQuery(UpdateStatement, System.Data.CommandType.Text, sqlParams);
+                
                 FabricaDAL.Current.ObtenerPedidoProductoRelacion().DesvincularHijos(unObjeto);
                 unObjeto.Detalle.ForEach(unHijo => {
                     FabricaDAL.Current.ObtenerPedidoProductoRelacion().Unir(unObjeto, unHijo);

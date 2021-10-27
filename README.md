@@ -12,19 +12,19 @@ CU.CLI.04 - Listar Clientes (faltan filtros en la busqueda)
 
 CU.PED.01 - Consultar Catálogo (falta mostrar las imagenes)
 CU.PED.02 - Registrar Pedido (listo)
-CU.PED.03 - Cancelar Pedido
+CU.PED.03 - Cancelar Pedido (listo)
 CU.PED.04 - Cerrar Pedido
 CU.PED.05 - Listar Pedidos
 CU.PED.06 - Consultar Detalle del Pedido
 
 CU.FAB.01 - Registrar nuevo Producto (mejorar visualización)
 CU.FAB.02 - Modificar Producto (mejorar visualización)
-CU.FAB.03 - Procesar Pedido
+CU.FAB.03 - Procesar Pedido (mejorar visualización)
 CU.FAB.04 - Comenzar Fabricación
 CU.FAB.05 - Cerrar fabricación
 CU.FAB.06 - Terminar Productos
 
-CU.COM.01 - Crear Orden de Compra
+CU.COM.01 - Crear Orden de Compra (prox a implementar)
 CU.COM.02 - Consultar Órdenes de Compra
 CU.COM.03 - Actualizar Orden de Compra
 CU.COM.04 - Calcular materiales faltantes
@@ -54,7 +54,7 @@ CU.Arq.005 Validar integridad (pendiente de definición)
 CU.Arq.006 Guardar Errores (listo)
 CU.Arq.007 Ver Errores (mejorar visualización)
 
-TOTAL CU: 42 listos(19) mejorar visualizacion(5)
+TOTAL CU: 42 listos(20) mejorar visualizacion(6)
 
 
 validar integridad

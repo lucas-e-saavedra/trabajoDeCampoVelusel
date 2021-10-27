@@ -59,5 +59,9 @@ namespace DAL
         {
             return new Implementaciones.SqlServer.PedidoProductoRelacion(bbddVelusel);
         }
+        public IRepositorioGenerico<OrdenDeFabricacion> ObtenerRepositorioDeOrdenesDeFabricacion()
+        {
+            return new Implementaciones.SqlServer.OrdenDeFabricacionRepositorio(bbddVelusel);
+        }
     }
 }

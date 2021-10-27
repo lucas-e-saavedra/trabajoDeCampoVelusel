@@ -28,8 +28,30 @@ namespace BLL
         {
             //Implent here the initialization of your singleton
         }
+        //TODO: este metodo falta en el enterprise architect
+        public void AgendarPedido(Pedido unPedido)
+        {
+            if (unPedido.Estado != Pedido.EnumEstadoPedido.FORMULADO)
+                throw new Exception("No está permitido agendar un pedido en este estado");
 
-        public void CancelarPedido(Pedido unPedido) { 
+            Usuario usuario = GestorSesion.Current.usuarioActual;
+            unPedido.Estado = Pedido.EnumEstadoPedido.PLANIFICADO;
+
+            FabricaDAL.Current.ObtenerRepositorioDePedidos().Modificar(unPedido);
+            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} canceló el pedido {unPedido.Id}");
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
+        }
+        public void CancelarPedido(Pedido unPedido) {
+            if (unPedido.Estado != Pedido.EnumEstadoPedido.FORMULADO
+                && unPedido.Estado != Pedido.EnumEstadoPedido.PLANIFICADO)
+                throw new Exception("No está permitido cancelar un pedido en este estado");
+
+            Usuario usuario = GestorSesion.Current.usuarioActual;
+            unPedido.Estado = Pedido.EnumEstadoPedido.CANCELADO;
+
+            FabricaDAL.Current.ObtenerRepositorioDePedidos().Modificar(unPedido);
+            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} canceló el pedido {unPedido.Id}");
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
         public void CerrarPedido(Pedido unPedido)
         {
@@ -43,7 +65,9 @@ namespace BLL
         public IEnumerable<Pedido> ListarPedidos() {
             return FabricaDAL.Current.ObtenerRepositorioDePedidos().Listar();
         }
-        public IEnumerable<Pedido> ListarPedidos2() { return null; }
+        public IEnumerable<Pedido> ListarPedidos(Pedido.EnumEstadoPedido estadoPedido) {
+            return FabricaDAL.Current.ObtenerRepositorioDePedidos().Listar().Where(item => item.Estado == estadoPedido).ToList();
+        }
         public void RegistrarPedido(Pedido unPedido)
         {
             if(unPedido.Detalle.Count==0 || unPedido.Detalle.Max(item => item.Cantidad) == 0)

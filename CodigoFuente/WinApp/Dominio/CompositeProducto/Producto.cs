@@ -18,6 +18,10 @@ namespace Dominio.CompositeProducto
 			plantillaDeFabricacion.IdPlantilla = Guid.NewGuid();
 		}
 
+		public Producto Copiar() {
+			return (Producto)this.MemberwiseClone();
+		}
+
 		public Producto(PlantillaDeFabricacion receta)
 		{
 			plantillaDeFabricacion = receta;
