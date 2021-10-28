@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Dominio.OrdenDeCompra;
 
 namespace BLL
 {
@@ -47,8 +48,8 @@ namespace BLL
         }
         public List<Material> CalcularMaterialesComprados(DateTime desde, DateTime hasta) {
             //TODO: el estado todavía no lo puedo filtrar por ahora puse las no canceladas
-            List<OrdenDeCompra> todas = FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeCompra().Listar().ToList();
-            List<OrdenDeCompra> compradas = todas.Where(item => item.Estado != OrdenDeCompra.EnumEstadoOrdenCompra.CANCELADO).ToList();
+            List<OrdenDeCompra> todas = ConsultarOrdenesDeCompra();
+            List<OrdenDeCompra> compradas = todas.Where(item => item.Estado != EnumEstadoOrdenCompra.CANCELADO).ToList();
             List<OrdenDeCompra> enFecha = todas.Where(item => item.FechaObjetivo >= desde && item.FechaObjetivo < hasta).ToList();
             List<OrdenDeCompra> fechaYestado = compradas.Intersect(enFecha).ToList();
             return CalcularMaterialesComprados(fechaYestado);
@@ -108,8 +109,20 @@ namespace BLL
             }
             return materiales;
         }
-        public void ComprarOrdenDeComprar(OrdenDeCompra unaOrdenDeCompra) { }
-        public IEnumerable<OrdenDeCompra> ConsultarOrdenesDeCompra() { return null; }
+        public void ComprarOrdenDeComprar(OrdenDeCompra unaOrdenDeCompra) {
+            if(unaOrdenDeCompra.Comprados.Cantidad < unaOrdenDeCompra.Objetivo.Cantidad)
+                throw new Exception("No está permitido registrar una compra por menos cantidad de la solicitada");
+            unaOrdenDeCompra.Estado = EnumEstadoOrdenCompra.COMPRADO;
+
+            Usuario usuario = GestorSesion.Current.usuarioActual;
+            FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeCompra().Modificar(unaOrdenDeCompra);
+            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} concretó la compra solicitada en la orden de compra {unaOrdenDeCompra.Id}");
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
+        }
+        public List<OrdenDeCompra> ConsultarOrdenesDeCompra() {
+            List<OrdenDeCompra> todas = FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeCompra().Listar().ToList();
+            return todas.Where(item => item.Estado == EnumEstadoOrdenCompra.FORMULADO || item.Estado == EnumEstadoOrdenCompra.COMPRADO).ToList();
+        }
         public void CrearOrdenDeCompra(OrdenDeCompra unaOrdenDeCompra) {
             if (unaOrdenDeCompra.Objetivo == null || unaOrdenDeCompra.Objetivo.Id == Guid.Empty)
                 throw new Exception("No está permitido crear una orden de compra sin un material");
@@ -117,7 +130,7 @@ namespace BLL
                 throw new Exception("No está permitido crear una orden de compra de cantidad cero");
 
             Usuario usuario = GestorSesion.Current.usuarioActual;
-            unaOrdenDeCompra.Estado = OrdenDeCompra.EnumEstadoOrdenCompra.FORMULADO;
+            unaOrdenDeCompra.Estado = EnumEstadoOrdenCompra.FORMULADO;
             unaOrdenDeCompra.solicitante = usuario;
 
             FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeCompra().Agregar(unaOrdenDeCompra);
@@ -131,14 +144,48 @@ namespace BLL
 
             return unaOrdenDeCompra;
         }
-        public void GrabarOrdenesDeCompraSugeridas(IEnumerable<OrdenDeCompra> ordenesDeCompra) {
+        public void GrabarOrdenesDeCompraSugeridas(DateTime desde, IEnumerable<OrdenDeCompra> ordenesDeCompra) {
             if (ordenesDeCompra.Any(item => item.FechaObjetivo < DateTime.Today))
                 throw new Exception("No está permitido crear ordenes de compra con fecha anterior a hoy");
+            if (ordenesDeCompra.Any(item => item.FechaObjetivo >= desde))
+                throw new Exception("Todas las ordenes de compra deben tener como objetivo fechas que sean anteriores al inicio del intervalo que se está analizando");
             foreach (OrdenDeCompra unaOrdenDeCompra in ordenesDeCompra){
-                BLL.GestorCompras.Current.CrearOrdenDeCompra(unaOrdenDeCompra);
+                CrearOrdenDeCompra(unaOrdenDeCompra);
             }
         }
-        public void RecibirOrdenDeCompra(OrdenDeCompra unaOrdenDeCompra) { }
-        public void RevertirOrdenDeCompra(OrdenDeCompra unaOrdenDeCompra) { }
+        public void RecibirOrdenDeCompra(OrdenDeCompra unaOrdenDeCompra) {
+            unaOrdenDeCompra.Estado = EnumEstadoOrdenCompra.RECIBIDO;
+            Usuario usuario = GestorSesion.Current.usuarioActual;
+            FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeCompra().Modificar(unaOrdenDeCompra);
+            GestorStock.Current.ActualizarStock(unaOrdenDeCompra.Recibidos);
+
+            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} recibió los materiales solicitados en la orden de compra {unaOrdenDeCompra.Id}");
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
+        }
+        public void RevertirOrdenDeCompra(OrdenDeCompra unaOrdenDeCompra) {
+            EnumEstadoOrdenCompra estadoAnterior = unaOrdenDeCompra.Estado;
+            switch (unaOrdenDeCompra.Estado){
+                case EnumEstadoOrdenCompra.CANCELADO:
+                    throw new Exception("No se puede revertir una orden de compra que ya se encuentra cancelada");
+                case EnumEstadoOrdenCompra.FORMULADO:
+                    unaOrdenDeCompra.Estado = EnumEstadoOrdenCompra.CANCELADO;                    
+                    break;
+                case EnumEstadoOrdenCompra.COMPRADO:
+                    unaOrdenDeCompra.Estado = EnumEstadoOrdenCompra.FORMULADO;
+                    break;
+                case EnumEstadoOrdenCompra.RECIBIDO:
+                    throw new Exception("No se puede revertir una orden de compra que ya se encuentra recibida");
+            }
+            unaOrdenDeCompra.FechaEstimadaRecepcion = DateTime.MinValue;
+            unaOrdenDeCompra.Comprados.Cantidad = 0;
+            unaOrdenDeCompra.FechaRealRecepcion = DateTime.MinValue;
+            unaOrdenDeCompra.Recibidos.Cantidad = 0;
+
+            Usuario usuario = GestorSesion.Current.usuarioActual;
+            
+            FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeCompra().Modificar(unaOrdenDeCompra);
+            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} revirtió la orden de compra {unaOrdenDeCompra.Id} de {estadoAnterior} a {unaOrdenDeCompra.Estado}");
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
+        }
     }
 }

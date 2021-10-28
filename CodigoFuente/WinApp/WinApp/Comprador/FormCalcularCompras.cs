@@ -1,6 +1,7 @@
 ﻿using Dominio;
 using Dominio.CompositeProducto;
 using Servicios.BLL;
+using Servicios.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,10 +42,14 @@ namespace WinApp.Comprador
         private void timeDesde_ValueChanged(object sender, EventArgs e)
         {
             timeHasta.MinDate = timeDesde.Value;
+            actualizarGrillaMateriales();
         }
 
         private void timeHasta_ValueChanged(object sender, EventArgs e)
         {
+            actualizarGrillaMateriales();
+        }
+        private void actualizarGrillaMateriales() {
             grillaMateriales.DataSource = null;
             IEnumerable<Material> materiales = BLL.GestorCompras.Current.CalcularMaterialesNecesarios(timeDesde.Value, timeHasta.Value);
             grillaMateriales.DataSource = materiales;
@@ -112,12 +117,16 @@ namespace WinApp.Comprador
 
         private void btnGrabarOrdenes_Click(object sender, EventArgs e)
         {
-            List<OrdenDeCompra> compras = (List<OrdenDeCompra>)grillaCompras.DataSource;
-            BLL.GestorCompras.Current.GrabarOrdenesDeCompraSugeridas(compras);
+            try {
+                List<OrdenDeCompra> compras = (List<OrdenDeCompra>)grillaCompras.DataSource;
+                BLL.GestorCompras.Current.GrabarOrdenesDeCompraSugeridas(timeDesde.Value, compras);
 
-            grillaCompras.DataSource = null;
-            grillaCompras.DataSource = new List<OrdenDeCompra>();
-            timeHasta_ValueChanged(sender, e);
+                grillaCompras.DataSource = null;
+                grillaCompras.DataSource = new List<OrdenDeCompra>();
+                actualizarGrillaMateriales();
+            } catch (Exception ex){
+                ex.MostrarEnAlert();
+            }
         }
     }
 }

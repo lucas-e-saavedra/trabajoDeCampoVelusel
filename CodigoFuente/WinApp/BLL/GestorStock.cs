@@ -36,10 +36,15 @@ namespace BLL
         }
 
         public void ActualizarStock(ProductoMaterial diferencia) {
-            ProductoMaterial unProductoMaterial = unAlmacen.Stock.First(item => item.Id == diferencia.Id);
-            unProductoMaterial.Cantidad += diferencia.Cantidad;
-            if(unProductoMaterial.Cantidad < 0){
-                throw new Exception("No es posible tener stock negativo");
+            ProductoMaterial unProductoMaterial = unAlmacen.Stock.FirstOrDefault(item => item.Id == diferencia.Id);
+            if (unProductoMaterial != null) {
+                unProductoMaterial.Cantidad += diferencia.Cantidad;
+                if (unProductoMaterial.Cantidad < 0)
+                    throw new Exception("No es posible tener stock negativo");
+            } else {
+                if (diferencia.Cantidad < 0)
+                    throw new Exception("No es posible tener stock negativo");
+                unAlmacen.Stock.Add(diferencia);
             }
             FabricaDAL.Current.ObtenerRepositorioDeAlmacenes().Modificar(unAlmacen);
         }

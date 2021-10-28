@@ -25,12 +25,12 @@ CU.FAB.05 - Cerrar fabricación
 CU.FAB.06 - Terminar Productos
 
 CU.COM.01 - Crear Orden de Compra (listo) falta documentar en el enterprise architect
-CU.COM.02 - Consultar Órdenes de Compra
-CU.COM.03 - Actualizar Orden de Compra
+CU.COM.02 - Consultar Órdenes de Compra (listo)
+CU.COM.03 - Actualizar Orden de Compra (listo)
 CU.COM.04 - Calcular materiales faltantes (listo)
 
 CU.STO.01 - Configurar alertas
-CU.STO.02 - Actualizar Stock (falta probarlo)
+CU.STO.02 - Actualizar Stock (listo)
 CU.STO.03 - Disparar alertas
 
 CU.NOF.01 – Crear Usuario (listo)
@@ -54,7 +54,7 @@ CU.Arq.005 Validar integridad (pendiente de definición)
 CU.Arq.006 Guardar Errores (listo)
 CU.Arq.007 Ver Errores (mejorar visualización)
 
-TOTAL CU: 42 listos(22) mejorar visualizacion(6)
+TOTAL CU: 42 listos(25) mejorar visualizacion(6)
 
 
 validar integridad

@@ -53,6 +53,18 @@
     <Compile Include="Comprador\FormCalcularCompras.Designer.cs">
       <DependentUpon>FormCalcularCompras.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprador\FormOrdenDeCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprador\FormOrdenDeCompra.Designer.cs">
+      <DependentUpon>FormOrdenDeCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comprador\FormOrdenesDeCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprador\FormOrdenesDeCompra.Designer.cs">
+      <DependentUpon>FormOrdenesDeCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fabricante\FormAnalizarPedidos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +155,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Comprador\FormCalcularCompras.resx">
       <DependentUpon>FormCalcularCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprador\FormOrdenDeCompra.resx">
+      <DependentUpon>FormOrdenDeCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprador\FormOrdenesDeCompra.resx">
+      <DependentUpon>FormOrdenesDeCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fabricante\FormAnalizarPedidos.resx">
       <DependentUpon>FormAnalizarPedidos.cs</DependentUpon>
