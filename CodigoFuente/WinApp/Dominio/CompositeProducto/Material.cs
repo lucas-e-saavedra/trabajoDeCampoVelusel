@@ -10,6 +10,10 @@ namespace Dominio.CompositeProducto
 		{
 
 		}
+		public Material Copiar()
+		{
+			return (Material)this.MemberwiseClone();
+		}
 
 		/// 
 		/// <param name="component"></param>

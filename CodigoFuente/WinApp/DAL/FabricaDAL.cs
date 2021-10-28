@@ -1,6 +1,4 @@
-﻿using Servicios.Domain;
-using Servicios.Domain.CompositeSeguridad;
-using System.Configuration;
+﻿using System.Configuration;
 using Servicios.DAL.Contratos;
 using Dominio.CompositeProducto;
 using Dominio;
@@ -63,5 +61,23 @@ namespace DAL
         {
             return new Implementaciones.SqlServer.OrdenDeFabricacionRepositorio(bbddVelusel);
         }
+        public IRepositorioGenerico<OrdenDeCompra> ObtenerRepositorioDeOrdenesDeCompra()
+        {
+            return new Implementaciones.SqlServer.OrdenDeCompraRepositorio(bbddVelusel);
+        }
+
+        public IRepositorioGenerico<Almacen> ObtenerRepositorioDeAlmacenes()
+        {
+            return new Implementaciones.SqlServer.AlmacenRepositorio(bbddVelusel);
+        }
+        public IRelacionGenerica<Almacen, Producto> ObtenerAlmacenProductoRelacion()
+        {
+            return new Implementaciones.SqlServer.AlmacenProductoRelacion(bbddVelusel);
+        }
+        public IRelacionGenerica<Almacen, Material> ObtenerAlmacenMaterialRelacion()
+        {
+            return new Implementaciones.SqlServer.AlmacenMaterialRelacion(bbddVelusel);
+        }
+
     }
 }

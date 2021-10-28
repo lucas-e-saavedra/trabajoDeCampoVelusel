@@ -8,7 +8,7 @@
 CU.CLI.01 - Alta de Cliente (listo)
 CU.CLI.02 - Modificación de Cliente (listo)
 CU.CLI.03 - Habilitar/Deshabilitar Cliente (listo)
-CU.CLI.04 - Listar Clientes (faltan filtros en la busqueda)
+CU.CLI.04 - Listar Clientes (mejorar visualización)
 
 CU.PED.01 - Consultar Catálogo (falta mostrar las imagenes)
 CU.PED.02 - Registrar Pedido (listo)
@@ -24,13 +24,13 @@ CU.FAB.04 - Comenzar Fabricación
 CU.FAB.05 - Cerrar fabricación
 CU.FAB.06 - Terminar Productos
 
-CU.COM.01 - Crear Orden de Compra (prox a implementar)
+CU.COM.01 - Crear Orden de Compra (listo) falta documentar en el enterprise architect
 CU.COM.02 - Consultar Órdenes de Compra
 CU.COM.03 - Actualizar Orden de Compra
-CU.COM.04 - Calcular materiales faltantes
+CU.COM.04 - Calcular materiales faltantes (listo)
 
 CU.STO.01 - Configurar alertas
-CU.STO.02 - Actualizar Stock
+CU.STO.02 - Actualizar Stock (falta probarlo)
 CU.STO.03 - Disparar alertas
 
 CU.NOF.01 – Crear Usuario (listo)
@@ -54,7 +54,7 @@ CU.Arq.005 Validar integridad (pendiente de definición)
 CU.Arq.006 Guardar Errores (listo)
 CU.Arq.007 Ver Errores (mejorar visualización)
 
-TOTAL CU: 42 listos(20) mejorar visualizacion(6)
+TOTAL CU: 42 listos(22) mejorar visualizacion(6)
 
 
 validar integridad
