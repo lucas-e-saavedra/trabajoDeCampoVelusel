@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Dominio.OrdenDeFabricacion;
 
 namespace BLL
 {
@@ -49,9 +50,35 @@ namespace BLL
         }
         public void CerrarFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion)
         {
+            //TODO: aqui falta agregar las acciones cuando la cantidad fabricada es distinto del objetivo
+            unaOrdenDeFabricacion.Estado = EnumEstadoOrdenFabricacion.FABRICADO;
+            FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Modificar(unaOrdenDeFabricacion);
+            Usuario usuario = GestorSesion.Current.usuarioActual;
+            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} terminó de fabricar la orden de fabricacion {unaOrdenDeFabricacion.Id}");
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
         public void ComenzarFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion)
         {
+            List<ProductoMaterial> stock = GestorStock.Current.ObtenerMaterialesActuales();
+            foreach (ProductoMaterial unIngrediente in unaOrdenDeFabricacion.Objetivo.plantillaDeFabricacion.Ingredientes) {
+                ProductoMaterial tmp = unIngrediente.Copiar();
+                tmp.Cantidad = unIngrediente.Cantidad * unaOrdenDeFabricacion.Objetivo.Cantidad;
+                ProductoMaterial itemStock = stock.FirstOrDefault(item => item.Id == tmp.Id);
+                if (itemStock == null || itemStock.Cantidad < tmp.Cantidad)
+                    throw new Exception($"No hay suficiente stock de {tmp}");
+            }
+            unaOrdenDeFabricacion.Estado = EnumEstadoOrdenFabricacion.ENFABRICACION;
+            FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Modificar(unaOrdenDeFabricacion);
+
+            foreach (ProductoMaterial unIngrediente in unaOrdenDeFabricacion.Objetivo.plantillaDeFabricacion.Ingredientes)
+            {
+                ProductoMaterial tmp = unIngrediente.Copiar();
+                tmp.Cantidad = (-1) * unIngrediente.Cantidad * unaOrdenDeFabricacion.Objetivo.Cantidad;
+                GestorStock.Current.ActualizarStock(tmp);                
+            }
+            Usuario usuario = GestorSesion.Current.usuarioActual;
+            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} comenzó a fabricar la orden de fabricacion {unaOrdenDeFabricacion.Id}");
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
         //TODO: este metodo falta agregarlo al enterprise architect
         private void CrearOrdenesDeFabricacion(List<OrdenDeFabricacion> ofs, Pedido unPedido, Producto unProducto, OrdenDeFabricacion ofPosterior)
@@ -157,11 +184,36 @@ namespace BLL
         }
         public bool VerificarAvancePedido(Pedido unPedido)
         {
+            IEnumerable<OrdenDeFabricacion> todas = FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Listar();
+            List<OrdenDeFabricacion> ofPedido = todas.Where(item => item.pedido.Id == unPedido.Id).ToList();
+            bool todasTerminadas = ofPedido.All(item => item.Estado == EnumEstadoOrdenFabricacion.TERMINADO);
+
+            /*List<Producto> productos = new List<Producto>();
+            foreach(OrdenDeFabricacion of in ofPedido){
+                Producto unProducto = productos.FirstOrDefault(item => item.Id == of.Aprobados.Id);
+                if (unProducto == null)
+                    productos.Add(unProducto);
+                else
+                    unProducto.Cantidad += of.Aprobados.Cantidad;
+            }
+
+            bool totalProductos = unPedido.Detalle == productos;*/
+
+            GestorPedidos.Current.CompletarPedido(unPedido);
             return false;
         }
         public bool VerificarFinOrdenDeFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion)
         {
-            return false;
+            List<ProductoMaterial> stock = GestorStock.Current.ObtenerMaterialesActuales();
+            GestorStock.Current.ActualizarStock(unaOrdenDeFabricacion.Aprobados);
+            //TODO: aqui falta agregar las acciones cuando la cantidad fabricada es distinto del objetivo
+            unaOrdenDeFabricacion.Estado = EnumEstadoOrdenFabricacion.TERMINADO;
+            FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Modificar(unaOrdenDeFabricacion);
+            Usuario usuario = GestorSesion.Current.usuarioActual;
+            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} finalizó la orden de fabricacion {unaOrdenDeFabricacion.Id} y agregó {unaOrdenDeFabricacion.Aprobados.Cantidad} {unaOrdenDeFabricacion.Aprobados} al inventario");
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
+
+            return VerificarAvancePedido(unaOrdenDeFabricacion.pedido);
         }
 
     }

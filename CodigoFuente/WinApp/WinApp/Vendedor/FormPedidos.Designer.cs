@@ -31,6 +31,7 @@ namespace WinApp.Vendedor
         {
             this.grillaPedidos = new System.Windows.Forms.DataGridView();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grillaPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,11 +55,22 @@ namespace WinApp.Vendedor
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Location = new System.Drawing.Point(94, 232);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(75, 23);
+            this.btnCerrar.TabIndex = 10;
+            this.btnCerrar.Text = "btnCerrar";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
             // FormPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grillaPedidos);
             this.Name = "FormPedidos";
@@ -74,5 +86,6 @@ namespace WinApp.Vendedor
 
         private System.Windows.Forms.DataGridView grillaPedidos;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnCerrar;
     }
 }

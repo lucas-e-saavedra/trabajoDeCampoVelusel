@@ -132,6 +132,7 @@ namespace DAL.Implementaciones.SqlServer
                 sqlHelper.ExecuteNonQuery(UpdateStatement, System.Data.CommandType.Text, sqlParams);
 
                 FabricaDAL.Current.ObtenerAlmacenProductoRelacion().DesvincularHijos(unObjeto);
+                FabricaDAL.Current.ObtenerAlmacenMaterialRelacion().DesvincularHijos(unObjeto);
                 unObjeto.Stock.ForEach(unHijo => {
                     if (unHijo is Producto)
                         FabricaDAL.Current.ObtenerAlmacenProductoRelacion().Unir(unObjeto, (Producto)unHijo);

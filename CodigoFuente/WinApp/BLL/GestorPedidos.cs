@@ -53,8 +53,26 @@ namespace BLL
             Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} canceló el pedido {unPedido.Id}");
             GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
-        public void CerrarPedido(Pedido unPedido)
+        public void CompletarPedido(Pedido unPedido)
         {
+            if (unPedido.Estado != Pedido.EnumEstadoPedido.PLANIFICADO)
+                throw new Exception("No está permitido cerrar un pedido en este estado");
+
+            unPedido.Estado = Pedido.EnumEstadoPedido.LISTO;
+            FabricaDAL.Current.ObtenerRepositorioDePedidos().Modificar(unPedido);
+        }
+        public void EntregarPedido(Pedido unPedido)
+        {
+
+            if (unPedido.Estado != Pedido.EnumEstadoPedido.LISTO)
+                throw new Exception("No está permitido cerrar un pedido en este estado");
+
+            unPedido.Estado = Pedido.EnumEstadoPedido.CERRADO;
+            
+            Usuario usuario = GestorSesion.Current.usuarioActual;
+            FabricaDAL.Current.ObtenerRepositorioDePedidos().Modificar(unPedido);
+            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} canceló el pedido {unPedido.Id}");
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
         public IEnumerable<Producto> ConsultarCatalogo() {
             List<Producto> productos = BLL.GestorFabricacion.Current.ListarProductos().ToList();

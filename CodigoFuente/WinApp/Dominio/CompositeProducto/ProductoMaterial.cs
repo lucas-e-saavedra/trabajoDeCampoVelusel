@@ -20,7 +20,10 @@ namespace Dominio.CompositeProducto
 		{
 
 		}
-
+		public ProductoMaterial Copiar()
+		{
+			return (ProductoMaterial)this.MemberwiseClone();
+		}
 		/// 
 		/// <param name="component"></param>
 		public abstract void Agregar(ProductoMaterial component);

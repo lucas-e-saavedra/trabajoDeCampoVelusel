@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinApp.Fabricante
+namespace WinApp.Diseniador
 {
     public partial class FormMaterial : Form, IIdiomasObservador
     {

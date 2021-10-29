@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace WinApp.Fabricante
+namespace WinApp.Diseniador
 {
     public partial class FormProducto : Form, IIdiomasObservador
     {

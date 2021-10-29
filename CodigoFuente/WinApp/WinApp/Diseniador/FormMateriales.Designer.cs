@@ -1,5 +1,5 @@
 ﻿
-namespace WinApp.Fabricante
+namespace WinApp.Diseniador
 {
     partial class FormMateriales
     {

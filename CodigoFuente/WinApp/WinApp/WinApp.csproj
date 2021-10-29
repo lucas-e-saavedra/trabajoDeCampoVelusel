@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -71,29 +72,41 @@
     <Compile Include="Fabricante\FormAnalizarPedidos.Designer.cs">
       <DependentUpon>FormAnalizarPedidos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fabricante\FormProducto.cs">
+    <Compile Include="Diseniador\FormProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fabricante\FormProducto.Designer.cs">
+    <Compile Include="Diseniador\FormProducto.Designer.cs">
       <DependentUpon>FormProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fabricante\FormMaterial.cs">
+    <Compile Include="Diseniador\FormMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fabricante\FormMaterial.Designer.cs">
+    <Compile Include="Diseniador\FormMaterial.Designer.cs">
       <DependentUpon>FormMaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fabricante\FormMateriales.cs">
+    <Compile Include="Diseniador\FormMateriales.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fabricante\FormMateriales.Designer.cs">
+    <Compile Include="Diseniador\FormMateriales.Designer.cs">
       <DependentUpon>FormMateriales.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fabricante\FormProductos.cs">
+    <Compile Include="Diseniador\FormProductos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fabricante\FormProductos.Designer.cs">
+    <Compile Include="Diseniador\FormProductos.Designer.cs">
       <DependentUpon>FormProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fabricante\FormOrdenDeFabricacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fabricante\FormOrdenDeFabricacion.Designer.cs">
+      <DependentUpon>FormOrdenDeFabricacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fabricante\FormOrdenesDeFabricacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fabricante\FormOrdenesDeFabricacion.Designer.cs">
+      <DependentUpon>FormOrdenesDeFabricacion.cs</DependentUpon>
     </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
@@ -165,17 +178,23 @@
     <EmbeddedResource Include="Fabricante\FormAnalizarPedidos.resx">
       <DependentUpon>FormAnalizarPedidos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fabricante\FormProducto.resx">
+    <EmbeddedResource Include="Diseniador\FormProducto.resx">
       <DependentUpon>FormProducto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fabricante\FormMaterial.resx">
+    <EmbeddedResource Include="Diseniador\FormMaterial.resx">
       <DependentUpon>FormMaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fabricante\FormMateriales.resx">
+    <EmbeddedResource Include="Diseniador\FormMateriales.resx">
       <DependentUpon>FormMateriales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fabricante\FormProductos.resx">
+    <EmbeddedResource Include="Diseniador\FormProductos.resx">
       <DependentUpon>FormProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fabricante\FormOrdenDeFabricacion.resx">
+      <DependentUpon>FormOrdenDeFabricacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fabricante\FormOrdenesDeFabricacion.resx">
+      <DependentUpon>FormOrdenesDeFabricacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>

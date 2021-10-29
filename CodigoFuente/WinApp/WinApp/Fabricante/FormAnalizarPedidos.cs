@@ -73,9 +73,10 @@ namespace WinApp.Fabricante
 
             IEnumerable<OrdenDeFabricacion> ordenes = (IEnumerable<OrdenDeFabricacion>)grillaOrdenesFabricacion.DataSource;
             bool resultado = BLL.GestorFabricacion.Current.VerificarDependenciaOrdenesDeFabricacion(ordenes);
-            if (resultado)
-                grillaPedidos.DataSource = BLL.GestorPedidos.Current.ListarPedidos(Pedido.EnumEstadoPedido.FORMULADO);
-            else
+            if (resultado) {
+                grillaOrdenesFabricacion.DataSource = null;
+                grillaPedidos.DataSource = BLL.GestorPedidos.Current.ListarPedidos(Pedido.EnumEstadoPedido.FORMULADO);                
+            } else
                 MessageBox.Show($"resultado: {resultado}");
         }
     }

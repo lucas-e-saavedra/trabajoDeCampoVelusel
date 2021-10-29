@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using static Dominio.Pedido;
 
 namespace WinApp.Vendedor
 {
@@ -21,8 +22,8 @@ namespace WinApp.Vendedor
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
             grillaPedidos.DataSource = BLL.GestorPedidos.Current.ListarPedidos();
-
-
+            btnCancelar.Enabled = false;
+            btnCerrar.Enabled = false;
         }
         private void FormPedidos_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -41,6 +42,8 @@ namespace WinApp.Vendedor
                 int index = grillaPedidos.SelectedRows[0].Index;
                 IEnumerable<Pedido> pedidos = (IEnumerable<Pedido>)grillaPedidos.DataSource;
                 pedidoSeleccionado = pedidos.ElementAt(index);
+                btnCancelar.Enabled = pedidoSeleccionado.Estado == EnumEstadoPedido.FORMULADO || pedidoSeleccionado.Estado == EnumEstadoPedido.PLANIFICADO;
+                btnCerrar.Enabled = pedidoSeleccionado.Estado == EnumEstadoPedido.LISTO;
             }
         }
 
@@ -48,6 +51,15 @@ namespace WinApp.Vendedor
         {
             try {
                 BLL.GestorPedidos.Current.CancelarPedido(pedidoSeleccionado);
+            } catch (Exception ex) {
+                ex.MostrarEnAlert();
+            }
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            try {
+                BLL.GestorPedidos.Current.EntregarPedido(pedidoSeleccionado);
             } catch (Exception ex) {
                 ex.MostrarEnAlert();
             }
