@@ -94,7 +94,9 @@ namespace BLL
         }
         public void RegistrarPedido(Pedido unPedido)
         {
-            if(unPedido.Detalle.Count==0 || unPedido.Detalle.Max(item => item.Cantidad) == 0)
+            if (unPedido.Solicitante != null && !unPedido.Solicitante.Habilitado)
+                throw new Exception("El cliente seleccionado no está habilitado para realizar un pedido");
+            if (unPedido.Detalle == null || unPedido.Detalle.Count==0 || unPedido.Detalle.Max(item => item.Cantidad) == 0)
                 throw new Exception("No está permitido crear un pedido vacío");
 
             Usuario usuario = GestorSesion.Current.usuarioActual;

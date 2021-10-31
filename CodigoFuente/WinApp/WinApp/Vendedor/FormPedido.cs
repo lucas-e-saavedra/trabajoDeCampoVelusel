@@ -28,6 +28,7 @@ namespace WinApp.Vendedor
 
         private void FormPedido_Load(object sender, EventArgs e)
         {
+            grillaDetalle.AutoGenerateColumns = false;
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
         }
@@ -40,7 +41,10 @@ namespace WinApp.Vendedor
 
         public void ActualizarTraducciones()
         {
+            btnAgregar.Text = "Agregar".Traducir();
+            btnQuitar.Text = "Quitar".Traducir();
             btnGrabar.Text = "Grabar".Traducir();
+            btnQuitar.Enabled = detalleAquitar != null;
             if (pedidoActual.Solicitante == null)
                 btnSeleccionarCliente.Text = "Seleccionar cliente".Traducir();
             else
@@ -65,11 +69,11 @@ namespace WinApp.Vendedor
 
         private void grillaDetalle_SelectionChanged(object sender, EventArgs e)
         {
-            if (grillaDetalle.SelectedRows.Count > 0)
-            {
+            if (grillaDetalle.SelectedRows.Count > 0) {
                 int index = grillaDetalle.SelectedRows[0].Index;
                 IEnumerable<Producto> items = (IEnumerable<Producto>)grillaDetalle.DataSource;
-                detalleAquitar = items.ElementAt(index);
+                detalleAquitar = items?.ElementAt(index);
+                btnQuitar.Enabled = detalleAquitar != null;
             }
         }
 
@@ -78,7 +82,6 @@ namespace WinApp.Vendedor
             pedidoActual.Detalle.Remove(detalleAquitar);
             grillaDetalle.DataSource = null;
             grillaDetalle.DataSource = pedidoActual.Detalle;
-            detalleAquitar = null;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -106,13 +109,10 @@ namespace WinApp.Vendedor
             {
                 pedidoActual.Id = Guid.NewGuid();
                 List<Producto> items = (List<Producto>)grillaDetalle.DataSource;
-                pedidoActual.Detalle = items;
+                if(items!=null)
+                    pedidoActual.Detalle = items;
                 BLL.GestorPedidos.Current.RegistrarPedido(pedidoActual);
-
-                pedidoActual = new Pedido(); 
-                grillaDetalle.DataSource = null;
-                detalleAquitar = null;
-                ActualizarTraducciones();
+                this.Close();
             } catch (Exception ex) {
                 ex.MostrarEnAlert();
             }

@@ -15,7 +15,7 @@ namespace Dominio
         public Usuario Vendedor { get; set; }
         public EnumEstadoPedido Estado { get; set; }
         public List<Producto> Detalle { get; set; }
-        public enum EnumEstadoPedido { FORMULADO, CANCELADO, PLANIFICADO, LISTO, CERRADO }
+        public enum EnumEstadoPedido { CANCELADO, FORMULADO, PLANIFICADO, LISTO, CERRADO }
 
         public Pedido() {
             Solicitante = null;

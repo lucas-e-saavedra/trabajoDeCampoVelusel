@@ -35,12 +35,18 @@ namespace WinApp.Vendedor
             this.grillaClientes = new System.Windows.Forms.DataGridView();
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.btnNoSeleccionar = new System.Windows.Forms.Button();
+            this.TipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NroDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Habilitado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grillaClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(328, 374);
+            this.btnModificar.Location = new System.Drawing.Point(93, 391);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 23);
             this.btnModificar.TabIndex = 10;
@@ -50,7 +56,7 @@ namespace WinApp.Vendedor
             // 
             // btnHabilitar
             // 
-            this.btnHabilitar.Location = new System.Drawing.Point(174, 374);
+            this.btnHabilitar.Location = new System.Drawing.Point(174, 391);
             this.btnHabilitar.Name = "btnHabilitar";
             this.btnHabilitar.Size = new System.Drawing.Size(75, 23);
             this.btnHabilitar.TabIndex = 9;
@@ -60,7 +66,7 @@ namespace WinApp.Vendedor
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(22, 374);
+            this.btnAgregar.Location = new System.Drawing.Point(12, 391);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 8;
@@ -71,16 +77,23 @@ namespace WinApp.Vendedor
             // grillaClientes
             // 
             this.grillaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TipoDocumento,
+            this.NroDocumento,
+            this.Nombre,
+            this.Email,
+            this.Telefono,
+            this.Habilitado});
             this.grillaClientes.Location = new System.Drawing.Point(12, 12);
             this.grillaClientes.Name = "grillaClientes";
             this.grillaClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grillaClientes.Size = new System.Drawing.Size(402, 213);
+            this.grillaClientes.Size = new System.Drawing.Size(776, 373);
             this.grillaClientes.TabIndex = 7;
             this.grillaClientes.SelectionChanged += new System.EventHandler(this.grillaClientes_SelectionChanged);
             // 
             // btnSeleccionar
             // 
-            this.btnSeleccionar.Location = new System.Drawing.Point(22, 345);
+            this.btnSeleccionar.Location = new System.Drawing.Point(713, 391);
             this.btnSeleccionar.Name = "btnSeleccionar";
             this.btnSeleccionar.Size = new System.Drawing.Size(75, 23);
             this.btnSeleccionar.TabIndex = 11;
@@ -90,7 +103,7 @@ namespace WinApp.Vendedor
             // 
             // btnNoSeleccionar
             // 
-            this.btnNoSeleccionar.Location = new System.Drawing.Point(103, 345);
+            this.btnNoSeleccionar.Location = new System.Drawing.Point(632, 391);
             this.btnNoSeleccionar.Name = "btnNoSeleccionar";
             this.btnNoSeleccionar.Size = new System.Drawing.Size(75, 23);
             this.btnNoSeleccionar.TabIndex = 12;
@@ -98,11 +111,53 @@ namespace WinApp.Vendedor
             this.btnNoSeleccionar.UseVisualStyleBackColor = true;
             this.btnNoSeleccionar.Click += new System.EventHandler(this.btnNoSeleccionar_Click);
             // 
+            // TipoDocumento
+            // 
+            this.TipoDocumento.DataPropertyName = "TipoDocumento";
+            this.TipoDocumento.HeaderText = "TipoDocumento";
+            this.TipoDocumento.Name = "TipoDocumento";
+            this.TipoDocumento.ReadOnly = true;
+            // 
+            // NroDocumento
+            // 
+            this.NroDocumento.DataPropertyName = "NroDocumento";
+            this.NroDocumento.HeaderText = "NroDocumento";
+            this.NroDocumento.Name = "NroDocumento";
+            this.NroDocumento.ReadOnly = true;
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // Telefono
+            // 
+            this.Telefono.DataPropertyName = "Telefono";
+            this.Telefono.HeaderText = "Telefono";
+            this.Telefono.Name = "Telefono";
+            this.Telefono.ReadOnly = true;
+            // 
+            // Habilitado
+            // 
+            this.Habilitado.DataPropertyName = "Habilitado";
+            this.Habilitado.HeaderText = "Habilitado";
+            this.Habilitado.Name = "Habilitado";
+            this.Habilitado.ReadOnly = true;
+            // 
             // FormClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 417);
             this.Controls.Add(this.btnNoSeleccionar);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.btnModificar);
@@ -126,5 +181,11 @@ namespace WinApp.Vendedor
         private System.Windows.Forms.DataGridView grillaClientes;
         private System.Windows.Forms.Button btnSeleccionar;
         private System.Windows.Forms.Button btnNoSeleccionar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoDocumento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NroDocumento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Habilitado;
     }
 }

@@ -55,7 +55,7 @@ namespace WinApp.Vendedor
             // 
             this.inputDocumento.Location = new System.Drawing.Point(98, 71);
             this.inputDocumento.Name = "inputDocumento";
-            this.inputDocumento.Size = new System.Drawing.Size(131, 20);
+            this.inputDocumento.Size = new System.Drawing.Size(154, 20);
             this.inputDocumento.TabIndex = 31;
             // 
             // lblDocumento
@@ -71,7 +71,7 @@ namespace WinApp.Vendedor
             // 
             this.inputEmail.Location = new System.Drawing.Point(15, 113);
             this.inputEmail.Name = "inputEmail";
-            this.inputEmail.Size = new System.Drawing.Size(214, 20);
+            this.inputEmail.Size = new System.Drawing.Size(237, 20);
             this.inputEmail.TabIndex = 29;
             // 
             // lblEmail
@@ -87,7 +87,7 @@ namespace WinApp.Vendedor
             // 
             this.inputNombre.Location = new System.Drawing.Point(15, 28);
             this.inputNombre.Name = "inputNombre";
-            this.inputNombre.Size = new System.Drawing.Size(214, 20);
+            this.inputNombre.Size = new System.Drawing.Size(237, 20);
             this.inputNombre.TabIndex = 28;
             // 
             // lblNombre
@@ -101,7 +101,7 @@ namespace WinApp.Vendedor
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(154, 251);
+            this.btnCancelar.Location = new System.Drawing.Point(96, 227);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 33;
@@ -113,7 +113,7 @@ namespace WinApp.Vendedor
             // 
             this.inputTelefono.Location = new System.Drawing.Point(15, 154);
             this.inputTelefono.Name = "inputTelefono";
-            this.inputTelefono.Size = new System.Drawing.Size(214, 20);
+            this.inputTelefono.Size = new System.Drawing.Size(237, 20);
             this.inputTelefono.TabIndex = 27;
             // 
             // lblTelefono
@@ -127,7 +127,7 @@ namespace WinApp.Vendedor
             // 
             // btnGrabar
             // 
-            this.btnGrabar.Location = new System.Drawing.Point(154, 222);
+            this.btnGrabar.Location = new System.Drawing.Point(177, 227);
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(75, 23);
             this.btnGrabar.TabIndex = 32;
@@ -149,7 +149,7 @@ namespace WinApp.Vendedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(264, 263);
             this.Controls.Add(this.chkHabilitado);
             this.Controls.Add(this.comboDocumento);
             this.Controls.Add(this.inputDocumento);

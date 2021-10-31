@@ -24,14 +24,10 @@ namespace WinApp.Vendedor
 
         private void FormClientes_Load(object sender, EventArgs e)
         {
+            grillaClientes.AutoGenerateColumns = false;
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
-            grillaClientes.DataSource = BLL.GestorClientes.Current.ListarClientes();
-            btnSeleccionar.Visible = this.Modal;
-            btnNoSeleccionar.Visible = this.Modal;
-            btnAgregar.Visible = !this.Modal;
-            btnModificar.Visible = !this.Modal;
-            btnHabilitar.Visible = !this.Modal && GestorSesion.Current.TieneRolGerente();
+            ActualizarGrilla();
         }
         private void FormClientes_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -46,7 +42,24 @@ namespace WinApp.Vendedor
             btnHabilitar.Text = "Habilitar".Traducir();
             btnModificar.Text = "Modificar".Traducir();
         }
+        private void ActualizarGrilla()
+        {
+            grillaClientes.DataSource = null;
+            IEnumerable<Cliente> clientes = BLL.GestorClientes.Current.ListarClientes();
+            IEnumerable<Cliente> clientesOrdenados;
+            if (GestorSesion.Current.TieneRolGerente()) {
+                clientesOrdenados = clientes.Where(item => item.Habilitado).OrderBy(item => item.Nombre);
+            } else { 
+                clientesOrdenados = clientes.Where(item => item.Habilitado).OrderBy(item => item.Nombre);
+            }
+            grillaClientes.DataSource = clientes;
 
+            btnSeleccionar.Visible = this.Modal;
+            btnNoSeleccionar.Visible = this.Modal;
+            btnAgregar.Visible = !this.Modal;
+            btnModificar.Visible = !this.Modal;
+            btnHabilitar.Visible = !this.Modal && GestorSesion.Current.TieneRolGerente();
+        }
         private void grillaClientes_SelectionChanged(object sender, EventArgs e)
         {
             if (grillaClientes.SelectedRows.Count > 0)
@@ -66,9 +79,8 @@ namespace WinApp.Vendedor
         {
             FormCliente form = new FormCliente(new Cliente());
             DialogResult resultado = form.ShowDialog();
-            if (resultado == DialogResult.OK)
-            {
-                grillaClientes.DataSource = BLL.GestorClientes.Current.ListarClientes();
+            if (resultado == DialogResult.OK){
+                ActualizarGrilla();
             }
         }
 
@@ -76,9 +88,8 @@ namespace WinApp.Vendedor
         {
             FormCliente form = new FormCliente(clienteSeleccionado);
             DialogResult resultado = form.ShowDialog();
-            if (resultado == DialogResult.OK)
-            {
-                grillaClientes.DataSource = BLL.GestorClientes.Current.ListarClientes();
+            if (resultado == DialogResult.OK) {
+                ActualizarGrilla();
             }
         }
 
@@ -87,14 +98,11 @@ namespace WinApp.Vendedor
             DialogResult resultado = MessageBox.Show("¿Está seguro?".Traducir(), btnHabilitar.Text, MessageBoxButtons.YesNo);
             if (resultado == DialogResult.Yes)
             {
-                try
-                {
+                try {
                     clienteSeleccionado.Habilitado = !clienteSeleccionado.Habilitado;
                     BLL.GestorClientes.Current.ModificarCliente(clienteSeleccionado);
-                    grillaClientes.DataSource = BLL.GestorClientes.Current.ListarClientes();
-                }
-                catch (Exception ex)
-                {
+                    ActualizarGrilla();
+                } catch (Exception ex) {
                     MessageBox.Show(ex.Message.Traducir());
                 }
             }
