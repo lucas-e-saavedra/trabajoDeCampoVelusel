@@ -22,7 +22,7 @@ SELECT * FROM PlantillaFabricacion
 SELECT * FROM Producto
 SELECT * FROM Producto_Material
 SELECT * FROM Producto_Producto
-
+SELECT * FROM Usuario_Alerta
 
 /*
 primero crear un pedido

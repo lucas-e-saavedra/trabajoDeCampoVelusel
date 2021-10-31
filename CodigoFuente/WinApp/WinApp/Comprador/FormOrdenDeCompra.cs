@@ -35,6 +35,13 @@ namespace WinApp.Comprador
             timeFechaEstimada.Value = DateTime.Today;
             inputCantidadRecibidos.Enabled = chkRecibido.Checked;
             timeFechaRecepcion.Enabled = chkRecibido.Checked;
+
+            if(ordenDeCompraSeleccionada.Comprados.Cantidad > 0) {
+                inputCantidadComprados.Text = ordenDeCompraSeleccionada.Comprados.Cantidad.ToString();
+                timeFechaEstimada.Value = ordenDeCompraSeleccionada.FechaEstimadaRecepcion;
+            }
+            
+
         }
         private void FormOrdenDeCompra_FormClosing(object sender, FormClosingEventArgs e)
         {

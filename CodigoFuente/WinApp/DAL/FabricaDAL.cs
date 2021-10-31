@@ -78,6 +78,9 @@ namespace DAL
         {
             return new Implementaciones.SqlServer.AlmacenMaterialRelacion(bbddVelusel);
         }
-
+        public IRepositorioGenerico<Alarma> ObtenerRepositorioDeAlarmas()
+        {
+            return new Implementaciones.SqlServer.AlarmaRepositorio(bbddVelusel);
+        }
     }
 }

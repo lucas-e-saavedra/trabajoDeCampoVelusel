@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\GestorHistorico.cs" />
+    <Compile Include="BLL\GestorNotificaciones.cs" />
     <Compile Include="BLL\GestorSeguridad.cs" />
     <Compile Include="BLL\GestorSesion.cs" />
     <Compile Include="BLL\GestorUsuarios.cs" />

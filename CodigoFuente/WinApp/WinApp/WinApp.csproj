@@ -54,6 +54,12 @@
     <Compile Include="Comprador\FormCalcularCompras.Designer.cs">
       <DependentUpon>FormCalcularCompras.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprador\FormConfigurarAlarmas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprador\FormConfigurarAlarmas.Designer.cs">
+      <DependentUpon>FormConfigurarAlarmas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comprador\FormOrdenDeCompra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Comprador\FormCalcularCompras.resx">
       <DependentUpon>FormCalcularCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprador\FormConfigurarAlarmas.resx">
+      <DependentUpon>FormConfigurarAlarmas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprador\FormOrdenDeCompra.resx">
       <DependentUpon>FormOrdenDeCompra.cs</DependentUpon>

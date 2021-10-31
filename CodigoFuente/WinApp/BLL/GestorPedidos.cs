@@ -60,6 +60,12 @@ namespace BLL
 
             unPedido.Estado = Pedido.EnumEstadoPedido.LISTO;
             FabricaDAL.Current.ObtenerRepositorioDePedidos().Modificar(unPedido);
+
+            if (unPedido.Solicitante == null) {
+                string output = Newtonsoft.Json.JsonConvert.SerializeObject(unPedido.Detalle);
+
+                throw new Exception($"El pedido no se pudo exportar:\n{output}");
+            }
         }
         public void EntregarPedido(Pedido unPedido)
         {

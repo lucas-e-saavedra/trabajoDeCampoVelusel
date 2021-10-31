@@ -13,13 +13,13 @@ CU.CLI.04 - Listar Clientes (mejorar visualización)
 CU.PED.01 - Consultar Catálogo (mejorar visualización) falta mostrar las imagenes
 CU.PED.02 - Registrar Pedido (listo)
 CU.PED.03 - Cancelar Pedido (listo)
-CU.PED.04 - Cerrar Pedido (listo)
+CU.PED.04 - Cerrar Pedido (listo) falta exportar
 CU.PED.05 - Listar Pedidos(mejorar visualización)
 CU.PED.06 - Consultar Detalle del Pedido (no aplica)
 
 CU.FAB.01 - Registrar nuevo Producto (mejorar visualización)
 CU.FAB.02 - Modificar Producto (mejorar visualización)
-CU.FAB.03 - Procesar Pedido (mejorar visualización) falta limpiar la grilla despues de agendar
+CU.FAB.03 - Procesar Pedido (mejorar visualización) 
 CU.FAB.04 - Comenzar Fabricación (listo)
 CU.FAB.05 - Cerrar fabricación (listo)
 CU.FAB.06 - Terminar Productos (listo)
@@ -29,9 +29,9 @@ CU.COM.02 - Consultar Órdenes de Compra (listo)
 CU.COM.03 - Actualizar Orden de Compra (listo)
 CU.COM.04 - Calcular materiales faltantes (listo)
 
-CU.STO.01 - Configurar alertas (falta empezar)
+CU.STO.01 - Configurar alertas (listo) modificar enterprise architect
 CU.STO.02 - Actualizar Stock (listo)
-CU.STO.03 - Disparar alertas (falta empezar)
+CU.STO.03 - Disparar alertas (listo) falta q se active todos los dias automaticamente
 
 CU.NOF.01 – Crear Usuario (listo)
 CU.NOF.02 – Modificar Usuario (listo)
@@ -54,7 +54,7 @@ CU.Arq.005 Validar integridad (pendiente de definición)
 CU.Arq.006 Guardar Errores (listo)
 CU.Arq.007 Ver Errores (mejorar visualización)
 
-TOTAL CU: 42 listo(30) mejorar visualización(8) no aplica(1) falta empezar(2) pendiente de definición(1)
+TOTAL CU: 42 listo(32) mejorar visualización(8) no aplica(1)  pendiente de definición(1)
 
 validar integridad
 

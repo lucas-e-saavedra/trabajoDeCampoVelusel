@@ -4,11 +4,6 @@ using Servicios.Domain.CompositeSeguridad;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Servicios.BLL
 {
@@ -41,7 +36,7 @@ namespace Servicios.BLL
             string claveEncriptada = GestorSeguridad.Current.Encriptar(nuevaClave, llave);
             unUsuario.Contrasenia = claveEncriptada;
 
-            EnviarContrasenia(unUsuario.Email, "Bienvenido", "Tu nueva clave es: " + nuevaClave);
+            GestorNotificaciones.Current.EnviarMail(unUsuario.Email, "Bienvenido", "Tu nueva clave es: " + nuevaClave);
             FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Modificar(unUsuario);
             Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, "Se blanqueó la clave del usuario: " + unUsuario.UsuarioLogin);
             GestorHistorico.Current.RegistrarBitacora(unEvento);
@@ -72,45 +67,13 @@ namespace Servicios.BLL
                 string claveEncriptada = GestorSeguridad.Current.Encriptar(nuevaClave, llave);
                 usuario.Contrasenia = claveEncriptada;
                 FabricaDAL.Current.ObtenerRepositorioDeUsuarios().Agregar(usuario);
-                EnviarContrasenia(usuario.Email, "Bienvenido", "Tu nueva clave es: " + nuevaClave);
+                GestorNotificaciones.Current.EnviarMail(usuario.Email, "Bienvenido", "Tu nueva clave es: " + nuevaClave);
 
                 Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, "Se creó el usuario: " + usuario.UsuarioLogin);
                 GestorHistorico.Current.RegistrarBitacora(unEvento);
             } catch (Exception ex) {
                 usuario.IdUsuario = Guid.Empty;
                 throw ex;
-            }
-        }
-
-        private void EnviarContrasenia(string destinatario, string titulo, string contenido)
-        {
-            string miCuenta = ConfigurationManager.AppSettings["emailQueEnviaContrasenias"];
-            string miClave = ConfigurationManager.AppSettings["claveQueEnviaContrasenias"];
-            string emailHost = ConfigurationManager.AppSettings["hostQueEnviaContrasenias"];
-            int emailPort = int.Parse(ConfigurationManager.AppSettings["puertoQueEnviaContrasenias"]);
-
-            using (MailMessage email = new MailMessage(miCuenta, destinatario))
-            {
-                email.Subject = titulo;
-                email.Body = contenido;
-                email.IsBodyHtml = false;
-                SmtpClient smtp = new SmtpClient(emailHost, emailPort);
-                smtp.EnableSsl = true;
-                NetworkCredential credential = new NetworkCredential(miCuenta, miClave);
-                smtp.UseDefaultCredentials = true;
-                smtp.Credentials = credential;
-                try
-                {
-                    smtp.Send(email);
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("No se pudo enviar el email", ex.InnerException);
-                }
-                finally
-                {
-                    smtp.Dispose();
-                }
             }
         }
         public IEnumerable<Familia> ListarFamilias() {
