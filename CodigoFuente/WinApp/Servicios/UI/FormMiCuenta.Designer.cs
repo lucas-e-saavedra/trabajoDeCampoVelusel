@@ -46,7 +46,7 @@ namespace Servicios.UI
             // 
             // inputEmail
             // 
-            this.inputEmail.Location = new System.Drawing.Point(12, 106);
+            this.inputEmail.Location = new System.Drawing.Point(12, 122);
             this.inputEmail.Name = "inputEmail";
             this.inputEmail.Size = new System.Drawing.Size(214, 20);
             this.inputEmail.TabIndex = 27;
@@ -54,7 +54,7 @@ namespace Servicios.UI
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(9, 90);
+            this.lblEmail.Location = new System.Drawing.Point(12, 106);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(42, 13);
             this.lblEmail.TabIndex = 32;
@@ -62,7 +62,7 @@ namespace Servicios.UI
             // 
             // inputNombre
             // 
-            this.inputNombre.Location = new System.Drawing.Point(12, 67);
+            this.inputNombre.Location = new System.Drawing.Point(12, 74);
             this.inputNombre.Name = "inputNombre";
             this.inputNombre.Size = new System.Drawing.Size(214, 20);
             this.inputNombre.TabIndex = 26;
@@ -70,7 +70,7 @@ namespace Servicios.UI
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(9, 51);
+            this.lblNombre.Location = new System.Drawing.Point(12, 58);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(54, 13);
             this.lblNombre.TabIndex = 31;
@@ -78,7 +78,7 @@ namespace Servicios.UI
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(151, 257);
+            this.btnCancelar.Location = new System.Drawing.Point(59, 273);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 29;
@@ -89,7 +89,7 @@ namespace Servicios.UI
             // inputUsuario
             // 
             this.inputUsuario.Enabled = false;
-            this.inputUsuario.Location = new System.Drawing.Point(12, 28);
+            this.inputUsuario.Location = new System.Drawing.Point(12, 25);
             this.inputUsuario.Name = "inputUsuario";
             this.inputUsuario.Size = new System.Drawing.Size(214, 20);
             this.inputUsuario.TabIndex = 25;
@@ -97,7 +97,7 @@ namespace Servicios.UI
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(9, 12);
+            this.lblUsuario.Location = new System.Drawing.Point(13, 9);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(53, 13);
             this.lblUsuario.TabIndex = 30;
@@ -105,7 +105,7 @@ namespace Servicios.UI
             // 
             // btnGrabar
             // 
-            this.btnGrabar.Location = new System.Drawing.Point(151, 228);
+            this.btnGrabar.Location = new System.Drawing.Point(151, 273);
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(75, 23);
             this.btnGrabar.TabIndex = 28;
@@ -116,7 +116,7 @@ namespace Servicios.UI
             // lblContrasenia
             // 
             this.lblContrasenia.AutoSize = true;
-            this.lblContrasenia.Location = new System.Drawing.Point(12, 129);
+            this.lblContrasenia.Location = new System.Drawing.Point(12, 154);
             this.lblContrasenia.Name = "lblContrasenia";
             this.lblContrasenia.Size = new System.Drawing.Size(73, 13);
             this.lblContrasenia.TabIndex = 33;
@@ -124,7 +124,7 @@ namespace Servicios.UI
             // 
             // inputContrasenia
             // 
-            this.inputContrasenia.Location = new System.Drawing.Point(12, 149);
+            this.inputContrasenia.Location = new System.Drawing.Point(12, 170);
             this.inputContrasenia.Name = "inputContrasenia";
             this.inputContrasenia.Size = new System.Drawing.Size(214, 20);
             this.inputContrasenia.TabIndex = 34;
@@ -132,7 +132,7 @@ namespace Servicios.UI
             // 
             // inputRepetirContrasenia
             // 
-            this.inputRepetirContrasenia.Location = new System.Drawing.Point(12, 185);
+            this.inputRepetirContrasenia.Location = new System.Drawing.Point(12, 218);
             this.inputRepetirContrasenia.Name = "inputRepetirContrasenia";
             this.inputRepetirContrasenia.Size = new System.Drawing.Size(214, 20);
             this.inputRepetirContrasenia.TabIndex = 36;
@@ -141,7 +141,7 @@ namespace Servicios.UI
             // lblRepetirContrasenia
             // 
             this.lblRepetirContrasenia.AutoSize = true;
-            this.lblRepetirContrasenia.Location = new System.Drawing.Point(12, 169);
+            this.lblRepetirContrasenia.Location = new System.Drawing.Point(12, 202);
             this.lblRepetirContrasenia.Name = "lblRepetirContrasenia";
             this.lblRepetirContrasenia.Size = new System.Drawing.Size(107, 13);
             this.lblRepetirContrasenia.TabIndex = 35;

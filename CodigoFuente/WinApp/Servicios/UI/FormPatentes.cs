@@ -24,6 +24,7 @@ namespace Servicios.UI
 
         private void FormPatentes_Load(object sender, EventArgs e)
         {
+            grillaPatentes.AutoGenerateColumns = false;
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
             grillaPatentes.DataSource = GestorUsuarios.Current.ListarPatentes();
@@ -58,8 +59,8 @@ namespace Servicios.UI
             {
                 try {
                     GestorUsuarios.Current.BorrarPatente(patenteSeleccionada);
+                    grillaPatentes.DataSource = null;
                     grillaPatentes.DataSource = GestorUsuarios.Current.ListarPatentes();
-                    patenteSeleccionada = null;
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message.Traducir());
                 }
@@ -72,6 +73,7 @@ namespace Servicios.UI
             DialogResult resultado = form.ShowDialog();
             if (resultado == DialogResult.OK)
             {
+                grillaPatentes.DataSource = null;
                 grillaPatentes.DataSource = GestorUsuarios.Current.ListarPatentes();
             }
         }

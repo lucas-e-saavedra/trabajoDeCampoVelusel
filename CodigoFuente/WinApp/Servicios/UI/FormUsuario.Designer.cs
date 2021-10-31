@@ -47,13 +47,17 @@ namespace Servicios.UI
             this.inputDocumento = new System.Windows.Forms.TextBox();
             this.lblDocumento = new System.Windows.Forms.Label();
             this.comboDocumento = new System.Windows.Forms.ComboBox();
+            this.Nombre_P = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantidadHijos_P = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre_D = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantidadHijos_D = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grillaDisponibles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaPermisos)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(180, 415);
+            this.btnCancelar.Location = new System.Drawing.Point(396, 345);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 6;
@@ -79,7 +83,7 @@ namespace Servicios.UI
             // 
             // btnGrabar
             // 
-            this.btnGrabar.Location = new System.Drawing.Point(180, 386);
+            this.btnGrabar.Location = new System.Drawing.Point(477, 345);
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(75, 23);
             this.btnGrabar.TabIndex = 5;
@@ -99,6 +103,9 @@ namespace Servicios.UI
             // grillaDisponibles
             // 
             this.grillaDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaDisponibles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nombre_D,
+            this.CantidadHijos_D});
             this.grillaDisponibles.Location = new System.Drawing.Point(312, 189);
             this.grillaDisponibles.Name = "grillaDisponibles";
             this.grillaDisponibles.Size = new System.Drawing.Size(240, 150);
@@ -137,6 +144,9 @@ namespace Servicios.UI
             // grillaPermisos
             // 
             this.grillaPermisos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaPermisos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nombre_P,
+            this.CantidadHijos_P});
             this.grillaPermisos.Location = new System.Drawing.Point(15, 189);
             this.grillaPermisos.Name = "grillaPermisos";
             this.grillaPermisos.Size = new System.Drawing.Size(240, 150);
@@ -199,11 +209,38 @@ namespace Servicios.UI
             this.comboDocumento.Size = new System.Drawing.Size(77, 21);
             this.comboDocumento.TabIndex = 3;
             // 
+            // Nombre_P
+            // 
+            this.Nombre_P.DataPropertyName = "Nombre";
+            this.Nombre_P.HeaderText = "Nombre";
+            this.Nombre_P.Name = "Nombre_P";
+            this.Nombre_P.ReadOnly = true;
+            // 
+            // CantidadHijos_P
+            // 
+            this.CantidadHijos_P.DataPropertyName = "CantidadHijos";
+            this.CantidadHijos_P.HeaderText = "(Sub)Permisos";
+            this.CantidadHijos_P.Name = "CantidadHijos_P";
+            this.CantidadHijos_P.ReadOnly = true;
+            // 
+            // Nombre_D
+            // 
+            this.Nombre_D.DataPropertyName = "Nombre";
+            this.Nombre_D.HeaderText = "Nombre";
+            this.Nombre_D.Name = "Nombre_D";
+            // 
+            // CantidadHijos_D
+            // 
+            this.CantidadHijos_D.DataPropertyName = "CantidadHijos";
+            this.CantidadHijos_D.HeaderText = "(Sub)Permisos";
+            this.CantidadHijos_D.Name = "CantidadHijos_D";
+            this.CantidadHijos_D.ReadOnly = true;
+            // 
             // FormUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 412);
             this.Controls.Add(this.comboDocumento);
             this.Controls.Add(this.inputDocumento);
             this.Controls.Add(this.lblDocumento);
@@ -252,5 +289,9 @@ namespace Servicios.UI
         private System.Windows.Forms.TextBox inputDocumento;
         private System.Windows.Forms.Label lblDocumento;
         private System.Windows.Forms.ComboBox comboDocumento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre_P;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadHijos_P;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre_D;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadHijos_D;
     }
 }

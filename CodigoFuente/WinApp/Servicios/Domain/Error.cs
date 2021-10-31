@@ -13,7 +13,7 @@ namespace Servicios.Domain
         public String detalle { get; set; }
 
         public DateTime fechaYhora;
-
+        public String timestamp { get { return fechaYhora.ToString(); } }
         public Error(){
             fechaYhora = DateTime.Now;
         }

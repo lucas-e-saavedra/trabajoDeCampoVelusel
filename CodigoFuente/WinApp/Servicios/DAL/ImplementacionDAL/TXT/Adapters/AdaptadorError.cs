@@ -11,12 +11,13 @@ namespace Servicios.DAL.ImplementacionDAL.TXT.Adapters
         public static Error desdeTexto(string textoError)
         {
             string[] elementos = textoError.Split('|');
+            DateTime timeStamp = DateTime.ParseExact(elementos.First(), "yyyy-MM-dd HH.mm.ss", CultureInfo.InvariantCulture);
             textoError = elementos[1];
             string textoClase = textoError.Split(':').First();
             string textoDescripcion = textoError.Substring(textoClase.Length + 2);
             return new Error()
             {
-                fechaYhora = DateTime.ParseExact(elementos.First(), "yyyy-MM-dd HH.mm.ss", CultureInfo.InvariantCulture),
+                fechaYhora = timeStamp,
                 clase = textoClase,
                 descripcion = textoDescripcion,
                 detalle = elementos.Last()

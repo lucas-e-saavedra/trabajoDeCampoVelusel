@@ -64,8 +64,11 @@ namespace BLL
                 ProductoMaterial tmp = unIngrediente.Copiar();
                 tmp.Cantidad = unIngrediente.Cantidad * unaOrdenDeFabricacion.Objetivo.Cantidad;
                 ProductoMaterial itemStock = stock.FirstOrDefault(item => item.Id == tmp.Id);
-                if (itemStock == null || itemStock.Cantidad < tmp.Cantidad)
+                if (itemStock == null || itemStock.Cantidad < tmp.Cantidad){
+                    Evento errorEvento = new Evento(Evento.CategoriaEvento.ERROR, $"No se pudo inciar la fabricación de la orden de fabricacion {unaOrdenDeFabricacion.Id} por falta de {tmp}");
+                    GestorHistorico.Current.RegistrarBitacora(errorEvento);
                     throw new Exception($"No hay suficiente stock de {tmp}");
+                }
             }
             unaOrdenDeFabricacion.Estado = EnumEstadoOrdenFabricacion.ENFABRICACION;
             FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Modificar(unaOrdenDeFabricacion);

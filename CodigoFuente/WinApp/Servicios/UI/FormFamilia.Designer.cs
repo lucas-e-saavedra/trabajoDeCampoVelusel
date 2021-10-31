@@ -40,13 +40,17 @@ namespace Servicios.UI
             this.btnQuitar = new System.Windows.Forms.Button();
             this.grillaDisponibles = new System.Windows.Forms.DataGridView();
             this.lblDisponibles = new System.Windows.Forms.Label();
+            this.Nombre_H = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantidadHijos_H = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre_D = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantidadHijos_D = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grillaHijos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaDisponibles)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(177, 299);
+            this.btnCancelar.Location = new System.Drawing.Point(519, 255);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 9;
@@ -58,7 +62,7 @@ namespace Servicios.UI
             // 
             this.inputNombre.Location = new System.Drawing.Point(12, 25);
             this.inputNombre.Name = "inputNombre";
-            this.inputNombre.Size = new System.Drawing.Size(214, 20);
+            this.inputNombre.Size = new System.Drawing.Size(237, 20);
             this.inputNombre.TabIndex = 8;
             // 
             // lblNombre
@@ -72,7 +76,7 @@ namespace Servicios.UI
             // 
             // btnGrabar
             // 
-            this.btnGrabar.Location = new System.Drawing.Point(177, 270);
+            this.btnGrabar.Location = new System.Drawing.Point(643, 255);
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(75, 23);
             this.btnGrabar.TabIndex = 6;
@@ -83,9 +87,12 @@ namespace Servicios.UI
             // grillaHijos
             // 
             this.grillaHijos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaHijos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nombre_H,
+            this.CantidadHijos_H});
             this.grillaHijos.Location = new System.Drawing.Point(12, 80);
             this.grillaHijos.Name = "grillaHijos";
-            this.grillaHijos.Size = new System.Drawing.Size(240, 150);
+            this.grillaHijos.Size = new System.Drawing.Size(325, 150);
             this.grillaHijos.TabIndex = 10;
             this.grillaHijos.SelectionChanged += new System.EventHandler(this.grillaHijos_SelectionChanged);
             // 
@@ -100,7 +107,7 @@ namespace Servicios.UI
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(259, 115);
+            this.btnAgregar.Location = new System.Drawing.Point(343, 115);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(44, 23);
             this.btnAgregar.TabIndex = 12;
@@ -110,7 +117,7 @@ namespace Servicios.UI
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(259, 165);
+            this.btnQuitar.Location = new System.Drawing.Point(343, 176);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(44, 23);
             this.btnQuitar.TabIndex = 13;
@@ -121,9 +128,12 @@ namespace Servicios.UI
             // grillaDisponibles
             // 
             this.grillaDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaDisponibles.Location = new System.Drawing.Point(309, 80);
+            this.grillaDisponibles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nombre_D,
+            this.CantidadHijos_D});
+            this.grillaDisponibles.Location = new System.Drawing.Point(393, 80);
             this.grillaDisponibles.Name = "grillaDisponibles";
-            this.grillaDisponibles.Size = new System.Drawing.Size(240, 150);
+            this.grillaDisponibles.Size = new System.Drawing.Size(325, 150);
             this.grillaDisponibles.TabIndex = 14;
             this.grillaDisponibles.SelectionChanged += new System.EventHandler(this.grillaDisponibles_SelectionChanged);
             // 
@@ -136,11 +146,39 @@ namespace Servicios.UI
             this.lblDisponibles.TabIndex = 15;
             this.lblDisponibles.Text = "lblDisponibles";
             // 
+            // Nombre_H
+            // 
+            this.Nombre_H.DataPropertyName = "Nombre";
+            this.Nombre_H.HeaderText = "Nombre";
+            this.Nombre_H.Name = "Nombre_H";
+            this.Nombre_H.ReadOnly = true;
+            // 
+            // CantidadHijos_H
+            // 
+            this.CantidadHijos_H.DataPropertyName = "CantidadHijos";
+            this.CantidadHijos_H.HeaderText = "(Sub)Permisos";
+            this.CantidadHijos_H.Name = "CantidadHijos_H";
+            this.CantidadHijos_H.ReadOnly = true;
+            // 
+            // Nombre_D
+            // 
+            this.Nombre_D.DataPropertyName = "Nombre";
+            this.Nombre_D.HeaderText = "Nombre";
+            this.Nombre_D.Name = "Nombre_D";
+            this.Nombre_D.ReadOnly = true;
+            // 
+            // CantidadHijos_D
+            // 
+            this.CantidadHijos_D.DataPropertyName = "CantidadHijos";
+            this.CantidadHijos_D.HeaderText = "(Sub)Permisos";
+            this.CantidadHijos_D.Name = "CantidadHijos_D";
+            this.CantidadHijos_D.ReadOnly = true;
+            // 
             // FormFamilia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 406);
+            this.ClientSize = new System.Drawing.Size(730, 301);
             this.Controls.Add(this.lblDisponibles);
             this.Controls.Add(this.grillaDisponibles);
             this.Controls.Add(this.btnQuitar);
@@ -175,5 +213,9 @@ namespace Servicios.UI
         private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.DataGridView grillaDisponibles;
         private System.Windows.Forms.Label lblDisponibles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre_H;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadHijos_H;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre_D;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadHijos_D;
     }
 }

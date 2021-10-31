@@ -24,6 +24,7 @@ namespace Servicios.UI
 
         private void FormUsuarios_Load(object sender, EventArgs e)
         {
+            grillaUsuarios.AutoGenerateColumns = false;
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
             grillaUsuarios.DataSource = GestorUsuarios.Current.ListarUsuarios();
@@ -61,8 +62,8 @@ namespace Servicios.UI
                 try
                 {
                     GestorUsuarios.Current.BorrarUsuario(usuarioseleccionado);
+                    grillaUsuarios.DataSource = null;
                     grillaUsuarios.DataSource = GestorUsuarios.Current.ListarUsuarios();
-                    usuarioseleccionado = null;
                 }
                 catch (Exception ex)
                 {
@@ -79,8 +80,7 @@ namespace Servicios.UI
                 try
                 {
                     GestorUsuarios.Current.BlanquearClave(usuarioseleccionado.IdUsuario);
-                    grillaUsuarios.DataSource = GestorUsuarios.Current.ListarUsuarios();
-                    usuarioseleccionado = null;
+                    MessageBox.Show("Se envió una nueva contraseña al mail del usuario".Traducir(), "Blanquear clave".Traducir());
                 }
                 catch (Exception ex)
                 {

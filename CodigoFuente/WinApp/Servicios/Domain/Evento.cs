@@ -11,6 +11,7 @@ namespace Servicios.Domain
         public String mensaje { get; set; }
 
         public DateTime fechaYhora;
+        public String timestamp { get { return fechaYhora.ToString(); } }
 
         public Evento() { }
         public Evento(CategoriaEvento unaCategoria, String unMensaje){

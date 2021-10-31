@@ -47,12 +47,12 @@ CU.NOF.11 – Modificar permiso (listo)
 CU.NOF.12 – Borrar permiso (listo)
 
 CU.Arq.001 Grabar Bitácora (listo)
-CU.Arq.002 Consultar Bitácora (mejorar visualización)
+CU.Arq.002 Consultar Bitácora (listo) faltaria agregar filtros
 CU.Arq.003 Encriptar Datos (listo)
 CU.Arq.004 Desencriptar datos (listo)
 CU.Arq.005 Validar integridad (pendiente de definición)
 CU.Arq.006 Guardar Errores (listo)
-CU.Arq.007 Ver Errores (mejorar visualización)
+CU.Arq.007 Ver Errores (listo) faltaria agregar filtros
 
 TOTAL CU: 42 listo(32) mejorar visualización(8) no aplica(1)  pendiente de definición(1)
 

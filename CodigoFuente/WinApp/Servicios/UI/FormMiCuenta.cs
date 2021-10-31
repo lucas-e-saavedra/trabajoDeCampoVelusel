@@ -52,22 +52,29 @@ namespace Servicios.UI
 
         private void btnGrabar_Click(object sender, EventArgs e)
         {
-            usuarioActual.UsuarioLogin = inputUsuario.Text;
-            usuarioActual.Nombre = inputNombre.Text;
-            usuarioActual.Email = inputEmail.Text;
-            
-            if (inputContrasenia.Text != inputRepetirContrasenia.Text) {
-                MessageBox.Show("Las contraseñas no coinciden".Traducir());
-                return;
-            } else if (inputContrasenia.Text.Length > 0) {
-                string nuevaClave = inputContrasenia.Text;
-                string llave = ConfigurationManager.AppSettings["claveCifrado"];
-                string claveEncriptada = GestorSeguridad.Current.Encriptar(nuevaClave, llave);
-                usuarioActual.Contrasenia = claveEncriptada;
+            try {
+                usuarioActual.UsuarioLogin = inputUsuario.Text;
+                usuarioActual.Nombre = inputNombre.Text;
+                usuarioActual.Email = inputEmail.Text;
+
+                if (inputContrasenia.Text != inputRepetirContrasenia.Text)
+                {
+                    MessageBox.Show("Las contraseñas no coinciden".Traducir());
+                    return;
+                }
+                else if (inputContrasenia.Text.Length > 0)
+                {
+                    string nuevaClave = inputContrasenia.Text;
+                    string llave = ConfigurationManager.AppSettings["claveCifrado"];
+                    string claveEncriptada = GestorSeguridad.Current.Encriptar(nuevaClave, llave);
+                    usuarioActual.Contrasenia = claveEncriptada;
+                }
+                GestorUsuarios.Current.ModificarUsuario(usuarioActual);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            } catch (Exception ex) { 
+                ex.MostrarEnAlert(); 
             }
-            GestorUsuarios.Current.ModificarUsuario(usuarioActual);
-            this.DialogResult = DialogResult.OK;
-            this.Close();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

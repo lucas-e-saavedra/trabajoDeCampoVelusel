@@ -34,6 +34,8 @@ namespace Servicios.UI
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantidadHijos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grillaFamilias)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,17 +43,20 @@ namespace Servicios.UI
             // 
             this.grillaFamilias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.grillaFamilias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaFamilias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nombre,
+            this.CantidadHijos});
             this.grillaFamilias.Location = new System.Drawing.Point(13, 13);
             this.grillaFamilias.MultiSelect = false;
             this.grillaFamilias.Name = "grillaFamilias";
             this.grillaFamilias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grillaFamilias.Size = new System.Drawing.Size(632, 323);
+            this.grillaFamilias.Size = new System.Drawing.Size(722, 358);
             this.grillaFamilias.TabIndex = 0;
             this.grillaFamilias.SelectionChanged += new System.EventHandler(this.grillaFamilias_SelectionChanged);
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(319, 342);
+            this.btnModificar.Location = new System.Drawing.Point(241, 377);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 23);
             this.btnModificar.TabIndex = 6;
@@ -61,7 +66,7 @@ namespace Servicios.UI
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(165, 342);
+            this.btnBorrar.Location = new System.Drawing.Point(126, 377);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(75, 23);
             this.btnBorrar.TabIndex = 5;
@@ -71,7 +76,7 @@ namespace Servicios.UI
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(13, 342);
+            this.btnAgregar.Location = new System.Drawing.Point(13, 377);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 4;
@@ -79,11 +84,27 @@ namespace Servicios.UI
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 69;
+            // 
+            // CantidadHijos
+            // 
+            this.CantidadHijos.DataPropertyName = "CantidadHijos";
+            this.CantidadHijos.HeaderText = "(Sub)Permisos";
+            this.CantidadHijos.Name = "CantidadHijos";
+            this.CantidadHijos.ReadOnly = true;
+            this.CantidadHijos.Width = 99;
+            // 
             // FormFamilias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(657, 379);
+            this.ClientSize = new System.Drawing.Size(747, 412);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnAgregar);
@@ -104,5 +125,7 @@ namespace Servicios.UI
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadHijos;
     }
 }

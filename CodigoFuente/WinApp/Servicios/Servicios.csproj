@@ -86,6 +86,12 @@
     <Compile Include="UI\FormBitacora.Designer.cs">
       <DependentUpon>FormBitacora.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\FormError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormError.Designer.cs">
+      <DependentUpon>FormError.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FormErrores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,9 @@
   <ItemGroup>
     <EmbeddedResource Include="UI\FormBitacora.resx">
       <DependentUpon>FormBitacora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormError.resx">
+      <DependentUpon>FormError.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FormErrores.resx">
       <DependentUpon>FormErrores.cs</DependentUpon>

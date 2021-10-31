@@ -15,6 +15,7 @@ namespace Servicios.UI
 {
     public partial class FormBitacora : Form, IIdiomasObservador
     {
+        Evento eventoSeleccionado;
         public FormBitacora()
         {
             InitializeComponent();
@@ -22,6 +23,7 @@ namespace Servicios.UI
 
         private void FormBitacora_Load(object sender, EventArgs e)
         {
+            grillaBitacora.AutoGenerateColumns = false;
             GestorIdiomas.Current.SuscribirObservador(this);
             IEnumerable<Evento> bitacora = GestorHistorico.Current.ListarBitacora();
             grillaBitacora.DataSource = bitacora.Reverse().ToList();
@@ -33,6 +35,21 @@ namespace Servicios.UI
         public void ActualizarTraducciones()
         {
             Text = "Ver bitácora".Traducir();
+            btnDetalle.Enabled = eventoSeleccionado != null;
+            btnDetalle.Text = "Ver detalle".Traducir();
+        }
+        private void grillaBitacora_SelectionChanged(object sender, EventArgs e)
+        {
+            if (grillaBitacora.SelectedRows.Count > 0)
+            {
+                int index = grillaBitacora.SelectedRows[0].Index;
+                IEnumerable<Evento> eventos = (IEnumerable<Evento>)grillaBitacora.DataSource;
+                eventoSeleccionado = eventos.ElementAt(index);
+                btnDetalle.Enabled = eventoSeleccionado != null;
+            }
+        }
+        private void btnDetalle_Click(object sender, EventArgs e)
+        {
         }
     }
 }

@@ -26,6 +26,8 @@ namespace Servicios.UI
 
         private void FormFamilia_Load(object sender, EventArgs e)
         {
+            grillaHijos.AutoGenerateColumns = false;
+            grillaDisponibles.AutoGenerateColumns = false;
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
           

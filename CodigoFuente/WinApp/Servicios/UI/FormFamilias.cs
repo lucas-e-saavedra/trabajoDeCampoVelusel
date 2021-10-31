@@ -23,6 +23,7 @@ namespace Servicios.UI
 
         private void FormFamilias_Load(object sender, EventArgs e)
         {
+            grillaFamilias.AutoGenerateColumns = false;
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
             grillaFamilias.DataSource = GestorUsuarios.Current.ListarFamilias();
@@ -59,8 +60,8 @@ namespace Servicios.UI
                 try
                 {
                     GestorUsuarios.Current.BorrarFamila(familiaSeleccionada);
+                    grillaFamilias.DataSource = null;
                     grillaFamilias.DataSource = GestorUsuarios.Current.ListarFamilias();
-                    familiaSeleccionada = null;
                 }
                 catch (Exception ex)
                 {

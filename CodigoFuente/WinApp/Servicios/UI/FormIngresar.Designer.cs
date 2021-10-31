@@ -50,7 +50,7 @@ namespace WinApp
             // 
             this.inputUsuario.Location = new System.Drawing.Point(16, 30);
             this.inputUsuario.Name = "inputUsuario";
-            this.inputUsuario.Size = new System.Drawing.Size(160, 20);
+            this.inputUsuario.Size = new System.Drawing.Size(220, 20);
             this.inputUsuario.TabIndex = 1;
             // 
             // lblContrasenia
@@ -66,14 +66,14 @@ namespace WinApp
             // 
             this.inputContrasenia.Location = new System.Drawing.Point(19, 93);
             this.inputContrasenia.Name = "inputContrasenia";
-            this.inputContrasenia.Size = new System.Drawing.Size(157, 20);
+            this.inputContrasenia.Size = new System.Drawing.Size(217, 20);
             this.inputContrasenia.TabIndex = 3;
             this.inputContrasenia.UseSystemPasswordChar = true;
             this.inputContrasenia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputContrasenia_KeyPress);
             // 
             // btnIngresar
             // 
-            this.btnIngresar.Location = new System.Drawing.Point(101, 153);
+            this.btnIngresar.Location = new System.Drawing.Point(161, 139);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(75, 23);
             this.btnIngresar.TabIndex = 4;
@@ -85,7 +85,7 @@ namespace WinApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(368, 288);
+            this.ClientSize = new System.Drawing.Size(254, 192);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.inputContrasenia);
             this.Controls.Add(this.lblContrasenia);

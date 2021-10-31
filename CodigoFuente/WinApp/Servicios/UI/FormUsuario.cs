@@ -26,6 +26,8 @@ namespace Servicios.UI
 
         private void FormUsuario_Load(object sender, EventArgs e)
         {
+            grillaPermisos.AutoGenerateColumns = false;
+            grillaDisponibles.AutoGenerateColumns = false;
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
 
