@@ -49,3 +49,60 @@ Ingles|Ingles
 Fabricante|Fabricante
 Productos|Productos
 Materiales|Materiales
+Velusel Fábrica|
+Comprador|
+Configurar alarmas|
+Ordenes de compra|
+Calcular compras|
+Diseñador|
+ABM Productos|
+ABM Materiales|
+Analizar pedido|
+Ordenes de Fabricación|
+Vendedor|
+Generar pedido|
+Ver pedidos|
+ABM Clientes|
+Revertir orden de compra|
+Analizar las órdenes de fabricacion entre estas fechas para calcular las compras sugeridas|
+Grabar órdenes de compra|
+Orden de compra|
+Descripción del objetivo de la compra|
+Fecha planificada para efectuar la compra|
+Datos recepción|
+He recibido la compra|
+Cantidad comprada|
+Cantidad recibida|
+Grabar|
+Identificador|
+Objetivo|
+Fecha planificada|
+La cadena de entrada no tiene el formato correcto.|
+Cancelar pedido|
+Comenzar fabricación|
+Finalizar fabricación|
+Verificar calidad|
+Terminar fabricación|
+¿Cuántas unidades cumplen con la calidad requerida?|
+El producto aún no ha cumplido con el tiempo minimo de reposo sugerido|
+Unidad de medida|
+Mostrar en el catálogo|
+Ingredientes|
+Reposo necesario|
+Descripción|
+Url de la foto|
+Quitar|
+Seleccionar cliente|
+No está permitido crear un pedido vacío|
+Seleccionar|
+Orden de fabricación|
+Agendar pedido|
+ninguna|
+Siguiente Orden de Fabricación|
+Horas de reposo necesarias|
+Estado|
+No hay suficiente stock de Vaso whisky(Un)|
+Seleccione una nueva fecha para volver a agendar esta orden de fabricación|
+Cerrar fabricación|
+¿Cuántas unidades logró fabricar?|
+No se puede encontrar una parte de la ruta de acceso 'C:\TuTiN\trabajoDeCampoVelusel\CodigoFuente\WinApp\WinApp\bin\Debug\ExportarATienda\Pedido-bf9bbc1e-0fef-4835-ae6b-88ba81327d3e.txt'.|

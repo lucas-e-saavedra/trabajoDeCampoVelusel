@@ -1,31 +1,112 @@
 ﻿Ingrese su usuario|Enter your username
 Ingrese su contraseña|Enter your password
-Ingresar|Log in
-Auditoría|
-Ver bitácora|
-Ver errores|
-Administración|
-ABM Patentes|CRUD Permissions
-ABM Usuarios|CRUD Users
-ABM Familias|CRUD Families
+Ingresar|Log In
+El usuario y contraseña no coinciden|Username and password does not match
+Agregar|Add
+Borrar|Remove
+Modificar|Update
+Nombre de la patente|Permission name
+Nombre|Name
+Vista|View
+Cancelar|Cancel
+¿Está seguro?|Are you sure?
+Hubo un problema al borrar una patente|There was a problem while removing a permission
+Hubo un problema al borrar una familia|There was a problem while removing a role
+Hijos|Childrens
+Disponibles|Available
+Hubo un problema al borrar un usuario|There was a problem while removing a user
+Usuario|Username
+Email|Email
+Documento|National ID
+Permisos|Permissions
+Blanquear clave|Clean password
+Contraseña|Password
+Repetir contraseña|Repeat password
+Las contraseñas no coinciden|Passwords does not match
+Administración|Administration
+ABM usuarios|CRUD Users
 Mi cuenta|My account
-Mis datos|My information
+Mis datos|Mis profile
 Test Error|Test Error
-Cerrar sesión|Log out
+Cerrar sesión|Log Out
+La acción seleccionada no está configurada adecuadamente. Contacte al administrador|The action that you selected is not configured properly. Please, contact to system administrator
+ABM Patentes|CRUD Permissions
+ABM Familias|CRUD Roles
+La acción seleccionada no está configurada adecuadamente.|The action that you selected is not configured properly.
+Contacte al administrador|Please, contact to system administrator
+Iniciar sesión|Log In
+Auditoría|History
+Ver bitácora|Watch logs
+Ver errores|Watch exceptions
+Hubo un problema al modificar un usuario|There was a problem while removing a user
+Ya existe otro usuario con ese mismo inicio de sesión|There is already other user with the same username 
+Hubo un problema al agregar un usuario|There was a problem while creating a user
+Ya existe otro usuario con ese mismo tipo y número de documento|There is already other user with the same national Id
+Faltan completar datos|Missing information
 Seleccionar idioma|Select language
 Español|Spanish
 Ingles|English
-Agregar|Add
-Borrar|Delete
-Modificar|Update
-¿Está seguro?|Are you sure?
-Hubo un problema al borrar una patente|
-Blanquear clave|Clean password
-Usuario|Username
-Nombre|Full name
-Email|Email
-Documento|NationalId
-Permisos|Permissions
-Disponibles|Available
-Cancelar|Cancel
-Iniciar sesión|Log in
+Fabricante|Maker
+Productos|Products
+Materiales|Materials
+Velusel Fábrica|Velusel Factory
+Comprador|Buyer
+Configurar alarmas|Setup alerts
+Ordenes de compra|Purchase orders
+Calcular compras|Calculate purchases
+Diseñador|Designer
+ABM Productos|CRUD Products
+ABM Materiales|CRUD Materials
+Analizar pedido|Analyze request
+Ordenes de Fabricación|Manufacturing orders
+Vendedor|Seller
+Generar pedido|Generate request
+Ver pedidos|Watch requests
+ABM Clientes|CRUD Clients
+Revertir orden de compra|Revert purchase order
+Analizar las órdenes de fabricacion entre estas fechas para calcular las compras sugeridas|Analyze manufacturing orders between the selected dates to suggest required purchases
+Grabar órdenes de compra|Save purchase orders
+Orden de compra|Purchase orders
+Descripción del objetivo de la compra|Purchase target description
+Fecha planificada para efectuar la compra|Scheduled date for purchase
+Datos recepción|Receive information
+He recibido la compra|I have received the purchase
+Cantidad comprada|Purchased amount
+Cantidad recibida|Received amount
+Grabar|Save
+Identificador|Identifier
+Objetivo|Target
+Fecha planificada|Scheduled date
+La cadena de entrada no tiene el formato correcto.|The input string is not in the correct format
+Cancelar pedido|Cancel request
+Comenzar fabricación|Begin manufacturing
+Finalizar fabricación|Finish manufacturing
+Verificar calidad|Check quality
+Terminar fabricación|Complete manufacturing
+¿Cuántas unidades cumplen con la calidad requerida?|How many units comply the required quality?
+El producto aún no ha cumplido con el tiempo minimo de reposo sugerido|The product has not yet met the suggested minimum standing time
+Unidad de medida|Unit of measurement
+Mostrar en el catálogo|Show in list
+Ingredientes|Items
+Reposo necesario|Standing time required
+Descripción|Description
+Url de la foto|Photo url
+Quitar|Remove
+Seleccionar cliente|Select client
+No está permitido crear un pedido vacío|It is not allowed to create an empty order
+Seleccionar|Select
+Orden de fabricación|Manufacturing order
+Agendar pedido|Schedule request
+ninguna|none
+Siguiente Orden de Fabricación|Next manufactuing order
+Horas de reposo necesarias|Hours of rest required
+Estado|Status
+Seleccione una nueva fecha para volver a agendar esta orden de fabricación|Select new date to schedule again this manufacturing order
+Cerrar fabricación|Complete manufacturing
+¿Cuántas unidades logró fabricar?|How many units did you make?
+Ninguno|None
+Habilitar|Enable
+Deshabilitar|Disable
+El cliente seleccionado no está habilitado para realizar un pedido|The selected client is not allowed to request an order
+Cantidad de dias de anticipación que desea controlar del stock para evitar bloqueos|Number of days in advance that you want to control the stock to avoid blockages
+Cantidad de dias de anticipación que desea controlar estado de las compras para evitar bloqueos|Number of days in advance that you want to control the status of purchases to avoid blockages
