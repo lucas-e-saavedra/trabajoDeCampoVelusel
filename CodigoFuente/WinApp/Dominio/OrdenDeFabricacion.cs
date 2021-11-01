@@ -11,7 +11,8 @@ namespace Dominio
     {
         public Guid Id { get; set; }
         public Pedido pedido { get; set; }
-        public DateTime fecha { get; set; }
+        public DateTime FechaPlanificada { get; set; }
+        public DateTime FechaEjecucion { get; set; }
         public EnumEstadoOrdenFabricacion Estado { get; set; }
         public Producto Objetivo { get; set; }
         public Producto Fabricados { get; set; }

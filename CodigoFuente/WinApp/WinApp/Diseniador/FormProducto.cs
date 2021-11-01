@@ -22,6 +22,8 @@ namespace WinApp.Diseniador
 
         private void FormProducto_Load(object sender, EventArgs e)
         {
+            grillaIngredientes.AutoGenerateColumns = false;
+            grillaDisponibles.AutoGenerateColumns = false;
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
             List<KeyValuePair<string, string>> lstUnidades = new List<KeyValuePair<string, string>>();

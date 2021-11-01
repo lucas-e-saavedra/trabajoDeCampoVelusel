@@ -52,7 +52,7 @@ namespace WinApp
             this.inputUsuario.Name = "inputUsuario";
             this.inputUsuario.Size = new System.Drawing.Size(220, 20);
             this.inputUsuario.TabIndex = 1;
-            this.inputUsuario.Text = "juan.vendedor";
+            this.inputUsuario.Text = "juan.fabricante";
             // 
             // lblContrasenia
             // 

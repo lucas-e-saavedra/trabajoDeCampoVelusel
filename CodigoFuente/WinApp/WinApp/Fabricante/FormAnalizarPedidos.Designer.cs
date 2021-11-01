@@ -31,12 +31,20 @@ namespace WinApp.Fabricante
         {
             this.btnSaveAllOrders = new System.Windows.Forms.Button();
             this.grillaPedidos = new System.Windows.Forms.DataGridView();
+            this.Solicitante = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grillaOrdenesFabricacion = new System.Windows.Forms.DataGridView();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado_OF = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Objetivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.boxOrdenFabricacion = new System.Windows.Forms.GroupBox();
             this.lblOFposterior = new System.Windows.Forms.Label();
             this.lblObjetivoOrdenFabricacion = new System.Windows.Forms.Label();
             this.timeOrdenFabricacion = new System.Windows.Forms.DateTimePicker();
             this.lblIdOrdenFabricacion = new System.Windows.Forms.Label();
+            this.lblReposoNecesario = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grillaPedidos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaOrdenesFabricacion)).BeginInit();
             this.boxOrdenFabricacion.SuspendLayout();
@@ -55,6 +63,11 @@ namespace WinApp.Fabricante
             // grillaPedidos
             // 
             this.grillaPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaPedidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Solicitante,
+            this.Vendedor,
+            this.Estado,
+            this.Detalle});
             this.grillaPedidos.Location = new System.Drawing.Point(12, 12);
             this.grillaPedidos.Name = "grillaPedidos";
             this.grillaPedidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -62,9 +75,43 @@ namespace WinApp.Fabricante
             this.grillaPedidos.TabIndex = 9;
             this.grillaPedidos.SelectionChanged += new System.EventHandler(this.grillaPedidos_SelectionChanged);
             // 
+            // Solicitante
+            // 
+            this.Solicitante.DataPropertyName = "DescSolicitante";
+            this.Solicitante.HeaderText = "Solicitante";
+            this.Solicitante.Name = "Solicitante";
+            this.Solicitante.ReadOnly = true;
+            // 
+            // Vendedor
+            // 
+            this.Vendedor.DataPropertyName = "DescVendedor";
+            this.Vendedor.HeaderText = "Vendedor";
+            this.Vendedor.Name = "Vendedor";
+            this.Vendedor.ReadOnly = true;
+            // 
+            // Estado
+            // 
+            this.Estado.DataPropertyName = "Estado";
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            // 
+            // Detalle
+            // 
+            this.Detalle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Detalle.DataPropertyName = "DescDetalle";
+            this.Detalle.HeaderText = "Detalle";
+            this.Detalle.Name = "Detalle";
+            this.Detalle.ReadOnly = true;
+            this.Detalle.Width = 65;
+            // 
             // grillaOrdenesFabricacion
             // 
             this.grillaOrdenesFabricacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaOrdenesFabricacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Fecha,
+            this.Estado_OF,
+            this.Objetivo});
             this.grillaOrdenesFabricacion.Location = new System.Drawing.Point(12, 160);
             this.grillaOrdenesFabricacion.Name = "grillaOrdenesFabricacion";
             this.grillaOrdenesFabricacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -72,8 +119,36 @@ namespace WinApp.Fabricante
             this.grillaOrdenesFabricacion.TabIndex = 10;
             this.grillaOrdenesFabricacion.SelectionChanged += new System.EventHandler(this.grillaOrdenesFabricacion_SelectionChanged);
             // 
+            // Fecha
+            // 
+            this.Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Fecha.DataPropertyName = "FechaPlanificada";
+            this.Fecha.HeaderText = "Fecha planificada";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.ReadOnly = true;
+            this.Fecha.Width = 106;
+            // 
+            // Estado_OF
+            // 
+            this.Estado_OF.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Estado_OF.DataPropertyName = "Estado";
+            this.Estado_OF.HeaderText = "Estado";
+            this.Estado_OF.Name = "Estado_OF";
+            this.Estado_OF.ReadOnly = true;
+            this.Estado_OF.Width = 65;
+            // 
+            // Objetivo
+            // 
+            this.Objetivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Objetivo.DataPropertyName = "Objetivo";
+            this.Objetivo.HeaderText = "Objetivo";
+            this.Objetivo.Name = "Objetivo";
+            this.Objetivo.ReadOnly = true;
+            this.Objetivo.Width = 71;
+            // 
             // boxOrdenFabricacion
             // 
+            this.boxOrdenFabricacion.Controls.Add(this.lblReposoNecesario);
             this.boxOrdenFabricacion.Controls.Add(this.lblOFposterior);
             this.boxOrdenFabricacion.Controls.Add(this.lblObjetivoOrdenFabricacion);
             this.boxOrdenFabricacion.Controls.Add(this.timeOrdenFabricacion);
@@ -88,7 +163,7 @@ namespace WinApp.Fabricante
             // lblOFposterior
             // 
             this.lblOFposterior.AutoSize = true;
-            this.lblOFposterior.Location = new System.Drawing.Point(7, 33);
+            this.lblOFposterior.Location = new System.Drawing.Point(7, 59);
             this.lblOFposterior.Name = "lblOFposterior";
             this.lblOFposterior.Size = new System.Drawing.Size(71, 13);
             this.lblOFposterior.TabIndex = 3;
@@ -97,7 +172,7 @@ namespace WinApp.Fabricante
             // lblObjetivoOrdenFabricacion
             // 
             this.lblObjetivoOrdenFabricacion.AutoSize = true;
-            this.lblObjetivoOrdenFabricacion.Location = new System.Drawing.Point(7, 72);
+            this.lblObjetivoOrdenFabricacion.Location = new System.Drawing.Point(7, 81);
             this.lblObjetivoOrdenFabricacion.Name = "lblObjetivoOrdenFabricacion";
             this.lblObjetivoOrdenFabricacion.Size = new System.Drawing.Size(140, 13);
             this.lblObjetivoOrdenFabricacion.TabIndex = 2;
@@ -105,10 +180,11 @@ namespace WinApp.Fabricante
             // 
             // timeOrdenFabricacion
             // 
-            this.timeOrdenFabricacion.Location = new System.Drawing.Point(6, 49);
+            this.timeOrdenFabricacion.Location = new System.Drawing.Point(6, 36);
             this.timeOrdenFabricacion.Name = "timeOrdenFabricacion";
             this.timeOrdenFabricacion.Size = new System.Drawing.Size(200, 20);
             this.timeOrdenFabricacion.TabIndex = 1;
+            this.timeOrdenFabricacion.ValueChanged += new System.EventHandler(this.timeOrdenFabricacion_ValueChanged);
             // 
             // lblIdOrdenFabricacion
             // 
@@ -118,6 +194,15 @@ namespace WinApp.Fabricante
             this.lblIdOrdenFabricacion.Size = new System.Drawing.Size(110, 13);
             this.lblIdOrdenFabricacion.TabIndex = 0;
             this.lblIdOrdenFabricacion.Text = "lblIdOrdenFabricacion";
+            // 
+            // lblReposoNecesario
+            // 
+            this.lblReposoNecesario.AutoSize = true;
+            this.lblReposoNecesario.Location = new System.Drawing.Point(7, 104);
+            this.lblReposoNecesario.Name = "lblReposoNecesario";
+            this.lblReposoNecesario.Size = new System.Drawing.Size(102, 13);
+            this.lblReposoNecesario.TabIndex = 4;
+            this.lblReposoNecesario.Text = "lblReposoNecesario";
             // 
             // FormAnalizarPedidos
             // 
@@ -150,5 +235,13 @@ namespace WinApp.Fabricante
         private System.Windows.Forms.Label lblIdOrdenFabricacion;
         private System.Windows.Forms.Label lblObjetivoOrdenFabricacion;
         private System.Windows.Forms.Label lblOFposterior;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Solicitante;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Vendedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado_OF;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Objetivo;
+        private System.Windows.Forms.Label lblReposoNecesario;
     }
 }

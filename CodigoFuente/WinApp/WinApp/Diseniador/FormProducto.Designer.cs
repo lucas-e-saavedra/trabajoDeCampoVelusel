@@ -48,13 +48,18 @@ namespace WinApp.Diseniador
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.inputFotoUrl = new System.Windows.Forms.TextBox();
             this.lblFotoUrl = new System.Windows.Forms.Label();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Unidad_D = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre_D = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grillaDisponibles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaIngredientes)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(157, 445);
+            this.btnCancelar.Location = new System.Drawing.Point(499, 445);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 11;
@@ -89,7 +94,7 @@ namespace WinApp.Diseniador
             // 
             // btnGrabar
             // 
-            this.btnGrabar.Location = new System.Drawing.Point(157, 416);
+            this.btnGrabar.Location = new System.Drawing.Point(580, 445);
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(75, 23);
             this.btnGrabar.TabIndex = 6;
@@ -118,7 +123,7 @@ namespace WinApp.Diseniador
             // lblDisponibles
             // 
             this.lblDisponibles.AutoSize = true;
-            this.lblDisponibles.Location = new System.Drawing.Point(312, 119);
+            this.lblDisponibles.Location = new System.Drawing.Point(397, 122);
             this.lblDisponibles.Name = "lblDisponibles";
             this.lblDisponibles.Size = new System.Drawing.Size(71, 13);
             this.lblDisponibles.TabIndex = 27;
@@ -127,15 +132,18 @@ namespace WinApp.Diseniador
             // grillaDisponibles
             // 
             this.grillaDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaDisponibles.Location = new System.Drawing.Point(312, 138);
+            this.grillaDisponibles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Unidad_D,
+            this.Nombre_D});
+            this.grillaDisponibles.Location = new System.Drawing.Point(389, 138);
             this.grillaDisponibles.Name = "grillaDisponibles";
-            this.grillaDisponibles.Size = new System.Drawing.Size(240, 150);
+            this.grillaDisponibles.Size = new System.Drawing.Size(266, 150);
             this.grillaDisponibles.TabIndex = 26;
             this.grillaDisponibles.SelectionChanged += new System.EventHandler(this.grillaDisponibles_SelectionChanged);
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(262, 223);
+            this.btnQuitar.Location = new System.Drawing.Point(339, 235);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(44, 23);
             this.btnQuitar.TabIndex = 25;
@@ -145,7 +153,7 @@ namespace WinApp.Diseniador
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(262, 173);
+            this.btnAgregar.Location = new System.Drawing.Point(339, 173);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(44, 23);
             this.btnAgregar.TabIndex = 24;
@@ -164,15 +172,15 @@ namespace WinApp.Diseniador
             // 
             // inputReposo
             // 
-            this.inputReposo.Location = new System.Drawing.Point(15, 379);
+            this.inputReposo.Location = new System.Drawing.Point(15, 398);
             this.inputReposo.Name = "inputReposo";
-            this.inputReposo.Size = new System.Drawing.Size(214, 20);
+            this.inputReposo.Size = new System.Drawing.Size(182, 20);
             this.inputReposo.TabIndex = 29;
             // 
             // lblReposo
             // 
             this.lblReposo.AutoSize = true;
-            this.lblReposo.Location = new System.Drawing.Point(12, 363);
+            this.lblReposo.Location = new System.Drawing.Point(15, 382);
             this.lblReposo.Name = "lblReposo";
             this.lblReposo.Size = new System.Drawing.Size(54, 13);
             this.lblReposo.TabIndex = 28;
@@ -181,11 +189,15 @@ namespace WinApp.Diseniador
             // grillaIngredientes
             // 
             this.grillaIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaIngredientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Cantidad,
+            this.Unidad,
+            this.Nombre});
             this.grillaIngredientes.Location = new System.Drawing.Point(12, 138);
             this.grillaIngredientes.MultiSelect = false;
             this.grillaIngredientes.Name = "grillaIngredientes";
             this.grillaIngredientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grillaIngredientes.Size = new System.Drawing.Size(240, 150);
+            this.grillaIngredientes.Size = new System.Drawing.Size(321, 150);
             this.grillaIngredientes.TabIndex = 30;
             this.grillaIngredientes.SelectionChanged += new System.EventHandler(this.grillaIngredientes_SelectionChanged);
             // 
@@ -196,7 +208,7 @@ namespace WinApp.Diseniador
             this.inputDescripcion.Multiline = true;
             this.inputDescripcion.Name = "inputDescripcion";
             this.inputDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.inputDescripcion.Size = new System.Drawing.Size(528, 45);
+            this.inputDescripcion.Size = new System.Drawing.Size(640, 64);
             this.inputDescripcion.TabIndex = 32;
             // 
             // lblDescripcion
@@ -210,25 +222,69 @@ namespace WinApp.Diseniador
             // 
             // inputFotoUrl
             // 
-            this.inputFotoUrl.Location = new System.Drawing.Point(329, 379);
+            this.inputFotoUrl.Location = new System.Drawing.Point(224, 398);
             this.inputFotoUrl.Name = "inputFotoUrl";
-            this.inputFotoUrl.Size = new System.Drawing.Size(214, 20);
+            this.inputFotoUrl.Size = new System.Drawing.Size(431, 20);
             this.inputFotoUrl.TabIndex = 34;
             // 
             // lblFotoUrl
             // 
             this.lblFotoUrl.AutoSize = true;
-            this.lblFotoUrl.Location = new System.Drawing.Point(326, 363);
+            this.lblFotoUrl.Location = new System.Drawing.Point(221, 382);
             this.lblFotoUrl.Name = "lblFotoUrl";
             this.lblFotoUrl.Size = new System.Drawing.Size(51, 13);
             this.lblFotoUrl.TabIndex = 33;
             this.lblFotoUrl.Text = "lblFotoUrl";
             // 
+            // Cantidad
+            // 
+            this.Cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Cantidad.DataPropertyName = "Cantidad";
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 74;
+            // 
+            // Unidad
+            // 
+            this.Unidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Unidad.DataPropertyName = "Unidad";
+            this.Unidad.HeaderText = "Unidad";
+            this.Unidad.Name = "Unidad";
+            this.Unidad.ReadOnly = true;
+            this.Unidad.Width = 66;
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 69;
+            // 
+            // Unidad_D
+            // 
+            this.Unidad_D.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Unidad_D.DataPropertyName = "Unidad";
+            this.Unidad_D.HeaderText = "Unidad";
+            this.Unidad_D.Name = "Unidad_D";
+            this.Unidad_D.ReadOnly = true;
+            this.Unidad_D.Width = 66;
+            // 
+            // Nombre_D
+            // 
+            this.Nombre_D.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Nombre_D.DataPropertyName = "Nombre";
+            this.Nombre_D.HeaderText = "Nombre";
+            this.Nombre_D.Name = "Nombre_D";
+            this.Nombre_D.ReadOnly = true;
+            this.Nombre_D.Width = 69;
+            // 
             // FormProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 474);
+            this.ClientSize = new System.Drawing.Size(667, 474);
             this.Controls.Add(this.inputFotoUrl);
             this.Controls.Add(this.lblFotoUrl);
             this.Controls.Add(this.inputDescripcion);
@@ -280,5 +336,10 @@ namespace WinApp.Diseniador
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.TextBox inputFotoUrl;
         private System.Windows.Forms.Label lblFotoUrl;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Unidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Unidad_D;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre_D;
     }
 }

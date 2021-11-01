@@ -33,22 +33,27 @@ namespace WinApp.Diseniador
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grillaMateriales)).BeginInit();
             this.SuspendLayout();
             // 
             // grillaMateriales
             // 
             this.grillaMateriales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaMateriales.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nombre,
+            this.Unidad});
             this.grillaMateriales.Location = new System.Drawing.Point(13, 13);
             this.grillaMateriales.Name = "grillaMateriales";
             this.grillaMateriales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grillaMateriales.Size = new System.Drawing.Size(402, 213);
+            this.grillaMateriales.Size = new System.Drawing.Size(775, 366);
             this.grillaMateriales.TabIndex = 0;
             this.grillaMateriales.SelectionChanged += new System.EventHandler(this.grillaMateriales_SelectionChanged);
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(329, 375);
+            this.btnModificar.Location = new System.Drawing.Point(175, 385);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 23);
             this.btnModificar.TabIndex = 6;
@@ -58,7 +63,7 @@ namespace WinApp.Diseniador
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(175, 375);
+            this.btnBorrar.Location = new System.Drawing.Point(94, 385);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(75, 23);
             this.btnBorrar.TabIndex = 5;
@@ -68,7 +73,7 @@ namespace WinApp.Diseniador
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(23, 375);
+            this.btnAgregar.Location = new System.Drawing.Point(13, 385);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 4;
@@ -76,11 +81,25 @@ namespace WinApp.Diseniador
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Unidad
+            // 
+            this.Unidad.DataPropertyName = "Unidad";
+            this.Unidad.HeaderText = "Unidad";
+            this.Unidad.Name = "Unidad";
+            this.Unidad.ReadOnly = true;
+            // 
             // FormMateriales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 420);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnAgregar);
@@ -100,5 +119,7 @@ namespace WinApp.Diseniador
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Unidad;
     }
 }

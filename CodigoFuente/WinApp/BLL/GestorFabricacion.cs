@@ -48,14 +48,23 @@ namespace BLL
         {
             FabricaDAL.Current.ObtenerRepositorioDeProductos().Borrar(unProducto);
         }
-        public void CerrarFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion)
+
+        /// <summary>
+        /// Este método cambia el estado de la orden de fabricación a FABRICADO, registra cual fue el momento en que se ejecutó e indica si es necesario crear mas ordenes de fabricación si el resultado no fue suficiente.
+        /// </summary>
+        /// <param name="unaOrdenDeFabricacion">Este parametro recibe la orden de fabriación a modificar</param>
+        /// <returns>Devuelve VERDADERO si hay que agregar una nueva orden de fabricación posterior a esta y devuelve FALSO si no es necesario crear nuevas órdenes de fabricación</returns>
+        public bool CerrarFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion)
         {
             //TODO: aqui falta agregar las acciones cuando la cantidad fabricada es distinto del objetivo
             unaOrdenDeFabricacion.Estado = EnumEstadoOrdenFabricacion.FABRICADO;
+            unaOrdenDeFabricacion.FechaEjecucion = DateTime.Now;
             FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Modificar(unaOrdenDeFabricacion);
             Usuario usuario = GestorSesion.Current.usuarioActual;
             Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} terminó de fabricar la orden de fabricacion {unaOrdenDeFabricacion.Id}");
             GestorHistorico.Current.RegistrarBitacora(unEvento);
+
+            return unaOrdenDeFabricacion.Fabricados.Cantidad < unaOrdenDeFabricacion.Objetivo.Cantidad;
         }
         public void ComenzarFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion)
         {
@@ -82,6 +91,45 @@ namespace BLL
             Usuario usuario = GestorSesion.Current.usuarioActual;
             Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} comenzó a fabricar la orden de fabricacion {unaOrdenDeFabricacion.Id}");
             GestorHistorico.Current.RegistrarBitacora(unEvento);
+        }
+
+        //TODO: este metodo falta agregarlo al enterprise architect
+        public void ReprogramarFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion)
+        {
+            if (unaOrdenDeFabricacion.Estado != EnumEstadoOrdenFabricacion.FORMULADO && unaOrdenDeFabricacion.Estado != EnumEstadoOrdenFabricacion.AGENDADO)
+                throw new Exception("No está permitido reprogramar una orden de fabricacion en este estado");
+            FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Modificar(unaOrdenDeFabricacion);
+            Usuario usuario = GestorSesion.Current.usuarioActual;
+            Evento unEvento = new Evento(Evento.CategoriaEvento.ADVERTENCIA, $"El usuario {usuario.UsuarioLogin} ha reprogramado la orden de fabricacion {unaOrdenDeFabricacion.Id}");
+            GestorHistorico.Current.RegistrarBitacora(unEvento);
+        }
+        //TODO: este metodo falta agregarlo al enterprise architect
+        public void DividirFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion, DateTime fechaSeleccionada)
+        {
+            OrdenDeFabricacion nuevaOrdenDeFabricacion = null;
+            Producto nuevoObjetivo;
+            switch (unaOrdenDeFabricacion.Estado) {
+                case EnumEstadoOrdenFabricacion.CANCELADO:
+                case EnumEstadoOrdenFabricacion.FORMULADO:
+                case EnumEstadoOrdenFabricacion.AGENDADO:
+                case EnumEstadoOrdenFabricacion.ENFABRICACION:
+                    throw new Exception("No está permitido dividir una orden de fabricacion en este estado");
+                case EnumEstadoOrdenFabricacion.FABRICADO:
+                    nuevoObjetivo = unaOrdenDeFabricacion.Objetivo.Copiar();
+                    nuevoObjetivo.Cantidad = unaOrdenDeFabricacion.Objetivo.Cantidad - unaOrdenDeFabricacion.Fabricados.Cantidad;
+                    nuevaOrdenDeFabricacion = new OrdenDeFabricacion(unaOrdenDeFabricacion.OrdenDeFabricacionPosterior, unaOrdenDeFabricacion.pedido, nuevoObjetivo);
+                    break;
+                case EnumEstadoOrdenFabricacion.TERMINADO:
+                    nuevoObjetivo = unaOrdenDeFabricacion.Fabricados.Copiar();
+                    nuevoObjetivo.Cantidad = unaOrdenDeFabricacion.Fabricados.Cantidad - unaOrdenDeFabricacion.Aprobados.Cantidad;
+                    nuevaOrdenDeFabricacion = new OrdenDeFabricacion(unaOrdenDeFabricacion.OrdenDeFabricacionPosterior, unaOrdenDeFabricacion.pedido, nuevoObjetivo);
+                    break;
+            }
+            nuevaOrdenDeFabricacion.FechaPlanificada = fechaSeleccionada;
+            CrearOrdenDeFabricacion(nuevaOrdenDeFabricacion);
+
+            unaOrdenDeFabricacion.OrdenDeFabricacionPosterior = nuevaOrdenDeFabricacion;
+            FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Modificar(unaOrdenDeFabricacion);
         }
         //TODO: este metodo falta agregarlo al enterprise architect
         private void CrearOrdenesDeFabricacion(List<OrdenDeFabricacion> ofs, Pedido unPedido, Producto unProducto, OrdenDeFabricacion ofPosterior)
@@ -166,17 +214,17 @@ namespace BLL
         }
         public bool VerificarDependenciaOrdenesDeFabricacion(IEnumerable<OrdenDeFabricacion> ordenesDeFabricacion)
         {
-            if (ordenesDeFabricacion.Any(item => item.fecha < DateTime.Today))
+            if (ordenesDeFabricacion.Any(item => item.FechaPlanificada < DateTime.Today))
                 return false;
             foreach (OrdenDeFabricacion orden in ordenesDeFabricacion) {
                 if (orden.OrdenDeFabricacionPosterior != null) {
-                    DateTime finishedProduct = orden.fecha.AddHours(orden.Objetivo.plantillaDeFabricacion.ReposoNecesario);
-                    if (finishedProduct > orden.OrdenDeFabricacionPosterior.fecha)
+                    DateTime finEstimadoConReposo = orden.FechaPlanificada.AddHours(orden.Objetivo.plantillaDeFabricacion.ReposoNecesario);
+                    if (finEstimadoConReposo > orden.OrdenDeFabricacionPosterior.FechaPlanificada)
                         return false;
                 }
             }
 
-            IEnumerable<OrdenDeFabricacion> ordenesAgrabar = ordenesDeFabricacion.OrderByDescending(item => item.fecha);
+            IEnumerable<OrdenDeFabricacion> ordenesAgrabar = ordenesDeFabricacion.OrderByDescending(item => item.FechaPlanificada);
 
             foreach (OrdenDeFabricacion orden in ordenesAgrabar) {
                 CrearOrdenDeFabricacion(orden);
@@ -185,38 +233,40 @@ namespace BLL
 
             return true;
         }
-        public bool VerificarAvancePedido(Pedido unPedido)
+
+        public void VerificarAvancePedido(Pedido unPedido)
         {
             IEnumerable<OrdenDeFabricacion> todas = FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Listar();
             List<OrdenDeFabricacion> ofPedido = todas.Where(item => item.pedido.Id == unPedido.Id).ToList();
             bool todasTerminadas = ofPedido.All(item => item.Estado == EnumEstadoOrdenFabricacion.TERMINADO);
-
-            /*List<Producto> productos = new List<Producto>();
-            foreach(OrdenDeFabricacion of in ofPedido){
-                Producto unProducto = productos.FirstOrDefault(item => item.Id == of.Aprobados.Id);
-                if (unProducto == null)
-                    productos.Add(unProducto);
-                else
-                    unProducto.Cantidad += of.Aprobados.Cantidad;
-            }
-
-            bool totalProductos = unPedido.Detalle == productos;*/
-
-            GestorPedidos.Current.CompletarPedido(unPedido);
-            return false;
+            if(todasTerminadas)
+                GestorPedidos.Current.CompletarPedido(unPedido);
         }
-        public bool VerificarFinOrdenDeFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion)
+
+        //TODO: este metodo falta agregarlo al enterprise architect
+        /// <summary>
+        /// Este método cambia el estado de la orden de fabricación a TERMINADO e indica si es necesario crear mas ordenes de fabricación si el resultado no fue suficiente.
+        /// </summary>
+        /// <param name="unaOrdenDeFabricacion">Este parametro recibe la orden de fabriación a modificar</param>
+        /// <returns>Devuelve VERDADERO si hay que agregar una nueva orden de fabricación posterior a esta y devuelve FALSO si no es necesario crear nuevas órdenes de fabricación</returns>
+        public bool TerminarOrdenDeFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion)
         {
+            DateTime reposoMinimo = unaOrdenDeFabricacion.FechaEjecucion.AddHours(unaOrdenDeFabricacion.Objetivo.plantillaDeFabricacion.ReposoNecesario);
+            if (DateTime.Now < reposoMinimo) {
+                throw new Exception("El producto aún no ha cumplido con el tiempo minimo de reposo sugerido");
+            }
             List<ProductoMaterial> stock = GestorStock.Current.ObtenerMaterialesActuales();
             GestorStock.Current.ActualizarStock(unaOrdenDeFabricacion.Aprobados);
-            //TODO: aqui falta agregar las acciones cuando la cantidad fabricada es distinto del objetivo
             unaOrdenDeFabricacion.Estado = EnumEstadoOrdenFabricacion.TERMINADO;
             FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Modificar(unaOrdenDeFabricacion);
             Usuario usuario = GestorSesion.Current.usuarioActual;
             Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} finalizó la orden de fabricacion {unaOrdenDeFabricacion.Id} y agregó {unaOrdenDeFabricacion.Aprobados.Cantidad} {unaOrdenDeFabricacion.Aprobados} al inventario");
             GestorHistorico.Current.RegistrarBitacora(unEvento);
 
-            return VerificarAvancePedido(unaOrdenDeFabricacion.pedido);
+            bool necesitaDividirOF = unaOrdenDeFabricacion.Aprobados.Cantidad < unaOrdenDeFabricacion.Fabricados.Cantidad;
+            if(!necesitaDividirOF)
+                VerificarAvancePedido(unaOrdenDeFabricacion.pedido);
+            return necesitaDividirOF;
         }
 
     }

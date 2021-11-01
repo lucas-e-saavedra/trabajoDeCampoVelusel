@@ -24,9 +24,10 @@ namespace WinApp.Diseniador
 
         private void FormProductos_Load(object sender, EventArgs e)
         {
+            grillaProductos.AutoGenerateColumns = false;
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
-            grillaProductos.DataSource = BLL.GestorFabricacion.Current.ListarProductos();
+            ActualizarGrilla();
         }
 
         private void FormProductos_FormClosing(object sender, FormClosingEventArgs e)
@@ -41,31 +42,28 @@ namespace WinApp.Diseniador
             btnBorrar.Text = "Borrar".Traducir();
             btnModificar.Text = "Modificar".Traducir();
         }
-
+        private void ActualizarGrilla() {
+            grillaProductos.DataSource = null;
+            IEnumerable<Producto> productosOrdenados = BLL.GestorFabricacion.Current.ListarProductos().OrderBy(item => item.Nombre).OrderByDescending(item => item.DisponibleEnCatalogo);
+            grillaProductos.DataSource = productosOrdenados.ToList();
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             FormProducto form = new FormProducto(new Producto());
             DialogResult resultado = form.ShowDialog();
-            if (resultado == DialogResult.OK)
-            {
-                grillaProductos.DataSource = BLL.GestorFabricacion.Current.ListarProductos();
+            if (resultado == DialogResult.OK) {
+                ActualizarGrilla();
             }
-
         }
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show("¿Está seguro?".Traducir(), "Borrar".Traducir(), MessageBoxButtons.YesNo);
-            if (resultado == DialogResult.Yes)
-            {
-                try
-                {
-                    BLL.GestorFabricacion.Current.BorrarProducto(productoSeleccionado);
-                    grillaProductos.DataSource = BLL.GestorFabricacion.Current.ListarProductos();
-                    productoSeleccionado = null;
-                }
-                catch (Exception ex)
-                {
+            if (resultado == DialogResult.Yes) {
+                try {
+                    BLL.GestorFabricacion.Current.BorrarProducto(productoSeleccionado); 
+                    ActualizarGrilla();
+                } catch (Exception ex) {
                     MessageBox.Show(ex.Message.Traducir());
                 }
             }
@@ -75,17 +73,14 @@ namespace WinApp.Diseniador
         {
             FormProducto form = new FormProducto(productoSeleccionado);
             DialogResult resultado = form.ShowDialog();
-            if (resultado == DialogResult.OK)
-            {
-                grillaProductos.DataSource = BLL.GestorFabricacion.Current.ListarProductos();
+            if (resultado == DialogResult.OK) {
+                ActualizarGrilla();
             }
-
         }
 
         private void grillaProductos_SelectionChanged(object sender, EventArgs e)
         {
-            if (grillaProductos.SelectedRows.Count > 0)
-            {
+            if (grillaProductos.SelectedRows.Count > 0) {
                 int index = grillaProductos.SelectedRows[0].Index;
                 IEnumerable<Producto> productos = (IEnumerable<Producto>)grillaProductos.DataSource;
                 productoSeleccionado = productos.ElementAt(index);

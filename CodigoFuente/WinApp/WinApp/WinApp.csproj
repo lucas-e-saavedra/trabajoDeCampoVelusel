@@ -102,6 +102,12 @@
     <Compile Include="Diseniador\FormProductos.Designer.cs">
       <DependentUpon>FormProductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fabricante\FormDividirOrdenFabricacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fabricante\FormDividirOrdenFabricacion.Designer.cs">
+      <DependentUpon>FormDividirOrdenFabricacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fabricante\FormOrdenDeFabricacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,12 @@
     </Compile>
     <Compile Include="Fabricante\FormOrdenesDeFabricacion.Designer.cs">
       <DependentUpon>FormOrdenesDeFabricacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fabricante\FormReprogramarOrdenFabricacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fabricante\FormReprogramarOrdenFabricacion.Designer.cs">
+      <DependentUpon>FormReprogramarOrdenFabricacion.cs</DependentUpon>
     </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
@@ -199,11 +211,17 @@
     <EmbeddedResource Include="Diseniador\FormProductos.resx">
       <DependentUpon>FormProductos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Fabricante\FormDividirOrdenFabricacion.resx">
+      <DependentUpon>FormDividirOrdenFabricacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Fabricante\FormOrdenDeFabricacion.resx">
       <DependentUpon>FormOrdenDeFabricacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fabricante\FormOrdenesDeFabricacion.resx">
       <DependentUpon>FormOrdenesDeFabricacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fabricante\FormReprogramarOrdenFabricacion.resx">
+      <DependentUpon>FormReprogramarOrdenFabricacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>

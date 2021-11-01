@@ -63,6 +63,9 @@ namespace WinApp.Comprador
                 Material materialSeleccionado = materiales.ElementAt(index);
 
                 List<OrdenDeCompra> compras = (List<OrdenDeCompra>)grillaCompras.DataSource;
+                if (compras == null) {
+                    compras = new List<OrdenDeCompra>();
+                }
                 unaOrdenDeCompra = compras.FirstOrDefault(item => item.Objetivo.Id == materialSeleccionado.Id);
                 if(unaOrdenDeCompra == null) {
                     unaOrdenDeCompra = BLL.GestorCompras.Current.CrearOrdenDeCompra(DateTime.Today, materialSeleccionado);
@@ -107,8 +110,7 @@ namespace WinApp.Comprador
         {
             List<OrdenDeCompra> compras = (List<OrdenDeCompra>)grillaCompras.DataSource;
             unaOrdenDeCompra = compras.FirstOrDefault(item => item.Id == unaOrdenDeCompra.Id);
-            if (unaOrdenDeCompra != null)
-            {
+            if (unaOrdenDeCompra != null) {
                 compras.RemoveAll(item => item.Id == unaOrdenDeCompra.Id);
                 grillaCompras.DataSource = null;
                 grillaCompras.DataSource = compras;

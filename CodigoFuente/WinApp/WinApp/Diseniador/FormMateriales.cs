@@ -23,9 +23,10 @@ namespace WinApp.Diseniador
 
         private void Materiales_Load(object sender, EventArgs e)
         {
+            grillaMateriales.AutoGenerateColumns = false;
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
-            grillaMateriales.DataSource = BLL.GestorFabricacion.Current.ListarMateriales();
+            ActualizarGrilla();
         }
 
         private void Materiales_FormClosing(object sender, FormClosingEventArgs e)
@@ -40,31 +41,29 @@ namespace WinApp.Diseniador
             btnBorrar.Text = "Borrar".Traducir();
             btnModificar.Text = "Modificar".Traducir();
         }
-
+        private void ActualizarGrilla() {
+            grillaMateriales.DataSource = null;
+            IEnumerable<Material> materialesOrdenados = BLL.GestorFabricacion.Current.ListarMateriales().OrderBy(item => item.Nombre);
+            grillaMateriales.DataSource = materialesOrdenados.ToList();
+        }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             FormMaterial form = new FormMaterial(new Material());
             DialogResult resultado = form.ShowDialog();
-            if (resultado == DialogResult.OK)
-            {
-                grillaMateriales.DataSource = BLL.GestorFabricacion.Current.ListarMateriales();
+            if (resultado == DialogResult.OK) {
+                ActualizarGrilla();
             }
         }
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show("¿Está seguro?".Traducir(), "Borrar".Traducir(), MessageBoxButtons.YesNo);
-            if (resultado == DialogResult.Yes)
-            {
-                try
-                {
+            if (resultado == DialogResult.Yes) {
+                try {
                     BLL.GestorFabricacion.Current.BorrarMaterial(materialSeleccionado);
-                    grillaMateriales.DataSource = BLL.GestorFabricacion.Current.ListarMateriales();
-                    materialSeleccionado = null;
-                }
-                catch (Exception ex)
-                {
+                    ActualizarGrilla();
+                } catch (Exception ex) {
                     MessageBox.Show(ex.Message.Traducir());
                 }
             }
@@ -74,9 +73,8 @@ namespace WinApp.Diseniador
         {
             FormMaterial form = new FormMaterial(materialSeleccionado);
             DialogResult resultado = form.ShowDialog();
-            if (resultado == DialogResult.OK)
-            {
-                grillaMateriales.DataSource = BLL.GestorFabricacion.Current.ListarMateriales();
+            if (resultado == DialogResult.OK) {
+                ActualizarGrilla();
             }
         }
 

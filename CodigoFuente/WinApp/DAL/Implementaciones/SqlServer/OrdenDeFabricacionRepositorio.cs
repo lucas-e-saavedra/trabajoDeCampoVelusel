@@ -16,20 +16,20 @@ namespace DAL.Implementaciones.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[OrdenFabricacion] (Id, IdOrdenFabricacionPosterior, Estado, IdPedido, IdProducto, CantObjetivo, CantFabricados, CantAprobados, Fecha) " +
-                "VALUES (@Id, @IdOrdenFabricacionPosterior, @Estado, @IdPedido, @IdProducto, @CantObjetivo, @CantFabricados, @CantAprobados, @Fecha)";
+            get => "INSERT INTO [dbo].[OrdenFabricacion] (Id, IdOrdenFabricacionPosterior, Estado, IdPedido, IdProducto, CantObjetivo, CantFabricados, CantAprobados, FechaPlanificada, FechaEjecucion) " +
+                "VALUES (@Id, @IdOrdenFabricacionPosterior, @Estado, @IdPedido, @IdProducto, @CantObjetivo, @CantFabricados, @CantAprobados, @FechaPlanificada, @FechaEjecucion)";
         }
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[OrdenFabricacion] SET IdOrdenFabricacionPosterior = @IdOrdenFabricacionPosterior, Estado = @Estado , IdPedido = @IdPedido , IdProducto = @IdProducto, CantObjetivo = @CantObjetivo, CantFabricados = @CantFabricados, CantAprobados = @CantAprobados, Fecha = @Fecha WHERE Id = @Id";
+            get => "UPDATE [dbo].[OrdenFabricacion] SET IdOrdenFabricacionPosterior = @IdOrdenFabricacionPosterior, Estado = @Estado , IdPedido = @IdPedido , IdProducto = @IdProducto, CantObjetivo = @CantObjetivo, CantFabricados = @CantFabricados, CantAprobados = @CantAprobados, FechaPlanificada = @FechaPlanificada, FechaEjecucion = @FechaEjecucion WHERE Id = @Id";
         }
         private string SelectOneStatement
         {
-            get => "SELECT Id, IdOrdenFabricacionPosterior, Estado, IdPedido, IdProducto, CantObjetivo, CantFabricados, CantAprobados, Fecha FROM [dbo].[OrdenFabricacion] WHERE Id = @Id";
+            get => "SELECT Id, IdOrdenFabricacionPosterior, Estado, IdPedido, IdProducto, CantObjetivo, CantFabricados, CantAprobados, FechaPlanificada, FechaEjecucion FROM [dbo].[OrdenFabricacion] WHERE Id = @Id";
         }
         private string SelectAllStatement
         {
-            get => "SELECT Id, IdOrdenFabricacionPosterior, Estado, IdPedido, IdProducto, CantObjetivo, CantFabricados, CantAprobados, Fecha FROM [dbo].[OrdenFabricacion]";
+            get => "SELECT Id, IdOrdenFabricacionPosterior, Estado, IdPedido, IdProducto, CantObjetivo, CantFabricados, CantAprobados, FechaPlanificada, FechaEjecucion FROM [dbo].[OrdenFabricacion]";
         }
         #endregion
 
@@ -56,10 +56,16 @@ namespace DAL.Implementaciones.SqlServer
                     new SqlParameter("@CantObjetivo", unObjeto.Objetivo.Cantidad),
                     new SqlParameter("@CantFabricados", unObjeto.Fabricados.Cantidad),
                     new SqlParameter("@CantAprobados", unObjeto.Aprobados.Cantidad),
-                    new SqlParameter("@Fecha", unObjeto.fecha) };
+                    new SqlParameter("@FechaPlanificada", DBNull.Value),
+                    new SqlParameter("@FechaEjecucion", DBNull.Value) };
+                
 
-                if(unObjeto.OrdenDeFabricacionPosterior!=null && unObjeto.OrdenDeFabricacionPosterior.Id != null)
+                if (unObjeto.OrdenDeFabricacionPosterior!=null && unObjeto.OrdenDeFabricacionPosterior.Id != null)
                     sqlParams[1] = new SqlParameter("IdOrdenFabricacionPosterior", unObjeto.OrdenDeFabricacionPosterior.Id);
+                if (unObjeto.FechaPlanificada != DateTime.MinValue)
+                    sqlParams[8] = new SqlParameter("FechaPlanificada", unObjeto.FechaPlanificada);
+                if (unObjeto.FechaEjecucion != DateTime.MinValue)
+                    sqlParams[9] = new SqlParameter("FechaEjecucion", unObjeto.FechaEjecucion);
 
                 sqlHelper.ExecuteNonQuery(InsertStatement, System.Data.CommandType.Text, sqlParams);
 
@@ -146,11 +152,17 @@ namespace DAL.Implementaciones.SqlServer
                     new SqlParameter("@CantObjetivo", unObjeto.Objetivo.Cantidad),
                     new SqlParameter("@CantFabricados", unObjeto.Fabricados.Cantidad),
                     new SqlParameter("@CantAprobados", unObjeto.Aprobados.Cantidad),
-                    new SqlParameter("@Fecha", unObjeto.fecha) };
+                    new SqlParameter("@FechaPlanificada", DBNull.Value),
+                    new SqlParameter("@FechaEjecucion", DBNull.Value) };
+
 
                 if (unObjeto.OrdenDeFabricacionPosterior != null && unObjeto.OrdenDeFabricacionPosterior.Id != null)
                     sqlParams[1] = new SqlParameter("IdOrdenFabricacionPosterior", unObjeto.OrdenDeFabricacionPosterior.Id);
-
+                if (unObjeto.FechaPlanificada != DateTime.MinValue)
+                    sqlParams[8] = new SqlParameter("FechaPlanificada", unObjeto.FechaPlanificada);
+                if (unObjeto.FechaEjecucion != DateTime.MinValue)
+                    sqlParams[9] = new SqlParameter("FechaEjecucion", unObjeto.FechaEjecucion);
+                
                 sqlHelper.ExecuteNonQuery(UpdateStatement, System.Data.CommandType.Text, sqlParams);                
             }
             catch (Exception ex)

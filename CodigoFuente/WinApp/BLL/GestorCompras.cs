@@ -74,7 +74,7 @@ namespace BLL
         public List<Material> CalcularMaterialesNecesarios(DateTime desde, DateTime hasta) {
             List<OrdenDeFabricacion> todas = GestorFabricacion.Current.ListarOrdenesDeFabricacion().ToList();
             List<OrdenDeFabricacion> agendadas = todas.Where(item => item.Estado == OrdenDeFabricacion.EnumEstadoOrdenFabricacion.AGENDADO).ToList();
-            List<OrdenDeFabricacion> enFecha = todas.Where(item => item.fecha >= DateTime.Today && item.fecha < hasta).ToList();
+            List<OrdenDeFabricacion> enFecha = todas.Where(item => item.FechaPlanificada >= DateTime.Today && item.FechaPlanificada < hasta).ToList();
             List<OrdenDeFabricacion> fechaYestado = agendadas.Intersect(enFecha).ToList();
             List<Material> materialesNecesarios = CalcularMaterialesNecesarios(fechaYestado);
             List<Material> materialesComprados = CalcularMaterialesComprados(DateTime.Today, desde);

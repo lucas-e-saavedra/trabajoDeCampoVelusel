@@ -119,7 +119,7 @@ namespace BLL
             DateTime fechaAnalisis = CalcularFechaDescontandoFindes(fechaHoy, diasDeAnticipacion);
             IEnumerable<OrdenDeFabricacion> todasLasOF = BLL.GestorFabricacion.Current.ListarOrdenesDeFabricacion();
             IEnumerable<OrdenDeFabricacion> ofAgendadas = todasLasOF.Where(item => item.Estado == OrdenDeFabricacion.EnumEstadoOrdenFabricacion.AGENDADO);
-            IEnumerable<OrdenDeFabricacion> ordenesDeFabricacion = ofAgendadas.Where(item => fechaHoy <= item.fecha && item.fecha < fechaAnalisis);
+            IEnumerable<OrdenDeFabricacion> ordenesDeFabricacion = ofAgendadas.Where(item => fechaHoy <= item.FechaPlanificada && item.FechaPlanificada < fechaAnalisis);
 
             List<ProductoMaterial> materialesEnStock = DiscriminarMateriales();
             List<ProductoMaterial> materialesNecesarios = CalcularMaterialesNecesarios(ordenesDeFabricacion);
@@ -134,7 +134,7 @@ namespace BLL
 
             IEnumerable<OrdenDeFabricacion> todasLasOF = BLL.GestorFabricacion.Current.ListarOrdenesDeFabricacion();
             IEnumerable<OrdenDeFabricacion> ofAgendadas = todasLasOF.Where(item => item.Estado == OrdenDeFabricacion.EnumEstadoOrdenFabricacion.AGENDADO);
-            IEnumerable<OrdenDeFabricacion> ordenesDeFabricacion = ofAgendadas.Where(item => fechaHoy <= item.fecha && item.fecha < fechaAnalisis);
+            IEnumerable<OrdenDeFabricacion> ordenesDeFabricacion = ofAgendadas.Where(item => fechaHoy <= item.FechaPlanificada && item.FechaPlanificada < fechaAnalisis);
 
             IEnumerable<OrdenDeCompra> todasLasOC = BLL.GestorCompras.Current.ConsultarOrdenesDeCompra();
             IEnumerable<OrdenDeCompra> ocAgendadas = todasLasOC.Where(item => fechaHoy <= item.FechaObjetivo && item.FechaObjetivo < fechaAnalisis);

@@ -51,8 +51,14 @@ namespace DAL.Implementaciones.SqlServer.Adapters
             Producto aprobados = unProducto.Copiar();
             aprobados.Cantidad = float.Parse(values[7].ToString());
 
-            DateTime unaFecha = DateTime.Parse(values[8].ToString());
-
+            DateTime fechaPlanificada = DateTime.MinValue;
+            if (values[8] != DBNull.Value) {
+                fechaPlanificada = DateTime.Parse(values[8].ToString());
+            }
+            DateTime fechaEjecución = DateTime.MinValue;
+            if (values[9] != DBNull.Value) {
+                fechaEjecución = DateTime.Parse(values[9].ToString());
+            }
 
             OrdenDeFabricacion unaOrdenDeFabricacion = new OrdenDeFabricacion()
             {
@@ -63,7 +69,8 @@ namespace DAL.Implementaciones.SqlServer.Adapters
                 Objetivo = objetivo,
                 Fabricados = fabricados,
                 Aprobados = aprobados,
-                fecha = unaFecha
+                FechaPlanificada = fechaPlanificada,
+                FechaEjecucion = fechaEjecución
             };
 
             return unaOrdenDeFabricacion;

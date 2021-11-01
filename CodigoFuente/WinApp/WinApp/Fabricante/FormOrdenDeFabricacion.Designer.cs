@@ -34,12 +34,14 @@ namespace WinApp.Fabricante
             this.lblIdOrdenFabricacion = new System.Windows.Forms.Label();
             this.lblFechaOrdenFabricacion = new System.Windows.Forms.Label();
             this.lblEstadoOrdenFabricacion = new System.Windows.Forms.Label();
-            this.lblIngredientesOrdenFabricacion = new System.Windows.Forms.Label();
+            this.lblReposoNecesario = new System.Windows.Forms.Label();
+            this.textIngredientes = new System.Windows.Forms.RichTextBox();
+            this.lblObjetivoOrdenFabricacion = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnComenzar
             // 
-            this.btnComenzar.Location = new System.Drawing.Point(12, 310);
+            this.btnComenzar.Location = new System.Drawing.Point(181, 366);
             this.btnComenzar.Name = "btnComenzar";
             this.btnComenzar.Size = new System.Drawing.Size(102, 23);
             this.btnComenzar.TabIndex = 13;
@@ -49,9 +51,9 @@ namespace WinApp.Fabricante
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(12, 351);
+            this.btnCancelar.Location = new System.Drawing.Point(91, 366);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(102, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(84, 23);
             this.btnCancelar.TabIndex = 14;
             this.btnCancelar.Text = "btnCancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -84,21 +86,40 @@ namespace WinApp.Fabricante
             this.lblEstadoOrdenFabricacion.TabIndex = 17;
             this.lblEstadoOrdenFabricacion.Text = "lblEstadoOrdenFabricacion";
             // 
-            // lblIngredientesOrdenFabricacion
+            // lblReposoNecesario
             // 
-            this.lblIngredientesOrdenFabricacion.AutoSize = true;
-            this.lblIngredientesOrdenFabricacion.Location = new System.Drawing.Point(13, 79);
-            this.lblIngredientesOrdenFabricacion.Name = "lblIngredientesOrdenFabricacion";
-            this.lblIngredientesOrdenFabricacion.Size = new System.Drawing.Size(159, 13);
-            this.lblIngredientesOrdenFabricacion.TabIndex = 18;
-            this.lblIngredientesOrdenFabricacion.Text = "lblIngredientesOrdenFabricacion";
+            this.lblReposoNecesario.AutoSize = true;
+            this.lblReposoNecesario.Location = new System.Drawing.Point(12, 103);
+            this.lblReposoNecesario.Name = "lblReposoNecesario";
+            this.lblReposoNecesario.Size = new System.Drawing.Size(102, 13);
+            this.lblReposoNecesario.TabIndex = 18;
+            this.lblReposoNecesario.Text = "lblReposoNecesario";
+            // 
+            // textIngredientes
+            // 
+            this.textIngredientes.Location = new System.Drawing.Point(12, 128);
+            this.textIngredientes.Name = "textIngredientes";
+            this.textIngredientes.Size = new System.Drawing.Size(271, 232);
+            this.textIngredientes.TabIndex = 19;
+            this.textIngredientes.Text = "";
+            // 
+            // lblObjetivoOrdenFabricacion
+            // 
+            this.lblObjetivoOrdenFabricacion.AutoSize = true;
+            this.lblObjetivoOrdenFabricacion.Location = new System.Drawing.Point(13, 79);
+            this.lblObjetivoOrdenFabricacion.Name = "lblObjetivoOrdenFabricacion";
+            this.lblObjetivoOrdenFabricacion.Size = new System.Drawing.Size(140, 13);
+            this.lblObjetivoOrdenFabricacion.TabIndex = 20;
+            this.lblObjetivoOrdenFabricacion.Text = "lblObjetivoOrdenFabricacion";
             // 
             // FormOrdenDeFabricacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblIngredientesOrdenFabricacion);
+            this.ClientSize = new System.Drawing.Size(295, 401);
+            this.Controls.Add(this.lblObjetivoOrdenFabricacion);
+            this.Controls.Add(this.textIngredientes);
+            this.Controls.Add(this.lblReposoNecesario);
             this.Controls.Add(this.lblEstadoOrdenFabricacion);
             this.Controls.Add(this.lblFechaOrdenFabricacion);
             this.Controls.Add(this.lblIdOrdenFabricacion);
@@ -120,6 +141,8 @@ namespace WinApp.Fabricante
         private System.Windows.Forms.Label lblIdOrdenFabricacion;
         private System.Windows.Forms.Label lblFechaOrdenFabricacion;
         private System.Windows.Forms.Label lblEstadoOrdenFabricacion;
-        private System.Windows.Forms.Label lblIngredientesOrdenFabricacion;
+        private System.Windows.Forms.Label lblReposoNecesario;
+        private System.Windows.Forms.RichTextBox textIngredientes;
+        private System.Windows.Forms.Label lblObjetivoOrdenFabricacion;
     }
 }

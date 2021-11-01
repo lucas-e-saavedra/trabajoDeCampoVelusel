@@ -39,7 +39,7 @@ namespace WinApp.Diseniador
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(154, 164);
+            this.btnCancelar.Location = new System.Drawing.Point(73, 135);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 11;
@@ -58,9 +58,9 @@ namespace WinApp.Diseniador
             // 
             // inputNombre
             // 
-            this.inputNombre.Location = new System.Drawing.Point(15, 25);
+            this.inputNombre.Location = new System.Drawing.Point(12, 25);
             this.inputNombre.Name = "inputNombre";
-            this.inputNombre.Size = new System.Drawing.Size(214, 20);
+            this.inputNombre.Size = new System.Drawing.Size(217, 20);
             this.inputNombre.TabIndex = 8;
             // 
             // lblNombre
@@ -94,7 +94,7 @@ namespace WinApp.Diseniador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(445, 317);
+            this.ClientSize = new System.Drawing.Size(250, 173);
             this.Controls.Add(this.comboUnidad);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.lblUnidad);

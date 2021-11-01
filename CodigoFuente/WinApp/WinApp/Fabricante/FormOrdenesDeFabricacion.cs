@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Dominio.CompositeProducto;
 using Microsoft.VisualBasic;
 using Servicios.BLL;
 using Servicios.Extensions;
@@ -25,6 +26,7 @@ namespace WinApp.Fabricante
 
         private void FormOrdenesDeFabricacion_Load(object sender, EventArgs e)
         {
+            grillaOrdenesFabricacion.AutoGenerateColumns = false;
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
             ActualizarGrillaOrdenesDeFabricacion();
@@ -35,14 +37,16 @@ namespace WinApp.Fabricante
         }
         public void ActualizarTraducciones()
         {
-            //boxOrdenFabricacion.Text = "Orden de fabricación".Traducir();
-            //btnSaveAllOrders.Text = "Agendar pedido".Traducir();
+            btnComenzar.Text = "Comenzar fabricación".Traducir();
+            btnCerrar.Text = "Finalizar fabricación".Traducir();
+            btnTerminar.Text = "Verificar calidad".Traducir();
         }
         private void ActualizarGrillaOrdenesDeFabricacion(){
             grillaOrdenesFabricacion.DataSource = null;
             IEnumerable<OrdenDeFabricacion> todas = BLL.GestorFabricacion.Current.ListarOrdenesDeFabricacion();
-            List<OrdenDeFabricacion> disponibles = todas.Where(item => item.Estado != EnumEstadoOrdenFabricacion.TERMINADO && item.Estado != EnumEstadoOrdenFabricacion.CANCELADO).ToList();
-            grillaOrdenesFabricacion.DataSource = disponibles;
+            IEnumerable<OrdenDeFabricacion> disponibles = todas.Where(item => item.Estado != EnumEstadoOrdenFabricacion.TERMINADO && item.Estado != EnumEstadoOrdenFabricacion.CANCELADO);
+            List<VistaOrdenDeFabricacion> vistasOF = disponibles.OrderBy(item => item.FechaPlanificada).Select(item => new VistaOrdenDeFabricacion(item)).ToList();
+            grillaOrdenesFabricacion.DataSource = vistasOF;
         }
         private void grillaOrdenesFabricacion_SelectionChanged(object sender, EventArgs e)
         {
@@ -73,10 +77,15 @@ namespace WinApp.Fabricante
                 string titulo = $"{"Cerrar fabricación".Traducir()} {ordenSeleccionada.Objetivo.Nombre}";
                 string pregunta = "¿Cuántas unidades logró fabricar?".Traducir();
                 string cantidad = Interaction.InputBox(pregunta, titulo);
-                float cantidadFabricada = float.Parse(cantidad);
-                ordenSeleccionada.Fabricados.Cantidad = cantidadFabricada;
-                BLL.GestorFabricacion.Current.CerrarFabricacion(ordenSeleccionada);
-                ActualizarGrillaOrdenesDeFabricacion();
+                if (cantidad.Length > 0) {
+                    float cantidadFabricada = float.Parse(cantidad);
+                    ordenSeleccionada.Fabricados.Cantidad = cantidadFabricada;
+                    if (BLL.GestorFabricacion.Current.CerrarFabricacion(ordenSeleccionada)) {
+                        FormDividirOrdenFabricacion form = new FormDividirOrdenFabricacion(ordenSeleccionada);
+                        this.DialogResult = form.ShowDialog();
+                    }
+                    ActualizarGrillaOrdenesDeFabricacion();
+                }
             } catch (Exception ex) {
                 ex.MostrarEnAlert();
             }
@@ -84,20 +93,52 @@ namespace WinApp.Fabricante
 
         private void btnTerminar_Click(object sender, EventArgs e)
         {
-            try
-            {
+            try {
                 string titulo = $"{"Terminar fabricación".Traducir()} {ordenSeleccionada.Objetivo.Nombre}";
                 string pregunta = "¿Cuántas unidades cumplen con la calidad requerida?".Traducir();
                 string cantidad = Interaction.InputBox(pregunta, titulo);
-                float cantidadFabricada = float.Parse(cantidad);
-                ordenSeleccionada.Aprobados.Cantidad = cantidadFabricada;
-                BLL.GestorFabricacion.Current.VerificarFinOrdenDeFabricacion(ordenSeleccionada);
-                ActualizarGrillaOrdenesDeFabricacion();
-            }
-            catch (Exception ex)
-            {
+                if (cantidad.Length > 0) {
+                    float cantidadAprobada = float.Parse(cantidad);
+                    ordenSeleccionada.Aprobados.Cantidad = cantidadAprobada;
+                    if (BLL.GestorFabricacion.Current.TerminarOrdenDeFabricacion(ordenSeleccionada)){
+                        FormDividirOrdenFabricacion form = new FormDividirOrdenFabricacion(ordenSeleccionada);
+                        this.DialogResult = form.ShowDialog();
+                    }
+                    ActualizarGrillaOrdenesDeFabricacion();
+                }
+            } catch (Exception ex) {
                 ex.MostrarEnAlert();
             }
         }
     }
+
+    class VistaOrdenDeFabricacion: OrdenDeFabricacion {
+        public VistaOrdenDeFabricacion(OrdenDeFabricacion item) {
+            this.Id = item.Id;
+            this.pedido = item.pedido;
+            this.FechaPlanificada = item.FechaPlanificada;
+            this.FechaEjecucion = item.FechaEjecucion;
+            this.Estado = item.Estado;
+            this.Objetivo = item.Objetivo;
+            this.Fabricados = item.Fabricados;
+            this.Aprobados = item.Aprobados;
+        }
+        public string DescObjetivo => DescProducto(Objetivo);
+        public string DescFabricados => DescProducto(Fabricados);
+        public string DescAprobados => DescProducto(Aprobados);
+
+        private string DescProducto(Producto unProducto) { 
+            return $"{unProducto.Cantidad} ({unProducto.Unidad}) {unProducto.Nombre}";
+        }
+    }
 }
+// 
+
+/*
+    {
+        public VistaOrdenDeFabricacion(){
+            this.OrdenDeFabricacionPosterior = item.OrdenDeFabricacionPosterior;
+            public string  { get; }
+        }
+    } 
+*/

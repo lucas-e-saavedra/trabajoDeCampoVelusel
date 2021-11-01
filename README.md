@@ -13,8 +13,6 @@ CU.PED.04 - Cerrar Pedido (listo) falta exportar
 CU.PED.05 - Listar Pedidos(mejorar visualización)
 CU.PED.06 - Consultar Detalle del Pedido (no aplica)
 
-CU.FAB.01 - Registrar nuevo Producto (mejorar visualización)
-CU.FAB.02 - Modificar Producto (mejorar visualización)
 CU.FAB.03 - Procesar Pedido (mejorar visualización) 
 CU.FAB.04 - Comenzar Fabricación (listo)
 CU.FAB.05 - Cerrar fabricación (listo) falta agregar fecha de fin de fabricacion para el reposo
@@ -47,3 +45,28 @@ brian.gomezpereyra@uai.edu.ar
 gastonweingand@uai.edu.ar
 
 
+
+ Guid Id { get; set; }
+ Pedido pedido { get; set; }
+ DateTime fecha { get; set; }
+ EnumEstadoOrdenFabricacion Estado { get; set; }
+ Producto Objetivo { get; set; }
+ Producto Fabricados { get; set; }
+ Producto Aprobados { get; set; }
+ OrdenDeFabricacion OrdenDeFabricacionPosterior { get; set; }
+
+
+
+class VistaOrdenDeFabricacion: OrdenDeFabricacion {
+        public VistaOrdenDeFabricacion(OrdenDeFabricacion item)
+        {
+            this.Id = item.Id;
+            this.pedido = item.pedido;
+            this.fecha = item.fecha;
+            this.Estado = item.Estado;
+            this.Objetivo = item.Objetivo;
+            this.Fabricados = item.Fabricados;
+            this.Aprobados = item.Aprobados;
+            this.OrdenDeFabricacionPosterior = item.OrdenDeFabricacionPosterior;
+        }
+    }

@@ -25,19 +25,8 @@ namespace WinApp.Fabricante
 
         private void FormOrdenDeFabricacion_Load(object sender, EventArgs e)
         {
-            ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
-
-            lblIdOrdenFabricacion.Text = ordenDeFabricacionSeleccionada.Id.ToString();
-            lblFechaOrdenFabricacion.Text = ordenDeFabricacionSeleccionada.fecha.ToString();
-            lblEstadoOrdenFabricacion.Text = ordenDeFabricacionSeleccionada.Estado.ToString();
-            StringBuilder ingredientes = new StringBuilder();
-            foreach(ProductoMaterial unIngrediente in ordenDeFabricacionSeleccionada.Objetivo.plantillaDeFabricacion.Ingredientes){
-                ProductoMaterial tmp = unIngrediente.Copiar();
-                tmp.Cantidad = unIngrediente.Cantidad * ordenDeFabricacionSeleccionada.Objetivo.Cantidad;
-                ingredientes.Append($"{unIngrediente} {tmp.Cantidad}\n");
-            }
-            lblIngredientesOrdenFabricacion.Text = ingredientes.ToString();
+            ActualizarTraducciones();
         }
 
         private void FormOrdenDeFabricacion_FormClosing(object sender, FormClosingEventArgs e)
@@ -47,16 +36,37 @@ namespace WinApp.Fabricante
 
         public void ActualizarTraducciones()
         {
+            btnComenzar.Text = "Comenzar fabricación".Traducir();
+            btnCancelar.Text = "Cancelar".Traducir();
+
+
+            lblIdOrdenFabricacion.Text = $"{"Identificador".Traducir()}: {ordenDeFabricacionSeleccionada.Id}";
+            //string siguienteOF = ordenSeleccionada.OrdenDeFabricacionPosterior?.Id.ToString() ?? "ninguna".Traducir();
+            //lblOFposterior.Text = $"{"Siguiente Orden de Fabricación".Traducir()} {siguienteOF}";
+            lblFechaOrdenFabricacion.Text = $"{"Fecha planificada".Traducir()}: {ordenDeFabricacionSeleccionada.FechaPlanificada}";
+            lblEstadoOrdenFabricacion.Text = $"{"Estado".Traducir()}: {ordenDeFabricacionSeleccionada.Estado}";
+            lblObjetivoOrdenFabricacion.Text = $"{"Objetivo".Traducir()}:  {ordenDeFabricacionSeleccionada.Objetivo.Cantidad} ({ordenDeFabricacionSeleccionada.Objetivo.Unidad}) {ordenDeFabricacionSeleccionada.Objetivo.Nombre}";
+            StringBuilder ingredientes = new StringBuilder();
+            foreach (ProductoMaterial unIngrediente in ordenDeFabricacionSeleccionada.Objetivo.plantillaDeFabricacion.Ingredientes)
+            {
+                ProductoMaterial tmp = unIngrediente.Copiar();
+                tmp.Cantidad = unIngrediente.Cantidad * ordenDeFabricacionSeleccionada.Objetivo.Cantidad;
+                ingredientes.Append($"{unIngrediente} {tmp.Cantidad}\n");
+            }
+            textIngredientes.Text = ingredientes.ToString();
+            lblReposoNecesario.Text = $"{"Horas de reposo necesarias".Traducir()}: {ordenDeFabricacionSeleccionada.Objetivo.plantillaDeFabricacion.ReposoNecesario}";
+
         }
 
         private void btnComenzar_Click(object sender, EventArgs e)
         {
             try {
                 BLL.GestorFabricacion.Current.ComenzarFabricacion(ordenDeFabricacionSeleccionada);
-
                 this.DialogResult = DialogResult.OK;
             } catch (Exception ex) {
                 ex.MostrarEnAlert();
+                FormReprogramarOrdenFabricacion form = new FormReprogramarOrdenFabricacion(ordenDeFabricacionSeleccionada);
+                this.DialogResult = form.ShowDialog();
             }
         }
 
