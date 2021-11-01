@@ -27,21 +27,20 @@ namespace WinApp.Comprador
             GestorIdiomas.Current.SuscribirObservador(this);
             ActualizarTraducciones();
 
-            lblIdOrdenCompra.Text = ordenDeCompraSeleccionada.Id.ToString();
-            lblMaterialOrdenCompra.Text = ordenDeCompraSeleccionada.Objetivo.ToString();
-            lblCantidadOrdenCompra.Text = ordenDeCompraSeleccionada.Objetivo.Cantidad.ToString();
-            lblFechaOrdenCompra.Text = ordenDeCompraSeleccionada.FechaObjetivo.ToString();
-            inputCantidadComprados.Text = "";
-            timeFechaEstimada.Value = DateTime.Today;
+            lblIdOrdenCompra.Text = $"{"Identificador".Traducir()}: {ordenDeCompraSeleccionada.Id}";
+            lblObjetivoOrdenCompra.Text = $"{"Objetivo".Traducir()}:  {ordenDeCompraSeleccionada.Objetivo.Cantidad} ({ordenDeCompraSeleccionada.Objetivo.Unidad}) {ordenDeCompraSeleccionada.Objetivo.Nombre}";
+            lblFechaOrdenCompra.Text = $"{"Fecha planificada".Traducir()}: {ordenDeCompraSeleccionada.FechaObjetivo}";
+            if (ordenDeCompraSeleccionada.Comprados.Cantidad > 0) {
+                inputCantidadComprados.Text = ordenDeCompraSeleccionada.Comprados.Cantidad.ToString();
+                timeFechaEstimada.Value = ordenDeCompraSeleccionada.FechaEstimadaRecepcion;
+            } else {
+                inputCantidadComprados.Text = "";
+                timeFechaEstimada.Value = DateTime.Today;
+            }
             inputCantidadRecibidos.Enabled = chkRecibido.Checked;
             timeFechaRecepcion.Enabled = chkRecibido.Checked;
 
-            if(ordenDeCompraSeleccionada.Comprados.Cantidad > 0) {
-                inputCantidadComprados.Text = ordenDeCompraSeleccionada.Comprados.Cantidad.ToString();
-                timeFechaEstimada.Value = ordenDeCompraSeleccionada.FechaEstimadaRecepcion;
-            }
             
-
         }
         private void FormOrdenDeCompra_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -50,7 +49,12 @@ namespace WinApp.Comprador
 
         public void ActualizarTraducciones()
         {
-
+            groupRecibido.Text = "Datos recepción".Traducir();
+            chkRecibido.Text = "He recibido la compra".Traducir();
+            lblCantidadComprada.Text = "Cantidad comprada".Traducir();
+            lblCantidadRecibida.Text = "Cantidad recibida".Traducir();
+            btnCancelar.Text = "Cancelar".Traducir();
+            btnGrabar.Text = "Grabar".Traducir();
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)

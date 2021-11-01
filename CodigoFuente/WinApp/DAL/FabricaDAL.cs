@@ -53,6 +53,10 @@ namespace DAL
         {
             return new Implementaciones.SqlServer.PedidoRepositorio(bbddVelusel);
         }
+        public IRepositorioGenerico<Pedido> ObtenerExpotadorDePedidos()
+        {
+            return new Implementaciones.TXT.ExportadorPedidos();
+        }
         public IRelacionGenerica<Pedido, Producto> ObtenerPedidoProductoRelacion()
         {
             return new Implementaciones.SqlServer.PedidoProductoRelacion(bbddVelusel);

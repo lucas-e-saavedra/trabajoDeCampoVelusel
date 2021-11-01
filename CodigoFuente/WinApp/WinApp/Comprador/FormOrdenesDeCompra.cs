@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Dominio.CompositeProducto;
 using Servicios.BLL;
 using Servicios.Extensions;
 using System;
@@ -22,9 +23,10 @@ namespace WinApp.Comprador
         }
         private void FormOrdenesDeCompra_Load(object sender, EventArgs e)
         {
+            grillaOrdenesDeCompra.AutoGenerateColumns = false;
             ActualizarTraducciones();
             GestorIdiomas.Current.SuscribirObservador(this);
-            grillaOrdenesDeCompra.DataSource = BLL.GestorCompras.Current.ConsultarOrdenesDeCompra();
+            ActualizarGrilla();
         }
         private void FormOrdenesDeCompra_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -35,14 +37,20 @@ namespace WinApp.Comprador
             btnRevertir.Text = "Revertir orden de compra".Traducir();
             btnModificar.Text = "Modificar".Traducir();
         }
+        private void ActualizarGrilla() {
+            grillaOrdenesDeCompra.DataSource = null;
+            IEnumerable<OrdenDeCompra> ordenesDeCompra = BLL.GestorCompras.Current.ConsultarOrdenesDeCompra();
+            List<VistaOrdenDeCompra> vistasOC = ordenesDeCompra.OrderBy(item => item.FechaObjetivo).Select(item => new VistaOrdenDeCompra(item)).ToList();
+            grillaOrdenesDeCompra.DataSource = vistasOC;
+        }
 
         private void grillaOrdenesDeCompra_SelectionChanged(object sender, EventArgs e)
         {
             if (grillaOrdenesDeCompra.SelectedRows.Count > 0)
             {
                 int index = grillaOrdenesDeCompra.SelectedRows[0].Index;
-                List<OrdenDeCompra> compras = (List<OrdenDeCompra>)grillaOrdenesDeCompra.DataSource;
-                unaOrdenDeCompra = compras.ElementAt(index);
+                IEnumerable<OrdenDeCompra> ordenes = (IEnumerable<OrdenDeCompra>)grillaOrdenesDeCompra.DataSource;
+                unaOrdenDeCompra = ordenes.ElementAt(index);
             }
         }
 
@@ -51,15 +59,10 @@ namespace WinApp.Comprador
             DialogResult resultado = MessageBox.Show("¿Está seguro?".Traducir(), "Revertir orden de compra".Traducir(), MessageBoxButtons.YesNo);
             if (resultado == DialogResult.Yes)
             {
-                try
-                {
+                try {
                     BLL.GestorCompras.Current.RevertirOrdenDeCompra(unaOrdenDeCompra);
-                    grillaOrdenesDeCompra.DataSource = null;
-                    grillaOrdenesDeCompra.DataSource = BLL.GestorCompras.Current.ConsultarOrdenesDeCompra();
-                    unaOrdenDeCompra = null;
-                }
-                catch (Exception ex)
-                {
+                    ActualizarGrilla();
+                } catch (Exception ex) {
                     MessageBox.Show(ex.Message.Traducir());
                 }
             }
@@ -70,9 +73,34 @@ namespace WinApp.Comprador
             FormOrdenDeCompra form = new FormOrdenDeCompra(unaOrdenDeCompra);
             DialogResult resultado = form.ShowDialog();
             if (resultado == DialogResult.OK) {
-                grillaOrdenesDeCompra.DataSource = null;
-                grillaOrdenesDeCompra.DataSource = BLL.GestorCompras.Current.ConsultarOrdenesDeCompra();
+                ActualizarGrilla();
             }
+        }
+    }
+
+    class VistaOrdenDeCompra: OrdenDeCompra
+    {
+        public VistaOrdenDeCompra(OrdenDeCompra item)
+        {
+            this.Id = item.Id;
+            this.solicitante = item.solicitante;
+            this.Estado = item.Estado;
+            this.Objetivo = item.Objetivo;
+            this.FechaObjetivo = item.FechaObjetivo;
+            this.Comprados = item.Comprados;
+            this.FechaEstimadaRecepcion = item.FechaEstimadaRecepcion;
+            this.Recibidos = item.Recibidos;
+            this.FechaRealRecepcion = item.FechaRealRecepcion;
+
+        }
+        public string DescSolicitante => solicitante.UsuarioLogin;
+        public string DescObjetivo => DescMaterial(Objetivo);
+        public string DescComprados => DescMaterial(Comprados);
+        public string DescRecibidos => DescMaterial(Recibidos);
+
+        private string DescMaterial(Material unMaterial)
+        {
+            return $"{unMaterial.Cantidad} ({unMaterial.Unidad}) {unMaterial.Nombre}";
         }
     }
 }

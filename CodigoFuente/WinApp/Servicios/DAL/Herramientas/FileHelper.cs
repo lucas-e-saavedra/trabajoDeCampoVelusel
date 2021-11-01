@@ -7,7 +7,7 @@ namespace Servicios.DAL.Herramientas
     public class FileHelper
     {
         private string filePath = String.Empty;
-        internal FileHelper(String onePath)
+        public FileHelper(String onePath)
         {
             filePath = onePath;
         }

@@ -24,6 +24,8 @@ namespace WinApp.Comprador
 
         private void FormCalcularCompras_Load(object sender, EventArgs e)
         {
+            grillaMateriales.AutoGenerateColumns = false;
+            grillaCompras.AutoGenerateColumns = false;
             GestorIdiomas.Current.SuscribirObservador(this);
             ActualizarTraducciones();
             timeDesde.MinDate = DateTime.Today.AddDays(1);
@@ -37,6 +39,11 @@ namespace WinApp.Comprador
 
         public void ActualizarTraducciones()
         {
+            lblExplicacion.Text = "Analizar las órdenes de fabricacion entre estas fechas para calcular las compras sugeridas".Traducir();
+            btnGrabarOrdenes.Text = "Grabar órdenes de compra".Traducir();
+            grupoOrdenCompra.Text = "Orden de compra".Traducir();
+            lblMaterialOrdenCompra.Text = "Descripción del objetivo de la compra".Traducir();
+            lblFechaPlanificada.Text = "Fecha planificada para efectuar la compra".Traducir();
         }
 
         private void timeDesde_ValueChanged(object sender, EventArgs e)
@@ -85,16 +92,13 @@ namespace WinApp.Comprador
         }
         private void mostrarOrdenDeCompra()
         {
-            lblIdOrdenCompra.Text = unaOrdenDeCompra.Id.ToString();
-            lblMaterialOrdenCompra.Text = unaOrdenDeCompra.Objetivo.ToString();
-            lblCantidadOrdenCompra.Text = unaOrdenDeCompra.Objetivo.Cantidad.ToString();
+            lblMaterialOrdenCompra.Text = $"{unaOrdenDeCompra.Objetivo.Cantidad} ({unaOrdenDeCompra.Objetivo.Unidad}) {unaOrdenDeCompra.Objetivo.Nombre}";
             if (unaOrdenDeCompra.FechaObjetivo != DateTime.MinValue);
               timeOrdenCompra.Value = unaOrdenDeCompra.FechaObjetivo;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            unaOrdenDeCompra.Objetivo.Cantidad = float.Parse(lblCantidadOrdenCompra.Text);
             unaOrdenDeCompra.FechaObjetivo = timeOrdenCompra.Value;
 
             List<OrdenDeCompra> compras = (List<OrdenDeCompra>)grillaCompras.DataSource;
@@ -130,5 +134,6 @@ namespace WinApp.Comprador
                 ex.MostrarEnAlert();
             }
         }
+
     }
 }

@@ -60,12 +60,6 @@ namespace BLL
 
             unPedido.Estado = Pedido.EnumEstadoPedido.LISTO;
             FabricaDAL.Current.ObtenerRepositorioDePedidos().Modificar(unPedido);
-
-            if (unPedido.Solicitante == null) {
-                string output = Newtonsoft.Json.JsonConvert.SerializeObject(unPedido.Detalle);
-
-                throw new Exception($"El pedido no se pudo exportar:\n{output}");
-            }
         }
         public void EntregarPedido(Pedido unPedido)
         {
@@ -74,10 +68,13 @@ namespace BLL
                 throw new Exception("No está permitido cerrar un pedido en este estado");
 
             unPedido.Estado = Pedido.EnumEstadoPedido.CERRADO;
-            
+            if (unPedido.Solicitante == null) {
+                FabricaDAL.Current.ObtenerExpotadorDePedidos().Agregar(unPedido);
+            }
+
             Usuario usuario = GestorSesion.Current.usuarioActual;
             FabricaDAL.Current.ObtenerRepositorioDePedidos().Modificar(unPedido);
-            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} canceló el pedido {unPedido.Id}");
+            Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} entregó el pedido {unPedido.Id}");
             GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
         public IEnumerable<Producto> ConsultarCatalogo() {

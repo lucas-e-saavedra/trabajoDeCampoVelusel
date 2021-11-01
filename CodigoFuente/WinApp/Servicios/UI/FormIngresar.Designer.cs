@@ -52,7 +52,7 @@ namespace WinApp
             this.inputUsuario.Name = "inputUsuario";
             this.inputUsuario.Size = new System.Drawing.Size(220, 20);
             this.inputUsuario.TabIndex = 1;
-            this.inputUsuario.Text = "juan.fabricante";
+            this.inputUsuario.Text = "";
             // 
             // lblContrasenia
             // 
@@ -69,7 +69,7 @@ namespace WinApp
             this.inputContrasenia.Name = "inputContrasenia";
             this.inputContrasenia.Size = new System.Drawing.Size(217, 20);
             this.inputContrasenia.TabIndex = 3;
-            this.inputContrasenia.Text = "123";
+            this.inputContrasenia.Text = "";
             this.inputContrasenia.UseSystemPasswordChar = true;
             this.inputContrasenia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputContrasenia_KeyPress);
             // 

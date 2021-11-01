@@ -29,11 +29,10 @@ namespace WinApp.Comprador
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblMaterialOrdenCompra = new System.Windows.Forms.Label();
+            this.lblObjetivoOrdenCompra = new System.Windows.Forms.Label();
             this.lblIdOrdenCompra = new System.Windows.Forms.Label();
             this.timeFechaEstimada = new System.Windows.Forms.DateTimePicker();
             this.inputCantidadComprados = new System.Windows.Forms.TextBox();
-            this.lblCantidadOrdenCompra = new System.Windows.Forms.Label();
             this.lblFechaOrdenCompra = new System.Windows.Forms.Label();
             this.inputCantidadRecibidos = new System.Windows.Forms.TextBox();
             this.timeFechaRecepcion = new System.Windows.Forms.DateTimePicker();
@@ -41,17 +40,19 @@ namespace WinApp.Comprador
             this.btnCancelar = new System.Windows.Forms.Button();
             this.chkRecibido = new System.Windows.Forms.CheckBox();
             this.groupRecibido = new System.Windows.Forms.GroupBox();
+            this.lblCantidadComprada = new System.Windows.Forms.Label();
+            this.lblCantidadRecibida = new System.Windows.Forms.Label();
             this.groupRecibido.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblMaterialOrdenCompra
+            // lblObjetivoOrdenCompra
             // 
-            this.lblMaterialOrdenCompra.AutoSize = true;
-            this.lblMaterialOrdenCompra.Location = new System.Drawing.Point(12, 35);
-            this.lblMaterialOrdenCompra.Name = "lblMaterialOrdenCompra";
-            this.lblMaterialOrdenCompra.Size = new System.Drawing.Size(119, 13);
-            this.lblMaterialOrdenCompra.TabIndex = 16;
-            this.lblMaterialOrdenCompra.Text = "lblMaterialOrdenCompra";
+            this.lblObjetivoOrdenCompra.AutoSize = true;
+            this.lblObjetivoOrdenCompra.Location = new System.Drawing.Point(12, 35);
+            this.lblObjetivoOrdenCompra.Name = "lblObjetivoOrdenCompra";
+            this.lblObjetivoOrdenCompra.Size = new System.Drawing.Size(121, 13);
+            this.lblObjetivoOrdenCompra.TabIndex = 16;
+            this.lblObjetivoOrdenCompra.Text = "lblObjetivoOrdenCompra";
             // 
             // lblIdOrdenCompra
             // 
@@ -76,19 +77,10 @@ namespace WinApp.Comprador
             this.inputCantidadComprados.Size = new System.Drawing.Size(100, 20);
             this.inputCantidadComprados.TabIndex = 22;
             // 
-            // lblCantidadOrdenCompra
-            // 
-            this.lblCantidadOrdenCompra.AutoSize = true;
-            this.lblCantidadOrdenCompra.Location = new System.Drawing.Point(12, 60);
-            this.lblCantidadOrdenCompra.Name = "lblCantidadOrdenCompra";
-            this.lblCantidadOrdenCompra.Size = new System.Drawing.Size(124, 13);
-            this.lblCantidadOrdenCompra.TabIndex = 23;
-            this.lblCantidadOrdenCompra.Text = "lblCantidadOrdenCompra";
-            // 
             // lblFechaOrdenCompra
             // 
             this.lblFechaOrdenCompra.AutoSize = true;
-            this.lblFechaOrdenCompra.Location = new System.Drawing.Point(12, 86);
+            this.lblFechaOrdenCompra.Location = new System.Drawing.Point(12, 59);
             this.lblFechaOrdenCompra.Name = "lblFechaOrdenCompra";
             this.lblFechaOrdenCompra.Size = new System.Drawing.Size(112, 13);
             this.lblFechaOrdenCompra.TabIndex = 24;
@@ -96,21 +88,21 @@ namespace WinApp.Comprador
             // 
             // inputCantidadRecibidos
             // 
-            this.inputCantidadRecibidos.Location = new System.Drawing.Point(6, 42);
+            this.inputCantidadRecibidos.Location = new System.Drawing.Point(6, 55);
             this.inputCantidadRecibidos.Name = "inputCantidadRecibidos";
             this.inputCantidadRecibidos.Size = new System.Drawing.Size(100, 20);
             this.inputCantidadRecibidos.TabIndex = 26;
             // 
             // timeFechaRecepcion
             // 
-            this.timeFechaRecepcion.Location = new System.Drawing.Point(6, 68);
+            this.timeFechaRecepcion.Location = new System.Drawing.Point(6, 81);
             this.timeFechaRecepcion.Name = "timeFechaRecepcion";
             this.timeFechaRecepcion.Size = new System.Drawing.Size(200, 20);
             this.timeFechaRecepcion.TabIndex = 25;
             // 
             // btnGrabar
             // 
-            this.btnGrabar.Location = new System.Drawing.Point(137, 329);
+            this.btnGrabar.Location = new System.Drawing.Point(211, 307);
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(75, 23);
             this.btnGrabar.TabIndex = 27;
@@ -120,7 +112,7 @@ namespace WinApp.Comprador
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(12, 329);
+            this.btnCancelar.Location = new System.Drawing.Point(130, 307);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 28;
@@ -141,29 +133,48 @@ namespace WinApp.Comprador
             // 
             // groupRecibido
             // 
+            this.groupRecibido.Controls.Add(this.lblCantidadRecibida);
             this.groupRecibido.Controls.Add(this.chkRecibido);
             this.groupRecibido.Controls.Add(this.inputCantidadRecibidos);
             this.groupRecibido.Controls.Add(this.timeFechaRecepcion);
             this.groupRecibido.Location = new System.Drawing.Point(12, 176);
             this.groupRecibido.Name = "groupRecibido";
-            this.groupRecibido.Size = new System.Drawing.Size(221, 100);
+            this.groupRecibido.Size = new System.Drawing.Size(274, 113);
             this.groupRecibido.TabIndex = 30;
             this.groupRecibido.TabStop = false;
             this.groupRecibido.Text = "groupRecibido";
+            // 
+            // lblCantidadComprada
+            // 
+            this.lblCantidadComprada.AutoSize = true;
+            this.lblCantidadComprada.Location = new System.Drawing.Point(12, 96);
+            this.lblCantidadComprada.Name = "lblCantidadComprada";
+            this.lblCantidadComprada.Size = new System.Drawing.Size(107, 13);
+            this.lblCantidadComprada.TabIndex = 31;
+            this.lblCantidadComprada.Text = "lblCantidadComprada";
+            // 
+            // lblCantidadRecibida
+            // 
+            this.lblCantidadRecibida.AutoSize = true;
+            this.lblCantidadRecibida.Location = new System.Drawing.Point(6, 39);
+            this.lblCantidadRecibida.Name = "lblCantidadRecibida";
+            this.lblCantidadRecibida.Size = new System.Drawing.Size(101, 13);
+            this.lblCantidadRecibida.TabIndex = 32;
+            this.lblCantidadRecibida.Text = "lblCantidadRecibida";
             // 
             // FormOrdenDeCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(298, 358);
+            this.Controls.Add(this.lblCantidadComprada);
             this.Controls.Add(this.groupRecibido);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGrabar);
             this.Controls.Add(this.lblFechaOrdenCompra);
-            this.Controls.Add(this.lblCantidadOrdenCompra);
             this.Controls.Add(this.inputCantidadComprados);
             this.Controls.Add(this.timeFechaEstimada);
-            this.Controls.Add(this.lblMaterialOrdenCompra);
+            this.Controls.Add(this.lblObjetivoOrdenCompra);
             this.Controls.Add(this.lblIdOrdenCompra);
             this.Name = "FormOrdenDeCompra";
             this.Text = "FormOrdenDeCompra";
@@ -177,11 +188,10 @@ namespace WinApp.Comprador
         }
 
         #endregion
-        private System.Windows.Forms.Label lblMaterialOrdenCompra;
+        private System.Windows.Forms.Label lblObjetivoOrdenCompra;
         private System.Windows.Forms.Label lblIdOrdenCompra;
         private System.Windows.Forms.DateTimePicker timeFechaEstimada;
         private System.Windows.Forms.TextBox inputCantidadComprados;
-        private System.Windows.Forms.Label lblCantidadOrdenCompra;
         private System.Windows.Forms.Label lblFechaOrdenCompra;
         private System.Windows.Forms.TextBox inputCantidadRecibidos;
         private System.Windows.Forms.DateTimePicker timeFechaRecepcion;
@@ -189,5 +199,7 @@ namespace WinApp.Comprador
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.CheckBox chkRecibido;
         private System.Windows.Forms.GroupBox groupRecibido;
+        private System.Windows.Forms.Label lblCantidadComprada;
+        private System.Windows.Forms.Label lblCantidadRecibida;
     }
 }
