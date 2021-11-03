@@ -29,6 +29,7 @@ namespace WinApp.Comprador
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOrdenesDeCompra));
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnRevertir = new System.Windows.Forms.Button();
             this.grillaOrdenesDeCompra = new System.Windows.Forms.DataGridView();
@@ -161,6 +162,7 @@ namespace WinApp.Comprador
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnRevertir);
             this.Controls.Add(this.grillaOrdenesDeCompra);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormOrdenesDeCompra";
             this.Text = "FormOrdenesDeCompra";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormOrdenesDeCompra_FormClosing);

@@ -49,6 +49,7 @@ namespace WinApp.Comprador
 
         public void ActualizarTraducciones()
         {
+            Text = "Orden de compra".Traducir();
             groupRecibido.Text = "Datos recepción".Traducir();
             chkRecibido.Text = "He recibido la compra".Traducir();
             lblCantidadComprada.Text = "Cantidad comprada".Traducir();

@@ -29,18 +29,19 @@ namespace WinApp.Vendedor
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormClientes));
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnHabilitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.grillaClientes = new System.Windows.Forms.DataGridView();
-            this.btnSeleccionar = new System.Windows.Forms.Button();
-            this.btnNoSeleccionar = new System.Windows.Forms.Button();
             this.TipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NroDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Habilitado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
+            this.btnNoSeleccionar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grillaClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,26 +92,6 @@ namespace WinApp.Vendedor
             this.grillaClientes.TabIndex = 7;
             this.grillaClientes.SelectionChanged += new System.EventHandler(this.grillaClientes_SelectionChanged);
             // 
-            // btnSeleccionar
-            // 
-            this.btnSeleccionar.Location = new System.Drawing.Point(713, 391);
-            this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.Size = new System.Drawing.Size(75, 23);
-            this.btnSeleccionar.TabIndex = 11;
-            this.btnSeleccionar.Text = "btnSeleccionar";
-            this.btnSeleccionar.UseVisualStyleBackColor = true;
-            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
-            // 
-            // btnNoSeleccionar
-            // 
-            this.btnNoSeleccionar.Location = new System.Drawing.Point(632, 391);
-            this.btnNoSeleccionar.Name = "btnNoSeleccionar";
-            this.btnNoSeleccionar.Size = new System.Drawing.Size(75, 23);
-            this.btnNoSeleccionar.TabIndex = 12;
-            this.btnNoSeleccionar.Text = "btnNoSeleccionar";
-            this.btnNoSeleccionar.UseVisualStyleBackColor = true;
-            this.btnNoSeleccionar.Click += new System.EventHandler(this.btnNoSeleccionar_Click);
-            // 
             // TipoDocumento
             // 
             this.TipoDocumento.DataPropertyName = "TipoDocumento";
@@ -153,6 +134,26 @@ namespace WinApp.Vendedor
             this.Habilitado.Name = "Habilitado";
             this.Habilitado.ReadOnly = true;
             // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.Location = new System.Drawing.Point(713, 391);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(75, 23);
+            this.btnSeleccionar.TabIndex = 11;
+            this.btnSeleccionar.Text = "btnSeleccionar";
+            this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            // 
+            // btnNoSeleccionar
+            // 
+            this.btnNoSeleccionar.Location = new System.Drawing.Point(632, 391);
+            this.btnNoSeleccionar.Name = "btnNoSeleccionar";
+            this.btnNoSeleccionar.Size = new System.Drawing.Size(75, 23);
+            this.btnNoSeleccionar.TabIndex = 12;
+            this.btnNoSeleccionar.Text = "btnNoSeleccionar";
+            this.btnNoSeleccionar.UseVisualStyleBackColor = true;
+            this.btnNoSeleccionar.Click += new System.EventHandler(this.btnNoSeleccionar_Click);
+            // 
             // FormClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,6 +165,7 @@ namespace WinApp.Vendedor
             this.Controls.Add(this.btnHabilitar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.grillaClientes);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormClientes";
             this.Text = "FormClientes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormClientes_FormClosing);

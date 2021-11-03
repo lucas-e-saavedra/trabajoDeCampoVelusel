@@ -34,3 +34,5 @@ sandcastle
 brian.gomezpereyra@uai.edu.ar
 gastonweingand@uai.edu.ar
 
+filtro y ordenamiento para bitacora, errores y clientes
+formulario detalle bitacora

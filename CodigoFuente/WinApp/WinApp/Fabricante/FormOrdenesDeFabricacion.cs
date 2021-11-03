@@ -37,6 +37,7 @@ namespace WinApp.Fabricante
         }
         public void ActualizarTraducciones()
         {
+            Text = "Ordenes de Fabricación".Traducir();
             btnComenzar.Text = "Comenzar fabricación".Traducir();
             btnCerrar.Text = "Finalizar fabricación".Traducir();
             btnTerminar.Text = "Verificar calidad".Traducir();

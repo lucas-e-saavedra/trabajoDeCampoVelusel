@@ -36,6 +36,7 @@ namespace WinApp.Vendedor
         }
         public void ActualizarTraducciones()
         {
+            Text = "Catálogo".Traducir();
             btnSeleccionar.Text = "Seleccionar".Traducir();
         }
         class ProductoCatalogo : Producto { 

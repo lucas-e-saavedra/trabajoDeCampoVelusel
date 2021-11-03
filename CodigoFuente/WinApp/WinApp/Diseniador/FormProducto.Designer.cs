@@ -29,6 +29,7 @@ namespace WinApp.Diseniador
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProducto));
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblUnidad = new System.Windows.Forms.Label();
             this.inputNombre = new System.Windows.Forms.TextBox();
@@ -38,21 +39,21 @@ namespace WinApp.Diseniador
             this.checkCatalogo = new System.Windows.Forms.CheckBox();
             this.lblDisponibles = new System.Windows.Forms.Label();
             this.grillaDisponibles = new System.Windows.Forms.DataGridView();
+            this.Unidad_D = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre_D = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.lblIngredientes = new System.Windows.Forms.Label();
             this.inputReposo = new System.Windows.Forms.TextBox();
             this.lblReposo = new System.Windows.Forms.Label();
             this.grillaIngredientes = new System.Windows.Forms.DataGridView();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inputDescripcion = new System.Windows.Forms.TextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.inputFotoUrl = new System.Windows.Forms.TextBox();
             this.lblFotoUrl = new System.Windows.Forms.Label();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Unidad_D = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre_D = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grillaDisponibles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaIngredientes)).BeginInit();
             this.SuspendLayout();
@@ -141,6 +142,24 @@ namespace WinApp.Diseniador
             this.grillaDisponibles.TabIndex = 26;
             this.grillaDisponibles.SelectionChanged += new System.EventHandler(this.grillaDisponibles_SelectionChanged);
             // 
+            // Unidad_D
+            // 
+            this.Unidad_D.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Unidad_D.DataPropertyName = "Unidad";
+            this.Unidad_D.HeaderText = "Unidad";
+            this.Unidad_D.Name = "Unidad_D";
+            this.Unidad_D.ReadOnly = true;
+            this.Unidad_D.Width = 66;
+            // 
+            // Nombre_D
+            // 
+            this.Nombre_D.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Nombre_D.DataPropertyName = "Nombre";
+            this.Nombre_D.HeaderText = "Nombre";
+            this.Nombre_D.Name = "Nombre_D";
+            this.Nombre_D.ReadOnly = true;
+            this.Nombre_D.Width = 69;
+            // 
             // btnQuitar
             // 
             this.btnQuitar.Location = new System.Drawing.Point(339, 235);
@@ -201,6 +220,32 @@ namespace WinApp.Diseniador
             this.grillaIngredientes.TabIndex = 30;
             this.grillaIngredientes.SelectionChanged += new System.EventHandler(this.grillaIngredientes_SelectionChanged);
             // 
+            // Cantidad
+            // 
+            this.Cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Cantidad.DataPropertyName = "Cantidad";
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 74;
+            // 
+            // Unidad
+            // 
+            this.Unidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Unidad.DataPropertyName = "Unidad";
+            this.Unidad.HeaderText = "Unidad";
+            this.Unidad.Name = "Unidad";
+            this.Unidad.ReadOnly = true;
+            this.Unidad.Width = 66;
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 69;
+            // 
             // inputDescripcion
             // 
             this.inputDescripcion.Location = new System.Drawing.Point(15, 315);
@@ -236,50 +281,6 @@ namespace WinApp.Diseniador
             this.lblFotoUrl.TabIndex = 33;
             this.lblFotoUrl.Text = "lblFotoUrl";
             // 
-            // Cantidad
-            // 
-            this.Cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Cantidad.DataPropertyName = "Cantidad";
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.Width = 74;
-            // 
-            // Unidad
-            // 
-            this.Unidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Unidad.DataPropertyName = "Unidad";
-            this.Unidad.HeaderText = "Unidad";
-            this.Unidad.Name = "Unidad";
-            this.Unidad.ReadOnly = true;
-            this.Unidad.Width = 66;
-            // 
-            // Nombre
-            // 
-            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 69;
-            // 
-            // Unidad_D
-            // 
-            this.Unidad_D.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Unidad_D.DataPropertyName = "Unidad";
-            this.Unidad_D.HeaderText = "Unidad";
-            this.Unidad_D.Name = "Unidad_D";
-            this.Unidad_D.ReadOnly = true;
-            this.Unidad_D.Width = 66;
-            // 
-            // Nombre_D
-            // 
-            this.Nombre_D.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Nombre_D.DataPropertyName = "Nombre";
-            this.Nombre_D.HeaderText = "Nombre";
-            this.Nombre_D.Name = "Nombre_D";
-            this.Nombre_D.ReadOnly = true;
-            this.Nombre_D.Width = 69;
-            // 
             // FormProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,8 +305,9 @@ namespace WinApp.Diseniador
             this.Controls.Add(this.inputNombre);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.btnGrabar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormProducto";
-            this.Text = "Material";
+            this.Text = "ABM Productos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormProducto_FormClosing);
             this.Load += new System.EventHandler(this.FormProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grillaDisponibles)).EndInit();

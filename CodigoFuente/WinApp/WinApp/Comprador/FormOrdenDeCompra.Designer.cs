@@ -29,6 +29,7 @@ namespace WinApp.Comprador
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOrdenDeCompra));
             this.lblObjetivoOrdenCompra = new System.Windows.Forms.Label();
             this.lblIdOrdenCompra = new System.Windows.Forms.Label();
             this.timeFechaEstimada = new System.Windows.Forms.DateTimePicker();
@@ -40,8 +41,8 @@ namespace WinApp.Comprador
             this.btnCancelar = new System.Windows.Forms.Button();
             this.chkRecibido = new System.Windows.Forms.CheckBox();
             this.groupRecibido = new System.Windows.Forms.GroupBox();
-            this.lblCantidadComprada = new System.Windows.Forms.Label();
             this.lblCantidadRecibida = new System.Windows.Forms.Label();
+            this.lblCantidadComprada = new System.Windows.Forms.Label();
             this.groupRecibido.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -144,15 +145,6 @@ namespace WinApp.Comprador
             this.groupRecibido.TabStop = false;
             this.groupRecibido.Text = "groupRecibido";
             // 
-            // lblCantidadComprada
-            // 
-            this.lblCantidadComprada.AutoSize = true;
-            this.lblCantidadComprada.Location = new System.Drawing.Point(12, 96);
-            this.lblCantidadComprada.Name = "lblCantidadComprada";
-            this.lblCantidadComprada.Size = new System.Drawing.Size(107, 13);
-            this.lblCantidadComprada.TabIndex = 31;
-            this.lblCantidadComprada.Text = "lblCantidadComprada";
-            // 
             // lblCantidadRecibida
             // 
             this.lblCantidadRecibida.AutoSize = true;
@@ -161,6 +153,15 @@ namespace WinApp.Comprador
             this.lblCantidadRecibida.Size = new System.Drawing.Size(101, 13);
             this.lblCantidadRecibida.TabIndex = 32;
             this.lblCantidadRecibida.Text = "lblCantidadRecibida";
+            // 
+            // lblCantidadComprada
+            // 
+            this.lblCantidadComprada.AutoSize = true;
+            this.lblCantidadComprada.Location = new System.Drawing.Point(12, 96);
+            this.lblCantidadComprada.Name = "lblCantidadComprada";
+            this.lblCantidadComprada.Size = new System.Drawing.Size(107, 13);
+            this.lblCantidadComprada.TabIndex = 31;
+            this.lblCantidadComprada.Text = "lblCantidadComprada";
             // 
             // FormOrdenDeCompra
             // 
@@ -176,6 +177,7 @@ namespace WinApp.Comprador
             this.Controls.Add(this.timeFechaEstimada);
             this.Controls.Add(this.lblObjetivoOrdenCompra);
             this.Controls.Add(this.lblIdOrdenCompra);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormOrdenDeCompra";
             this.Text = "FormOrdenDeCompra";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormOrdenDeCompra_FormClosing);

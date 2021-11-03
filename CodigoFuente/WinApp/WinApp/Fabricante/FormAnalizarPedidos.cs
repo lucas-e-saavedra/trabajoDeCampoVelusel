@@ -36,6 +36,7 @@ namespace WinApp.Fabricante
 
         public void ActualizarTraducciones()
         {
+            Text = "Analizar pedido".Traducir();
             boxOrdenFabricacion.Text = "Orden de fabricación".Traducir();
             btnSaveAllOrders.Text = "Agendar pedido".Traducir();
         }

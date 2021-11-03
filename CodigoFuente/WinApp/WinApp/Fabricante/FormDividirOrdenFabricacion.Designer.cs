@@ -29,6 +29,7 @@ namespace WinApp.Fabricante
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDividirOrdenFabricacion));
             this.btnGrabar = new System.Windows.Forms.Button();
             this.dateReprogramacion = new System.Windows.Forms.MonthCalendar();
             this.lblExplicarReprogramacion = new System.Windows.Forms.Label();
@@ -67,6 +68,7 @@ namespace WinApp.Fabricante
             this.Controls.Add(this.btnGrabar);
             this.Controls.Add(this.dateReprogramacion);
             this.Controls.Add(this.lblExplicarReprogramacion);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormDividirOrdenFabricacion";
             this.Text = "FormDividirOrdenFabricacion";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDividirOrdenFabricacion_FormClosing);

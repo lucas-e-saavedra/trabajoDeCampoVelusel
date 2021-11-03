@@ -29,12 +29,13 @@ namespace WinApp.Diseniador
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMateriales));
             this.grillaMateriales = new System.Windows.Forms.DataGridView();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grillaMateriales)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,6 +51,20 @@ namespace WinApp.Diseniador
             this.grillaMateriales.Size = new System.Drawing.Size(775, 366);
             this.grillaMateriales.TabIndex = 0;
             this.grillaMateriales.SelectionChanged += new System.EventHandler(this.grillaMateriales_SelectionChanged);
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Unidad
+            // 
+            this.Unidad.DataPropertyName = "Unidad";
+            this.Unidad.HeaderText = "Unidad";
+            this.Unidad.Name = "Unidad";
+            this.Unidad.ReadOnly = true;
             // 
             // btnModificar
             // 
@@ -81,20 +96,6 @@ namespace WinApp.Diseniador
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // Nombre
-            // 
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Unidad
-            // 
-            this.Unidad.DataPropertyName = "Unidad";
-            this.Unidad.HeaderText = "Unidad";
-            this.Unidad.Name = "Unidad";
-            this.Unidad.ReadOnly = true;
-            // 
             // FormMateriales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -104,6 +105,7 @@ namespace WinApp.Diseniador
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.grillaMateriales);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMateriales";
             this.Text = "Materiales";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Materiales_FormClosing);

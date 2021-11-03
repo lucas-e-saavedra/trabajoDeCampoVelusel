@@ -36,6 +36,7 @@ namespace WinApp.Fabricante
 
         public void ActualizarTraducciones()
         {
+            Text = "Orden de fabricación".Traducir();
             btnComenzar.Text = "Comenzar fabricación".Traducir();
             btnCancelar.Text = "Cancelar".Traducir();
 

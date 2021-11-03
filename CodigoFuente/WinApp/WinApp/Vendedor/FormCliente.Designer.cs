@@ -29,6 +29,7 @@ namespace WinApp.Vendedor
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCliente));
             this.comboDocumento = new System.Windows.Forms.ComboBox();
             this.inputDocumento = new System.Windows.Forms.TextBox();
             this.lblDocumento = new System.Windows.Forms.Label();
@@ -162,6 +163,7 @@ namespace WinApp.Vendedor
             this.Controls.Add(this.inputTelefono);
             this.Controls.Add(this.lblTelefono);
             this.Controls.Add(this.btnGrabar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormCliente";
             this.Text = "FormCliente";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormCliente_FormClosing);

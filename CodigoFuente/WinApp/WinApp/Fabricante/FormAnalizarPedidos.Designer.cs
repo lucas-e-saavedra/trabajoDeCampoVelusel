@@ -29,6 +29,7 @@ namespace WinApp.Fabricante
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAnalizarPedidos));
             this.btnSaveAllOrders = new System.Windows.Forms.Button();
             this.grillaPedidos = new System.Windows.Forms.DataGridView();
             this.Solicitante = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,11 +41,11 @@ namespace WinApp.Fabricante
             this.Estado_OF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Objetivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.boxOrdenFabricacion = new System.Windows.Forms.GroupBox();
+            this.lblReposoNecesario = new System.Windows.Forms.Label();
             this.lblOFposterior = new System.Windows.Forms.Label();
             this.lblObjetivoOrdenFabricacion = new System.Windows.Forms.Label();
             this.timeOrdenFabricacion = new System.Windows.Forms.DateTimePicker();
             this.lblIdOrdenFabricacion = new System.Windows.Forms.Label();
-            this.lblReposoNecesario = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grillaPedidos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaOrdenesFabricacion)).BeginInit();
             this.boxOrdenFabricacion.SuspendLayout();
@@ -160,6 +161,15 @@ namespace WinApp.Fabricante
             this.boxOrdenFabricacion.TabStop = false;
             this.boxOrdenFabricacion.Text = "boxOrdenFabricacion";
             // 
+            // lblReposoNecesario
+            // 
+            this.lblReposoNecesario.AutoSize = true;
+            this.lblReposoNecesario.Location = new System.Drawing.Point(7, 104);
+            this.lblReposoNecesario.Name = "lblReposoNecesario";
+            this.lblReposoNecesario.Size = new System.Drawing.Size(102, 13);
+            this.lblReposoNecesario.TabIndex = 4;
+            this.lblReposoNecesario.Text = "lblReposoNecesario";
+            // 
             // lblOFposterior
             // 
             this.lblOFposterior.AutoSize = true;
@@ -195,15 +205,6 @@ namespace WinApp.Fabricante
             this.lblIdOrdenFabricacion.TabIndex = 0;
             this.lblIdOrdenFabricacion.Text = "lblIdOrdenFabricacion";
             // 
-            // lblReposoNecesario
-            // 
-            this.lblReposoNecesario.AutoSize = true;
-            this.lblReposoNecesario.Location = new System.Drawing.Point(7, 104);
-            this.lblReposoNecesario.Name = "lblReposoNecesario";
-            this.lblReposoNecesario.Size = new System.Drawing.Size(102, 13);
-            this.lblReposoNecesario.TabIndex = 4;
-            this.lblReposoNecesario.Text = "lblReposoNecesario";
-            // 
             // FormAnalizarPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -213,6 +214,7 @@ namespace WinApp.Fabricante
             this.Controls.Add(this.grillaOrdenesFabricacion);
             this.Controls.Add(this.grillaPedidos);
             this.Controls.Add(this.btnSaveAllOrders);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAnalizarPedidos";
             this.Text = "FormAnalizarPedidos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAnalizarPedidos_FormClosing);

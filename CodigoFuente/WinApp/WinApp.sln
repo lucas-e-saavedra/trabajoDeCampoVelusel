@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{73743B5C-989E-4D4A-B387-3D6DB4AB5094}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicioDeAlertas", "ServicioDeAlertas\ServicioDeAlertas.csproj", "{CA767ADE-BF18-400B-9999-B44804E2FAF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{73743B5C-989E-4D4A-B387-3D6DB4AB5094}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73743B5C-989E-4D4A-B387-3D6DB4AB5094}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73743B5C-989E-4D4A-B387-3D6DB4AB5094}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA767ADE-BF18-400B-9999-B44804E2FAF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA767ADE-BF18-400B-9999-B44804E2FAF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA767ADE-BF18-400B-9999-B44804E2FAF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA767ADE-BF18-400B-9999-B44804E2FAF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

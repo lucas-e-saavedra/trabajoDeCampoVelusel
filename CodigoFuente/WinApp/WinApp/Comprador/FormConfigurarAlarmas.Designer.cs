@@ -29,6 +29,7 @@ namespace WinApp.Comprador
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConfigurarAlarmas));
             this.lblDiasAlarmaStock = new System.Windows.Forms.Label();
             this.inputDiasAlarmaStock = new System.Windows.Forms.NumericUpDown();
             this.inputDiasAlarmaCompras = new System.Windows.Forms.NumericUpDown();
@@ -102,6 +103,7 @@ namespace WinApp.Comprador
             this.Controls.Add(this.lblDiasAlarmaCompras);
             this.Controls.Add(this.inputDiasAlarmaStock);
             this.Controls.Add(this.lblDiasAlarmaStock);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormConfigurarAlarmas";
             this.Text = "FormConfigurarAlarmas";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormConfigurarAlarmas_FormClosing);

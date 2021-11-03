@@ -29,6 +29,7 @@ namespace WinApp.Diseniador
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMaterial));
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblUnidad = new System.Windows.Forms.Label();
             this.inputNombre = new System.Windows.Forms.TextBox();
@@ -101,6 +102,7 @@ namespace WinApp.Diseniador
             this.Controls.Add(this.inputNombre);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.btnGrabar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMaterial";
             this.Text = "Material";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMaterial_FormClosing);

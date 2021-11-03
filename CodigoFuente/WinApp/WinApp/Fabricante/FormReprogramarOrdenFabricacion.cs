@@ -29,6 +29,7 @@ namespace WinApp.Fabricante
 
         public void ActualizarTraducciones()
         {
+            Text = "Reprogramar orden de fabricación".Traducir();
             lblExplicarReprogramacion.Text = "Seleccione una nueva fecha para volver a agendar esta orden de fabricación".Traducir();
             btnGrabar.Text = "Modificar".Traducir();
         }

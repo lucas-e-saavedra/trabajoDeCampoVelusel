@@ -29,6 +29,7 @@ namespace WinApp.Comprador
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCalcularCompras));
             this.timeDesde = new System.Windows.Forms.DateTimePicker();
             this.timeHasta = new System.Windows.Forms.DateTimePicker();
             this.grillaMateriales = new System.Windows.Forms.DataGridView();
@@ -240,6 +241,7 @@ namespace WinApp.Comprador
             this.Controls.Add(this.grillaMateriales);
             this.Controls.Add(this.timeHasta);
             this.Controls.Add(this.timeDesde);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormCalcularCompras";
             this.Text = "FormCalcularCompras";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormCalcularCompras_FormClosing);

@@ -29,6 +29,7 @@ namespace WinApp.Diseniador
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProductos));
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -133,6 +134,7 @@ namespace WinApp.Diseniador
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnAgregar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormProductos";
             this.Text = "FormProductos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormProductos_FormClosing);

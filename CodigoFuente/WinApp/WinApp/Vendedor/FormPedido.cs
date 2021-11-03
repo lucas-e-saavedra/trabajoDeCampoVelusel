@@ -41,6 +41,7 @@ namespace WinApp.Vendedor
 
         public void ActualizarTraducciones()
         {
+            Text = "Generar pedido".Traducir();
             btnAgregar.Text = "Agregar".Traducir();
             btnQuitar.Text = "Quitar".Traducir();
             btnGrabar.Text = "Grabar".Traducir();

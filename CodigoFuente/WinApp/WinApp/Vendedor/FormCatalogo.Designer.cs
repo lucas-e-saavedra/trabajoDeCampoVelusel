@@ -29,6 +29,7 @@ namespace WinApp.Vendedor
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCatalogo));
             this.grillaProductos = new System.Windows.Forms.DataGridView();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripción = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,6 +89,7 @@ namespace WinApp.Vendedor
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.grillaProductos);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormCatalogo";
             this.Text = "FormCatalogo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormCatalogo_FormClosing);

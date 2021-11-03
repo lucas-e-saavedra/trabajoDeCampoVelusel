@@ -39,6 +39,7 @@ namespace WinApp.Comprador
 
         public void ActualizarTraducciones()
         {
+            Text = "Calcular compras".Traducir();
             lblExplicacion.Text = "Analizar las órdenes de fabricacion entre estas fechas para calcular las compras sugeridas".Traducir();
             btnGrabarOrdenes.Text = "Grabar órdenes de compra".Traducir();
             grupoOrdenCompra.Text = "Orden de compra".Traducir();

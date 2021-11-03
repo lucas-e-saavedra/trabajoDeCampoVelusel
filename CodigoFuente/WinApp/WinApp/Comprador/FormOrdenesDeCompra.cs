@@ -34,6 +34,7 @@ namespace WinApp.Comprador
         }
         public void ActualizarTraducciones()
         {
+            Text = "Ordenes de compra".Traducir();
             btnRevertir.Text = "Revertir orden de compra".Traducir();
             btnModificar.Text = "Modificar".Traducir();
         }

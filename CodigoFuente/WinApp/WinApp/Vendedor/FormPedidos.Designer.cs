@@ -29,13 +29,14 @@ namespace WinApp.Vendedor
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPedidos));
             this.grillaPedidos = new System.Windows.Forms.DataGridView();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnCerrar = new System.Windows.Forms.Button();
             this.Solicitante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Vendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grillaPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,26 +54,6 @@ namespace WinApp.Vendedor
             this.grillaPedidos.Size = new System.Drawing.Size(776, 373);
             this.grillaPedidos.TabIndex = 8;
             this.grillaPedidos.SelectionChanged += new System.EventHandler(this.grillaPedidos_SelectionChanged);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(12, 391);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 9;
-            this.btnCancelar.Text = "btnCancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnCerrar
-            // 
-            this.btnCerrar.Location = new System.Drawing.Point(93, 391);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(75, 23);
-            this.btnCerrar.TabIndex = 10;
-            this.btnCerrar.Text = "btnCerrar";
-            this.btnCerrar.UseVisualStyleBackColor = true;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // Solicitante
             // 
@@ -104,6 +85,26 @@ namespace WinApp.Vendedor
             this.Detalle.ReadOnly = true;
             this.Detalle.Width = 65;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(12, 391);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 9;
+            this.btnCancelar.Text = "btnCancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Location = new System.Drawing.Point(93, 391);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(75, 23);
+            this.btnCerrar.TabIndex = 10;
+            this.btnCerrar.Text = "btnCerrar";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
             // FormPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -112,6 +113,7 @@ namespace WinApp.Vendedor
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grillaPedidos);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormPedidos";
             this.Text = "FormPedidos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPedidos_FormClosing);

@@ -29,16 +29,17 @@ namespace WinApp.Fabricante
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOrdenesDeFabricacion));
             this.grillaOrdenesFabricacion = new System.Windows.Forms.DataGridView();
-            this.btnComenzar = new System.Windows.Forms.Button();
-            this.btnCerrar = new System.Windows.Forms.Button();
-            this.btnTerminar = new System.Windows.Forms.Button();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaPlanificada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Objetivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaEjecucion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fabricados = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Aprobados = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnComenzar = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
+            this.btnTerminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grillaOrdenesFabricacion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,36 +59,6 @@ namespace WinApp.Fabricante
             this.grillaOrdenesFabricacion.Size = new System.Drawing.Size(776, 367);
             this.grillaOrdenesFabricacion.TabIndex = 11;
             this.grillaOrdenesFabricacion.SelectionChanged += new System.EventHandler(this.grillaOrdenesFabricacion_SelectionChanged);
-            // 
-            // btnComenzar
-            // 
-            this.btnComenzar.Location = new System.Drawing.Point(12, 385);
-            this.btnComenzar.Name = "btnComenzar";
-            this.btnComenzar.Size = new System.Drawing.Size(117, 23);
-            this.btnComenzar.TabIndex = 12;
-            this.btnComenzar.Text = "btnComenzar";
-            this.btnComenzar.UseVisualStyleBackColor = true;
-            this.btnComenzar.Click += new System.EventHandler(this.btnComenzar_Click);
-            // 
-            // btnCerrar
-            // 
-            this.btnCerrar.Location = new System.Drawing.Point(135, 385);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(117, 23);
-            this.btnCerrar.TabIndex = 13;
-            this.btnCerrar.Text = "btnCerrar";
-            this.btnCerrar.UseVisualStyleBackColor = true;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
-            // 
-            // btnTerminar
-            // 
-            this.btnTerminar.Location = new System.Drawing.Point(258, 385);
-            this.btnTerminar.Name = "btnTerminar";
-            this.btnTerminar.Size = new System.Drawing.Size(102, 23);
-            this.btnTerminar.TabIndex = 14;
-            this.btnTerminar.Text = "btnTerminar";
-            this.btnTerminar.UseVisualStyleBackColor = true;
-            this.btnTerminar.Click += new System.EventHandler(this.btnTerminar_Click);
             // 
             // Estado
             // 
@@ -143,6 +114,36 @@ namespace WinApp.Fabricante
             this.Aprobados.ReadOnly = true;
             this.Aprobados.Width = 83;
             // 
+            // btnComenzar
+            // 
+            this.btnComenzar.Location = new System.Drawing.Point(12, 385);
+            this.btnComenzar.Name = "btnComenzar";
+            this.btnComenzar.Size = new System.Drawing.Size(117, 23);
+            this.btnComenzar.TabIndex = 12;
+            this.btnComenzar.Text = "btnComenzar";
+            this.btnComenzar.UseVisualStyleBackColor = true;
+            this.btnComenzar.Click += new System.EventHandler(this.btnComenzar_Click);
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Location = new System.Drawing.Point(135, 385);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(117, 23);
+            this.btnCerrar.TabIndex = 13;
+            this.btnCerrar.Text = "btnCerrar";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // btnTerminar
+            // 
+            this.btnTerminar.Location = new System.Drawing.Point(258, 385);
+            this.btnTerminar.Name = "btnTerminar";
+            this.btnTerminar.Size = new System.Drawing.Size(102, 23);
+            this.btnTerminar.TabIndex = 14;
+            this.btnTerminar.Text = "btnTerminar";
+            this.btnTerminar.UseVisualStyleBackColor = true;
+            this.btnTerminar.Click += new System.EventHandler(this.btnTerminar_Click);
+            // 
             // FormOrdenesDeFabricacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -152,6 +153,7 @@ namespace WinApp.Fabricante
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnComenzar);
             this.Controls.Add(this.grillaOrdenesFabricacion);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormOrdenesDeFabricacion";
             this.Text = "FormOrdenesDeFabricacion";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormOrdenesDeFabricacion_FormClosing);

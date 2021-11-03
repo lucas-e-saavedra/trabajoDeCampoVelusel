@@ -33,6 +33,7 @@ namespace WinApp.Fabricante
         }
         public void ActualizarTraducciones()
         {
+            Text = "Dividir orden de fabricación".Traducir();
             lblExplicarReprogramacion.Text = "Seleccione una fecha para completar el saldo restante de esta orden de fabricación".Traducir();
             btnGrabar.Text = "Grabar".Traducir();
         }

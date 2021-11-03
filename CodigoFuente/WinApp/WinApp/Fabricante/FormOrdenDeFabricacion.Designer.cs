@@ -29,6 +29,7 @@ namespace WinApp.Fabricante
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOrdenDeFabricacion));
             this.btnComenzar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblIdOrdenFabricacion = new System.Windows.Forms.Label();
@@ -125,6 +126,7 @@ namespace WinApp.Fabricante
             this.Controls.Add(this.lblIdOrdenFabricacion);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnComenzar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormOrdenDeFabricacion";
             this.Text = "FormOrdenDeFabricacion";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormOrdenDeFabricacion_FormClosing);

@@ -32,7 +32,7 @@ namespace WinApp.Vendedor
         }
         public void ActualizarTraducciones()
         {
-            Text = "ABM Clientes".Traducir();
+            Text = "Ver pedidos".Traducir();
             btnCancelar.Text = "Cancelar pedido".Traducir();
         }
         private void ActualizarGrilla() {

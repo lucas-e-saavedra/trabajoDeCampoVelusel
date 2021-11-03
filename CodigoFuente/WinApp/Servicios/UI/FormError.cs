@@ -1,13 +1,7 @@
 ﻿using Servicios.BLL;
 using Servicios.Domain;
+using Servicios.Extensions;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Servicios.UI
@@ -34,6 +28,7 @@ namespace Servicios.UI
 
         public void ActualizarTraducciones()
         {
+            Text = "Ver detalle".Traducir();
             lblFecha.Text = errorSeleccionado.timestamp;
             lblClase.Text = errorSeleccionado.clase;
             lblDescripcion.Text = errorSeleccionado.descripcion;

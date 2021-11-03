@@ -36,6 +36,7 @@ namespace WinApp.Comprador
         }
         public void ActualizarTraducciones()
         {
+            Text = "Configurar alarmas".Traducir();
             lblDiasAlarmaStock.Text = "Cantidad de dias de anticipación que desea controlar del stock para evitar bloqueos".Traducir();
             lblDiasAlarmaCompras.Text = "Cantidad de dias de anticipación que desea controlar estado de las compras para evitar bloqueos".Traducir();
             btnGrabar.Text = "Grabar".Traducir();

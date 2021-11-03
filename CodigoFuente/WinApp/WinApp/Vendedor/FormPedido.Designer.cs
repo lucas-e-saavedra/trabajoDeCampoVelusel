@@ -29,6 +29,7 @@ namespace WinApp.Vendedor
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPedido));
             this.btnSeleccionarCliente = new System.Windows.Forms.Button();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -127,6 +128,7 @@ namespace WinApp.Vendedor
             this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.btnSeleccionarCliente);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormPedido";
             this.Text = "FormPedido";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPedido_FormClosing);
