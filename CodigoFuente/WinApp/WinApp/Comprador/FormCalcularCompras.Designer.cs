@@ -71,6 +71,7 @@ namespace WinApp.Comprador
             // 
             // grillaMateriales
             // 
+            this.grillaMateriales.AllowUserToAddRows = false;
             this.grillaMateriales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaMateriales.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cantidad,
@@ -112,6 +113,7 @@ namespace WinApp.Comprador
             // 
             // grillaCompras
             // 
+            this.grillaCompras.AllowUserToAddRows = false;
             this.grillaCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FechaObjetivo,

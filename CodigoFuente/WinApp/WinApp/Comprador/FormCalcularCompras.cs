@@ -5,8 +5,6 @@ using Servicios.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +14,7 @@ namespace WinApp.Comprador
 {
     public partial class FormCalcularCompras : Form, IIdiomasObservador
     {
+        BindingList<OrdenDeCompra> nuevasOC = new BindingList<OrdenDeCompra>();
         OrdenDeCompra unaOrdenDeCompra;
         public FormCalcularCompras()
         {
@@ -29,7 +28,8 @@ namespace WinApp.Comprador
             GestorIdiomas.Current.SuscribirObservador(this);
             ActualizarTraducciones();
             timeDesde.MinDate = DateTime.Today.AddDays(1);
-            grillaCompras.DataSource = new List<OrdenDeCompra>();
+            nuevasOC.Clear();
+            grillaCompras.DataSource = nuevasOC;
         }
 
         private void FormCalcularCompras_FormClosing(object sender, FormClosingEventArgs e)
@@ -70,11 +70,7 @@ namespace WinApp.Comprador
                 IEnumerable<Material> materiales = (IEnumerable<Material>)grillaMateriales.DataSource;
                 Material materialSeleccionado = materiales.ElementAt(index);
 
-                List<OrdenDeCompra> compras = (List<OrdenDeCompra>)grillaCompras.DataSource;
-                if (compras == null) {
-                    compras = new List<OrdenDeCompra>();
-                }
-                unaOrdenDeCompra = compras.FirstOrDefault(item => item.Objetivo.Id == materialSeleccionado.Id);
+                unaOrdenDeCompra = nuevasOC.FirstOrDefault(item => item.Objetivo.Id == materialSeleccionado.Id);
                 if(unaOrdenDeCompra == null) {
                     unaOrdenDeCompra = BLL.GestorCompras.Current.CrearOrdenDeCompra(DateTime.Today, materialSeleccionado);
                     mostrarOrdenDeCompra();
@@ -86,15 +82,14 @@ namespace WinApp.Comprador
         {
             if (grillaCompras.SelectedRows.Count > 0) {
                 int index = grillaCompras.SelectedRows[0].Index;
-                List<OrdenDeCompra> compras = (List<OrdenDeCompra>)grillaCompras.DataSource;
-                unaOrdenDeCompra = compras.ElementAt(index);
+                unaOrdenDeCompra = nuevasOC.ElementAt(index);
                 mostrarOrdenDeCompra();
             }
         }
         private void mostrarOrdenDeCompra()
         {
-            lblMaterialOrdenCompra.Text = $"{unaOrdenDeCompra.Objetivo.Cantidad} ({unaOrdenDeCompra.Objetivo.Unidad}) {unaOrdenDeCompra.Objetivo.Nombre}";
-            if (unaOrdenDeCompra.FechaObjetivo != DateTime.MinValue);
+            lblMaterialOrdenCompra.Text = $"{unaOrdenDeCompra.Objetivo?.Cantidad} ({unaOrdenDeCompra.Objetivo?.Unidad}) {unaOrdenDeCompra.Objetivo?.Nombre}";
+            if (unaOrdenDeCompra.FechaObjetivo != DateTime.MinValue)
               timeOrdenCompra.Value = unaOrdenDeCompra.FechaObjetivo;
         }
 
@@ -102,34 +97,32 @@ namespace WinApp.Comprador
         {
             unaOrdenDeCompra.FechaObjetivo = timeOrdenCompra.Value;
 
-            List<OrdenDeCompra> compras = (List<OrdenDeCompra>)grillaCompras.DataSource;
-            OrdenDeCompra ordenDeCompraSimilar = compras.FirstOrDefault(item => item.Id == unaOrdenDeCompra.Id);
+            OrdenDeCompra ordenDeCompraSimilar = nuevasOC.FirstOrDefault(item => item.Id == unaOrdenDeCompra.Id);
             if(ordenDeCompraSimilar == null){
-                compras.Add(unaOrdenDeCompra);
+                nuevasOC.Add(unaOrdenDeCompra);
             }
             grillaCompras.DataSource = null;
-            grillaCompras.DataSource = compras;
+            grillaCompras.DataSource = nuevasOC;
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            List<OrdenDeCompra> compras = (List<OrdenDeCompra>)grillaCompras.DataSource;
-            unaOrdenDeCompra = compras.FirstOrDefault(item => item.Id == unaOrdenDeCompra.Id);
-            if (unaOrdenDeCompra != null) {
-                compras.RemoveAll(item => item.Id == unaOrdenDeCompra.Id);
+            unaOrdenDeCompra = nuevasOC.FirstOrDefault(item => item.Id == unaOrdenDeCompra.Id);
+            int indexToDelete = nuevasOC.IndexOf(unaOrdenDeCompra);
+            if (unaOrdenDeCompra != null && indexToDelete > -1) {
+                nuevasOC.Remove(unaOrdenDeCompra);
                 grillaCompras.DataSource = null;
-                grillaCompras.DataSource = compras;
+                grillaCompras.DataSource = nuevasOC;
             }
         }
 
         private void btnGrabarOrdenes_Click(object sender, EventArgs e)
         {
             try {
-                List<OrdenDeCompra> compras = (List<OrdenDeCompra>)grillaCompras.DataSource;
-                BLL.GestorCompras.Current.GrabarOrdenesDeCompraSugeridas(timeDesde.Value, compras);
-
+                BLL.GestorCompras.Current.GrabarOrdenesDeCompraSugeridas(timeDesde.Value, nuevasOC);
+                nuevasOC.Clear();
                 grillaCompras.DataSource = null;
-                grillaCompras.DataSource = new List<OrdenDeCompra>();
+                grillaCompras.DataSource = nuevasOC;
                 actualizarGrillaMateriales();
             } catch (Exception ex){
                 ex.MostrarEnAlert();
