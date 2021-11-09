@@ -13,6 +13,7 @@ namespace WinApp.Vendedor
 {
     public partial class FormPedidos : Form, IIdiomasObservador
     {
+        IEnumerable<Pedido> pedidos;
         Pedido pedidoSeleccionado;
         public FormPedidos()
         {
@@ -34,14 +35,33 @@ namespace WinApp.Vendedor
         {
             Text = "Ver pedidos".Traducir();
             btnCancelar.Text = "Cancelar pedido".Traducir();
+
+            Solicitante.HeaderText = "Solicitante".Traducir();
+            Vendedor.HeaderText = "Vendedor".Traducir();
+            Estado.HeaderText = "Estado".Traducir();
+            Detalle.HeaderText = "Detalle".Traducir();
+
+            lblFiltroSolicitante.Text = "Filtrar por solicitante".Traducir();
+            lblFiltroDetalle.Text = "Filtrar por detalle".Traducir();
+
         }
         private void ActualizarGrilla() {
             grillaPedidos.DataSource = null;
-            IEnumerable<Pedido> pedidos = BLL.GestorPedidos.Current.ListarPedidos().Where(item => item.Estado!=EnumEstadoPedido.CANCELADO && item.Estado != EnumEstadoPedido.CERRADO).OrderBy(item => item.Estado);
-            List<VistaPedido> pedidosVista = pedidos.Select(item => new VistaPedido(item)).ToList();
-            grillaPedidos.DataSource = pedidosVista;
+            pedidos = BLL.GestorPedidos.Current.ListarPedidos().Where(item => item.Estado!=EnumEstadoPedido.CANCELADO && item.Estado != EnumEstadoPedido.CERRADO).OrderBy(item => item.Estado);
+            FiltrarGrilla();
             btnCancelar.Enabled = pedidoSeleccionado?.Estado == EnumEstadoPedido.FORMULADO || pedidoSeleccionado?.Estado == EnumEstadoPedido.PLANIFICADO;
             btnCerrar.Enabled = pedidoSeleccionado?.Estado == EnumEstadoPedido.LISTO;
+        }
+        private void FiltrarGrilla() {
+            List<VistaPedido> pedidosVista = pedidos.Select(item => new VistaPedido(item)).ToList();
+            List<VistaPedido> pedidosFiltrados = pedidosVista.ToList();
+            if (inputFiltroSolicitante.Text.Length > 0) {
+                
+                pedidosFiltrados = pedidosFiltrados.Where(item => item.DescSolicitante.ToLower().Contains(inputFiltroSolicitante.Text.ToLower())).ToList();
+            }
+            if (inputFiltroDetalle.Text.Length > 0)
+                pedidosFiltrados = pedidosFiltrados.Where(item => item.DescDetalle.ToLower().Contains(inputFiltroDetalle.Text.ToLower())).ToList();
+            grillaPedidos.DataSource = pedidosFiltrados;
         }
 
         private void grillaPedidos_SelectionChanged(object sender, EventArgs e)
@@ -75,6 +95,16 @@ namespace WinApp.Vendedor
                 ex.MostrarEnAlert();
             }
         }
+
+        private void inputFiltroSolicitante_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarGrilla();
+        }
+
+        private void inputFiltroDetalle_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarGrilla();
+        }
     }
 
     class VistaPedido: Pedido {
@@ -88,7 +118,7 @@ namespace WinApp.Vendedor
             this.Detalle = item.Detalle;
         }
 
-        public string DescSolicitante { get { return this.Solicitante?.Nombre; } }
+        public string DescSolicitante { get { return this.Solicitante?.Nombre ?? ""; } }
         public string DescVendedor { get { return this.Vendedor.UsuarioLogin; } }
         public string DescDetalle { get { return DetalleToString(); } }
 

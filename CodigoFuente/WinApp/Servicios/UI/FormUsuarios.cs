@@ -42,6 +42,12 @@ namespace Servicios.UI
             btnBorrar.Text = "Borrar".Traducir();
             btnModificar.Text = "Modificar".Traducir();
             btnClave.Text = "Blanquear clave".Traducir();
+
+            UsuarioLogin.HeaderText = "Usuario".Traducir();
+            Nombre.HeaderText = "Nombre".Traducir();
+            Email.HeaderText = "Email".Traducir();
+            TipoDocumento.HeaderText = "Tipo Documento".Traducir();
+            NroDocumento.HeaderText = "Documento".Traducir();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

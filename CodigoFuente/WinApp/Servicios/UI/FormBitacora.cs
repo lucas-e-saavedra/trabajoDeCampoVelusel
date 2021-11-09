@@ -15,7 +15,7 @@ namespace Servicios.UI
 {
     public partial class FormBitacora : Form, IIdiomasObservador
     {
-        Evento eventoSeleccionado;
+        IEnumerable<Evento> bitacora;
         public FormBitacora()
         {
             InitializeComponent();
@@ -25,8 +25,9 @@ namespace Servicios.UI
         {
             grillaBitacora.AutoGenerateColumns = false;
             GestorIdiomas.Current.SuscribirObservador(this);
-            IEnumerable<Evento> bitacora = GestorHistorico.Current.ListarBitacora();
-            grillaBitacora.DataSource = bitacora.Reverse().ToList();
+            bitacora = GestorHistorico.Current.ListarBitacora();
+            ActualizarTraducciones();
+            ActualizarGrilla();
         }
         private void FormBitacora_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -35,21 +36,30 @@ namespace Servicios.UI
         public void ActualizarTraducciones()
         {
             Text = "Ver bitácora".Traducir();
-            btnDetalle.Enabled = eventoSeleccionado != null;
-            btnDetalle.Text = "Ver detalle".Traducir();
+            timestamp.HeaderText = "Fecha y hora".Traducir();
+            categoria.HeaderText = "Categoría".Traducir();
+            mensaje.HeaderText = "Mensaje".Traducir();
+            lblFiltroCategoria.Text = "Filtrar por categoría".Traducir();
+            lblFiltroMensaje.Text = "Filtrar por mensaje".Traducir();
         }
-        private void grillaBitacora_SelectionChanged(object sender, EventArgs e)
-        {
-            if (grillaBitacora.SelectedRows.Count > 0)
-            {
-                int index = grillaBitacora.SelectedRows[0].Index;
-                IEnumerable<Evento> eventos = (IEnumerable<Evento>)grillaBitacora.DataSource;
-                eventoSeleccionado = eventos.ElementAt(index);
-                btnDetalle.Enabled = eventoSeleccionado != null;
-            }
+        private void ActualizarGrilla() {
+            List<Evento> bitacoraFiltrada = bitacora.ToList();
+            if (inputFiltroCategoria.Text.Length > 0)
+                bitacoraFiltrada = bitacoraFiltrada.Where(item => item.categoria.ToString().ToLower().Contains(inputFiltroCategoria.Text.ToLower())).ToList();
+            if (inputFiltroMensaje.Text.Length > 0)
+                bitacoraFiltrada = bitacoraFiltrada.Where(item => item.mensaje.ToLower().Contains(inputFiltroMensaje.Text.ToLower())).ToList();
+
+            bitacoraFiltrada.Reverse();
+            grillaBitacora.DataSource = bitacoraFiltrada;
         }
-        private void btnDetalle_Click(object sender, EventArgs e)
+        private void inputFiltroCategoria_TextChanged(object sender, EventArgs e)
         {
+            ActualizarGrilla();
+        }
+
+        private void inputFiltroMensaje_TextChanged(object sender, EventArgs e)
+        {
+            ActualizarGrilla();
         }
     }
 }

@@ -37,6 +37,10 @@ namespace WinApp.Vendedor
             this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.inputFiltroDetalle = new System.Windows.Forms.TextBox();
+            this.lblFiltroDetalle = new System.Windows.Forms.Label();
+            this.lblFiltroSolicitante = new System.Windows.Forms.Label();
+            this.inputFiltroSolicitante = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grillaPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,10 +52,10 @@ namespace WinApp.Vendedor
             this.Vendedor,
             this.Estado,
             this.Detalle});
-            this.grillaPedidos.Location = new System.Drawing.Point(12, 12);
+            this.grillaPedidos.Location = new System.Drawing.Point(12, 32);
             this.grillaPedidos.Name = "grillaPedidos";
             this.grillaPedidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grillaPedidos.Size = new System.Drawing.Size(776, 373);
+            this.grillaPedidos.Size = new System.Drawing.Size(776, 353);
             this.grillaPedidos.TabIndex = 8;
             this.grillaPedidos.SelectionChanged += new System.EventHandler(this.grillaPedidos_SelectionChanged);
             // 
@@ -105,11 +109,49 @@ namespace WinApp.Vendedor
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // inputFiltroDetalle
+            // 
+            this.inputFiltroDetalle.Location = new System.Drawing.Point(378, 6);
+            this.inputFiltroDetalle.Name = "inputFiltroDetalle";
+            this.inputFiltroDetalle.Size = new System.Drawing.Size(100, 20);
+            this.inputFiltroDetalle.TabIndex = 20;
+            this.inputFiltroDetalle.TextChanged += new System.EventHandler(this.inputFiltroDetalle_TextChanged);
+            // 
+            // lblFiltroDetalle
+            // 
+            this.lblFiltroDetalle.AutoSize = true;
+            this.lblFiltroDetalle.Location = new System.Drawing.Point(267, 9);
+            this.lblFiltroDetalle.Name = "lblFiltroDetalle";
+            this.lblFiltroDetalle.Size = new System.Drawing.Size(72, 13);
+            this.lblFiltroDetalle.TabIndex = 19;
+            this.lblFiltroDetalle.Text = "lblFiltroDetalle";
+            // 
+            // lblFiltroSolicitante
+            // 
+            this.lblFiltroSolicitante.AutoSize = true;
+            this.lblFiltroSolicitante.Location = new System.Drawing.Point(12, 9);
+            this.lblFiltroSolicitante.Name = "lblFiltroSolicitante";
+            this.lblFiltroSolicitante.Size = new System.Drawing.Size(88, 13);
+            this.lblFiltroSolicitante.TabIndex = 18;
+            this.lblFiltroSolicitante.Text = "lblFiltroSolicitante";
+            // 
+            // inputFiltroSolicitante
+            // 
+            this.inputFiltroSolicitante.Location = new System.Drawing.Point(130, 6);
+            this.inputFiltroSolicitante.Name = "inputFiltroSolicitante";
+            this.inputFiltroSolicitante.Size = new System.Drawing.Size(100, 20);
+            this.inputFiltroSolicitante.TabIndex = 17;
+            this.inputFiltroSolicitante.TextChanged += new System.EventHandler(this.inputFiltroSolicitante_TextChanged);
+            // 
             // FormPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 426);
+            this.Controls.Add(this.inputFiltroDetalle);
+            this.Controls.Add(this.lblFiltroDetalle);
+            this.Controls.Add(this.lblFiltroSolicitante);
+            this.Controls.Add(this.inputFiltroSolicitante);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grillaPedidos);
@@ -120,6 +162,7 @@ namespace WinApp.Vendedor
             this.Load += new System.EventHandler(this.FormPedidos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grillaPedidos)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -132,5 +175,9 @@ namespace WinApp.Vendedor
         private System.Windows.Forms.DataGridViewTextBoxColumn Vendedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
+        private System.Windows.Forms.TextBox inputFiltroDetalle;
+        private System.Windows.Forms.Label lblFiltroDetalle;
+        private System.Windows.Forms.Label lblFiltroSolicitante;
+        private System.Windows.Forms.TextBox inputFiltroSolicitante;
     }
 }

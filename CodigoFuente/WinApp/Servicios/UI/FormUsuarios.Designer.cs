@@ -31,20 +31,22 @@ namespace Servicios.UI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUsuarios));
             this.grillaUsuarios = new System.Windows.Forms.DataGridView();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.btnBorrar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnClave = new System.Windows.Forms.Button();
             this.UsuarioLogin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NroDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnBorrar = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnClave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grillaUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
             // grillaUsuarios
             // 
+            this.grillaUsuarios.AllowUserToAddRows = false;
+            this.grillaUsuarios.AllowUserToDeleteRows = false;
             this.grillaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.grillaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -56,50 +58,11 @@ namespace Servicios.UI
             this.grillaUsuarios.Location = new System.Drawing.Point(13, 13);
             this.grillaUsuarios.MultiSelect = false;
             this.grillaUsuarios.Name = "grillaUsuarios";
+            this.grillaUsuarios.ReadOnly = true;
             this.grillaUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grillaUsuarios.Size = new System.Drawing.Size(775, 365);
             this.grillaUsuarios.TabIndex = 0;
             this.grillaUsuarios.SelectionChanged += new System.EventHandler(this.grillaUsuarios_SelectionChanged);
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.Location = new System.Drawing.Point(224, 384);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(75, 23);
-            this.btnModificar.TabIndex = 9;
-            this.btnModificar.Text = "btnModificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
-            // 
-            // btnBorrar
-            // 
-            this.btnBorrar.Location = new System.Drawing.Point(118, 384);
-            this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(75, 23);
-            this.btnBorrar.TabIndex = 8;
-            this.btnBorrar.Text = "btnBorrar";
-            this.btnBorrar.UseVisualStyleBackColor = true;
-            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Location = new System.Drawing.Point(13, 384);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregar.TabIndex = 7;
-            this.btnAgregar.Text = "btnAgregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // btnClave
-            // 
-            this.btnClave.Location = new System.Drawing.Point(325, 384);
-            this.btnClave.Name = "btnClave";
-            this.btnClave.Size = new System.Drawing.Size(104, 23);
-            this.btnClave.TabIndex = 10;
-            this.btnClave.Text = "btnClave";
-            this.btnClave.UseVisualStyleBackColor = true;
-            this.btnClave.Click += new System.EventHandler(this.btnClave_Click);
             // 
             // UsuarioLogin
             // 
@@ -140,6 +103,46 @@ namespace Servicios.UI
             this.NroDocumento.Name = "NroDocumento";
             this.NroDocumento.ReadOnly = true;
             this.NroDocumento.Width = 104;
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.Location = new System.Drawing.Point(224, 384);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(75, 23);
+            this.btnModificar.TabIndex = 9;
+            this.btnModificar.Text = "btnModificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.Location = new System.Drawing.Point(118, 384);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(75, 23);
+            this.btnBorrar.TabIndex = 8;
+            this.btnBorrar.Text = "btnBorrar";
+            this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Location = new System.Drawing.Point(13, 384);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.TabIndex = 7;
+            this.btnAgregar.Text = "btnAgregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // btnClave
+            // 
+            this.btnClave.Location = new System.Drawing.Point(325, 384);
+            this.btnClave.Name = "btnClave";
+            this.btnClave.Size = new System.Drawing.Size(104, 23);
+            this.btnClave.TabIndex = 10;
+            this.btnClave.Text = "btnClave";
+            this.btnClave.UseVisualStyleBackColor = true;
+            this.btnClave.Click += new System.EventHandler(this.btnClave_Click);
             // 
             // FormUsuarios
             // 

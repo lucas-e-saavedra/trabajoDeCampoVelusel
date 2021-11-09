@@ -83,6 +83,12 @@ namespace WinApp.Diseniador
             lblReposo.Text = "Reposo necesario".Traducir();
             lblDescripcion.Text = "Descripción".Traducir();
             lblFotoUrl.Text = "Url de la foto".Traducir();
+
+            Cantidad.HeaderText = "Cantidad".Traducir();
+            Unidad.HeaderText = "Unidad de medida".Traducir();
+            Nombre.HeaderText = "Nombre".Traducir();
+            Unidad_D.HeaderText = "Unidad de medida".Traducir();
+            Nombre_D.HeaderText = "Nombre".Traducir();
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)

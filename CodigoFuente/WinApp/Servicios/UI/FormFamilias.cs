@@ -40,6 +40,10 @@ namespace Servicios.UI
             btnAgregar.Text = "Agregar".Traducir();
             btnBorrar.Text = "Borrar".Traducir();
             btnModificar.Text = "Modificar".Traducir();
+
+            Nombre.HeaderText = "Nombre".Traducir();
+            CantidadHijos.HeaderText = "(Sub)Permisos".Traducir();
+
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

@@ -41,6 +41,12 @@ namespace WinApp.Diseniador
             btnAgregar.Text = "Agregar".Traducir();
             btnBorrar.Text = "Borrar".Traducir();
             btnModificar.Text = "Modificar".Traducir();
+
+            Nombre.HeaderText = "Nombre".Traducir();
+            Unidad.HeaderText = "Unidad de medida".Traducir();
+            DisponibleEnCatalogo.HeaderText = "Mostrar en el catálogo".Traducir();
+            Descripcion.HeaderText = "Descripción".Traducir();
+            CantidadIngredientes.HeaderText = "Ingredientes".Traducir();
         }
         private void ActualizarGrilla() {
             grillaProductos.DataSource = null;

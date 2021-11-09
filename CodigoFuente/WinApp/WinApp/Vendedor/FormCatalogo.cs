@@ -38,6 +38,10 @@ namespace WinApp.Vendedor
         {
             Text = "Catálogo".Traducir();
             btnSeleccionar.Text = "Seleccionar".Traducir();
+
+            Nombre.HeaderText = "Nombre".Traducir();
+            Descripción.HeaderText = "Descripción".Traducir();
+            Imagen.HeaderText = "Imagen".Traducir();
         }
         class ProductoCatalogo : Producto { 
             Bitmap Imagen { get; set; }

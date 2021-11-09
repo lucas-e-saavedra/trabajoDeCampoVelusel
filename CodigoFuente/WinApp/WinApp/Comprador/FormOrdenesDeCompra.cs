@@ -37,6 +37,16 @@ namespace WinApp.Comprador
             Text = "Ordenes de compra".Traducir();
             btnRevertir.Text = "Revertir orden de compra".Traducir();
             btnModificar.Text = "Modificar".Traducir();
+
+            DescSolicitante.HeaderText = "Solicitante".Traducir();
+            Estado.HeaderText = "Estado".Traducir();
+            DescObjetivo.HeaderText = "Objetivo".Traducir();
+            FechaObjetivo.HeaderText = "Fecha planificada".Traducir();
+            DescComprados.HeaderText = "Comprados".Traducir();
+            FechaEstimadaRecepcion.HeaderText = "Fecha estimada recepción".Traducir();
+            DescRecibidos.HeaderText = "Recibidos".Traducir();
+            FechaRealRecepcion.HeaderText = "Fecha real recepción".Traducir();
+
         }
         private void ActualizarGrilla() {
             grillaOrdenesDeCompra.DataSource = null;

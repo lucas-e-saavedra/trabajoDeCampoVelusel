@@ -45,6 +45,15 @@ namespace WinApp.Comprador
             grupoOrdenCompra.Text = "Orden de compra".Traducir();
             lblMaterialOrdenCompra.Text = "Descripción del objetivo de la compra".Traducir();
             lblFechaPlanificada.Text = "Fecha planificada para efectuar la compra".Traducir();
+
+            Cantidad.HeaderText = "Cantidad".Traducir();
+            Unidad.HeaderText = "Unidad de medida".Traducir();
+            Nombre.HeaderText = "Nombre".Traducir();
+
+            FechaObjetivo.HeaderText = "Fecha planificada".Traducir();
+            Objetivo.HeaderText = "Objetivo".Traducir();
+            Estado.HeaderText = "Estado".Traducir();
+
         }
 
         private void timeDesde_ValueChanged(object sender, EventArgs e)

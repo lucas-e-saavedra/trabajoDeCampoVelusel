@@ -42,6 +42,12 @@ namespace WinApp.Vendedor
             this.Habilitado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.btnNoSeleccionar = new System.Windows.Forms.Button();
+            this.inputFiltroNombre = new System.Windows.Forms.TextBox();
+            this.lblFiltroNombre = new System.Windows.Forms.Label();
+            this.lblFiltroDocumento = new System.Windows.Forms.Label();
+            this.inputFiltroDocumento = new System.Windows.Forms.TextBox();
+            this.inputFiltroEmail = new System.Windows.Forms.TextBox();
+            this.lblFiltroEmail = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grillaClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,6 +83,8 @@ namespace WinApp.Vendedor
             // 
             // grillaClientes
             // 
+            this.grillaClientes.AllowUserToAddRows = false;
+            this.grillaClientes.AllowUserToDeleteRows = false;
             this.grillaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TipoDocumento,
@@ -85,10 +93,12 @@ namespace WinApp.Vendedor
             this.Email,
             this.Telefono,
             this.Habilitado});
-            this.grillaClientes.Location = new System.Drawing.Point(12, 12);
+            this.grillaClientes.Location = new System.Drawing.Point(12, 38);
+            this.grillaClientes.MultiSelect = false;
             this.grillaClientes.Name = "grillaClientes";
+            this.grillaClientes.ReadOnly = true;
             this.grillaClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grillaClientes.Size = new System.Drawing.Size(776, 373);
+            this.grillaClientes.Size = new System.Drawing.Size(776, 347);
             this.grillaClientes.TabIndex = 7;
             this.grillaClientes.SelectionChanged += new System.EventHandler(this.grillaClientes_SelectionChanged);
             // 
@@ -154,11 +164,68 @@ namespace WinApp.Vendedor
             this.btnNoSeleccionar.UseVisualStyleBackColor = true;
             this.btnNoSeleccionar.Click += new System.EventHandler(this.btnNoSeleccionar_Click);
             // 
+            // inputFiltroNombre
+            // 
+            this.inputFiltroNombre.Location = new System.Drawing.Point(382, 12);
+            this.inputFiltroNombre.Name = "inputFiltroNombre";
+            this.inputFiltroNombre.Size = new System.Drawing.Size(100, 20);
+            this.inputFiltroNombre.TabIndex = 16;
+            this.inputFiltroNombre.TextChanged += new System.EventHandler(this.inputFiltroNombre_TextChanged);
+            // 
+            // lblFiltroNombre
+            // 
+            this.lblFiltroNombre.AutoSize = true;
+            this.lblFiltroNombre.Location = new System.Drawing.Point(271, 15);
+            this.lblFiltroNombre.Name = "lblFiltroNombre";
+            this.lblFiltroNombre.Size = new System.Drawing.Size(76, 13);
+            this.lblFiltroNombre.TabIndex = 15;
+            this.lblFiltroNombre.Text = "lblFiltroNombre";
+            // 
+            // lblFiltroDocumento
+            // 
+            this.lblFiltroDocumento.AutoSize = true;
+            this.lblFiltroDocumento.Location = new System.Drawing.Point(16, 15);
+            this.lblFiltroDocumento.Name = "lblFiltroDocumento";
+            this.lblFiltroDocumento.Size = new System.Drawing.Size(94, 13);
+            this.lblFiltroDocumento.TabIndex = 14;
+            this.lblFiltroDocumento.Text = "lblFiltroDocumento";
+            // 
+            // inputFiltroDocumento
+            // 
+            this.inputFiltroDocumento.Location = new System.Drawing.Point(134, 12);
+            this.inputFiltroDocumento.Name = "inputFiltroDocumento";
+            this.inputFiltroDocumento.Size = new System.Drawing.Size(100, 20);
+            this.inputFiltroDocumento.TabIndex = 13;
+            this.inputFiltroDocumento.TextChanged += new System.EventHandler(this.inputFiltroDocumento_TextChanged);
+            // 
+            // inputFiltroEmail
+            // 
+            this.inputFiltroEmail.Location = new System.Drawing.Point(623, 12);
+            this.inputFiltroEmail.Name = "inputFiltroEmail";
+            this.inputFiltroEmail.Size = new System.Drawing.Size(100, 20);
+            this.inputFiltroEmail.TabIndex = 18;
+            this.inputFiltroEmail.TextChanged += new System.EventHandler(this.inputFiltroEmail_TextChanged);
+            // 
+            // lblFiltroEmail
+            // 
+            this.lblFiltroEmail.AutoSize = true;
+            this.lblFiltroEmail.Location = new System.Drawing.Point(516, 15);
+            this.lblFiltroEmail.Name = "lblFiltroEmail";
+            this.lblFiltroEmail.Size = new System.Drawing.Size(64, 13);
+            this.lblFiltroEmail.TabIndex = 17;
+            this.lblFiltroEmail.Text = "lblFiltroEmail";
+            // 
             // FormClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 417);
+            this.Controls.Add(this.inputFiltroEmail);
+            this.Controls.Add(this.lblFiltroEmail);
+            this.Controls.Add(this.inputFiltroNombre);
+            this.Controls.Add(this.lblFiltroNombre);
+            this.Controls.Add(this.lblFiltroDocumento);
+            this.Controls.Add(this.inputFiltroDocumento);
             this.Controls.Add(this.btnNoSeleccionar);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.btnModificar);
@@ -172,6 +239,7 @@ namespace WinApp.Vendedor
             this.Load += new System.EventHandler(this.FormClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grillaClientes)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -189,5 +257,11 @@ namespace WinApp.Vendedor
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Habilitado;
+        private System.Windows.Forms.TextBox inputFiltroNombre;
+        private System.Windows.Forms.Label lblFiltroNombre;
+        private System.Windows.Forms.Label lblFiltroDocumento;
+        private System.Windows.Forms.TextBox inputFiltroDocumento;
+        private System.Windows.Forms.TextBox inputFiltroEmail;
+        private System.Windows.Forms.Label lblFiltroEmail;
     }
 }

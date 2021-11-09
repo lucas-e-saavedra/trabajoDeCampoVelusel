@@ -16,6 +16,7 @@ namespace WinApp.Vendedor
 {
     public partial class FormClientes : Form, IIdiomasObservador
     {
+        IEnumerable<Cliente> clientes;
         public Cliente clienteSeleccionado = null;
         public FormClientes()
         {
@@ -41,24 +42,37 @@ namespace WinApp.Vendedor
             btnAgregar.Text = "Agregar".Traducir();
             btnHabilitar.Text = "Habilitar".Traducir();
             btnModificar.Text = "Modificar".Traducir();
+
+            TipoDocumento.HeaderText = "Tipo Documento".Traducir();
+            NroDocumento.HeaderText = "Documento".Traducir();
+            Nombre.HeaderText = "Nombre".Traducir();
+            Email.HeaderText = "Email".Traducir();
+            Telefono.HeaderText = "Teléfono".Traducir();
+            Habilitado.HeaderText = "Habilitado para comprar".Traducir();
+            lblFiltroDocumento.Text = "Filtrar por documento".Traducir();
+            lblFiltroNombre.Text = "Filtrar por nombre".Traducir();
+            lblFiltroEmail.Text = "Filtrar por email".Traducir();
         }
         private void ActualizarGrilla()
         {
             grillaClientes.DataSource = null;
-            IEnumerable<Cliente> clientes = BLL.GestorClientes.Current.ListarClientes();
-            IEnumerable<Cliente> clientesOrdenados;
-            if (GestorSesion.Current.TieneRolGerente()) {
-                clientesOrdenados = clientes.Where(item => item.Habilitado).OrderBy(item => item.Nombre);
-            } else { 
-                clientesOrdenados = clientes.Where(item => item.Habilitado).OrderBy(item => item.Nombre);
-            }
-            grillaClientes.DataSource = clientes;
-
+            clientes = BLL.GestorClientes.Current.ListarClientes();
+            FiltrarGrilla();
             btnSeleccionar.Visible = this.Modal;
             btnNoSeleccionar.Visible = this.Modal;
             btnAgregar.Visible = !this.Modal;
             btnModificar.Visible = !this.Modal;
             btnHabilitar.Visible = !this.Modal && GestorSesion.Current.TieneRolGerente();
+        }
+        private void FiltrarGrilla() {
+            IEnumerable<Cliente> clientesFiltrados = clientes.ToList();
+            if (inputFiltroDocumento.Text.Length > 0)
+                clientesFiltrados = clientesFiltrados.Where(item => item.NroDocumento.ToString().ToLower().Contains(inputFiltroDocumento.Text.ToLower())).ToList();
+            if (inputFiltroNombre.Text.Length > 0)
+                clientesFiltrados = clientesFiltrados.Where(item => item.Nombre.ToString().ToLower().Contains(inputFiltroNombre.Text.ToLower())).ToList();
+            if (inputFiltroEmail.Text.Length > 0)
+                clientesFiltrados = clientesFiltrados.Where(item => item.Email.ToString().ToLower().Contains(inputFiltroEmail.Text.ToLower())).ToList();
+            grillaClientes.DataSource = clientesFiltrados;
         }
         private void grillaClientes_SelectionChanged(object sender, EventArgs e)
         {
@@ -117,6 +131,21 @@ namespace WinApp.Vendedor
         {
             clienteSeleccionado = null;
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void inputFiltroDocumento_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarGrilla();
+        }
+
+        private void inputFiltroNombre_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarGrilla();
+        }
+
+        private void inputFiltroEmail_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarGrilla();
         }
     }
 }

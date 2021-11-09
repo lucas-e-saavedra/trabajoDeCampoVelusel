@@ -39,6 +39,15 @@ namespace WinApp.Fabricante
             Text = "Analizar pedido".Traducir();
             boxOrdenFabricacion.Text = "Orden de fabricación".Traducir();
             btnSaveAllOrders.Text = "Agendar pedido".Traducir();
+
+            Solicitante.HeaderText = "Solicitante".Traducir();
+            Vendedor.HeaderText = "Vendedor".Traducir();
+            Estado.HeaderText = "Estado".Traducir();
+            Detalle.HeaderText = "Detalle".Traducir();
+
+            Fecha.HeaderText = "Fecha planificada".Traducir();
+            Estado_OF.HeaderText = "Estado".Traducir();
+            Objetivo.HeaderText = "Objetivo".Traducir();
         }
         private void ActualizarGrillaPedidos() {
             grillaPedidos.DataSource = null;

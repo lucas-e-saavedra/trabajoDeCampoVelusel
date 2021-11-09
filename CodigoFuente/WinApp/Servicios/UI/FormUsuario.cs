@@ -72,6 +72,12 @@ namespace Servicios.UI
             lblDisponibles.Text = "Disponibles".Traducir();
             btnGrabar.Text = usuarioActual.IdUsuario == Guid.Empty ? "Agregar".Traducir() : "Modificar".Traducir();
             btnCancelar.Text = "Cancelar".Traducir();
+
+
+            Nombre_P.HeaderText = "Nombre".Traducir();
+            Nombre_D.HeaderText = "Nombre".Traducir();
+            CantidadHijos_P.HeaderText = "(Sub)Permisos".Traducir();
+            CantidadHijos_P.HeaderText = "(Sub)Permisos".Traducir();
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)

@@ -41,6 +41,14 @@ namespace WinApp.Fabricante
             btnComenzar.Text = "Comenzar fabricación".Traducir();
             btnCerrar.Text = "Finalizar fabricación".Traducir();
             btnTerminar.Text = "Verificar calidad".Traducir();
+
+            FechaPlanificada.HeaderText = "Fecha planificada".Traducir();
+            Estado.HeaderText = "Estado".Traducir();
+            Objetivo.HeaderText = "Objetivo".Traducir();
+            FechaEjecucion.HeaderText = "Fecha fabricación".Traducir();
+            Fabricados.HeaderText = "Fabricados".Traducir();
+            Aprobados.HeaderText = "Aprobados".Traducir();
+
         }
         private void ActualizarGrillaOrdenesDeFabricacion(){
             grillaOrdenesFabricacion.DataSource = null;
