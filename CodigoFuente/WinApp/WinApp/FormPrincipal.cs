@@ -88,6 +88,10 @@ namespace WinApp
                     Form unFormulario = (Form)Activator.CreateInstance(tipo);
                     unFormulario.MdiParent = this;
                     unFormulario.WindowState = FormWindowState.Maximized;
+                    unFormulario.ShowIcon = false;
+                    unFormulario.ControlBox = false;
+                    unFormulario.MinimizeBox = false;
+                    unFormulario.MaximizeBox = false;
                     unFormulario.Show();
                 }
             }

@@ -31,15 +31,17 @@ namespace WinApp.Vendedor
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCatalogo));
             this.grillaProductos = new System.Windows.Forms.DataGridView();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripción = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Imagen = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnSeleccionar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grillaProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // grillaProductos
             // 
+            this.grillaProductos.AllowUserToAddRows = false;
+            this.grillaProductos.AllowUserToDeleteRows = false;
             this.grillaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nombre,
@@ -47,30 +49,11 @@ namespace WinApp.Vendedor
             this.Imagen});
             this.grillaProductos.Location = new System.Drawing.Point(12, 12);
             this.grillaProductos.Name = "grillaProductos";
+            this.grillaProductos.ReadOnly = true;
             this.grillaProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grillaProductos.Size = new System.Drawing.Size(660, 304);
             this.grillaProductos.TabIndex = 11;
             this.grillaProductos.SelectionChanged += new System.EventHandler(this.grillaProductos_SelectionChanged);
-            // 
-            // Nombre
-            // 
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            // 
-            // Descripción
-            // 
-            this.Descripción.DataPropertyName = "Descripcion";
-            this.Descripción.HeaderText = "Descripcion";
-            this.Descripción.Name = "Descripción";
-            // 
-            // Imagen
-            // 
-            this.Imagen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Imagen.DataPropertyName = "Imagen";
-            this.Imagen.HeaderText = "Imagen";
-            this.Imagen.Name = "Imagen";
-            this.Imagen.Width = 48;
             // 
             // btnSeleccionar
             // 
@@ -81,6 +64,33 @@ namespace WinApp.Vendedor
             this.btnSeleccionar.Text = "btnSeleccionar";
             this.btnSeleccionar.UseVisualStyleBackColor = true;
             this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 69;
+            // 
+            // Descripción
+            // 
+            this.Descripción.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Descripción.DataPropertyName = "Descripcion";
+            this.Descripción.HeaderText = "Descripcion";
+            this.Descripción.Name = "Descripción";
+            this.Descripción.ReadOnly = true;
+            this.Descripción.Width = 88;
+            // 
+            // Imagen
+            // 
+            this.Imagen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Imagen.DataPropertyName = "Imagen";
+            this.Imagen.HeaderText = "Imagen";
+            this.Imagen.Name = "Imagen";
+            this.Imagen.ReadOnly = true;
+            this.Imagen.Width = 48;
             // 
             // FormCatalogo
             // 
@@ -102,9 +112,9 @@ namespace WinApp.Vendedor
         #endregion
 
         private System.Windows.Forms.DataGridView grillaProductos;
+        private System.Windows.Forms.Button btnSeleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripción;
         private System.Windows.Forms.DataGridViewImageColumn Imagen;
-        private System.Windows.Forms.Button btnSeleccionar;
     }
 }

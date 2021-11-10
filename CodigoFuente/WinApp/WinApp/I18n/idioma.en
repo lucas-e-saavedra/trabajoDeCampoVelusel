@@ -110,3 +110,32 @@ Deshabilitar|Disable
 El cliente seleccionado no está habilitado para realizar un pedido|The selected client is not allowed to request an order
 Cantidad de dias de anticipación que desea controlar del stock para evitar bloqueos|Number of days in advance that you want to control the stock to avoid blockages
 Cantidad de dias de anticipación que desea controlar estado de las compras para evitar bloqueos|Number of days in advance that you want to control the status of purchases to avoid blockages
+Solicitante|Requester
+Comprados|Items buyed
+Fecha estimada recepción|Estimated receipt date
+Recibidos|Items received
+Fecha real recepción|Confirmed receipt date
+Cantidad|Amount
+Fecha y hora|Date time
+Categoría|Category
+Mensaje|Message
+Filtrar por categoría|Filter by category
+Filtrar por mensaje|Filter by message
+Ver detalle|Show detail
+Filtrar por clase|Filter by class
+Filtrar por descripción|Filter by description
+Detalle|Detail
+Fecha fabricación|Manufactured date
+Fabricados|Items manufactured
+Aprobados|Items approved
+Tipo Documento|Document type
+(Sub)Permisos|(Sub)Permissions
+Teléfono|Telephone
+Habilitado para comprar|Enabled to buy
+Filtrar por documento|Filter by document number
+Filtrar por nombre|Filter by name
+Filtrar por email|Filter by email
+Catálogo|Catalog
+Imagen|Image
+Filtrar por solicitante|Filter by requester
+Filtrar por detalle|Filter by detail
