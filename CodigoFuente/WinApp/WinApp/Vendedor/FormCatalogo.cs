@@ -43,24 +43,28 @@ namespace WinApp.Vendedor
             Descripción.HeaderText = "Descripción".Traducir();
             Imagen.HeaderText = "Imagen".Traducir();
         }
-        class ProductoCatalogo : Producto { 
-            Bitmap Imagen { get; set; }
-
+        class ProductoCatalogo : Producto {
+            public Image bitmapImage { get; }
             public ProductoCatalogo(Producto unProducto) {
                 this.Id = unProducto.Id;
                 this.Nombre = unProducto.Nombre;
                 this.Descripcion = unProducto.Descripcion;
                 this.Foto = unProducto.Foto;
 
-                if (Foto.Length > 0 && Foto.Contains("https://")) {
-                    HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(this.Foto);
+                if (unProducto.Foto.Length > 0 && unProducto.Foto.Contains("https://"))
+                {
+                    HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(unProducto.Foto);
                     myRequest.Method = "GET";
                     HttpWebResponse myResponse = (HttpWebResponse)myRequest.GetResponse();
-                    System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(myResponse.GetResponseStream());
-                    myResponse.Close();
-
-                    this.Imagen = bmp;
-                } else { }
+                    try {
+                        System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(myResponse.GetResponseStream());
+                        this.bitmapImage = bmp;
+                    } catch (Exception ex) {
+                        ex.RegistrarError();
+                    } finally {
+                        myResponse.Close();
+                    }
+                }
             }
         }
 
@@ -76,6 +80,18 @@ namespace WinApp.Vendedor
                 int index = grillaProductos.SelectedRows[0].Index;
                 IEnumerable<ProductoCatalogo> productos = (IEnumerable<ProductoCatalogo>)grillaProductos.DataSource;
                 productoSeleccionado = productos.ElementAt(index);
+            }
+        }
+
+        private void grillaProductos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (grillaProductos.Columns[e.ColumnIndex].Name == "Imagen")
+            {
+                IEnumerable<ProductoCatalogo> productos = (IEnumerable<ProductoCatalogo>)grillaProductos.DataSource;
+                ProductoCatalogo unProducto = productos.ElementAt(e.RowIndex);
+
+                grillaProductos.Rows[e.RowIndex].Height = 100;
+                e.Value = (Image)unProducto.bitmapImage;
             }
         }
     }

@@ -2,7 +2,6 @@
 - Separar la parte de arquitectura de base en otro paquete.
 - Agregar modificaciones decididas durante este cuatrimestres
 
-CU.PED.01 - Consultar Catálogo (mejorar visualización) falta mostrar las imagenes
 CU.PED.06 - Consultar Detalle del Pedido (no aplica)
 CU.FAB.03 - Procesar Pedido (mejorar visualización) 
 CU.COM.01 - Crear Orden de Compra (listo) falta documentar en el enterprise architect
