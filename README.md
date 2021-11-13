@@ -1,13 +1,9 @@
 **Correcciones (13-08)**
-- Separar la parte de arquitectura de base en otro paquete.
-- Agregar modificaciones decididas durante este cuatrimestres
+- Encriptar y desencriptar el email del pasajero
+- Validar integridad datos de pasajero
 
-CU.PED.06 - Consultar Detalle del Pedido (no aplica)
 CU.FAB.03 - Procesar Pedido (mejorar visualización) 
-CU.COM.01 - Crear Orden de Compra (listo) falta documentar en el enterprise architect
-CU.STO.01 - Configurar alertas (listo) modificar enterprise architect
 CU.STO.03 - Disparar alertas (listo) falta q se active todos los dias automaticamente
-CU.NOF.04 – Cambiar clave (listo) modificar CU aclarar que usa el CU.NOF.02 en vez del de bitacora
 CU.Arq.005 Validar integridad (pendiente de definición)
 
 

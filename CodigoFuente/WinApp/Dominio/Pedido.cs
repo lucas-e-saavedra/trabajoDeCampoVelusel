@@ -20,7 +20,6 @@ namespace Dominio
         public Pedido() {
             Solicitante = null;
             Vendedor = null;
-            //Detalle = new Dictionary<Producto, int>();
             Detalle = new List<Producto>();
         }
     }

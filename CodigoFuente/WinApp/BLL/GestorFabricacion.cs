@@ -56,7 +56,6 @@ namespace BLL
         /// <returns>Devuelve VERDADERO si hay que agregar una nueva orden de fabricación posterior a esta y devuelve FALSO si no es necesario crear nuevas órdenes de fabricación</returns>
         public bool CerrarFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion)
         {
-            //TODO: aqui falta agregar las acciones cuando la cantidad fabricada es distinto del objetivo
             unaOrdenDeFabricacion.Estado = EnumEstadoOrdenFabricacion.FABRICADO;
             unaOrdenDeFabricacion.FechaEjecucion = DateTime.Now;
             FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Modificar(unaOrdenDeFabricacion);
@@ -92,8 +91,6 @@ namespace BLL
             Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} comenzó a fabricar la orden de fabricacion {unaOrdenDeFabricacion.Id}");
             GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
-
-        //TODO: este metodo falta agregarlo al enterprise architect
         public void ReprogramarFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion)
         {
             if (unaOrdenDeFabricacion.Estado != EnumEstadoOrdenFabricacion.FORMULADO && unaOrdenDeFabricacion.Estado != EnumEstadoOrdenFabricacion.AGENDADO)
@@ -103,7 +100,6 @@ namespace BLL
             Evento unEvento = new Evento(Evento.CategoriaEvento.ADVERTENCIA, $"El usuario {usuario.UsuarioLogin} ha reprogramado la orden de fabricacion {unaOrdenDeFabricacion.Id}");
             GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
-        //TODO: este metodo falta agregarlo al enterprise architect
         public void DividirFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion, DateTime fechaSeleccionada)
         {
             OrdenDeFabricacion nuevaOrdenDeFabricacion = null;
@@ -131,7 +127,6 @@ namespace BLL
             unaOrdenDeFabricacion.OrdenDeFabricacionPosterior = nuevaOrdenDeFabricacion;
             FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Modificar(unaOrdenDeFabricacion);
         }
-        //TODO: este metodo falta agregarlo al enterprise architect
         private void CrearOrdenesDeFabricacion(List<OrdenDeFabricacion> ofs, Pedido unPedido, Producto unProducto, OrdenDeFabricacion ofPosterior)
         {
             OrdenDeFabricacion nuevaOF = new OrdenDeFabricacion(ofPosterior, unPedido, unProducto);
@@ -159,14 +154,6 @@ namespace BLL
             FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Agregar(unaOrdenDeFabricacion);
             Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} agregó la orden de fabricacion {unaOrdenDeFabricacion.Id}");
             GestorHistorico.Current.RegistrarBitacora(unEvento);
-        }
-        public OrdenDeFabricacion DetalleOrdenDeFabricacion(Guid idOrdenFabricacion)
-        {
-            return null;
-        }
-        public Producto DetalleProducto(Guid idProducto)
-        {
-            return null;
         }
         public IEnumerable<Material> ListarMateriales()
         {
@@ -243,7 +230,6 @@ namespace BLL
                 GestorPedidos.Current.CompletarPedido(unPedido);
         }
 
-        //TODO: este metodo falta agregarlo al enterprise architect
         /// <summary>
         /// Este método cambia el estado de la orden de fabricación a TERMINADO e indica si es necesario crear mas ordenes de fabricación si el resultado no fue suficiente.
         /// </summary>
@@ -255,7 +241,6 @@ namespace BLL
             if (DateTime.Now < reposoMinimo) {
                 throw new Exception("El producto aún no ha cumplido con el tiempo minimo de reposo sugerido");
             }
-            List<ProductoMaterial> stock = GestorStock.Current.ObtenerMaterialesActuales();
             GestorStock.Current.ActualizarStock(unaOrdenDeFabricacion.Aprobados);
             unaOrdenDeFabricacion.Estado = EnumEstadoOrdenFabricacion.TERMINADO;
             FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Modificar(unaOrdenDeFabricacion);

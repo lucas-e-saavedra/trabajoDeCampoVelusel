@@ -50,7 +50,10 @@ namespace BLL
             }
             FabricaDAL.Current.ObtenerRepositorioDeAlmacenes().Modificar(unAlmacen);
         }
-        public void ActualizarStockTiendOnline(){}
+        public void ActualizarStockTiendOnline(Pedido unPedido){
+            //TODO: acá hay que investigar como interactuar con distinas apis de tiendas en linea
+            FabricaDAL.Current.ObtenerExpotadorDePedidos().Agregar(unPedido);
+        }
         public void EnviarAlertas(){
             IEnumerable<Usuario> usuarios = GestorUsuarios.Current.ListarUsuarios();
             List<Usuario> compradores = usuarios.Where(item => item.Permisos.Any(permiso => permiso.Nombre == "Comprador")).ToList();
@@ -81,14 +84,11 @@ namespace BLL
                     }
 
                     contenidoEmail.Append($"Saludos, y que tenga buen día\nVelusel Fabrica");
-
-                    EnviarAlertaPorMail(unComprador, contenidoEmail.ToString());
+                    GestorNotificaciones.Current.EnviarMail(unComprador.Email, "Posibles bloqueos de fabricacion", contenidoEmail.ToString());
                 }
             }
         }
-        public void EnviarAlertaPorMail(Usuario unComprador, String contenidoEmail) {
-            GestorNotificaciones.Current.EnviarMail(unComprador.Email, "Posibles bloqueos de fabricacion", contenidoEmail);
-        }
+        
         public List<ProductoMaterial> ObtenerMaterialesActuales(){
             return unAlmacen.Stock;
         }

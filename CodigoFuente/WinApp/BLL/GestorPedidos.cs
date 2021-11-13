@@ -28,7 +28,7 @@ namespace BLL
         {
             //Implent here the initialization of your singleton
         }
-        //TODO: este metodo falta en el enterprise architect
+        
         public void AgendarPedido(Pedido unPedido)
         {
             if (unPedido.Estado != Pedido.EnumEstadoPedido.FORMULADO)
@@ -69,7 +69,7 @@ namespace BLL
 
             unPedido.Estado = Pedido.EnumEstadoPedido.CERRADO;
             if (unPedido.Solicitante == null) {
-                FabricaDAL.Current.ObtenerExpotadorDePedidos().Agregar(unPedido);
+                GestorStock.Current.ActualizarStockTiendOnline(unPedido);
             }
 
             Usuario usuario = GestorSesion.Current.usuarioActual;
