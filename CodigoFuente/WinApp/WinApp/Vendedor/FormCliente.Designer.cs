@@ -47,91 +47,102 @@ namespace WinApp.Vendedor
             // comboDocumento
             // 
             this.comboDocumento.FormattingEnabled = true;
-            this.comboDocumento.Location = new System.Drawing.Point(15, 71);
+            this.comboDocumento.Location = new System.Drawing.Point(20, 87);
+            this.comboDocumento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboDocumento.Name = "comboDocumento";
-            this.comboDocumento.Size = new System.Drawing.Size(77, 21);
-            this.comboDocumento.TabIndex = 30;
+            this.comboDocumento.Size = new System.Drawing.Size(101, 24);
+            this.comboDocumento.TabIndex = 2;
             // 
             // inputDocumento
             // 
-            this.inputDocumento.Location = new System.Drawing.Point(98, 71);
+            this.inputDocumento.Location = new System.Drawing.Point(131, 87);
+            this.inputDocumento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.inputDocumento.Name = "inputDocumento";
-            this.inputDocumento.Size = new System.Drawing.Size(154, 20);
-            this.inputDocumento.TabIndex = 31;
+            this.inputDocumento.Size = new System.Drawing.Size(204, 22);
+            this.inputDocumento.TabIndex = 3;
             // 
             // lblDocumento
             // 
             this.lblDocumento.AutoSize = true;
-            this.lblDocumento.Location = new System.Drawing.Point(12, 54);
+            this.lblDocumento.Location = new System.Drawing.Point(16, 66);
+            this.lblDocumento.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDocumento.Name = "lblDocumento";
-            this.lblDocumento.Size = new System.Drawing.Size(72, 13);
+            this.lblDocumento.Size = new System.Drawing.Size(91, 16);
             this.lblDocumento.TabIndex = 37;
             this.lblDocumento.Text = "lblDocumento";
             // 
             // inputEmail
             // 
-            this.inputEmail.Location = new System.Drawing.Point(15, 113);
+            this.inputEmail.Location = new System.Drawing.Point(20, 139);
+            this.inputEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.inputEmail.Name = "inputEmail";
-            this.inputEmail.Size = new System.Drawing.Size(237, 20);
-            this.inputEmail.TabIndex = 29;
+            this.inputEmail.Size = new System.Drawing.Size(315, 22);
+            this.inputEmail.TabIndex = 4;
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(12, 97);
+            this.lblEmail.Location = new System.Drawing.Point(16, 119);
+            this.lblEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(42, 13);
+            this.lblEmail.Size = new System.Drawing.Size(56, 16);
             this.lblEmail.TabIndex = 36;
             this.lblEmail.Text = "lblEmail";
             // 
             // inputNombre
             // 
-            this.inputNombre.Location = new System.Drawing.Point(15, 28);
+            this.inputNombre.Location = new System.Drawing.Point(20, 34);
+            this.inputNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.inputNombre.Name = "inputNombre";
-            this.inputNombre.Size = new System.Drawing.Size(237, 20);
-            this.inputNombre.TabIndex = 28;
+            this.inputNombre.Size = new System.Drawing.Size(315, 22);
+            this.inputNombre.TabIndex = 1;
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(12, 12);
+            this.lblNombre.Location = new System.Drawing.Point(16, 15);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(54, 13);
+            this.lblNombre.Size = new System.Drawing.Size(71, 16);
             this.lblNombre.TabIndex = 35;
             this.lblNombre.Text = "lblNombre";
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(96, 227);
+            this.btnCancelar.Location = new System.Drawing.Point(128, 279);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 33;
+            this.btnCancelar.Size = new System.Drawing.Size(100, 28);
+            this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "btnCancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // inputTelefono
             // 
-            this.inputTelefono.Location = new System.Drawing.Point(15, 154);
+            this.inputTelefono.Location = new System.Drawing.Point(20, 190);
+            this.inputTelefono.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.inputTelefono.Name = "inputTelefono";
-            this.inputTelefono.Size = new System.Drawing.Size(237, 20);
-            this.inputTelefono.TabIndex = 27;
+            this.inputTelefono.Size = new System.Drawing.Size(315, 22);
+            this.inputTelefono.TabIndex = 5;
             // 
             // lblTelefono
             // 
             this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Location = new System.Drawing.Point(12, 138);
+            this.lblTelefono.Location = new System.Drawing.Point(16, 170);
+            this.lblTelefono.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(59, 13);
+            this.lblTelefono.Size = new System.Drawing.Size(76, 16);
             this.lblTelefono.TabIndex = 34;
             this.lblTelefono.Text = "lblTelefono";
             // 
             // btnGrabar
             // 
-            this.btnGrabar.Location = new System.Drawing.Point(177, 227);
+            this.btnGrabar.Location = new System.Drawing.Point(236, 279);
+            this.btnGrabar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnGrabar.Name = "btnGrabar";
-            this.btnGrabar.Size = new System.Drawing.Size(75, 23);
-            this.btnGrabar.TabIndex = 32;
+            this.btnGrabar.Size = new System.Drawing.Size(100, 28);
+            this.btnGrabar.TabIndex = 7;
             this.btnGrabar.Text = "btnGrabar";
             this.btnGrabar.UseVisualStyleBackColor = true;
             this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
@@ -139,18 +150,19 @@ namespace WinApp.Vendedor
             // chkHabilitado
             // 
             this.chkHabilitado.AutoSize = true;
-            this.chkHabilitado.Location = new System.Drawing.Point(15, 190);
+            this.chkHabilitado.Location = new System.Drawing.Point(20, 234);
+            this.chkHabilitado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkHabilitado.Name = "chkHabilitado";
-            this.chkHabilitado.Size = new System.Drawing.Size(91, 17);
-            this.chkHabilitado.TabIndex = 38;
+            this.chkHabilitado.Size = new System.Drawing.Size(110, 20);
+            this.chkHabilitado.TabIndex = 6;
             this.chkHabilitado.Text = "chkHabilitado";
             this.chkHabilitado.UseVisualStyleBackColor = true;
             // 
             // FormCliente
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(264, 263);
+            this.ClientSize = new System.Drawing.Size(352, 324);
             this.Controls.Add(this.chkHabilitado);
             this.Controls.Add(this.comboDocumento);
             this.Controls.Add(this.inputDocumento);
@@ -164,6 +176,7 @@ namespace WinApp.Vendedor
             this.Controls.Add(this.lblTelefono);
             this.Controls.Add(this.btnGrabar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormCliente";
             this.Text = "FormCliente";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormCliente_FormClosing);

@@ -104,10 +104,27 @@ namespace Servicios.BLL
             return sNuevacadena;
         }
 
-        public bool ValidarIntegridad()
+        public bool ValidarIntegridad(object objetoAverificar, int datoVerificadorGuardado)
         {
-            //TODO: preguntar que tengo que tener en cuenta para plantear y desarrollar este requerimiento
-            return false;
+            int datoVerificador = GenerarDatoVerificador(objetoAverificar);
+            return datoVerificador == datoVerificadorGuardado;
+        }
+
+        public int GenerarDatoVerificador(object objetoAverificar) {
+            Type tipo = objetoAverificar.GetType();
+            System.Reflection.PropertyInfo[] properties = tipo.GetProperties();
+            IEnumerable<System.Reflection.PropertyInfo> orderedProperties = properties.OrderBy(item => item.Name);
+            StringBuilder stringObject = new StringBuilder();
+            foreach (System.Reflection.PropertyInfo oneProperty in orderedProperties)
+            {
+                if (oneProperty.Name != "DatoVerificador")
+                {
+                    stringObject.Append($"{oneProperty.Name}({oneProperty.PropertyType})={oneProperty.GetValue(objetoAverificar)},");
+                }
+            }
+            stringObject = stringObject.Remove(stringObject.Length - 1, 1);
+            string objetoCompleto = stringObject.ToString();
+            return objetoCompleto.GetHashCode();
         }
     }
 }

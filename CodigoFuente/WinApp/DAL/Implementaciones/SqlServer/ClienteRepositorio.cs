@@ -18,19 +18,19 @@ namespace DAL.Implementaciones.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Cliente] ([Id], [Nombre], [TipoDocumento], [NroDocumento], [Email], [Telefono], [Habilitado]) VALUES (@Id, @Nombre, @TipoDocumento, @NroDocumento, @Email, @Telefono, @Habilitado)";
+            get => "INSERT INTO [dbo].[Cliente] ([Id], [Nombre], [TipoDocumento], [NroDocumento], [Email], [Telefono], [Habilitado], [Verificacion]) VALUES (@Id, @Nombre, @TipoDocumento, @NroDocumento, @Email, @Telefono, @Habilitado, @Verificacion)";
         }
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[Cliente] SET Nombre = @Nombre, TipoDocumento = @TipoDocumento, NroDocumento = @NroDocumento, Email = @Email, Telefono = @Telefono, Habilitado= @Habilitado WHERE Id = @Id";
+            get => "UPDATE [dbo].[Cliente] SET Nombre = @Nombre, TipoDocumento = @TipoDocumento, NroDocumento = @NroDocumento, Email = @Email, Telefono = @Telefono, Habilitado = @Habilitado, Verificacion = @Verificacion WHERE Id = @Id";
         }
         private string SelectOneStatement
         {
-            get => "SELECT [Id], [Nombre], [TipoDocumento], [NroDocumento], [Email], [Telefono], [Habilitado] FROM [dbo].[Cliente] WHERE Id = @Id";
+            get => "SELECT [Id], [Nombre], [TipoDocumento], [NroDocumento], [Email], [Telefono], [Habilitado], [Verificacion] FROM [dbo].[Cliente] WHERE Id = @Id";
         }
         private string SelectAllStatement
         {
-            get => "SELECT [Id], [Nombre], [TipoDocumento], [NroDocumento], [Email], [Telefono], [Habilitado] FROM [dbo].[Cliente]";
+            get => "SELECT [Id], [Nombre], [TipoDocumento], [NroDocumento], [Email], [Telefono], [Habilitado], [Verificacion] FROM [dbo].[Cliente]";
         }
         #endregion
 
@@ -55,7 +55,8 @@ namespace DAL.Implementaciones.SqlServer
                     new SqlParameter("@NroDocumento", unObjeto.NroDocumento),
                     new SqlParameter("@Email", unObjeto.Email),
                     new SqlParameter("@Telefono", unObjeto.Telefono),
-                    new SqlParameter("@Habilitado", unObjeto.Habilitado) };
+                    new SqlParameter("@Habilitado", unObjeto.Habilitado),
+                    new SqlParameter("@Verificacion", unObjeto.DatoVerificador) };
 
                 sqlHelper.ExecuteNonQuery(InsertStatement, System.Data.CommandType.Text, sqlParams);
             }
@@ -139,7 +140,8 @@ namespace DAL.Implementaciones.SqlServer
                     new SqlParameter("@NroDocumento", unObjeto.NroDocumento),
                     new SqlParameter("@Email", unObjeto.Email),
                     new SqlParameter("@Telefono", unObjeto.Telefono),
-                    new SqlParameter("@Habilitado", unObjeto.Habilitado) };
+                    new SqlParameter("@Habilitado", unObjeto.Habilitado),
+                    new SqlParameter("@Verificacion", unObjeto.DatoVerificador) };
 
                 sqlHelper.ExecuteNonQuery(UpdateStatement, System.Data.CommandType.Text, sqlParams);
             }

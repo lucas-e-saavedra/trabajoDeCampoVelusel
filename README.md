@@ -1,13 +1,13 @@
-**Correcciones (13-08)**
-- Encriptar y desencriptar el email del pasajero
-- Validar integridad datos de pasajero
+Script para probar lo de verificacion de integridad
 
-CU.FAB.03 - Procesar Pedido (mejorar visualización) 
+USE Velusel
+UPDATE Cliente SET Nombre = 'Pepe Pompin' WHERE Id = '8A13E1EC-CA7A-45A6-ABA5-091F97E0F7F3'
+SELECT * FROM Cliente
+
 CU.STO.03 - Disparar alertas (listo) falta q se active todos los dias automaticamente
-CU.Arq.005 Validar integridad (pendiente de definición)
 
 
-final de trabajo de campo 1
+para llegar a final de trabajo de campo 1
 + codigo fuente
 + carpeta
 + armar instalador 

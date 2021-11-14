@@ -27,6 +27,8 @@ namespace DAL.Implementaciones.SqlServer.Adapters
         public Cliente Adapt(object[] values)
         {
             Usuario.EnumTipoDocumento tipoDocumento = (Usuario.EnumTipoDocumento)Enum.Parse(typeof(Usuario.EnumTipoDocumento), values[2].ToString());
+            int verificacion = 0;
+            bool resultadoParse = int.TryParse(values[7].ToString(), out verificacion);
             return new Cliente()
             {
                 Id = Guid.Parse(values[0].ToString()),
@@ -35,7 +37,8 @@ namespace DAL.Implementaciones.SqlServer.Adapters
                 NroDocumento = values[3].ToString(),
                 Email = values[4].ToString(),
                 Telefono = values[5].ToString(),
-                Habilitado = Boolean.Parse(values[6].ToString())
+                Habilitado = Boolean.Parse(values[6].ToString()),
+                DatoVerificador = verificacion
             };
         }
 

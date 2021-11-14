@@ -74,7 +74,10 @@ namespace WinApp.Fabricante
                 IEnumerable<OrdenDeFabricacion> ordenes = (IEnumerable<OrdenDeFabricacion>)grillaOrdenesFabricacion.DataSource;
                 ordenSeleccionada = ordenes.ElementAt(index);
 
+                boxOrdenFabricacion.Visible = true;
                 lblIdOrdenFabricacion.Text = $"{"Identificador".Traducir()}: {ordenSeleccionada.Id}" ;
+                lblSeleccionarFecha.Text = "Fecha planificada".Traducir();
+                timeOrdenFabricacion.Visible = true;
                 string siguienteOF = ordenSeleccionada.OrdenDeFabricacionPosterior?.Id.ToString() ?? "ninguna".Traducir();
                 lblOFposterior.Text = $"{"Siguiente Orden de Fabricación".Traducir()} {siguienteOF}";
                 if (ordenSeleccionada.FechaPlanificada!=null && ordenSeleccionada.FechaPlanificada>DateTime.MinValue)
@@ -99,6 +102,7 @@ namespace WinApp.Fabricante
             bool resultado = BLL.GestorFabricacion.Current.VerificarDependenciaOrdenesDeFabricacion(ordenes);
             if (resultado) {
                 grillaOrdenesFabricacion.DataSource = null;
+                boxOrdenFabricacion.Visible = false;
                 ActualizarGrillaPedidos();
             } else
                 MessageBox.Show("Por favor verifique la concordancia de las fechas planificadas".Traducir());

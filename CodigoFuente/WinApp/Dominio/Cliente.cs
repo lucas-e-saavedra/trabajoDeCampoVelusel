@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,9 @@ namespace Dominio
 		public string Email { get; set; }
 		public string Telefono { get; set; }
 		public bool Habilitado { get; set; }
-		public Cliente()
+        public int DatoVerificador { get; set; }
+
+        public Cliente()
 		{
 			Habilitado = true;
 		}
