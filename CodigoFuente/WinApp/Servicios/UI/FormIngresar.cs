@@ -35,11 +35,15 @@ namespace WinApp
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (GestorSesion.Current.AutenticarUsuario(inputUsuario.Text, inputContrasenia.Text)) {
-                this.DialogResult = DialogResult.OK;
-            } else {
-                string advertencia = "El usuario y contraseña no coinciden".Traducir();
-                MessageBox.Show(advertencia);
+            try {
+                if (GestorSesion.Current.AutenticarUsuario(inputUsuario.Text, inputContrasenia.Text)) {
+                    this.DialogResult = DialogResult.OK;
+                } else {
+                    string advertencia = "El usuario y contraseña no coinciden".Traducir();
+                    MessageBox.Show(advertencia);
+                }
+            } catch (Exception ex) {
+                ex.MostrarEnAlert();
             }
         }
 
