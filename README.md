@@ -10,13 +10,13 @@ CU.STO.03 - Disparar alertas (listo) falta q se active todos los dias automatica
 para llegar a final de trabajo de campo 1
 + codigo fuente
 + carpeta
++ armar manual del programador
+sandcastle  https://www.helpandmanual.com/help/hm_advanced_sourcedoc_config.html
 + armar instalador 
 + manual de instalador
 advancedinstaller.com
 + armar ayuda de usuario
 HelpMaker
-+ armar manual del programador
-sandcastle
 
 brian.gomezpereyra@uai.edu.ar
 gastonweingand@uai.edu.ar

@@ -5,11 +5,17 @@ using System.Configuration;
 
 namespace Servicios.BLL
 {
+    /// <summary>
+    /// Este gestor se encarga de enviar notificaciones a traves de canales externos al sistema
+    /// </summary>
     public class GestorNotificaciones
     {
         #region Singleton
         private readonly static GestorNotificaciones _instance = new GestorNotificaciones();
 
+        /// <summary>
+        /// Acceso a la instancia del gestor
+        /// </summary>
         public static GestorNotificaciones Current
         {
             get
@@ -22,6 +28,13 @@ namespace Servicios.BLL
         { }
         #endregion
 
+        /// <summary>
+        /// Este metodo envía en forma sincronica un mail utilizando la casilla de correo que se especificó en el app.settings
+        /// </summary>
+        /// <param name="destinatario">Dirección de correo electronico a la que se le enviará el correo</param>
+        /// <param name="titulo">Asunto del correo que se va a enviar</param>
+        /// <param name="contenido">Aqui va el cuerpo del mensaje a enviar</param>
+        /// <returns>Devuelve True si se envió el correo y devuelve False si falló el envío</returns>
         public bool EnviarMail(string destinatario, string titulo, string contenido)
         {
             bool result = false;

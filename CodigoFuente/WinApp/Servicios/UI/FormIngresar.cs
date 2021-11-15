@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 namespace WinApp
 {
+#pragma warning disable 1591
     public partial class FormIngresar : Form, IIdiomasObservador
     {
         public FormIngresar()

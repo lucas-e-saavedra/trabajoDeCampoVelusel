@@ -9,11 +9,17 @@ using System.Threading.Tasks;
 
 namespace Servicios.BLL
 {
+    /// <summary>
+    /// Este gestor se encarga de realizar acciones relacionadas con la seguridad del sistema y sus datos
+    /// </summary>
     public class GestorSeguridad
     {
         #region Singleton
         private readonly static GestorSeguridad _instance = new GestorSeguridad();
 
+        /// <summary>
+        /// Acceso a la instancia del gestor
+        /// </summary>
         public static GestorSeguridad Current
         {
             get
@@ -26,6 +32,12 @@ namespace Servicios.BLL
         { }
         #endregion
 
+        /// <summary>
+        /// Este metodo se utiliza transformar un dato sensible para poder grabarlo o transmitirlo en forma segura.
+        /// </summary>
+        /// <param name="datoOriginal">Aqui se recibe el dato original que se va a encriptar debe ser un string</param>
+        /// <param name="clave">Aqui se recibe cual es la clave que se utilizará en el algoritmo de encriptación</param>
+        /// <returns>Devuelve el texto encriptado segun el dato original y la clave utilizada</returns>
         public string Encriptar(string datoOriginal, string clave) {
             byte[] vectorInicializacion = new byte[16];
             byte[] array;
@@ -57,6 +69,13 @@ namespace Servicios.BLL
                 throw new Exception("Falló el algoritmo de encriptación");
             }            
         }
+
+        /// <summary>
+        /// Este metodo se utiliza volver a obtener un dato sensible que se ha grabado o transmitido en forma segura.
+        /// </summary>
+        /// <param name="datoEncriptado">Aqui se recibe el dato encriptado que se va a descifrar, debe ser un string</param>
+        /// <param name="clave">Aqui se recibe cual es la clave que se utilizará en el algoritmo de desencriptación</param>
+        /// <returns>Devuelve el dato original recreado segun el dato encriptado y la clave utilizada</returns>
         public string Desencriptar(string datoEncriptado, string clave) {
             //return datoEncriptado.Substring(1, datoEncriptado.Length - 2);
             byte[] vectorInicializacion = new byte[16];
@@ -88,6 +107,11 @@ namespace Servicios.BLL
                 throw new Exception("Falló el algoritmo de encriptación");
             }
         }
+        
+        /// <summary>
+        /// Este metodo genera una clave aleatoria de 5 caractéres utilizando letras de la A a la Z (incluyendo mayúsculas y minusculas) y los números del 0 al 9
+        /// </summary>
+        /// <returns>Devuelve un string con la clave generada</returns>
         public string GenerarClaveAleatoria() {
             Random obj = new Random();
             string sCadena = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -104,12 +128,23 @@ namespace Servicios.BLL
             return sNuevacadena;
         }
 
+        /// <summary>
+        /// Este método se utiliza para verificar si el objeto que se recibió concuerda con el dato verificador guardado
+        /// </summary>
+        /// <param name="objetoAverificar">Recibe un objeto cualquiera</param>
+        /// <param name="datoVerificadorGuardado">Recibe el dato verificador almacenado</param>
+        /// <returns>Devuelve True si ambos datos verificadores coinciden y devuelve False si no coinciden</returns>
         public bool ValidarIntegridad(object objetoAverificar, int datoVerificadorGuardado)
         {
             int datoVerificador = GenerarDatoVerificador(objetoAverificar);
             return datoVerificador == datoVerificadorGuardado;
         }
 
+        /// <summary>
+        /// Este método genera un numero entero que se utiliza como dato verificador de un objeto de cualquier tipo (utiliza Reflection)
+        /// </summary>
+        /// <param name="objetoAverificar">Recibe un objeto cualquiera para calcular el dato verificador</param>
+        /// <returns>Devuelve el numero de hash basandose en las propiedades del objeto</returns>
         public int GenerarDatoVerificador(object objetoAverificar) {
             Type tipo = objetoAverificar.GetType();
             System.Reflection.PropertyInfo[] properties = tipo.GetProperties();

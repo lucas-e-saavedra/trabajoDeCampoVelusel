@@ -13,6 +13,7 @@ using System.Windows.Forms;
 
 namespace Servicios.UI
 {
+#pragma warning disable 1591
     public partial class FormUsuario : Form, IIdiomasObservador
     {
         Usuario usuarioActual;

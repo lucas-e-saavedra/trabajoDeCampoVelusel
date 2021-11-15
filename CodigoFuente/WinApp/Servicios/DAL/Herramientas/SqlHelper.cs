@@ -5,16 +5,30 @@ using System.Data.SqlClient;
 
 namespace Servicios.DAL.Herramientas
 {
+    /// <summary>
+    /// Esta clase se utiliza para interactuar con una base de datos de MS Sql Server
+    /// </summary>
     public class SqlHelper
     {
         private string connectionString;
+
+        /// <summary>
+        /// Este es el constructor obligatorio que recibe un connectionString con los datos de la base de datos con la cual se va a comunicar
+        /// </summary>
+        /// <param name="oneConnectionstring">ConnectionString con los parametros de conexión</param>
         public SqlHelper(String oneConnectionstring)
         {
             connectionString = oneConnectionstring;
         }
 
-        public Int32 ExecuteNonQuery(String commandText,
-    CommandType commandType, params SqlParameter[] parameters)
+        /// <summary>
+        /// Este método se utiliza para ejecutar un script en la base de datos en el cual no es importante obtener un detalle de la respuesta
+        /// </summary>
+        /// <param name="commandText">Texto del script</param>
+        /// <param name="commandType">Tipo de script puede ser texto o un stored procedure</param>
+        /// <param name="parameters">Lista de parametros para el script</param>
+        /// <returns>Devuelve la cantidad de filas afectadas por el script</returns>
+        public Int32 ExecuteNonQuery(String commandText, CommandType commandType, params SqlParameter[] parameters)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -32,10 +46,13 @@ namespace Servicios.DAL.Herramientas
         }
 
         /// <summary>
-        /// Set the connection, command, and then execute the command and only return one value.
+        /// Este método se utiliza para ejecutar un script en la base de datos en el cual el valor resultante es una sola celda
         /// </summary>
-        public Object ExecuteScalar(String commandText,
-            CommandType commandType, params SqlParameter[] parameters)
+        /// <param name="commandText">Texto del script</param>
+        /// <param name="commandType">Tipo de script puede ser texto o un stored procedure</param>
+        /// <param name="parameters">Lista de parametros para el script</param>
+        /// <returns>Devuelve el contenido de esa celda de respuesta</returns>
+        public Object ExecuteScalar(String commandText, CommandType commandType, params SqlParameter[] parameters)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -51,10 +68,13 @@ namespace Servicios.DAL.Herramientas
         }
 
         /// <summary>
-        /// Set the connection, command, and then execute the command with query and return the reader.
+        /// Este método se utiliza para ejecutar un script en la base de datos que forma una consulta cuyo valor resultante es un conjunto de filas de registros
         /// </summary>
-        public SqlDataReader ExecuteReader(String commandText,
-            CommandType commandType, params SqlParameter[] parameters)
+        /// <param name="commandText">Texto del script</param>
+        /// <param name="commandType">Tipo de script puede ser texto o un stored procedure</param>
+        /// <param name="parameters">Lista de parametros para el script</param>
+        /// <returns>Devuelve un objeto SqlDataReader con el contenido de la consulta</returns>
+        public SqlDataReader ExecuteReader(String commandText, CommandType commandType, params SqlParameter[] parameters)
         {
             SqlConnection conn = new SqlConnection(connectionString);
 

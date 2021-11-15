@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace Servicios.DAL.Contratos
 {
+    /// <summary>
+    /// Esta interfaz sirve para vincular un objeto con una lista de objetos contenida dentro de él para poder persistirlo
+    /// </summary>
+    /// <typeparam name="T">Clase del objeto contenedor</typeparam>
+    /// <typeparam name="U">Clase de los objetos hijos</typeparam>
     public interface IRelacionGenerica<T, U>
     {
         /// <summary>
