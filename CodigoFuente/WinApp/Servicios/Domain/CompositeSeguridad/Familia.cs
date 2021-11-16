@@ -60,7 +60,7 @@ namespace Servicios.Domain.CompositeSeguridad
 		/// Se sobreescribió el comportamiento del método equal para poder realizar ordenamientos y comparaciones de este tipo de objetos
 		/// </summary>
 		/// <param name="obj">Objeto contra el cual se está comparando</param>
-		/// <returns></returns>
+		/// <returns>Devuelve True si considera que los objetos son iguales y devuelve False en caso contrario</returns>
 		public override bool Equals(object obj)
 		{
 			if (obj == null || GetType() != obj.GetType())
