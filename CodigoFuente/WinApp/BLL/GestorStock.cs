@@ -11,9 +11,15 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
+    /// <summary>
+    /// Este gestor se encarga de manejar el stock del deposito
+    /// </summary>
     public sealed class GestorStock
     {
         private readonly static GestorStock _instance = new GestorStock();
+        /// <summary>
+        /// Acceso a la instancia del gestor
+        /// </summary>
         public static GestorStock Current
         {
             get
@@ -37,6 +43,10 @@ namespace BLL
             }
         }
 
+        /// <summary>
+        /// Este metodo sirve para actualizar el stock del deposito
+        /// </summary>
+        /// <param name="diferencia">Instancia del producto o material del cual vamos a modificar su cantidad y la cantidad que hay que incrementar o reducir</param>
         public void ActualizarStock(ProductoMaterial diferencia) {
             ProductoMaterial unProductoMaterial = unAlmacen.Stock.FirstOrDefault(item => item.Id == diferencia.Id);
             if (unProductoMaterial != null) {
@@ -50,10 +60,19 @@ namespace BLL
             }
             FabricaDAL.Current.ObtenerRepositorioDeAlmacenes().Modificar(unAlmacen);
         }
+        
+        /// <summary>
+        /// Este método lo vamos a usar para actualizar las publicaciones de la tienda en linea (por ahora provisoriamente escribe la info en un txt)
+        /// </summary>
+        /// <param name="unPedido">Instancia del pedido interno que generó el vendedor</param>
         public void ActualizarStockTiendOnline(Pedido unPedido){
             //TODO: acá hay que investigar como interactuar con distinas apis de tiendas en linea
             FabricaDAL.Current.ObtenerExpotadorDePedidos().Agregar(unPedido);
         }
+
+        /// <summary>
+        /// Este metodo es el que se va a invocar diariamente, se encarga de enviar las alertas de bloqueos a cada vendedor que las haya configurado en el sistema y que haya configurado las mismas con mas de cero días de anticipación
+        /// </summary>
         public void EnviarAlertas(){
             IEnumerable<Usuario> usuarios = GestorUsuarios.Current.ListarUsuarios();
             List<Usuario> compradores = usuarios.Where(item => item.Permisos.Any(permiso => permiso.Nombre == "Comprador")).ToList();
@@ -89,10 +108,19 @@ namespace BLL
             }
         }
         
+        /// <summary>
+        /// Este método sirve para conocer el stock completo del almacén, no discrimina entre materiales o productos.
+        /// </summary>
+        /// <returns>Devuelve una lista de objetos ProductoMaterial</returns>
         public List<ProductoMaterial> ObtenerMaterialesActuales(){
             return unAlmacen.Stock;
         }
 
+        /// <summary>
+        /// Este método trae la configuración de alarmas de un usuario.
+        /// </summary>
+        /// <param name="unUsuario">Instancia del Usuario del cual se quiere consultar su configuración.</param>
+        /// <returns>Devuelve un objeto Alarma</returns>
         public Alarma ObtenerAlarmas(Usuario unUsuario) {
             string[] criterios = { };
             string[] valores = { unUsuario.IdUsuario.ToString() };
@@ -106,6 +134,11 @@ namespace BLL
 
             return configAlarma;
         }
+        
+        /// <summary>
+        /// Este metodo permite grabar la configuración de alarmas de un usuario.
+        /// </summary>
+        /// <param name="configAlarma">Recibe un objeto Alarma el cuál contiene toda la info necesaria</param>
         public void ConfigurarAlarmas(Alarma configAlarma) {
             if (configAlarma.DiasAlarmaCompras < configAlarma.DiasAlarmaStock)
                 throw new Exception("La alarma por falta de compras no puede ser menor que la alarma por falta de stock");

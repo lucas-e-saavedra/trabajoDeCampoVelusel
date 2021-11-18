@@ -6,6 +6,7 @@ SELECT * FROM Cliente
 
 CU.STO.03 - Disparar alertas (listo) falta q se active todos los dias automaticamente
 
+agregar mecanismo de backup de la bbdd
 
 para llegar a final de trabajo de campo 1
 + codigo fuente

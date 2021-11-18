@@ -13,11 +13,16 @@ using static Dominio.OrdenDeFabricacion;
 
 namespace BLL
 {
-
+    /// <summary>
+    /// Este gestor se encarga de manejar la información de las tareas de fabricación
+    /// </summary>
     public sealed class GestorFabricacion
     {
         private readonly static GestorFabricacion _instance = new GestorFabricacion();
 
+        /// <summary>
+        /// Acceso a la instancia del gestor
+        /// </summary>
         public static GestorFabricacion Current
         {
             get
@@ -31,6 +36,11 @@ namespace BLL
             //Implent here the initialization of your singleton
         }
 
+        /// <summary>
+        /// Este método analiza un pedido y genera todas las ordenes de fabricación necesarias para poder cumplirlo
+        /// </summary>
+        /// <param name="unPedido">Recibe una instancia del pedido que se va a procesar</param>
+        /// <returns>Lista de OrdenDeFabricacion sugeridas</returns>
         public List<OrdenDeFabricacion> AnalizarPedido(Pedido unPedido)
         {
             List<OrdenDeFabricacion> ordenesDeFabricacion = new List<OrdenDeFabricacion>();
@@ -39,11 +49,20 @@ namespace BLL
                 );
             return ordenesDeFabricacion;
         }
-        
+
+        /// <summary>
+        /// Este método borra un material del maestro de materiales del sistema
+        /// </summary>
+        /// <param name="unMaterial">Material a eliminar</param>
         public void BorrarMaterial(Material unMaterial)
         {
             FabricaDAL.Current.ObtenerRepositorioDeMateriales().Borrar(unMaterial);
         }
+        
+        /// <summary>
+        /// Este método borra un producto del maestro de productos del sistema y tambien su plantilla de fabricación
+        /// </summary>
+        /// <param name="unProducto"></param>
         public void BorrarProducto(Producto unProducto)
         {
             FabricaDAL.Current.ObtenerRepositorioDeProductos().Borrar(unProducto);
@@ -65,6 +84,11 @@ namespace BLL
 
             return unaOrdenDeFabricacion.Fabricados.Cantidad < unaOrdenDeFabricacion.Objetivo.Cantidad;
         }
+
+        /// <summary>
+        /// Este método registra que el fabricante ha comenzado la elaboración de una orden de fabricación
+        /// </summary>
+        /// <param name="unaOrdenDeFabricacion">Orden de fabricación que se va a modificar</param>
         public void ComenzarFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion)
         {
             List<ProductoMaterial> stock = GestorStock.Current.ObtenerMaterialesActuales();
@@ -91,6 +115,11 @@ namespace BLL
             Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} comenzó a fabricar la orden de fabricacion {unaOrdenDeFabricacion.Id}");
             GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
+
+        /// <summary>
+        /// Este método registra que el fabricante ha aplazado la elaboración de una orden de fabricación
+        /// </summary>
+        /// <param name="unaOrdenDeFabricacion">Orden de fabricación que se va a modificar</param>
         public void ReprogramarFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion)
         {
             if (unaOrdenDeFabricacion.Estado != EnumEstadoOrdenFabricacion.FORMULADO && unaOrdenDeFabricacion.Estado != EnumEstadoOrdenFabricacion.AGENDADO)
@@ -100,6 +129,12 @@ namespace BLL
             Evento unEvento = new Evento(Evento.CategoriaEvento.ADVERTENCIA, $"El usuario {usuario.UsuarioLogin} ha reprogramado la orden de fabricacion {unaOrdenDeFabricacion.Id}");
             GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
+
+        /// <summary>
+        /// Este método registra que el fabricante ha generado una orden de fabricación para suplir la diferencia entre lo que se solicitó en una orden de fabricación y el objetivo alcanzado
+        /// </summary>
+        /// <param name="unaOrdenDeFabricacion">Orden de fabricación que no se ha logrado completar</param>
+        /// <param name="fechaSeleccionada">Fecha seleccionada para la nueva orden de fabricación</param>
         public void DividirFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion, DateTime fechaSeleccionada)
         {
             OrdenDeFabricacion nuevaOrdenDeFabricacion = null;
@@ -142,6 +177,11 @@ namespace BLL
                 }
             }
         }
+
+        /// <summary>
+        /// Este método registra que el fabricante ha generado una nueva orden de fabricación para atender a un pedido
+        /// </summary>
+        /// <param name="unaOrdenDeFabricacion">Orden de fabricación que se va a agregar</param>
         public void CrearOrdenDeFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion) {
             if (unaOrdenDeFabricacion.pedido.Id == Guid.Empty)
                 throw new Exception("No está permitido crear una orden de fabricación sin un pedido");
@@ -155,26 +195,58 @@ namespace BLL
             Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} agregó la orden de fabricacion {unaOrdenDeFabricacion.Id}");
             GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
+        
+        /// <summary>
+        /// Este método muestra todos los materiales que hay registrados en el maestro de materiales
+        /// </summary>
+        /// <returns>Devuelve una lista de Material</returns>
         public IEnumerable<Material> ListarMateriales()
         {
             return FabricaDAL.Current.ObtenerRepositorioDeMateriales().Listar();
         }
+
+        /// <summary>
+        /// Este método muestra todas las ordenes de fabricación que se han registrado en el sistema
+        /// </summary>
+        /// <returns>Devuelve una lista de OrdenDeFabricación</returns>
         public IEnumerable<OrdenDeFabricacion> ListarOrdenesDeFabricacion()
         {
             return FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Listar();
         }
+
+        /// <summary>
+        /// Este método muestra todas las ordenes de fabricación que se han registrado en el sistema y que están planificadas dentro de un rango de fechas
+        /// </summary>
+        /// <param name="desde">Fecha de incio del rango de búsqueda</param>
+        /// <param name="hasta">Fecha de fin del rango de búsqueda</param>
+        /// <returns>Devuelve una lista de OrdenDeFabricación</returns>
         public IEnumerable<OrdenDeFabricacion> ListarOrdenesDeFabricacion(DateTime desde, DateTime hasta)
         {
             return null;
         }
+
+        /// <summary>
+        /// Este método muestra todos los productos que hay registrados en el maestro de productos
+        /// </summary>
+        /// <returns>Devuelve una lista de Producto</returns>
         public IEnumerable<Producto> ListarProductos()
         {
             return FabricaDAL.Current.ObtenerRepositorioDeProductos().Listar();
         }
+
+        /// <summary>
+        /// Este método modifica un material del maestro de materiales del sistema
+        /// </summary>
+        /// <param name="unMaterial">Material a modificar</param>
         public void ModificarMaterial(Material unMaterial)
         {
             FabricaDAL.Current.ObtenerRepositorioDeMateriales().Modificar(unMaterial);
         }
+        
+        /// <summary>
+        /// Este método sirve para modificar una orden de fabricación y persistirlo
+        /// </summary>
+        /// <param name="unaOrdenDeFabricacion">Orden de fabricación a modificar</param>
         public void ModificarOrdenFabricacion(OrdenDeFabricacion unaOrdenDeFabricacion)
         {
             if (unaOrdenDeFabricacion.Objetivo.Id == Guid.Empty || unaOrdenDeFabricacion.Objetivo.Cantidad == 0)
@@ -187,18 +259,39 @@ namespace BLL
             Evento unEvento = new Evento(Evento.CategoriaEvento.INFORMATIVO, $"El usuario {usuario.UsuarioLogin} modificó la orden de fabricacion {unaOrdenDeFabricacion.Id}");
             GestorHistorico.Current.RegistrarBitacora(unEvento);
         }
+
+        /// <summary>
+        /// Este método modifica un producto del maestro de productos del sistema
+        /// </summary>
+        /// <param name="unProducto">Producto a modificar</param>
         public void ModificarProducto(Producto unProducto)
         {
             FabricaDAL.Current.ObtenerRepositorioDeProductos().Modificar(unProducto);
         }
+
+        /// <summary>
+        /// Este método agrega un material del maestro de materiales del sistema
+        /// </summary>
+        /// <param name="unMaterial">Material a agregar</param>
         public void RegistrarMaterial(Material unMaterial)
         {
             FabricaDAL.Current.ObtenerRepositorioDeMateriales().Agregar(unMaterial);
         }
+
+        /// <summary>
+        /// Este método agrega un producto del maestro de productos del sistema
+        /// </summary>
+        /// <param name="unProducto">Producto a agregar</param>
         public void RegistrarProducto(Producto unProducto)
         {
             FabricaDAL.Current.ObtenerRepositorioDeProductos().Agregar(unProducto);
         }
+        
+        /// <summary>
+        /// Este método verifica si las fechas de una lista de ordenes de fabricación son factibles de cumplir
+        /// </summary>
+        /// <param name="ordenesDeFabricacion">Recibe una lista de OrdenDeFabricacion para analizar</param>
+        /// <returns>Devuelve True si el orden de las fechas de las mismas es posible y devuelve false si el orden de las fechas no es posible por sus dependencias</returns>
         public bool VerificarDependenciaOrdenesDeFabricacion(IEnumerable<OrdenDeFabricacion> ordenesDeFabricacion)
         {
             if (ordenesDeFabricacion.Any(item => item.FechaPlanificada < DateTime.Today))
@@ -221,6 +314,10 @@ namespace BLL
             return true;
         }
 
+        /// <summary>
+        /// Este metodo actualiza el estado de un pedido si es que todas las ordenes de fabricación requeridas han sido completadas
+        /// </summary>
+        /// <param name="unPedido">Instancia del objeto Pedido que hay que verificar</param>
         public void VerificarAvancePedido(Pedido unPedido)
         {
             IEnumerable<OrdenDeFabricacion> todas = FabricaDAL.Current.ObtenerRepositorioDeOrdenesDeFabricacion().Listar();
