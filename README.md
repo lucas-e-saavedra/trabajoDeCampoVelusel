@@ -7,6 +7,7 @@ SELECT * FROM Cliente
 CU.STO.03 - Disparar alertas (listo) falta q se active todos los dias automaticamente
 
 agregar mecanismo de backup de la bbdd
+https://www.c-sharpcorner.com/UploadFile/rohatash/creating-sql-server-backup-file-with-C-Sharp/
 
 para llegar a final de trabajo de campo 1
 + codigo fuente
