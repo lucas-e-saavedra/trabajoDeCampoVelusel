@@ -28,7 +28,7 @@
       <Argument Key="logoAlignment" Value="left" xmlns="" />
       <Argument Key="maxVersionParts" Value="" xmlns="" />
     </TransformComponentArguments>
-    <HelpFileFormat>HtmlHelp1, MSHelpViewer</HelpFileFormat>
+    <HelpFileFormat>HtmlHelp1</HelpFileFormat>
     <SyntaxFilters>Standard</SyntaxFilters>
     <PresentationStyle>VS2013</PresentationStyle>
     <CleanIntermediates>True</CleanIntermediates>
@@ -59,19 +59,21 @@
     <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
     <ApiFilter>
       <Filter entryType="Namespace" fullName="Servicios.UI" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="WinApp" isExposed="False" xmlns="" /></ApiFilter>
+      <Filter entryType="Namespace" fullName="WinApp" isExposed="False" xmlns="" />
+    </ApiFilter>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="(global)" isDocumented="False" />
-<NamespaceSummaryItem name="BLL" isDocumented="True">En este namespace se encuentran los gestores que manejan la logica de negocio de nuestro software</NamespaceSummaryItem>
-<NamespaceSummaryItem name="DAL" isDocumented="True">En este namespace se encuentran el manejo de la persistencia de los objetos del dominio</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Dominio" isDocumented="True">En este namespace se encuentran los objetos del dominio que forman parte de la solución</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Dominio.CompositeProducto" isDocumented="True">En este namespace se encuentran los objetos del dominio que se relacionan directamente con la abstracción de Producto y Material</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Servicios.BLL" isDocumented="True">En este namespace se encuentran los gestores que manejan la logica de negocio de nuestra arquitectura base</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Servicios.DAL.Contratos" isDocumented="True">En este namespace se encuentran las interfaces que rigen las reglas del manejo de la persistencia de los objetos del dominio</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Servicios.DAL.Herramientas" isDocumented="True">En este namespace se encuentran las clases que nos ayudan a interactuar con distintos tipos de persistencia</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Servicios.Domain" isDocumented="True">En este namespace se encuentran los objetos del dominio que forman parte de nuestra arquitectura base</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Servicios.Domain.CompositeSeguridad" isDocumented="True">En este namespace se encuentran los objetos del dominio que se enfocan en el manejo de los permisos del sistema (Usuario, Patente y Familia)</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Servicios.Extensions" isDocumented="True">En este namespace se encuentran las funciones de extensión que agregamos para simplificar el uso de ciertas funciones de nuestra arquitectura base</NamespaceSummaryItem></NamespaceSummaries>
+      <NamespaceSummaryItem name="BLL" isDocumented="True">En este namespace se encuentran los gestores que manejan la logica de negocio de nuestro software</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DAL" isDocumented="True">En este namespace se encuentran el manejo de la persistencia de los objetos del dominio</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Dominio" isDocumented="True">En este namespace se encuentran los objetos del dominio que forman parte de la solución</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Dominio.CompositeProducto" isDocumented="True">En este namespace se encuentran los objetos del dominio que se relacionan directamente con la abstracción de Producto y Material</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Servicios.BLL" isDocumented="True">En este namespace se encuentran los gestores que manejan la logica de negocio de nuestra arquitectura base</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Servicios.DAL.Contratos" isDocumented="True">En este namespace se encuentran las interfaces que rigen las reglas del manejo de la persistencia de los objetos del dominio</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Servicios.DAL.Herramientas" isDocumented="True">En este namespace se encuentran las clases que nos ayudan a interactuar con distintos tipos de persistencia</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Servicios.Domain" isDocumented="True">En este namespace se encuentran los objetos del dominio que forman parte de nuestra arquitectura base</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Servicios.Domain.CompositeSeguridad" isDocumented="True">En este namespace se encuentran los objetos del dominio que se enfocan en el manejo de los permisos del sistema (Usuario, Patente y Familia)</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Servicios.Extensions" isDocumented="True">En este namespace se encuentran las funciones de extensión que agregamos para simplificar el uso de ciertas funciones de nuestra arquitectura base</NamespaceSummaryItem>
+    </NamespaceSummaries>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->
