@@ -29,6 +29,7 @@ namespace WinApp.Comprador
             inputDiasAlarmaCompras.Value = configAlarma.DiasAlarmaCompras;
 
             btnTestAlarmas.Visible = GestorSesion.Current.TieneRolGerente();
+            btnTestBackup.Visible = GestorSesion.Current.TieneRolGerente();
         }
         private void FormConfigurarAlarmas_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -56,6 +57,12 @@ namespace WinApp.Comprador
         private void btnTestAlarmas_Click(object sender, EventArgs e)
         {
             BLL.GestorStock.Current.EnviarAlertas();
+        }
+
+        private void btnTestBackup_Click(object sender, EventArgs e)
+        {
+            Servicios.BLL.GestorHistorico.Current.GenerarBackupBaseDeDatos("SecurityDB");
+            Servicios.BLL.GestorHistorico.Current.GenerarBackupBaseDeDatos("Velusel");
         }
     }
 }

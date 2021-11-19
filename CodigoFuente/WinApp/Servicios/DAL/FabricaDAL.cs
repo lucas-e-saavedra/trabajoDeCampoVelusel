@@ -2,6 +2,9 @@
 using Servicios.Domain.CompositeSeguridad;
 using System.Configuration;
 using Servicios.DAL.Contratos;
+using Servicios.DAL.Herramientas;
+using System;
+using Servicios.Extensions;
 
 namespace Servicios.DAL
 {
@@ -73,6 +76,26 @@ namespace Servicios.DAL
             return new ImplementacionDAL.SqlServer.FamiliaFamiliaRelacion(bbddSeguridad);
         }
 
-        
+        /// <summary>
+        /// Este método sirve para generar un backup (.bak) de la base de datos especificada en la ruta mencionada
+        /// </summary>
+        /// <param name="nombreBBDD">Nombre de la base de datos a resguardar</param>
+        /// <param name="rutaArchivo">Ruta del archivo donde se guardará el backup</param>
+        /// <returns>Devuelve True si pudo ejecutar el backup, y devuelve False si no pudo ejecutarlo</returns>
+        public bool GenerarBackUp(string nombreBBDD, string rutaArchivo)
+        {
+            try
+            {
+                string query = $"Backup database {nombreBBDD} to disk='{rutaArchivo}'";
+                SqlHelper sqlHelper = new SqlHelper(bbddSeguridad);
+                sqlHelper.ExecuteNonQuery(query, System.Data.CommandType.Text);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.RegistrarError();
+                return false;
+            }
+        }
     }
 }

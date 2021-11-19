@@ -2,6 +2,7 @@
 using Servicios.Domain;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,6 +62,19 @@ namespace Servicios.BLL
         /// <param name="unError">Instancia del error a agregar</param>
         public void RegistrarErrores(Error unError) {
             FabricaDAL.Current.ObtenerRepositorioDeErrores().Agregar(unError);
+        }
+
+        /// <summary>
+        /// Este método sirve para generar un backup (.bak) de la base de datos especificada en la ruta mencionada
+        /// </summary>
+        /// <param name="nombreBBDD">Nombre de la base de datos a resguardar</param>
+        /// <param name="rutaCarpeta">Ruta de la carpeta donde se guardará el archivo</param>
+        /// <returns>Devuelve True si pudo ejecutar el backup, y devuelve False si no pudo ejecutarlo</returns>
+        public bool GenerarBackupBaseDeDatos(string nombreBBDD) {
+            string rutaCarpeta = ConfigurationManager.AppSettings["rutaBackup"];
+            string fecha = DateTime.Today.ToString("yyyyMMdd");
+            string rutaArchivo = $"{rutaCarpeta}{nombreBBDD}-{fecha}.bak";
+            return FabricaDAL.Current.GenerarBackUp(nombreBBDD, rutaArchivo);
         }
     }
 }
