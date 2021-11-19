@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topics>
+  <Topic id="450c79ec-bc95-4b0d-9a35-67828ff20d66" visible="True" isDefault="true" isSelected="true" title="Bienvenido al manual del programador de Velusel">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="Bienvenido" />
+    </HelpKeywords>
+  </Topic>
+  <Topic id="157989f1-52c2-4e41-8618-b7b62b3b2d5f" visible="True" isExpanded="true" title="Version History">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="version, history" />
+    </HelpKeywords>
+    <Topic id="ec1433d8-c22e-41f8-8a7c-cd1c72ceb4e4" visible="True" title="Version 1.0.0.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="version, 1.0.0.0" />
+      </HelpKeywords>
+    </Topic>
+  </Topic>
+</Topics>
