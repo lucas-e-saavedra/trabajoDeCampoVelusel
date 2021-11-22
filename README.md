@@ -20,7 +20,7 @@ para llegar a final de trabajo de campo 1
 + carpeta
 + armar manual del programador
 sandcastle  https://www.helpandmanual.com/help/hm_advanced_sourcedoc_config.html
-+ armar instalador 
++ armar instalador  (casi listo el instalador del server, falta el instalador del cliente)
 + manual de instalador
 advancedinstaller.com
 + armar ayuda de usuario

@@ -68,7 +68,6 @@ namespace Servicios.BLL
         /// Este método sirve para generar un backup (.bak) de la base de datos especificada en la ruta mencionada
         /// </summary>
         /// <param name="nombreBBDD">Nombre de la base de datos a resguardar</param>
-        /// <param name="rutaCarpeta">Ruta de la carpeta donde se guardará el archivo</param>
         /// <returns>Devuelve True si pudo ejecutar el backup, y devuelve False si no pudo ejecutarlo</returns>
         public bool GenerarBackupBaseDeDatos(string nombreBBDD) {
             string rutaCarpeta = ConfigurationManager.AppSettings["rutaBackup"];

@@ -13,11 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.csproj", "{5157A277-B509-4094-B0A5-2DE3460B0AFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{73743B5C-989E-4D4A-B387-3D6DB4AB5094}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoreBBDD", "ConsoleApp\RestoreBBDD.csproj", "{73743B5C-989E-4D4A-B387-3D6DB4AB5094}"
 EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "ManualDeProgramador", "ManualDeProgramador\ManualDeProgramador.shfbproj", "{C2B6C15B-E3E2-4800-A17E-0CC496F60DFF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsService", "WindowsService\WindowsService.csproj", "{851C8992-E37A-4A0E-95A4-45B6BFDE52E8}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ServerInstaller", "ServerInstaller\ServerInstaller.vdproj", "{114082E0-4659-40A2-8BF7-44F31D94985C}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ClientInstaller", "ClientInstaller\ClientInstaller.vdproj", "{0C5FB809-C30B-4435-92CD-F27C0BA4A6A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,10 @@ Global
 		{851C8992-E37A-4A0E-95A4-45B6BFDE52E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{851C8992-E37A-4A0E-95A4-45B6BFDE52E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{851C8992-E37A-4A0E-95A4-45B6BFDE52E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{114082E0-4659-40A2-8BF7-44F31D94985C}.Debug|Any CPU.ActiveCfg = Debug
+		{114082E0-4659-40A2-8BF7-44F31D94985C}.Release|Any CPU.ActiveCfg = Release
+		{0C5FB809-C30B-4435-92CD-F27C0BA4A6A3}.Debug|Any CPU.ActiveCfg = Debug
+		{0C5FB809-C30B-4435-92CD-F27C0BA4A6A3}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

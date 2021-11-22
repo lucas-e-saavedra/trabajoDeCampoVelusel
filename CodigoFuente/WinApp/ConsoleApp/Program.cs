@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,18 +12,33 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Iniciando verificacion de alertas");
-            BLL.GestorStock.Current.EnviarAlertas();
-            Console.WriteLine("La tarea de verificar alertas ha terminado");
+            
+            Console.WriteLine("Restaurando la base de datos SecurityDB");
+            string pathDDBBSecurity = Directory.GetCurrentDirectory() + "\\SecurityDB-INICIAL.bak";
+            RestoreDatabaseBAK("SecurityDB", pathDDBBSecurity);
+            Console.WriteLine("Se ha restaurado la base de datos SecurityDB correctamente");
+            
+            Console.WriteLine("Restaurando la base de datos Velusel");
+            string pathDDBBVelusel  = Directory.GetCurrentDirectory() + "\\Velusel-INICIAL.bak";
+            RestoreDatabaseBAK("Velusel", pathDDBBVelusel);
+            Console.WriteLine("Se ha restaurado la base de datos Velusel correctamente");
+            Console.Read();
+        }
 
-            Console.WriteLine("Iniciando backup de la base de datos SecurityDB");
-            Servicios.BLL.GestorHistorico.Current.GenerarBackupBaseDeDatos("SecurityDB");
-            Console.WriteLine("Ha terminado el backup de la base de datos SecurityDB");
+        public static void RestoreDatabaseBAK(string nombreBBDD, string rutaArchivoBAK)
+        {
+            string connString = "Data Source=LAPTOP-ETGG4K9E\\SQLEXPRESS; Initial Catalog=master;User ID=sa;password=.";
+            string sql = "RESTORE DATABASE [" + nombreBBDD + "] FROM DISK = '" + rutaArchivoBAK + "' WITH REPLACE;";
 
-            Console.WriteLine("Iniciando backup de la base de datos Velusel");
-            Servicios.BLL.GestorHistorico.Current.GenerarBackupBaseDeDatos("Velusel");
-            Console.WriteLine("Ha terminado el backup de la base de datos Velusel");
+            SqlConnection con = new SqlConnection(connString);
+            SqlCommand command = new SqlCommand(sql, con);
 
+            con.Open();
+            command.ExecuteNonQuery();
+
+            //MessageBox.Show("Database Recovered Successfully!");
+            con.Close();
+            con.Dispose();
         }
     }
 }

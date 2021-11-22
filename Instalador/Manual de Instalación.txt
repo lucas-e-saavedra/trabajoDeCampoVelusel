@@ -1,0 +1,121 @@
+1) Copie la carpeta Servidor a la computadora donde se alojará la base de datos y el servicio de notificaciones.
+2) Ejecute el archivo ServerInstaller que está dentro de esa carpeta.
+3) Luego de que finalice la ejecución dirijase a la carpeta "C:\Program Files (x86)\LucasSaavedra\Velusel Servidor\"
+4) En esa carpeta ejecute el programa de consola RestaurarBBDD
+5) Al finalizar su ejecución este programa le informará que las 2 bases de datos(SecurityDB y Velusel) se restauraron correctamente. Si no es así contacte al soporte
+
+
+6) Copie la carpeta App a la(s) computadora(s) donde se ejecutará la aplicación cliente: "Velusel APP"
+7) Ejecute el archivo ClientInstaller que está dentro de esa carpeta.
+
+
+
+
+Consulte el final de este mensaje para obtener más detalles sobre cómo invocar a la depuración 
+Just-In-Time (JIT) en lugar de a este cuadro de diálogo.
+
+************** Texto de la excepción **************
+System.UnauthorizedAccessException: Acceso denegado a la ruta de acceso 'C:\Program Files (x86)\HP Inc\Velusel App\errores.txt'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   en System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   en System.IO.StreamWriter..ctor(String path, Boolean append)
+   en Servicios.DAL.Herramientas.FileHelper.Write(String message)
+   en Servicios.DAL.ImplementacionDAL.TXT.DALError.Agregar(Error unObjeto)
+   en Servicios.BLL.GestorHistorico.RegistrarErrores(Error unError)
+   en Servicios.Extensions.ExtensionException.RegistrarError(Exception unaExcepcion)
+   en Servicios.DAL.ImplementacionDAL.TXT.DALTraductor.BuscarUno(String[] criterios, String[] valores)
+   en Servicios.BLL.GestorIdiomas.Traducir(String texto)
+   en WinApp.FormPrincipal.ActualizarTraducciones()
+   en WinApp.FormPrincipal.Form1_Load(Object sender, EventArgs e)
+   en System.Windows.Forms.Form.OnLoad(EventArgs e)
+   en System.Windows.Forms.Form.OnCreateControl()
+   en System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+   en System.Windows.Forms.Control.CreateControl()
+   en System.Windows.Forms.Control.WmShowWindow(Message& m)
+   en System.Windows.Forms.Control.WndProc(Message& m)
+   en System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   en System.Windows.Forms.Form.WmShowWindow(Message& m)
+   en System.Windows.Forms.Form.WndProc(Message& m)
+   en System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   en System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   en System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+
+
+************** Ensamblados cargados **************
+mscorlib
+    Versión del ensamblado: 4.0.0.0
+    Versión Win32: 4.8.4420.0 built by: NET48REL1LAST_C
+    Código base: file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/mscorlib.dll
+----------------------------------------
+WinApp
+    Versión del ensamblado: 1.0.0.0
+    Versión Win32: 1.0.0.0
+    Código base: file:///C:/Program%20Files%20(x86)/HP%20Inc/Velusel%20App/WinApp.exe
+----------------------------------------
+System.Windows.Forms
+    Versión del ensamblado: 4.0.0.0
+    Versión Win32: 4.8.4400.0 built by: NET48REL1LAST_C
+    Código base: file:///C:/WINDOWS/Microsoft.Net/assembly/GAC_MSIL/System.Windows.Forms/v4.0_4.0.0.0__b77a5c561934e089/System.Windows.Forms.dll
+----------------------------------------
+System
+    Versión del ensamblado: 4.0.0.0
+    Versión Win32: 4.8.4360.0 built by: NET48REL1LAST_C
+    Código base: file:///C:/WINDOWS/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll
+----------------------------------------
+System.Drawing
+    Versión del ensamblado: 4.0.0.0
+    Versión Win32: 4.8.4390.0 built by: NET48REL1LAST_C
+    Código base: file:///C:/WINDOWS/Microsoft.Net/assembly/GAC_MSIL/System.Drawing/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Drawing.dll
+----------------------------------------
+Servicios
+    Versión del ensamblado: 1.0.0.0
+    Versión Win32: 1.0.0.0
+    Código base: file:///C:/Program%20Files%20(x86)/HP%20Inc/Velusel%20App/Servicios.DLL
+----------------------------------------
+System.Configuration
+    Versión del ensamblado: 4.0.0.0
+    Versión Win32: 4.8.4190.0 built by: NET48REL1LAST_B
+    Código base: file:///C:/WINDOWS/Microsoft.Net/assembly/GAC_MSIL/System.Configuration/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Configuration.dll
+----------------------------------------
+System.Core
+    Versión del ensamblado: 4.0.0.0
+    Versión Win32: 4.8.4390.0 built by: NET48REL1LAST_C
+    Código base: file:///C:/WINDOWS/Microsoft.Net/assembly/GAC_MSIL/System.Core/v4.0_4.0.0.0__b77a5c561934e089/System.Core.dll
+----------------------------------------
+System.Xml
+    Versión del ensamblado: 4.0.0.0
+    Versión Win32: 4.8.4084.0 built by: NET48REL1
+    Código base: file:///C:/WINDOWS/Microsoft.Net/assembly/GAC_MSIL/System.Xml/v4.0_4.0.0.0__b77a5c561934e089/System.Xml.dll
+----------------------------------------
+mscorlib.resources
+    Versión del ensamblado: 4.0.0.0
+    Versión Win32: 4.8.4084.0 built by: NET48REL1
+    Código base: file:///C:/WINDOWS/Microsoft.Net/assembly/GAC_MSIL/mscorlib.resources/v4.0_4.0.0.0_es_b77a5c561934e089/mscorlib.resources.dll
+----------------------------------------
+System.Windows.Forms.resources
+    Versión del ensamblado: 4.0.0.0
+    Versión Win32: 4.8.4084.0 built by: NET48REL1
+    Código base: file:///C:/WINDOWS/Microsoft.Net/assembly/GAC_MSIL/System.Windows.Forms.resources/v4.0_4.0.0.0_es_b77a5c561934e089/System.Windows.Forms.resources.dll
+----------------------------------------
+
+************** Depuración JIT **************
+Para habilitar la depuración Just In Time (JIT), el archivo de configuración de esta
+aplicación o equipo (machine.config) debe tener el
+valor jitDebugging establecido en la sección system.windows.forms.
+La aplicación también se debe compilar con la depuración
+habilitada
+
+Por ejemplo:
+
+<configuration>
+    <system.windows.forms jitDebugging="true" />
+</configuration>
+
+Cuando esté habilitada la depuración JIT, cualquier excepción no controlada
+se enviará al depurador JIT registrado en el equipo
+en lugar de controlarlo mediante el cuadro de diálogo.
+
+
