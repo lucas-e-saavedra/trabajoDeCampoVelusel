@@ -5,6 +5,7 @@ using Servicios.DAL.Contratos;
 using Servicios.DAL.Herramientas;
 using System;
 using Servicios.Extensions;
+using System.IO;
 
 namespace Servicios.DAL
 {
@@ -25,12 +26,23 @@ namespace Servicios.DAL
         {
             bbddSeguridad = ConfigurationManager.ConnectionStrings["SLConString"].ConnectionString;
             archivoBitacora = ConfigurationManager.AppSettings["rutaArchivoBitacora"];
+            if (!archivoBitacora.Contains("\\")) {
+                archivoBitacora = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), archivoBitacora);
+            }
             archivoErrores = ConfigurationManager.AppSettings["rutaArchivoErrores"];
+            if (!archivoErrores.Contains("\\")) {
+                archivoErrores = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), archivoErrores);
+            }
+            carpetaTraducciones = "I18n\\idioma.";
+            if (true) { //usar true cuando se buildea para armar el instalable, y false cuando se va a ejecutar desde visual studio
+                carpetaTraducciones = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), carpetaTraducciones);
+            }
         }
         #endregion
         private string bbddSeguridad;
         private string archivoBitacora;
         private string archivoErrores;
+        private string carpetaTraducciones;
 
         public IRepositorioGenerico<Evento> ObtenerRepositorioDeEventos()
         {
@@ -44,7 +56,7 @@ namespace Servicios.DAL
 
         public IRepositorioGenerico<string> ObtenerRepositorioDeTraducciones(string codigoIdioma)
         {
-            return new ImplementacionDAL.TXT.DALTraductor(@"I18n\idioma."+codigoIdioma);
+            return new ImplementacionDAL.TXT.DALTraductor(carpetaTraducciones+codigoIdioma);
         }
 
         public IRepositorioGenerico<Usuario> ObtenerRepositorioDeUsuarios()

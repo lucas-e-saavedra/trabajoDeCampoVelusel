@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace ConsoleApp
 
         public static void RestoreDatabaseBAK(string nombreBBDD, string rutaArchivoBAK)
         {
-            string connString = "Data Source=LAPTOP-ETGG4K9E\\SQLEXPRESS; Initial Catalog=master;User ID=sa;password=.";
+            string connString = ConfigurationManager.ConnectionStrings["MasterConString"].ConnectionString;
             string sql = "RESTORE DATABASE [" + nombreBBDD + "] FROM DISK = '" + rutaArchivoBAK + "' WITH REPLACE;";
 
             SqlConnection con = new SqlConnection(connString);
@@ -35,8 +36,6 @@ namespace ConsoleApp
 
             con.Open();
             command.ExecuteNonQuery();
-
-            //MessageBox.Show("Database Recovered Successfully!");
             con.Close();
             con.Dispose();
         }
