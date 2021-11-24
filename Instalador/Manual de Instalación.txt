@@ -1,3 +1,4 @@
+INSTALACIÓN DE EL SERVIDOR
 1) Copie la carpeta Servidor a la computadora donde se alojará la base de datos y el servicio de notificaciones.
 2) Ejecute el archivo ServerInstaller que está dentro de esa carpeta.
 3) Luego de que finalice la instalación dirijase a la carpeta "C:\Program Files (x86)\LucasSaavedra\Velusel Servidor\"
@@ -8,18 +9,32 @@ reemplace "LAPTOP-ETGG4K9E\SQLEXPRESS" por el nombre de la instancia del motor d
 5) Luego ejecute el programa de consola RestaurarBBDD.exe
 6) Al finalizar su ejecución este programa le informará que las 2 bases de datos(SecurityDB y Velusel) se restauraron correctamente. Si no es así contacte al soporte
 
-
-7) Copie la carpeta App a la(s) computadora(s) donde se ejecutará la aplicación cliente: "Velusel APP"
-8) Ejecute el archivo ClientInstaller que está dentro de esa carpeta.
-9) Luego de que finalice la instalación dirijase a la carpeta "C:\Program Files (x86)\LucasSaavedra\Velusel App\"
-10) Modifique el archivo de configuración "WinApp.exe.config"
+7) Modifique el archivo de configuración "WindowsService.exe.config"
 en la lineas 
 <add name="VeluselConString" connectionString="Data Source=LAPTOP-ETGG4K9E\SQLEXPRESS;Initial Catalog=Velusel;User ID=sa;password=."  />
 <add name="SLConString" connectionString="Data Source=LAPTOP-ETGG4K9E\SQLEXPRESS;Initial Catalog=SecurityDB;User ID=sa;password=."  />
-reemplace "LAPTOP-ETGG4K9E\SQLEXPRESS" por el nombre de la instancia del motor de base de datos que utilizó en el servidor
-11) Si desea modificar cual es la casilla de correo desde donde se envían los mails modifique el archivo de configuración "WinApp.exe.config"
+reemplace "LAPTOP-ETGG4K9E\SQLEXPRESS" por el nombre de la instancia del motor de base de datos que utilizó en el paso 4
+8) Si desea modificar cual es la casilla de correo desde donde se envían los mails modifique el archivo de configuración "WindowsService.exe.config"
 en las lineas
 <add key="emailQueEnviaContrasenias" value="tiendademascotasnarizotas@gmail.com"/> asignar la dirección de correo 
 <add key="claveQueEnviaContrasenias" value="perr0pulgoso"/> asignar la contraseña de dicha cuenta de correo
 <add key="hostQueEnviaContrasenias" value="smtp.gmail.com"/> asignar el dns del host que envía los mails
 <add key="puertoQueEnviaContrasenias" value="587"/> asignar el puerto del host que envía los mails
+
+
+INSTALACIÓN DE LA APP CLIENTE
+9) Copie la carpeta App a la(s) computadora(s) donde se ejecutará la aplicación cliente: "Velusel APP"
+10) Ejecute el archivo ClientInstaller que está dentro de esa carpeta.
+11) Luego de que finalice la instalación dirijase a la carpeta "C:\Program Files (x86)\LucasSaavedra\Velusel App\"
+12) Modifique el archivo de configuración "WinApp.exe.config"
+en la lineas 
+<add name="VeluselConString" connectionString="Data Source=LAPTOP-ETGG4K9E\SQLEXPRESS;Initial Catalog=Velusel;User ID=sa;password=."  />
+<add name="SLConString" connectionString="Data Source=LAPTOP-ETGG4K9E\SQLEXPRESS;Initial Catalog=SecurityDB;User ID=sa;password=."  />
+reemplace "LAPTOP-ETGG4K9E\SQLEXPRESS" por el nombre de la instancia del motor de base de datos que utilizó en el servidor
+13) Si desea modificar cual es la casilla de correo desde donde se envían los mails modifique el archivo de configuración "WinApp.exe.config"
+en las lineas
+<add key="emailQueEnviaContrasenias" value="tiendademascotasnarizotas@gmail.com"/> asignar la dirección de correo 
+<add key="claveQueEnviaContrasenias" value="perr0pulgoso"/> asignar la contraseña de dicha cuenta de correo
+<add key="hostQueEnviaContrasenias" value="smtp.gmail.com"/> asignar el dns del host que envía los mails
+<add key="puertoQueEnviaContrasenias" value="587"/> asignar el puerto del host que envía los mails
+14) Repetir del paso 9 al 13 en cada computadora que se desee utilizar
