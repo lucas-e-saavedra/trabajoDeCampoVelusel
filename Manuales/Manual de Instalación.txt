@@ -20,21 +20,24 @@ en las lineas
 <add key="claveQueEnviaContrasenias" value="perr0pulgoso"/> asignar la contraseña de dicha cuenta de correo
 <add key="hostQueEnviaContrasenias" value="smtp.gmail.com"/> asignar el dns del host que envía los mails
 <add key="puertoQueEnviaContrasenias" value="587"/> asignar el puerto del host que envía los mails
+9) Para modificar la ruta en la cual se van a guardar los backups de las bases de datos 
+en la linea
+<add key="rutaBackup" value="C:/TuTiN/bkpBBDD/" /> ajuste el value con la ruta de la carpeta donde desea que se guarden los archivos .bak
 
 
 INSTALACIÓN DE LA APP CLIENTE
-9) Copie la carpeta App a la(s) computadora(s) donde se ejecutará la aplicación cliente: "Velusel APP"
-10) Ejecute el archivo ClientInstaller que está dentro de esa carpeta.
-11) Luego de que finalice la instalación dirijase a la carpeta "C:\Program Files (x86)\LucasSaavedra\Velusel App\"
-12) Modifique el archivo de configuración "WinApp.exe.config"
+10) Copie la carpeta App a la(s) computadora(s) donde se ejecutará la aplicación cliente: "Velusel APP"
+11) Ejecute el archivo ClientInstaller que está dentro de esa carpeta.
+12) Luego de que finalice la instalación dirijase a la carpeta "C:\Program Files (x86)\LucasSaavedra\Velusel App\"
+13) Modifique el archivo de configuración "WinApp.exe.config"
 en la lineas 
 <add name="VeluselConString" connectionString="Data Source=LAPTOP-ETGG4K9E\SQLEXPRESS;Initial Catalog=Velusel;User ID=sa;password=."  />
 <add name="SLConString" connectionString="Data Source=LAPTOP-ETGG4K9E\SQLEXPRESS;Initial Catalog=SecurityDB;User ID=sa;password=."  />
 reemplace "LAPTOP-ETGG4K9E\SQLEXPRESS" por el nombre de la instancia del motor de base de datos que utilizó en el servidor
-13) Si desea modificar cual es la casilla de correo desde donde se envían los mails modifique el archivo de configuración "WinApp.exe.config"
+14) Si desea modificar cual es la casilla de correo desde donde se envían los mails modifique el archivo de configuración "WinApp.exe.config"
 en las lineas
 <add key="emailQueEnviaContrasenias" value="tiendademascotasnarizotas@gmail.com"/> asignar la dirección de correo 
 <add key="claveQueEnviaContrasenias" value="perr0pulgoso"/> asignar la contraseña de dicha cuenta de correo
 <add key="hostQueEnviaContrasenias" value="smtp.gmail.com"/> asignar el dns del host que envía los mails
 <add key="puertoQueEnviaContrasenias" value="587"/> asignar el puerto del host que envía los mails
-14) Repetir del paso 9 al 13 en cada computadora que se desee utilizar
+15) Repetir del paso 10 al 14 en cada computadora que se desee utilizar
