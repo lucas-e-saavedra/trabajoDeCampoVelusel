@@ -41,3 +41,5 @@ en las lineas
 <add key="hostQueEnviaContrasenias" value="smtp.gmail.com"/> asignar el dns del host que envía los mails
 <add key="puertoQueEnviaContrasenias" value="587"/> asignar el puerto del host que envía los mails
 15) Repetir del paso 10 al 14 en cada computadora que se desee utilizar
+
+Por defecto se encuentra creado un usuario administrador. Para acceder al sistema utilizando ese usuario ingrese como nombre de usuario "juan.administrador" y la contraseña es "sysAdmin"
