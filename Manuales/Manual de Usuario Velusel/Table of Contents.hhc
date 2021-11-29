@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Indice">
+		<param name="Local" value="Indice.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Todos los usuarios">
+			<param name="Local" value="TodosLosUsuarios.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Usuario Dise&ntilde;ador">
+			<param name="Local" value="UsuarioDiseniador.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Usuario Gerente">
+			<param name="Local" value="UsuarioGerente.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Usuario Vendedor">
+			<param name="Local" value="UsuarioVendedor.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Usuario Fabricante">
+			<param name="Local" value="UsuarioFabricante.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Usuario Administrador">
+			<param name="Local" value="UsuarioAdministrador.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Usuario Comprador">
+			<param name="Local" value="UsuarioComprador.htm">
+			</OBJECT>
+	</UL>
+</UL>
+</BODY></HTML>
